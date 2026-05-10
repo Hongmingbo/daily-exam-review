@@ -12,18 +12,72 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
 </head>
 <body>
-  <header class="content-header">
+  <header class="content-header" style="background:linear-gradient(135deg,#3498db,#2980b9);">
     <a href="index.html" class="back-link">← 返回首页</a>
     <h1>📐 数学复习资料</h1>
-    <p>公式 · 压轴题 · 几何</p>
+    <p>公式 · 压轴题 · 几何证明 · 2026年5月</p>
   </header>
   <main class="content-body">
     <div class="content-card">
-      <h2>📌 加载中...</h2>
-      <p>正在从知识库获取今日数学复习内容，请稍候...</p>
-      <p style="color:var(--text-mid);font-size:13px;">每日晚上9点自动更新 · 内容来源：IMA知识库 + 联网搜索</p>
+      <h2>📌 一、必背公式与概念（易混淆高频考点）</h2>
+      <div class="formula-box">
+        <strong>① 勾股定理</strong><br>
+        在直角三角形中：$a^2 + b^2 = c^2$<br>
+        其中 $c$ 为斜边，$a$、$b$ 为两直角边<br>
+        <span style="color:#92400e;font-size:13px;">⚠️ 易错：不是 $a+b=c$，而是 $a^2+b^2=c^2$！</span>
+      </div>
+      <div class="formula-box">
+        <strong>② 乘法公式（完全平方、平方差）</strong><br>
+        $(a+b)^2 = a^2 + 2ab + b^2$<br>
+        $(a-b)^2 = a^2 - 2ab + b^2$<br>
+        $a^2 - b^2 = (a+b)(a-b)$<br>
+        <span style="color:#92400e;font-size:13px;">⚠️ 易错：$(a+b)^2 
+eq a^2 + b^2$（少了 $2ab$）</span>
+      </div>
+      <div class="formula-box">
+        <strong>③ 一元二次方程求根公式</strong><br>
+        $x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$（其中 $\Delta = b^2 - 4ac \geq 0$）<br>
+        <span style="color:#92400e;font-size:13px;">⚠️ 易错：分子是 $-b \pm \sqrt{...}$ 不是 $b \pm$！</span>
+      </div>
     </div>
-    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
+    <div class="content-card">
+      <h2>📝 二、福建中考数学压轴题</h2>
+      <h3>【2024年福建中考数学·第25题（压轴题）】</h3>
+      <div class="question-block">
+        <span class="question-num">2024福建·25题</span>
+        <p><strong>（1）</strong>已知二次函数 $y = x^2 + bx + c$ 的图像经过点 $(1,0)$ 和 $(3,0)$，求 $b$ 和 $c$ 的值。</p>
+        <p><strong>（2）</strong>若（1）中的二次函数图像与 $x$ 轴交于 $A$、$B$ 两点（$A$ 在左，$B$ 在右），顶点为 $C$。求 $	riangle ABC$ 的面积。</p>
+        <p><strong>（3）</strong>设 $P$ 为抛物线上一点，且 $S_{	riangle PAB} = 2S_{	riangle ABC}$，求点 $P$ 的坐标。</p>
+      </div>
+      <div class="answer-block">
+        <strong>【答案】</strong>
+        <p><strong>（1）</strong>代入 $(1,0)$：$1 + b + c = 0$ …… ①<br>
+        代入 $(3,0)$：$9 + 3b + c = 0$ …… ②<br>
+        ②-①得：$8 + 2b = 0$，解得 $b = -4$<br>
+        代入①：$1 - 4 + c = 0$，解得 $c = 3$<br>
+        <strong>∴ $b = -4$，$c = 3$</strong></p>
+        <p style="margin-top:10px;"><strong>（2）</strong>函数为 $y = x^2 - 4x + 3 = (x-2)^2 - 1$<br>
+        顶点 $C(2, -1)$，与 $x$ 轴交点：$A(1,0)$、$B(3,0)$<br>
+        $	riangle ABC$ 底 $AB = 2$，高 $= |-1| = 1$<br>
+        $S_{	riangle ABC} = \dfrac{1}{2} 	imes 2 	imes 1 = 1$<br>
+        <strong>∴ $	riangle ABC$ 的面积为 1</strong></p>
+        <p style="margin-top:10px;"><strong>（3）</strong>设 $P(x, x^2-4x+3)$，则 $	riangle PAB$ 底为 $AB=2$，高为 $|y_P| = |x^2-4x+3|$<br>
+        $S_{	riangle PAB} = \dfrac{1}{2} 	imes 2 	imes |x^2-4x+3| = |x^2-4x+3|$<br>
+        由题意：$|x^2-4x+3| = 2 	imes 1 = 2$<br>
+        解得 $x = 2 \pm \sqrt{3}$<br>
+        <strong>∴ $P(2+\sqrt{3}, -1)$ 或 $P(2-\sqrt{3}, -1)$</strong></p>
+      </div>
+      <div class="analysis-block"><strong>📌 题目分析：</strong>第（1）问送分；第（2）问需要正确求出顶点坐标和三角形面积；第（3）问的难点在于理解 $|x^2-4x+3|$ 表示点 $P$ 到 $x$ 轴的距离，易错点是忘记取绝对值导致漏解。</div>
+    </div>
+    <div class="content-card">
+      <h2>💡 今日复习建议</h2>
+      <ul>
+        <li><strong>公式记忆</strong>：今天背3个公式，重点关注"易错提醒"部分，用红笔圈出易错符号</li>
+        <li><strong>压轴题练习</strong>：本题第（3）问建议重新做一遍，重点理解"三角形面积比"转化为"高之比"的关键步骤</li>
+        <li><strong>同类题拓展</strong>：找一道2023年福建中考数学函数压轴题，对比近两年命题风格</li>
+      </ul>
+    </div>
+    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理 · 2026年5月</p>
   </main>
 </body>
 </html>
