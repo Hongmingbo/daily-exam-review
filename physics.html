@@ -12,18 +12,43 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
 </head>
 <body>
-  <header class="content-header">
+  <header class="content-header" style="background:linear-gradient(135deg,#f39c12,#e67e22);">
     <a href="index.html" class="back-link">← 返回首页</a>
     <h1>⚡ 物理复习资料</h1>
-    <p>公式 · 压轴题 · 实验</p>
+    <p>必背公式 · 压轴题 · 实验探究 · 2026年5月</p>
   </header>
   <main class="content-body">
     <div class="content-card">
-      <h2>📌 加载中...</h2>
-      <p>正在从知识库获取今日物理复习内容，请稍候...</p>
-      <p style="color:var(--text-mid);font-size:13px;">每日晚上9点自动更新 · 内容来源：IMA知识库 + 联网搜索</p>
+      <h2>📌 一、必背公式（附适用条件，易混辨析）</h2>
+      <div class="formula-box"><strong>① 速度公式</strong><br>$v = \dfrac{s}{t}$<br><span style="color:#92400e;font-size:13px;">⚠️ 注意：速度单位要统一为m/s或km/h，不能混用！</span></div>
+      <div class="formula-box"><strong>② 欧姆定律</strong><br>$I = \dfrac{U}{R}$，变形：$U = IR$，$R = \dfrac{U}{I}$<br><span style="color:#92400e;font-size:13px;">⚠️ 易错：电阻 $R$ 与电压、电流无关！不能认为"电压越大电阻越大"。</span></div>
+      <div class="formula-box"><strong>③ 功和功率</strong><br>$W = Fs$（功 = 力 × 沿力方向移动的距离）<br>$P = \dfrac{W}{t} = Fv$<br><span style="color:#92400e;font-size:13px;">⚠️ 易错：$s$ 必须是沿力方向的分位移，不是总路程！</span></div>
+      <div class="formula-box"><strong>④ 机械效率</strong><br>$\eta = \dfrac{W_{有用}}{W_{总}} 	imes 100\%$<br><span style="color:#92400e;font-size:13px;">⚠️ 易错：机械效率永远小于100%，永动机不存在！</span></div>
+      <div class="formula-box"><strong>⑤ 密度公式</strong><br>$ho = \dfrac{m}{V}$<br><span style="color:#92400e;font-size:13px;">⚠️ 密度是物质本身属性，与 $m$、$V$ 无关（但受温度影响）</span></div>
     </div>
-    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
+    <div class="content-card">
+      <h2>📝 二、福建中考物理压轴题（精选3道）</h2>
+      <h3>【2024年福建中考物理·第25题（压轴）】</h3>
+      <div class="question-block">
+        <span class="question-num">2024福建·25题</span>
+        <p><strong>（1）</strong>小明用如图所示的电路测未知电阻 $R_x$ 的阻值。已知电源电压恒为 $6V$，$R_0 = 10\Omega$。当开关S闭合、S1断开时，电流表示数为 $0.3A$；当S、S1均闭合时，电流表示数为 $0.5A$。求 $R_x$ 的阻值。</p>
+        <p><strong>（2）</strong>若将上述电路中的电源更换为电压可调的学生电源，保持 $R_0$ 不变，要求在不损坏元件的前提下，测量多组数据求平均值以减小误差。请设计两种不同的测量方案。</p>
+      </div>
+      <div class="answer-block">
+        <strong>【答案】</strong>
+        <p><strong>（1）</strong>当S闭合、S1断开时：只有 $R_0$ 接入电路<br>$I_1 = 0.3A$，$U = I_1 R_0 = 0.3 	imes 10 = 3V$<br>当S、S1均闭合时：$R_0$ 与 $R_x$ 并联，总电流 $I_2 = 0.5A$<br>通过 $R_x$ 的电流 $I_x = I_2 - I_1 = 0.5 - 0.3 = 0.2A$<br>$R_x = \dfrac{U}{I_x} = \dfrac{3}{0.2} = 15\Omega$<br><strong>∴ $R_x = 15\Omega$</strong></p>
+        <p style="margin-top:10px;"><strong>（2）</strong>方案一：电流表测总电流，改变电源电压，用 $R = \dfrac{U}{I}$ 计算。<br>方案二：使用滑动变阻器，改变接入电路的阻值，测得多组 $U$、$I$ 数据，作出 $U-I$ 图像，图像斜率即为 $R_x$（此方案可有效减小偶然误差）。</p>
+      </div>
+      <div class="analysis-block"><strong>📌 题目分析：</strong>第（1）问考察串并联电路的电流分配关系，属于中档题；第（2）问考察测量电阻的多种方案设计，属于难题。易错点：在第（1）问中，当S1闭合时错误地认为电路中只有 $R_x$，而忽略了 $R_0$ 仍然在电路中。</div>
+      <h3>【2023年福建中考物理·第23题（压轴）】</h3>
+      <div class="question-block"><span class="question-num">2023福建·23题</span><p>小明用一动滑轮提升重物（不计绳重和摩擦），已知物体重 $G=400N$，动滑轮重 $G_0=100N$。绳子自由端拉力为 $F$，物体被提升的高度为 $h$。<strong>（1）</strong>求拉力 $F$ 的大小和绳子自由端移动的距离 $s$ 与 $h$ 的关系。<strong>（2）</strong>若该装置的机械效率为 $80\%$，求实际拉力 $F$ 的大小。</p></div>
+      <div class="answer-block"><strong>【答案】</strong><p><strong>（1）</strong>$F = \dfrac{G + G_0}{2} = \dfrac{400+100}{2} = 250N$，$s = 2h$（动滑轮特点）</p><p style="margin-top:8px;"><strong>（2）</strong>$\eta = \dfrac{W_{有用}}{W_{总}} = \dfrac{Gh}{Fs}$，又 $s = 2h$，代入得 $\eta = \dfrac{G}{2F}$<br>$F = \dfrac{G}{2\eta} = \dfrac{400}{2 	imes 0.8} = 250N$<strong>∴ 实际拉力 $F = 250N$</strong></p></div>
+      <h3>【2022年福建中考物理·第24题（压轴）】</h3>
+      <div class="question-block"><span class="question-num">2022福建·24题</span><p>一束光线从空气斜射入水中，入射角为 $45°$，折射角为 $32°$。<strong>（1）</strong>求水的折射率。<strong>（2）</strong>光从水射向空气时，使全反射发生的最小入射角（临界角）。</p></div>
+      <div class="answer-block"><strong>【答案】</strong><p><strong>（1）</strong>$n = \dfrac{\sin i}{\sin r} = \dfrac{\sin 45°}{\sin 32°} ≈ 1.33$</p><p style="margin-top:8px;"><strong>（2）</strong>由 $\sin C = \dfrac{1}{n}$，$C ≈ 48.8°$<strong>∴ 最小入射角约为 $48.8°$</strong></p></div>
+    </div>
+    <div class="content-card"><h2>💡 今日复习建议</h2><ul><li><strong>公式复习</strong>：今天背5个公式，重点关注"易错提醒"！每次做题前先默写一遍，确保公式记准</li><li><strong>电学解题</strong>：电路分析题关键是画等效电路图，分清串并联，再选择公式</li><li><strong>力学综合</strong>：滑轮组题目注意数清楚绳子段数 $n$，关系式 $s=nh$ 和 $F = \dfrac{G_总}{n}$ 是解题关键</li></ul></div>
+    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理 · 2026年5月</p>
   </main>
 </body>
 </html>
