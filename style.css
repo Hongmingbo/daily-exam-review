@@ -235,3 +235,26 @@ body {
   border-left:3px solid var(--primary); line-height:1.7;
 }
 .suggestion-list li strong { color:var(--text); display:block; margin-bottom:2px; font-size:14px; }
+
+
+/* ==================== KNOWLEDGE ITEMS ==================== */
+.knowledge-item {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+}
+.knowledge-item h3 {
+  font-size: 15px;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.knowledge-item p, .knowledge-item ul {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.knowledge-item ul {
+  padding-left: 20px;
+}
