@@ -3,88 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>每日中考复习资料</title>
+  <title>每日中考复习资料 - 洪明博</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-decoration"></div>
   <header class="site-header">
-    <div class="header-content">
-      <div class="logo">
-        <span class="logo-icon">&#128218;</span>
-        <span class="logo-text">每日中考复习</span>
-      </div>
-      <p class="header-sub">洪明博 &#183; 中考备考资料库 &#183; 每日更新</p>
+    <div class="container">
+      <h1>📚 每日中考复习资料</h1>
+      <p>洪明博 · 2026中考备考 · 内容来源：IMA知识库 + 联网搜索整理</p>
     </div>
   </header>
-  <main class="container">
-    <div class="today-card">
-      <div class="today-label">&#128197; 2026年5月11日 &#183; 周一</div>
-      <h1>🧪 今日复习：化学</h1>
-      <p class="subtitle">易错化学式 &#183; 概念辨析 &#183; 福建中考压轴题</p>
-      <a href="chemistry.html" class="btn-primary">进入学习 &#8594;</a>
+  <nav class="subject-nav">
+    <a href="chinese.html" style="background: #e74c3c;">📖 语文</a>
+    <a href="math.html" style="background: #3498db;">🔢 数学</a>
+    <a href="english.html" style="background: #9b59b6;">🔤 英语</a>
+    <a href="physics.html" style="background: #f39c12;">⚡ 物理</a>
+    <a href="chemistry.html" style="background: #27ae60;">🧪 化学</a>
+    <a href="history.html" style="background: #d35400; box-shadow: 0 4px 12px rgba(211,84,0,0.4);">📜 历史</a>
+    <a href="politics.html" style="background: #2980b9;">🏛️ 政治</a>
+  </nav>
+  <main class="container" style="padding: 30px 20px;">
+    <div style="background: linear-gradient(135deg, #d35400, #e67e22); border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 30px; color: white;">
+      <h2 style="margin-bottom: 10px;">🔥 今日复习重点（5月12日·周二）</h2>
+      <p style="font-size: 1.3em; font-weight: 700; margin: 12px 0;">📜 历史 · 中国近代史重大事件与意义</p>
+      <p style="opacity: 0.9; margin-top: 8px;">⭐ 重点关注：2026周年事件（长征90周年、文革结束50周年、恢复高考50周年）</p>
+      <a href="history.html" style="display: inline-block; margin-top: 18px; background: white; color: #d35400; padding: 14px 32px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1em;">立即复习 →</a>
     </div>
-    <div class="week-grid">
-      <h2 class="section-title">&#128197; 七天课程表</h2>
-      <div class="subjects-grid">
-        <a href="chinese.html" class="subject-card">
-          <div class="subject-icon" style="background:#e74c3c20;color:#e74c3c">&#128214;</div>
-          <div class="subject-info">
-            <div class="subject-name">语文</div>
-            <div class="subject-desc">成语&#183;文言文&#183;古诗&#183;阅读</div>
-          </div>
-        </a>
-        <a href="math.html" class="subject-card">
-          <div class="subject-icon" style="background:#3498db20;color:#3498db">&#128220;</div>
-          <div class="subject-info">
-            <div class="subject-name">数学</div>
-            <div class="subject-desc">公式&#183;压轴题&#183;几何</div>
-          </div>
-        </a>
-        <a href="english.html" class="subject-card">
-          <div class="subject-icon" style="background:#9b59b620;color:#9b59b6">&#128440;</div>
-          <div class="subject-info">
-            <div class="subject-name">英语</div>
-            <div class="subject-desc">高频词汇&#183;阅读&#183;作文</div>
-          </div>
-        </a>
-        <a href="physics.html" class="subject-card">
-          <div class="subject-icon" style="background:#2ecc7120;color:#27ae60">&#9889;</div>
-          <div class="subject-info">
-            <div class="subject-name">物理</div>
-            <div class="subject-desc">公式&#183;实验&#183;压轴题</div>
-          </div>
-        </a>
-        <a href="chemistry.html" class="subject-card today">
-          <div class="subject-icon" style="background:#f39c1220;color:#f39c12">&#129514;</div>
-          <div class="subject-info">
-            <div class="subject-name">化学</div>
-            <div class="subject-desc">易错化学式&#183;概念&#183;压轴题</div>
-          </div>
-          <div class="today-badge">今日</div>
-        </a>
-        <a href="history.html" class="subject-card">
-          <div class="subject-icon" style="background:#e67e2220;color:#e67e22">&#127757;</div>
-          <div class="subject-info">
-            <div class="subject-name">历史</div>
-            <div class="subject-desc">事件意义&#183;易错选择&#183;大题</div>
-          </div>
-        </a>
-        <a href="politics.html" class="subject-card">
-          <div class="subject-icon" style="background:#1abc9c20;color:#1abc9c">&#128101;</div>
-          <div class="subject-info">
-            <div class="subject-name">政治</div>
-            <div class="subject-desc">知识点&#183;时事&#183;易错选择</div>
-          </div>
-        </a>
+    <div class="content-card">
+      <h2>📅 每日科目轮播</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 12px;">
+        <div style="background:#f8f9fa; padding:14px; border-radius:10px; text-align:center;"><div style="font-size:1.5em;">📖</div><div>语文</div><div style="color:#27ae60; font-size:0.85em;">✓ 已更新</div></div>
+        <div style="background:#f8f9fa; padding:14px; border-radius:10px; text-align:center;"><div style="font-size:1.5em;">🔢</div><div>数学</div><div style="color:#27ae60; font-size:0.85em;">✓ 已更新</div></div>
+        <div style="background:#f8f9fa; padding:14px; border-radius:10px; text-align:center;"><div style="font-size:1.5em;">🔤</div><div>英语</div><div style="color:#27ae60; font-size:0.85em;">✓ 已更新</div></div>
+        <div style="background:#f8f9fa; padding:14px; border-radius:10px; text-align:center;"><div style="font-size:1.5em;">⚡</div><div>物理</div><div style="color:#27ae60; font-size:0.85em;">✓ 已更新</div></div>
+        <div style="background:#f8f9fa; padding:14px; border-radius:10px; text-align:center;"><div style="font-size:1.5em;">🧪</div><div>化学</div><div style="color:#27ae60; font-size:0.85em;">✓ 已更新</div></div>
+        <div style="background:#fff3cd; padding:14px; border-radius:10px; text-align:center; border:2px solid #d35400;"><div style="font-size:1.5em;">📜</div><div><strong>历史</strong></div><div style="color:#e74c3c; font-weight:600; font-size:0.85em;">● 今天</div></div>
+        <div style="background:#f8f9fa; padding:14px; border-radius:10px; text-align:center;"><div style="font-size:1.5em;">🏛️</div><div>政治</div><div style="color:#27ae60; font-size:0.85em;">✓ 已更新</div></div>
       </div>
     </div>
+    <div class="content-card">
+      <h2>💡 复习建议</h2>
+      <ul>
+        <li><strong>每天固定30-45分钟</strong>复习一个科目，效率最高</li>
+        <li><strong>历史今天</strong>：重点记忆10个事件意义，2026周年事件必考</li>
+        <li><strong>做错的题</strong>标注"坑点"，考前重点回顾，避免重复犯错</li>
+        <li><strong>公式类内容</strong>要亲手默写一遍，检验是否真正掌握</li>
+        <li><strong>时政热点</strong>：2026周年事件（长征、文革结束、恢复高考）是历史和政治共同考点</li>
+      </ul>
+    </div>
+    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
   </main>
-  <footer class="site-footer">
-    <p>&#169; 2026 洪明博 &#183; 每日中考复习资料</p>
-    <p>内容来源：IMA知识库 + 联网搜索整理</p>
-  </footer>
 </body>
 </html>
