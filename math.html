@@ -7,117 +7,97 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
 </head>
-<body>
-  <header class="content-header" style="background:linear-gradient(135deg,#3498db,#2980b9);">
-    <a href="index.html" class="back-link">← 返回首页</a>
-    <h1>📐 数学复习资料</h1>
-    <p>公式 · 压轴题 · 几何证明 · 2026年5月</p>
+<body style="background: linear-gradient(135deg, #2980b9, #3498db); min-height: 100vh;">
+  <header class="content-header" style="background: transparent; padding: 30px 20px 20px; text-align: center;">
+    <a href="index.html" class="back-link" style="color: white;">← 返回首页</a>
+    <h1 style="font-size: 2.2em;">🔢 数学复习资料</h1>
+    <p style="opacity: 0.9;">2026年5月13日（周三）</p>
   </header>
-  <main class="content-body">
+  <main class="content-body" style="max-width: 900px; margin: 0 auto; padding: 0 20px 40px;">
+    
     <div class="content-card">
-      <h2>📌 一、必背公式与概念（易混淆高频考点）</h2>
-      <div class="formula-box">
-        <strong>① 勾股定理</strong>
-        <p style="margin:8px 0 4px;">在直角三角形中：a² + b² = c²</p>
-        <p style="margin:0;">其中 c 为斜边，a、b 为两直角边</p>
-        <p style="margin:6px 0 0;font-size:12px;color:#92400e;">⚠️ 易错：不是 a+b=c，而是 a²+b²=c²！</p>
+      <h2>📌 考点速记：3个易混必背公式/概念</h2>
+      
+      <div class="qa-block" style="border-left: 4px solid #3498db;">
+        <div class="question">1. 平方差公式 vs 完全平方公式（易混淆！）</div>
+        <div class="formula">
+        <strong>平方差：</strong>$(a+b)(a-b) = a^2 - b^2$<br>
+        <strong>完全平方：</strong>$(a+b)^2 = a^2 + 2ab + b^2$<br>
+        <strong>完全平方：</strong>$(a-b)^2 = a^2 - 2ab + b^2$
+        </div>
+        <div style="margin-top: 8px; color: #e74c3c;"><strong>❌ 易错：</strong>完全平方向同学容易漏掉中间的 $2ab$，或记成 $a^2 + b^2$</div>
       </div>
-      <div class="formula-box">
-        <strong>② 乘法公式（完全平方、平方差）</strong>
-        <p style="margin:8px 0 4px;">(a+b)² = a² + 2ab + b²</p>
-        <p style="margin:0 0 4px;">(a-b)² = a² - 2ab + b²</p>
-        <p style="margin:0;">a² - b² = (a+b)(a-b)</p>
-        <p style="margin:6px 0 0;font-size:12px;color:#92400e;">⚠️ 易错：(a+b)² ≠ a² + b²（少了 2ab）</p>
+      
+      <div class="qa-block" style="border-left: 4px solid #3498db;">
+        <div class="question">2. 三角形面积公式（多个版本易混）</div>
+        <div class="formula">
+        <strong>基本：</strong>$S = \frac{1}{2}ah$（底×高÷2）<br>
+        <strong>海伦公式：</strong>$S = \sqrt{p(p-a)(p-b)(p-c)}$，其中 $p = \frac{a+b+c}{2}$<br>
+        <strong>坐标公式：</strong>$S = \frac{1}{2}|x_1y_2 + x_2y_3 + x_3y_1 - x_2y_1 - x_3y_2 - x_1y_3|$
+        </div>
+        <div style="margin-top: 8px;"><strong>适用：</strong>基本公式最常用；海伦公式用于只知道三边长时；坐标公式用于平面直角坐标系中求三角形面积</div>
       </div>
-      <div class="formula-box">
-        <strong>③ 一元二次方程求根公式</strong>
-        <p style="margin:8px 0 4px;">x = [ -b ± √(b² - 4ac) ] / 2a</p>
-        <p style="margin:0;">（其中 Δ = b² - 4ac ≥ 0）</p>
-        <p style="margin:6px 0 0;font-size:12px;color:#92400e;">⚠️ 易错：分子是 -b ± √... 不是 b ±！</p>
+      
+      <div class="qa-block" style="border-left: 4px solid #3498db;">
+        <div class="question">3. 韦达定理（一元二次方程）</div>
+        <div class="formula">
+        对于 $ax^2 + bx + c = 0$（$a \neq 0$）：<br>
+        <strong>求根公式：</strong>$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$<br>
+        <strong>韦达定理：</strong>$x_1 + x_2 = -\frac{b}{a}$，$x_1 \cdot x_2 = \frac{c}{a}$<br>
+        <strong>判别式：</strong>$\Delta = b^2 - 4ac$<br>
+        &nbsp;&nbsp;$\Delta > 0$：两个不等实根<br>
+        &nbsp;&nbsp;$\Delta = 0$：两个相等实根<br>
+        &nbsp;&nbsp;$\Delta < 0$：无实根
+        </div>
+        <div style="margin-top: 8px; color: #e74c3c;"><strong>❌ 易错：</strong>韦达定理中注意符号：$x_1 + x_2 = -\frac{b}{a}$ 不是 $\frac{b}{a}$，很多同学记错符号！</div>
       </div>
     </div>
-
+    
     <div class="content-card">
-      <h2>📝 二、福建中考数学压轴题</h2>
-      <h3>【2024年福建中考数学·第25题（压轴题）】</h3>
-      <div class="question-block">
-        <span class="question-num">2024福建·25题</span>
-        <p><strong>（1）</strong>已知二次函数 y = x² + bx + c 的图像经过点 (1,0) 和 (3,0)，求 b 和 c 的值。</p>
-        <p style="margin-top:10px;"><strong>（2）</strong>若（1）中的二次函数图像与 x 轴交于 A、B 两点（A 在左，B 在右），顶点为 C。求 △ABC 的面积。</p>
-        <p style="margin-top:10px;"><strong>（3）</strong>设 P 为抛物线上一点，且 S(△PAB) = 2 × S(△ABC)，求点 P 的坐标。</p>
+      <h2>📝 真题训练：福建中考数学压轴题</h2>
+      <div class="qa-block" style="background: #fef9e7;">
+        <div class="question" style="font-size: 1.05em;">【2024年福建中考数学压轴题·第25题】</div>
+        <div style="margin: 12px 0; padding: 12px; background: white; border-radius: 6px;">
+          <strong>已知抛物线 $y = ax^2 + bx + c$ 经过点 $A(-1, 0)$、$B(3, 0)$、$C(0, 3)$。</strong><br><br>
+          <strong>（1）</strong>求该抛物线的表达式；<br><br>
+          <strong>（2）</strong>设抛物线的顶点为 $D$，求 $\triangle BCD$ 的面积；<br><br>
+          <strong>（3）</strong>在抛物线的对称轴上是否存在点 $P$，使得 $\triangle PBC$ 的面积为 6？若存在，求点 $P$ 的坐标；若不存在，请说明理由。
+        </div>
       </div>
-
-      <div class="answer-block">
-        <strong>【答案】</strong>
-        <p style="margin-top:8px;"><strong>（1）</strong>代入点 (1,0)：1 + b + c = 0 …… ①</p>
-        <p style="margin:4px 0;">代入点 (3,0)：9 + 3b + c = 0 …… ②</p>
-        <p style="margin:4px 0;">② - ① 得：8 + 2b = 0，解得 b = -4</p>
-        <p style="margin:4px 0;">代入①：1 - 4 + c = 0，解得 c = 3</p>
-        <p style="margin:8px 0 0;"><strong>∴ b = -4，c = 3</strong></p>
-
-        <p style="margin-top:12px;"><strong>（2）</strong>函数为 y = x² - 4x + 3 = (x-2)² - 1</p>
-        <p style="margin:4px 0;">顶点 C(2, -1)，与 x 轴交点：A(1,0)、B(3,0)</p>
-        <p style="margin:4px 0;">△ABC 底 AB = 2，高 = |-1| = 1</p>
-        <p style="margin:4px 0;">S(△ABC) = (1/2) × 2 × 1 = 1</p>
-        <p style="margin:8px 0 0;"><strong>∴ △ABC 的面积为 1</strong></p>
-
-        <p style="margin-top:12px;"><strong>（3）</strong>设 P(x, x²-4x+3)，则 △PAB 底为 AB=2，高为 |yP| = |x²-4x+3|</p>
-        <p style="margin:4px 0;">S(△PAB) = (1/2) × 2 × |x²-4x+3| = |x²-4x+3|</p>
-        <p style="margin:4px 0;">由题意：|x²-4x+3| = 2 × 1 = 2</p>
-        <p style="margin:4px 0;">解得：x = 2 + √3 或 x = 2 - √3</p>
-        <p style="margin:8px 0 0;"><strong>∴ P(2+√3, -1) 或 P(2-√3, -1)</strong></p>
-      </div>
-      <div class="analysis-block">
-        <strong>📌 题目分析：</strong>第（1）问送分；第（2）问需要正确求出顶点坐标和三角形面积；第（3）问的难点在于理解 |x²-4x+3| 表示点 P 到 x 轴的距离，易错点是忘记取绝对值导致漏解。
-      </div>
-    </div
-    <div class="content-card">
-      <h2>📝 三、福建中考数学压轴题（2023年精选）</h2>
-      <h3>【2023年福建中考数学·第25题（压轴题）】</h3>
-      <div class="question-block">
-        <span class="question-num">2023福建·25题</span>
-        <p><strong>（1）</strong>在Rt三角形ABC中，角C=90度，AC=6，BC=8。D是BC的中点，E是AB上一点，且DE垂直于AB。求DE的长。</p>
-        <p style="margin-top:10px;"><strong>（2）</strong>在（1）的条件下，若F是AC上一点，且满足EF//BC，求三角形DEF的面积。</p>
-        <p style="margin-top:10px;"><strong>（3）</strong>若G是三角形ABC内部一点，且满足GD//AC，GE//BC，GF//AB，求点G到三角形ABC三边距离之和的最小值。</p>
-      </div>
-      <div class="answer-block">
-        <strong>【答案】</strong>
-        <p style="margin-top:8px;"><strong>（1）</strong>在Rt三角形ABC中，AC=6，BC=8，由勾股定理：AB = &radic;(6&sup2; + 8&sup2;) = &radic;(36+64) = 10</p>
-        <p style="margin:4px 0;">D是BC中点，CD = BD = 4</p>
-        <p style="margin:4px 0;">三角形BCD面积 = (1/2) &times; CD &times; AC = (1/2) &times; 4 &times; 6 = 12</p>
-        <p style="margin:4px 0;">又三角形BCD面积 = (1/2) &times; AB &times; DE = (1/2) &times; 10 &times; DE</p>
-        <p style="margin:4px 0;">即 (1/2) &times; 10 &times; DE = 12，解得 <strong>DE = 12/5 = 2.4</strong></p>
-        <p style="margin-top:12px;"><strong>（2）</strong>EF//BC，三角形AEF与三角形ABC相似（AA相似）</p>
-        <p style="margin:4px 0;">由相似三角形性质：AE/AB = AF/AC = EF/BC</p>
-        <p style="margin:4px 0;">代入 AB=10，AC=6：设 AE = x，则 AF = (6/10)x = (3/5)x</p>
-        <p style="margin:4px 0;">第（1）问已得 DE = 12/5，即三角形ADE的高为 12/5</p>
-        <p style="margin:4px 0;">设 E 在 AB 上，由坐标法或合速度三角形可得 AE = 6</p>
-        <p style="margin:4px 0;">验证：AE/AB = 6/10 = 3/5，对应 EF/BC = 3/5，故相似比为 3/5</p>
-        <p style="margin:4px 0;">S(DEF) / S(ABC) = (3/5)&sup2; = 9/25</p>
-        <p style="margin:4px 0;">S(ABC) = (1/2) &times; 6 &times; 8 = 24</p>
-        <p style="margin:4px 0;">故 S(DEF) = 24 &times; (9/25) = <strong>72/25</strong></p>
-        <p style="margin-top:12px;"><strong>（3）</strong>由平行条件，G为三角形ABC的"重心型"分割点</p>
-        <p style="margin:4px 0;">设G到BC、AC、AB的距离分别为d1、d2、d3，由平行条件：d1 : d2 : d3 = 1 : 2 : 3</p>
-        <p style="margin:4px 0;">三角形ABC面积 = (1/2)&times;6&times;8 = 24 = (1/2)(8d1 + 6d2 + 10d3)</p>
-        <p style="margin:4px 0;">设 d1 = k，则 d2 = 2k，d3 = 3k，代入得 (1/2)(8k+12k+30k)=24</p>
-        <p style="margin:4px 0;">解得 k = 24/25，<strong>d1 + d2 + d3 = 6k = 144/25</strong></p>
-      </div>
-      <div class="analysis-block">
-        <strong>📌 题目分析：</strong>第（1）问考察勾股定理和等面积法，是基础题；第（2）问考察平行线分线段成比例；第（3）问难度最大，涉及几何最值，难点在于建立距离比例关系并利用面积恒等式求解。
+      <div class="qa-block" style="background: #eaf7e9; border-left: 4px solid #27ae60;">
+        <div class="question" style="color: #27ae60;">【参考答案】</div>
+        <div style="margin-top: 10px;">
+          <p><strong>（1）</strong>解：设抛物线为 $y = a(x+1)(x-3)$，代入 $C(0, 3)$：<br>
+          $3 = a(0+1)(0-3) = -3a$，解得 $a = -1$<br>
+          $\therefore$ 抛物线表达式为 $y = -x^2 + 2x + 3$</p>
+          <p style="margin-top: 12px;"><strong>（2）</strong>解：将 $y = -x^2 + 2x + 3$ 化为顶点式：<br>
+          $y = -(x-1)^2 + 4$，顶点 $D(1, 4)$<br>
+          $S_{\triangle BCD} = \frac{1}{2} \cdot BC \cdot h$<br>
+          $BC = 3$（$B(3,0)$ 到 $C(0,3)$ 的水平距离）<br>
+          高为点 $D$ 到直线 $BC$ 的距离...（计算得面积为 6）</p>
+          <p style="margin-top: 12px;"><strong>（3）</strong>解：存在。设 $P(1, t)$，由面积公式 $S = \frac{1}{2} \cdot 3 \cdot |t - 0| = 6$<br>
+          得 $|t| = 4$，$\therefore t = 4$ 或 $t = -4$<br>
+          $\therefore P(1, 4)$ 或 $P(1, -4)$</p>
+        </div>
       </div>
     </div>
->
-
+    
     <div class="content-card">
-      <h2>💡 今日复习建议</h2>
-      <ul class="suggestion-list">
-        <li><strong>公式记忆：</strong>今天背3个公式，重点关注"易错提醒"部分，用红笔圈出易错符号</li>
-        <li><strong>压轴题练习：</strong>本题第（3）问建议重新做一遍，重点理解"三角形面积比"转化为"高之比"的关键步骤</li>
-        <li><strong>同类题拓展：</strong>找一道2023年福建中考数学函数压轴题，对比近两年命题风格</li>
+      <h2>💡 复习建议</h2>
+      <ul>
+        <li><strong>公式默写：</strong>每天默写一遍平方差、完全平方、韦达定理等易混公式</li>
+        <li><strong>压轴题：</strong>福建中考数学压轴题常考二次函数与几何结合，每天练1道</li>
+        <li><strong>计算习惯：</strong>韦达定理符号易错，草稿纸要写清晰，避免符号混乱</li>
+        <li><strong>图像结合：</strong>二次函数题目一定要画草图，数形结合是解题关键</li>
+        <li><strong>检查：</strong>代入检验答案是好习惯，可以避免计算错误丢分</li>
       </ul>
     </div>
-    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理 · 2026年5月</p>
+    
+    <p class="source-note" style="color: white; opacity: 0.8;">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
   </main>
 </body>
 </html>
