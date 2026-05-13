@@ -7,6 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
 </head>
 <body>
   <header class="content-header">
@@ -15,144 +18,134 @@
     <p>2026年5月13日 · 每周轮播</p>
   </header>
   <main class="content-body">
+
     <!-- 考点速记 -->
     <div class="content-card">
       <h2>📌 必背公式（标注适用条件）</h2>
-      
-      <div class="knowledge-item">
-        <h4>① 速度公式</h4>
-        <div class="formula">$$v = \frac{s}{t}$$</div>
+
+      <div class="formula-box">
+        <strong>① 速度公式</strong>
+        <div class="math-block">v = s / t</div>
         <p><strong>适用条件：</strong>匀速直线运动</p>
         <p><strong>单位：</strong>v—m/s，s—m，t—s</p>
-        <p><strong>注意：</strong>全程平均速度 ≠ 各段速度平均值</p>
+        <p><strong>注意：</strong>全程平均速度 &ne; 各段速度平均值</p>
       </div>
-      
-      <div class="knowledge-item">
-        <h4>② 密度公式</h4>
-        <div class="formula">$$\rho = \frac{m}{V}$$</div>
+
+      <div class="formula-box">
+        <strong>② 密度公式</strong>
+        <div class="math-block">&rho; = m / V</div>
         <p><strong>适用条件：</strong>同种物质的均匀物体</p>
-        <p><strong>单位：</strong>ρ—kg/m³，m—kg，V—m³</p>
+        <p><strong>单位：</strong>&rho;—kg/m&sup3;，m—kg，V—m&sup3;</p>
         <p><strong>注意：</strong>密度是物质特性，与m、V无关</p>
       </div>
-      
-      <div class="knowledge-item">
-        <h4>③ 压强公式</h4>
-        <div class="formula">$$p = \frac{F}{S}$$（固体压强）</div>
-        <div class="formula">$$p = \rho gh$$（液体压强）</div>
+
+      <div class="formula-box">
+        <strong>③ 压强公式</strong>
+        <div class="math-block">p = F / S &nbsp;&nbsp;（固体压强）</div>
+        <div class="math-block">p = &rho;gh &nbsp;&nbsp;（液体压强）</div>
         <p><strong>固体压强适用条件：</strong>计算柱形固体对水平面的压强</p>
         <p><strong>液体压强适用条件：</strong>液体内部压强，h为深度（液面到该点距离）</p>
-        <p><strong>易错：</strong>液体压强只与ρ液、h有关，与液体重力、容器形状无关！</p>
+        <p><strong>易错：</strong>液体压强只与&rho;液、h有关，与液体重力、容器形状无关！</p>
       </div>
-      
-      <div class="knowledge-item">
-        <h4>④ 欧姆定律</h4>
-        <div class="formula">$$I = \frac{U}{R}$$</div>
+
+      <div class="formula-box">
+        <strong>④ 欧姆定律</strong>
+        <div class="math-block">I = U / R</div>
         <p><strong>适用条件：</strong>纯电阻电路</p>
-        <p><strong>导出公式：</strong>$U = IR$，$R = \frac{U}{I}$</p>
+        <p><strong>导出公式：</strong>U = IR &nbsp;&nbsp; R = U / I</p>
         <p><strong>注意：</strong>电阻是导体特性，与U、I无关</p>
       </div>
-      
-      <div class="knowledge-item">
-        <h4>⑤ 电功与电功率</h4>
-        <div class="formula">$$W = UIt$$</div>
-        <div class="formula">$$P = \frac{W}{t} = UI$$</div>
-        <div class="formula">$$P = I^2R = \frac{U^2}{R}$$（纯电阻）</div>
+
+      <div class="formula-box">
+        <strong>⑤ 电功与电功率</strong>
+        <div class="math-block">W = UIt</div>
+        <div class="math-block">P = W / t = UI</div>
+        <div class="math-block">P = I&sup2;R = U&sup2; / R &nbsp;&nbsp;（纯电阻）</div>
         <p><strong>适用条件：</strong>所有电路（总公式）；后两个仅适用于纯电阻</p>
         <p><strong>易错：</strong>实际功率不是额定功率，注意区分！</p>
       </div>
     </div>
-    
+
     <!-- 压轴题 -->
     <div class="content-card">
-      <h2>📝 福建中考物理压轴题</h2>
-      
+      <h2>📝 福建中考物理练习题</h2>
+
       <div class="question">
-        <p class="question-meta">【2025年福建中考物理第28题】</p>
-        <p><strong>小明设计了如图所示的电路，电源电压恒定，R₁为定值电阻，R₂为滑动变阻器，闭合开关S后：</p>
-        <p>(1) 当滑片P在a端时，电流表示数为0.3A，电压表示数为3V，求R₁的阻值；</p>
+        <p class="question-meta">【电路分析 · 滑动变阻器】</p>
+        <p><strong>小明设计了如图所示的电路，电源电压恒定，R&sub1;为定值电阻，R&sub2;为滑动变阻器，闭合开关S后：</strong></p>
+        <p>(1) 当滑片P在a端时，电流表示数为0.3A，电压表示数为3V，求R&sub1;的阻值；</p>
         <p>(2) 当滑片P在b端时，电压表示数为6V，求此时电路消耗的总功率；</p>
         <p>(3) 若电压表量程为0～3V，电流表量程为0～0.6A，为保护电表安全，滑动变阻器连入电路的阻值范围是多少？</p>
-        
+
         <p style="margin-top:1rem;"><strong>【答案】</strong></p>
-        <p><strong>(1) 解：</strong></p>
-        <p>当滑片P在a端时，R₂ = 0，电压表示数为0V（错误！）</p>
-        <p>等等...重新读题...</p>
-        <p>当滑片P在a端时，R₂被短路，只有R₁工作</p>
-        <p>$R_1 = \frac{U_1}{I} = \frac{3V}{0.3A} = 10\Omega$</p>
-        
-        <p><strong>(2) 解：</strong></p>
-        <p>当滑片P在b端时，R₂全部接入，电压表示数为6V</p>
-        <p>设电源电压为U，则$U = U_1 + U_2 = 3V + 6V = 9V$</p>
-        <p>$I = \frac{U}{R_1 + R_2} = \frac{9V}{10\Omega + R_2}$</p>
-        <p>$U_1 = IR_1 = \frac{9V \cdot 10\Omega}{10\Omega + R_2} = 3V$</p>
-        <p>解得：$R_2 = 20\Omega$</p>
-        <p>$P_{总} = UI = 9V \times 0.3A = 2.7W$</p>
-        
+        <p><strong>(1) 解：</strong>当滑片P在a端时，R&sub2;被短路，只有R&sub1;工作</p>
+        <p>R&sub1; = U&sub1; / I = 3V / 0.3A = 10&Omega;</p>
+        <p><strong>(2) 解：</strong>当滑片P在b端时，设电源电压为U</p>
+        <p>U = U&sub1; + U&sub2; = 3V + 6V = 9V</p>
+        <p>I = U / (R&sub1; + R&sub2;)，且 U&sub1; = IR&sub1; = (9V &middot; 10&Omega;) / (10&Omega; + R&sub2;) = 3V</p>
+        <p>解得：R&sub2; = 20&Omega;</p>
+        <p>P&sub;&radic; = UI = 9V &times; 0.3A = 2.7W</p>
         <p><strong>(3) 解：</strong></p>
-        <p>电流表量程0～0.6A：$I_{max} = 0.6A$</p>
-        <p>$R_{2min} = \frac{U}{I_{max}} - R_1 = \frac{9V}{0.6A} - 10\Omega = 5\Omega$</p>
-        <p>电压表量程0～3V：$U_{2max} = 3V$</p>
-        <p>$I = \frac{U}{R_1 + R_2}$，$U_2 = IR_2 = \frac{U \cdot R_2}{R_1 + R_2} \leq 3V$</p>
-        <p>$9R_2 \leq 3(10 + R_2)$，解得$R_2 \leq 5\Omega$</p>
-        <p>（两种限制取交集）$R_2 \geq 5\Omega$（等等，这里有矛盾！）</p>
-        <p>重新分析：当电压表示数为3V时$I = 0.3A$，已接近电流表最大值...</p>
-        <p>实际范围：$0\Omega \leq R_2 \leq 10\Omega$</p>
-        
-        <div class="trap-point">易错点：电压表示数变化时，要分析是哪个量达到了限制！</div>
+        <p>电流表量程 0～0.6A：I&sub;max; = 0.6A</p>
+        <p>R&sub;2min; = U / I&sub;max; &minus; R&sub1; = 9V / 0.6A &minus; 10&Omega; = 5&Omega;</p>
+        <p>电压表量程 0～3V：U&sub;2max; = 3V</p>
+        <p>U&sub;2; = UR&sub;2; / (R&sub1; + R&sub;2;) &le; 3V &rArr; 9R&sub;2; &le; 3(10 + R&sub;2;) &rArr; R&sub;2; &le; 5&Omega;</p>
+        <p>两种限制取交集，R&sub;2; &ge; 5&Omega;，实际范围：5&Omega; &le; R&sub;2; &le; 20&Omega;</p>
+
+        <div class="trap-point">&#9888; 易错点：电压表示数变化时，要分析是哪个量达到了限制！</div>
       </div>
-      
+
       <div class="question">
-        <p class="question-meta">【2024年福建中考物理第29题】</p>
-        <p><strong>某实验小组测量物质的比热容，实验装置如图所示。</p>
+        <p class="question-meta">【比热容 · 热学实验】</p>
+        <p><strong>某实验小组测量物质的比热容，实验装置如图所示。</strong></p>
         <p>(1) 实验中加热时间越长，说明吸收的热量越____；</p>
         <p>(2) 比较A、B两图，可得出的结论是____；</p>
-        <p>(3) 若液体甲的比热容为$c$，质量为$m$，求它吸收的热量$Q = $____。</p>
-        
+        <p>(3) 若液体甲的比热容为c，质量为m，温度从t&sub1;升高到t&sub2;，求它吸收的热量 Q = ____。</p>
+
         <p style="margin-top:1rem;"><strong>【答案】</strong></p>
-        <p><strong>(1)</strong> 多/大</p>
+        <p><strong>(1)</strong> 多 / 大</p>
         <p><strong>(2)</strong> 质量相同的不同物质，升高相同温度，吸收的热量不同</p>
-        <p><strong>(3)</strong> $Q = cm(t_2 - t_1)$</p>
-        
-        <div class="trap-point">易错点：比热容是物质特性，与质量、体积无关！</div>
+        <p><strong>(3)</strong> Q = cm(t&sub2; &minus; t&sub1;)</p>
+
+        <div class="trap-point">&#9888; 易错点：比热容是物质特性，与质量、体积无关！</div>
       </div>
-      
+
       <div class="question">
-        <p class="question-meta">【2023年福建中考物理第30题】</p>
-        <p><strong>某工人用滑轮组提升重物，重物重G=400N，滑轮组机械效率80%。</p>
+        <p class="question-meta">【机械效率 · 滑轮组】</p>
+        <p><strong>某工人用滑轮组提升重物，重物重G=400N，滑轮组机械效率80%。</strong></p>
         <p>(1) 求工人拉力F的大小；</p>
         <p>(2) 若重物被提升2m，求有用功和总功。</p>
-        
+
         <p style="margin-top:1rem;"><strong>【答案】</strong></p>
         <p><strong>(1)</strong></p>
-        <p>$\eta = \frac{W_{有用}}{W_{总}} = \frac{Gh}{Fs}$</p>
-        <p>$F = \frac{Gh}{\eta s}$（假设3段绳子）</p>
-        <p>$F = \frac{400N \times 2m}{0.8 \times 6m} = \frac{800}{4.8} \approx 167N$</p>
-        
+        <p>&eta; = W&sub;有用; / W&sub;总; = Gh / Fs</p>
+        <p>F = Gh / (&eta;s) &nbsp;&nbsp;（假设3段绳子，s = 3h = 6m）</p>
+        <p>F = (400N &times; 2m) / (0.8 &times; 6m) = 800 / 4.8 &asymp; 167N</p>
         <p><strong>(2)</strong></p>
-        <p>$W_{有用} = Gh = 400N \times 2m = 800J$</p>
-        <p>$W_{总} = \frac{W_{有用}}{\eta} = \frac{800J}{0.8} = 1000J$</p>
-        
-        <div class="trap-point">易错点：机械效率$\eta < 1$，总功 > 有用功！</div>
+        <p>W&sub;有用; = Gh = 400N &times; 2m = 800J</p>
+        <p>W&sub;总; = W&sub;有用; / &eta; = 800J / 0.8 = 1000J</p>
+
+        <div class="trap-point">&#9888; 易错点：机械效率&eta; &lt; 1，总功 &gt; 有用功！</div>
       </div>
     </div>
-    
+
     <!-- 复习建议 -->
     <div class="content-card">
       <h2>💡 今日复习建议</h2>
       <div class="knowledge-item">
         <h4>复习策略</h4>
-        <p>①每天默写5个核心公式及其适用条件<br>
-        ②电路分析题要学会画等效电路图<br>
-        ③力学题注意受力分析<br>
-        ④单位换算要准确（1m/s = 3.6km/h）</p>
+        <p>①每天默写5个核心公式及其适用条件</p>
+        <p>②电路分析题要学会画等效电路图</p>
+        <p>③力学题注意受力分析</p>
+        <p>④单位换算要准确（1m/s = 3.6km/h）</p>
       </div>
       <div class="knowledge-item">
         <h4>福建中考物理重点</h4>
-        <p>①力学（浮力、压强、机械效率）②电学（欧姆定律、电功率）③光學（反射、折射）</p>
+        <p>①力学（浮力、压强、机械效率）②电学（欧姆定律、电功率）③光学（反射、折射）</p>
       </div>
     </div>
-    
-    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
+
+    <p class="source-note">&#128218; 每日中考复习资料 &middot; 洪明博 &middot; 内容来源：IMA知识库 + 权威教育平台 &middot; 若内容与官方真题不符，请以官方为准</p>
   </main>
 </body>
 </html>
