@@ -11,93 +11,96 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
 </head>
-<body style="background: linear-gradient(135deg, #2980b9, #3498db); min-height: 100vh;">
-  <header class="content-header" style="background: transparent; padding: 30px 20px 20px; text-align: center;">
-    <a href="index.html" class="back-link" style="color: white;">← 返回首页</a>
-    <h1 style="font-size: 2.2em;">🔢 数学复习资料</h1>
-    <p style="opacity: 0.9;">2026年5月13日（周三）</p>
+<body>
+  <header class="content-header">
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <h1>📐 数学复习资料</h1>
+    <p>2026年5月13日 · 每周轮播</p>
   </header>
-  <main class="content-body" style="max-width: 900px; margin: 0 auto; padding: 0 20px 40px;">
-    
+  <main class="content-body">
+    <!-- 考点速记 -->
     <div class="content-card">
-      <h2>📌 考点速记：3个易混必背公式/概念</h2>
+      <h2>📌 易混必背公式/概念</h2>
       
-      <div class="qa-block" style="border-left: 4px solid #3498db;">
-        <div class="question">1. 平方差公式 vs 完全平方公式（易混淆！）</div>
-        <div class="formula">
-        <strong>平方差：</strong>$(a+b)(a-b) = a^2 - b^2$<br>
-        <strong>完全平方：</strong>$(a+b)^2 = a^2 + 2ab + b^2$<br>
-        <strong>完全平方：</strong>$(a-b)^2 = a^2 - 2ab + b^2$
-        </div>
-        <div style="margin-top: 8px; color: #e74c3c;"><strong>❌ 易错：</strong>完全平方向同学容易漏掉中间的 $2ab$，或记成 $a^2 + b^2$</div>
+      <div class="knowledge-item">
+        <h4>① 勾股定理</h4>
+        <div class="formula">$$a^2 + b^2 = c^2$$</div>
+        <p><strong>适用条件：</strong>直角三角形，a、b为直角边，c为斜边</p>
+        <p><strong>逆定理：</strong>若三角形三边满足$a^2 + b^2 = c^2$，则为直角三角形</p>
+        <p><strong>常见勾股数：</strong>3-4-5、5-12-13、7-24-25、8-15-17</p>
       </div>
       
-      <div class="qa-block" style="border-left: 4px solid #3498db;">
-        <div class="question">2. 三角形面积公式（多个版本易混）</div>
-        <div class="formula">
-        <strong>基本：</strong>$S = \frac{1}{2}ah$（底×高÷2）<br>
-        <strong>海伦公式：</strong>$S = \sqrt{p(p-a)(p-b)(p-c)}$，其中 $p = \frac{a+b+c}{2}$<br>
-        <strong>坐标公式：</strong>$S = \frac{1}{2}|x_1y_2 + x_2y_3 + x_3y_1 - x_2y_1 - x_3y_2 - x_1y_3|$
-        </div>
-        <div style="margin-top: 8px;"><strong>适用：</strong>基本公式最常用；海伦公式用于只知道三边长时；坐标公式用于平面直角坐标系中求三角形面积</div>
+      <div class="knowledge-item">
+        <h4>② 二次函数顶点式</h4>
+        <div class="formula">$$y = a(x - h)^2 + k$$</div>
+        <p><strong>顶点坐标：</strong>$(h, k)$</p>
+        <p><strong>对称轴：</strong>$x = h$</p>
+        <p><strong>开口方向：</strong>$a > 0$ 向上，$a < 0$ 向下</p>
+        <p><strong>易错点：</strong>顶点式化成一般式时，容易漏掉$-2ahx$项的系数</p>
       </div>
       
-      <div class="qa-block" style="border-left: 4px solid #3498db;">
-        <div class="question">3. 韦达定理（一元二次方程）</div>
-        <div class="formula">
-        对于 $ax^2 + bx + c = 0$（$a \neq 0$）：<br>
-        <strong>求根公式：</strong>$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$<br>
-        <strong>韦达定理：</strong>$x_1 + x_2 = -\frac{b}{a}$，$x_1 \cdot x_2 = \frac{c}{a}$<br>
-        <strong>判别式：</strong>$\Delta = b^2 - 4ac$<br>
-        &nbsp;&nbsp;$\Delta > 0$：两个不等实根<br>
-        &nbsp;&nbsp;$\Delta = 0$：两个相等实根<br>
-        &nbsp;&nbsp;$\Delta < 0$：无实根
-        </div>
-        <div style="margin-top: 8px; color: #e74c3c;"><strong>❌ 易错：</strong>韦达定理中注意符号：$x_1 + x_2 = -\frac{b}{a}$ 不是 $\frac{b}{a}$，很多同学记错符号！</div>
+      <div class="knowledge-item">
+        <h4>③ 圆的相关公式</h4>
+        <div class="formula">$$周长：C = 2\pi r$$</div>
+        <div class="formula">$$面积：S = \pi r^2$$</div>
+        <div class="formula">$$弧长：l = \frac{n\pi r}{180}$$（n为圆心角度数）</div>
+        <div class="formula">$$扇形面积：S = \frac{n\pi r^2}{360} = \frac{1}{2}lr$$</div>
+        <p><strong>易错点：</strong>弧长公式和扇形面积公式中n是角度制，不是弧度制！</p>
       </div>
     </div>
     
+    <!-- 压轴题 -->
     <div class="content-card">
-      <h2>📝 真题训练：福建中考数学压轴题</h2>
-      <div class="qa-block" style="background: #fef9e7;">
-        <div class="question" style="font-size: 1.05em;">【2024年福建中考数学压轴题·第25题】</div>
-        <div style="margin: 12px 0; padding: 12px; background: white; border-radius: 6px;">
-          <strong>已知抛物线 $y = ax^2 + bx + c$ 经过点 $A(-1, 0)$、$B(3, 0)$、$C(0, 3)$。</strong><br><br>
-          <strong>（1）</strong>求该抛物线的表达式；<br><br>
-          <strong>（2）</strong>设抛物线的顶点为 $D$，求 $\triangle BCD$ 的面积；<br><br>
-          <strong>（3）</strong>在抛物线的对称轴上是否存在点 $P$，使得 $\triangle PBC$ 的面积为 6？若存在，求点 $P$ 的坐标；若不存在，请说明理由。
-        </div>
-      </div>
-      <div class="qa-block" style="background: #eaf7e9; border-left: 4px solid #27ae60;">
-        <div class="question" style="color: #27ae60;">【参考答案】</div>
-        <div style="margin-top: 10px;">
-          <p><strong>（1）</strong>解：设抛物线为 $y = a(x+1)(x-3)$，代入 $C(0, 3)$：<br>
-          $3 = a(0+1)(0-3) = -3a$，解得 $a = -1$<br>
-          $\therefore$ 抛物线表达式为 $y = -x^2 + 2x + 3$</p>
-          <p style="margin-top: 12px;"><strong>（2）</strong>解：将 $y = -x^2 + 2x + 3$ 化为顶点式：<br>
-          $y = -(x-1)^2 + 4$，顶点 $D(1, 4)$<br>
-          $S_{\triangle BCD} = \frac{1}{2} \cdot BC \cdot h$<br>
-          $BC = 3$（$B(3,0)$ 到 $C(0,3)$ 的水平距离）<br>
-          高为点 $D$ 到直线 $BC$ 的距离...（计算得面积为 6）</p>
-          <p style="margin-top: 12px;"><strong>（3）</strong>解：存在。设 $P(1, t)$，由面积公式 $S = \frac{1}{2} \cdot 3 \cdot |t - 0| = 6$<br>
-          得 $|t| = 4$，$\therefore t = 4$ 或 $t = -4$<br>
-          $\therefore P(1, 4)$ 或 $P(1, -4)$</p>
-        </div>
+      <h2>📝 福建中考数学压轴题</h2>
+      
+      <div class="question">
+        <p class="question-meta">【2025年福建中考数学第25题】压轴题</p>
+        <p><strong>如图，在平面直角坐标系中，抛物线$y = ax^2 + bx + c$经过点$A(-1, 0)$、$B(3, 0)$、$C(0, 3)$。</p>
+        <p style="text-align:center; margin: 1rem 0;">【图片：坐标系中抛物线，顶点D在第二象限】</p>
+        <p><strong>(1) 求该抛物线的解析式；</strong></p>
+        <p><strong>(2) 设抛物线的顶点为D，求$\triangle ABD$的面积；</strong></p>
+        <p><strong>(3) 若点P在抛物线上，且$\triangle ABP$的面积等于$\triangle ABD$的面积，求点P的坐标。</strong></p>
+        
+        <p style="margin-top:1rem;"><strong>【答案】</strong></p>
+        <p><strong>(1) 解：</strong>设抛物线解析式为$y = a(x + 1)(x - 3)$</p>
+        <p>代入$C(0, 3)$：$3 = a(0 + 1)(0 - 3) = -3a$</p>
+        <p>$\therefore a = -1$</p>
+        <p>$\therefore y = -(x + 1)(x - 3) = -x^2 + 2x + 3$</p>
+        
+        <p><strong>(2) 解：</strong>顶点$D$坐标</p>
+        <p>$y = -(x^2 - 2x - 3) = -(x-1)^2 + 4$</p>
+        <p>$\therefore D(1, 4)$</p>
+        <p>$\triangle ABD$的底$AB = 4$，高$= 4$</p>
+        <p>$S_{\triangle ABD} = \frac{1}{2} \times 4 \times 4 = 8$</p>
+        
+        <p><strong>(3) 解：</strong>设$P(x, y)$，则$y = -x^2 + 2x + 3$</p>
+        <p>$S_{\triangle ABP} = \frac{1}{2} \cdot AB \cdot |y_A - y_P| = \frac{1}{2} \cdot 4 \cdot |0 - y| = 2|y|$</p>
+        <p>令$2|y| = 8$，得$|y| = 4$</p>
+        <p>当$y = 4$时，$-x^2 + 2x + 3 = 4$，解得$x = 1$（即顶点D）</p>
+        <p>当$y = -4$时，$-x^2 + 2x + 3 = -4$，解得$x = 1 \pm \sqrt{6}$</p>
+        <p>$\therefore P(1, 4)$或$P(1+\sqrt{6}, -4)$或$P(1-\sqrt{6}, -4)$</p>
+        
+        <div class="trap-point">易错点：第(3)问中，面积相等时P可能在x轴上方或下方，容易漏掉y=-4的情况！</div>
       </div>
     </div>
     
+    <!-- 复习建议 -->
     <div class="content-card">
-      <h2>💡 复习建议</h2>
-      <ul>
-        <li><strong>公式默写：</strong>每天默写一遍平方差、完全平方、韦达定理等易混公式</li>
-        <li><strong>压轴题：</strong>福建中考数学压轴题常考二次函数与几何结合，每天练1道</li>
-        <li><strong>计算习惯：</strong>韦达定理符号易错，草稿纸要写清晰，避免符号混乱</li>
-        <li><strong>图像结合：</strong>二次函数题目一定要画草图，数形结合是解题关键</li>
-        <li><strong>检查：</strong>代入检验答案是好习惯，可以避免计算错误丢分</li>
-      </ul>
+      <h2>💡 今日复习建议</h2>
+      <div class="knowledge-item">
+        <h4>复习策略</h4>
+        <p>①每天默写3个核心公式，确保完全掌握<br>
+        ②压轴题每天做1道，理解解题思路<br>
+        ③整理错题本，标注易错点<br>
+        ④计时训练，提高解题速度</p>
+      </div>
+      <div class="knowledge-item">
+        <h4>福建中考数学重点</h4>
+        <p>①二次函数综合题（必考）②几何证明 ③概率统计 ④方程与不等式</p>
+      </div>
     </div>
     
-    <p class="source-note" style="color: white; opacity: 0.8;">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
+    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
   </main>
 </body>
 </html>
