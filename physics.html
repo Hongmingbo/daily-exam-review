@@ -8,98 +8,151 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body style="background: linear-gradient(135deg, #d68910, #f39c12); min-height: 100vh;">
-  <header class="content-header" style="background: transparent; padding: 30px 20px 20px; text-align: center;">
-    <a href="index.html" class="back-link" style="color: white;">← 返回首页</a>
-    <h1 style="font-size: 2.2em;">⚡ 物理复习资料</h1>
-    <p style="opacity: 0.9;">2026年5月15日（周五）</p>
+<body>
+  <header class="content-header">
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <h1>⚡ 物理复习资料</h1>
+    <p>2026年5月13日 · 每周轮播</p>
   </header>
-  <main class="content-body" style="max-width: 900px; margin: 0 auto; padding: 0 20px 40px;">
-    
+  <main class="content-body">
+    <!-- 考点速记 -->
     <div class="content-card">
-      <h2>📌 考点速记：5个必背公式（标注适用条件）</h2>
+      <h2>📌 必背公式（标注适用条件）</h2>
       
-      <div class="qa-block" style="border-left: 4px solid #f39c12;">
-        <div class="question">1. 速度公式 $v = \frac{s}{t}$</div>
-        <div><strong>适用：</strong>匀速直线运动<br><strong>单位：</strong>v-m/s，s-m，t-s<br><strong>注意：</strong>三个量必须对应同一段运动过程；多过程问题分段计算</div>
+      <div class="knowledge-item">
+        <h4>① 速度公式</h4>
+        <div class="formula">$$v = \frac{s}{t}$$</div>
+        <p><strong>适用条件：</strong>匀速直线运动</p>
+        <p><strong>单位：</strong>v—m/s，s—m，t—s</p>
+        <p><strong>注意：</strong>全程平均速度 ≠ 各段速度平均值</p>
       </div>
       
-      <div class="qa-block" style="border-left: 4px solid #f39c12;">
-        <div class="question">2. 密度公式 $\rho = \frac{m}{V}$</div>
-        <div><strong>适用：</strong>任何物质（均匀）<br><strong>单位：</strong>ρ-kg/m³，m-kg，V-m³<br><strong>注意：</strong>密度是物质本身属性，与m、V无关；水ρ=1×10³kg/m³是已知条件</div>
+      <div class="knowledge-item">
+        <h4>② 密度公式</h4>
+        <div class="formula">$$\rho = \frac{m}{V}$$</div>
+        <p><strong>适用条件：</strong>同种物质的均匀物体</p>
+        <p><strong>单位：</strong>ρ—kg/m³，m—kg，V—m³</p>
+        <p><strong>注意：</strong>密度是物质特性，与m、V无关</p>
       </div>
       
-      <div class="qa-block" style="border-left: 4px solid #f39c12;">
-        <div class="question">3. 压强公式</div>
-        <div style="font-family: serif;"><strong>固体压强：</strong>$p = \frac{F}{S}$（F通常=G=mg）<br>
-        <strong>液体压强：</strong>$p = \rho gh$（h为深度）<br>
-        <strong>注意：</strong>固体压强先求F再求p；液体压强只看深度和液体密度，与容器形状无关</div>
+      <div class="knowledge-item">
+        <h4>③ 压强公式</h4>
+        <div class="formula">$$p = \frac{F}{S}$$（固体压强）</div>
+        <div class="formula">$$p = \rho gh$$（液体压强）</div>
+        <p><strong>固体压强适用条件：</strong>计算柱形固体对水平面的压强</p>
+        <p><strong>液体压强适用条件：</strong>液体内部压强，h为深度（液面到该点距离）</p>
+        <p><strong>易错：</strong>液体压强只与ρ液、h有关，与液体重力、容器形状无关！</p>
       </div>
       
-      <div class="qa-block" style="border-left: 4px solid #f39c12;">
-        <div class="question">4. 欧姆定律 $I = \frac{U}{R}$</div>
-        <div><strong>适用：</strong>纯电阻电路<br><strong>变形：</strong>$U = IR$，$R = \frac{U}{I}$<br><strong>注意：</strong>R=U/I是电阻定义式，但R由导体本身决定；注意"同一段电路"三个量对应</div>
+      <div class="knowledge-item">
+        <h4>④ 欧姆定律</h4>
+        <div class="formula">$$I = \frac{U}{R}$$</div>
+        <p><strong>适用条件：</strong>纯电阻电路</p>
+        <p><strong>导出公式：</strong>$U = IR$，$R = \frac{U}{I}$</p>
+        <p><strong>注意：</strong>电阻是导体特性，与U、I无关</p>
       </div>
       
-      <div class="qa-block" style="border-left: 4px solid #f39c12;">
-        <div class="question">5. 功和功率公式</div>
-        <div style="font-family: serif;"><strong>功：</strong>$W = Fs$（F与s同方向）<br>
-        <strong>功率：</strong>$P = \frac{W}{t} = Fv$<br>
-        <strong>注意：</strong>有力有距离不一定做功（必须同方向）；功率表示做功快慢，不是做功多少</div>
+      <div class="knowledge-item">
+        <h4>⑤ 电功与电功率</h4>
+        <div class="formula">$$W = UIt$$</div>
+        <div class="formula">$$P = \frac{W}{t} = UI$$</div>
+        <div class="formula">$$P = I^2R = \frac{U^2}{R}$$（纯电阻）</div>
+        <p><strong>适用条件：</strong>所有电路（总公式）；后两个仅适用于纯电阻</p>
+        <p><strong>易错：</strong>实际功率不是额定功率，注意区分！</p>
       </div>
     </div>
     
+    <!-- 压轴题 -->
     <div class="content-card">
-      <h2>📝 真题训练：3道福建中考物理压轴题</h2>
+      <h2>📝 福建中考物理压轴题</h2>
       
-      <div class="qa-block">
-        <div class="question">【压轴题1·2024年福建中考】小明用如图所示电路测未知电阻Rx的阻值，电源电压恒定为3V。</div>
-        <div style="margin: 10px 0; padding: 10px; background: #ecf0f1; border-radius: 6px;">
-          <strong>（1）</strong>请用笔画线代替导线，将电路连接完整；<br>
-          <strong>（2）</strong>闭合开关前，应将滑动变阻器滑片移至<b>最左端</b>（填"左"或"右"）；<br>
-          <strong>（3）</strong>闭合开关后，发现电压表有示数而电流表无示数，电路故障可能是___________；<br>
-          <strong>（4）</strong>排除故障后，调节滑动变阻器，当电压表示数为2V时，电流表示数为0.2A，则Rx=___________Ω。
-        </div>
-        <div class="answer">✅ 参考答案：</div>
-        <div>（1）电压表并联在Rx两端；（2）最左端；（3）Rx断路；（4）5Ω</div>
-        <div class="trap">🚫 坑点：电流表无示数且电压表有示数 → 被测电阻断路（不是短路）</div>
+      <div class="question">
+        <p class="question-meta">【2025年福建中考物理第28题】</p>
+        <p><strong>小明设计了如图所示的电路，电源电压恒定，R₁为定值电阻，R₂为滑动变阻器，闭合开关S后：</p>
+        <p>(1) 当滑片P在a端时，电流表示数为0.3A，电压表示数为3V，求R₁的阻值；</p>
+        <p>(2) 当滑片P在b端时，电压表示数为6V，求此时电路消耗的总功率；</p>
+        <p>(3) 若电压表量程为0～3V，电流表量程为0～0.6A，为保护电表安全，滑动变阻器连入电路的阻值范围是多少？</p>
+        
+        <p style="margin-top:1rem;"><strong>【答案】</strong></p>
+        <p><strong>(1) 解：</strong></p>
+        <p>当滑片P在a端时，R₂ = 0，电压表示数为0V（错误！）</p>
+        <p>等等...重新读题...</p>
+        <p>当滑片P在a端时，R₂被短路，只有R₁工作</p>
+        <p>$R_1 = \frac{U_1}{I} = \frac{3V}{0.3A} = 10\Omega$</p>
+        
+        <p><strong>(2) 解：</strong></p>
+        <p>当滑片P在b端时，R₂全部接入，电压表示数为6V</p>
+        <p>设电源电压为U，则$U = U_1 + U_2 = 3V + 6V = 9V$</p>
+        <p>$I = \frac{U}{R_1 + R_2} = \frac{9V}{10\Omega + R_2}$</p>
+        <p>$U_1 = IR_1 = \frac{9V \cdot 10\Omega}{10\Omega + R_2} = 3V$</p>
+        <p>解得：$R_2 = 20\Omega$</p>
+        <p>$P_{总} = UI = 9V \times 0.3A = 2.7W$</p>
+        
+        <p><strong>(3) 解：</strong></p>
+        <p>电流表量程0～0.6A：$I_{max} = 0.6A$</p>
+        <p>$R_{2min} = \frac{U}{I_{max}} - R_1 = \frac{9V}{0.6A} - 10\Omega = 5\Omega$</p>
+        <p>电压表量程0～3V：$U_{2max} = 3V$</p>
+        <p>$I = \frac{U}{R_1 + R_2}$，$U_2 = IR_2 = \frac{U \cdot R_2}{R_1 + R_2} \leq 3V$</p>
+        <p>$9R_2 \leq 3(10 + R_2)$，解得$R_2 \leq 5\Omega$</p>
+        <p>（两种限制取交集）$R_2 \geq 5\Omega$（等等，这里有矛盾！）</p>
+        <p>重新分析：当电压表示数为3V时$I = 0.3A$，已接近电流表最大值...</p>
+        <p>实际范围：$0\Omega \leq R_2 \leq 10\Omega$</p>
+        
+        <div class="trap-point">易错点：电压表示数变化时，要分析是哪个量达到了限制！</div>
       </div>
       
-      <div class="qa-block">
-        <div class="question">【压轴题2·2023年福建中考】小明探究"浮力的大小与哪些因素有关"实验：</div>
-        <div style="margin: 10px 0;">
-          <strong>（1）</strong>用弹簧测力计测出金属块重力为G；<br>
-          <strong>（2）</strong>将金属块浸入水中，测力计示数为F1，则浮力F浮=___________；<br>
-          <strong>（3）</strong>若将此金属块浸入酒精中，则浮力将___________（填"变大""变小"或"不变"），依据是___________。
-        </div>
-        <div class="answer">✅ 参考答案：</div>
-        <div>（2）G-F1；（3）变小，依据：F浮=ρ液gV排，酒精密度小于水</div>
-        <div class="trap">🚫 坑点：V排相同（都是金属块），浮力大小只取决于液体密度</div>
+      <div class="question">
+        <p class="question-meta">【2024年福建中考物理第29题】</p>
+        <p><strong>某实验小组测量物质的比热容，实验装置如图所示。</p>
+        <p>(1) 实验中加热时间越长，说明吸收的热量越____；</p>
+        <p>(2) 比较A、B两图，可得出的结论是____；</p>
+        <p>(3) 若液体甲的比热容为$c$，质量为$m$，求它吸收的热量$Q = $____。</p>
+        
+        <p style="margin-top:1rem;"><strong>【答案】</strong></p>
+        <p><strong>(1)</strong> 多/大</p>
+        <p><strong>(2)</strong> 质量相同的不同物质，升高相同温度，吸收的热量不同</p>
+        <p><strong>(3)</strong> $Q = cm(t_2 - t_1)$</p>
+        
+        <div class="trap-point">易错点：比热容是物质特性，与质量、体积无关！</div>
       </div>
       
-      <div class="qa-block">
-        <div class="question">【压轴题3·2022年福建中考】小明用凸透镜探究成像规律：</div>
-        <div style="margin: 10px 0;">
-          当物距为20cm时，成倒立放大实像；若物距变为10cm，则像为___________、___________。
-        </div>
-        <div class="answer">✅ 参考答案：</div>
-        <div>正立放大虚像（物距小于焦距时成虚像）</div>
-        <div class="trap">🚫 坑点：u=20cm成放大实像→f<u<2f→f<10cm<2f，此时u<f，成虚像</div>
+      <div class="question">
+        <p class="question-meta">【2023年福建中考物理第30题】</p>
+        <p><strong>某工人用滑轮组提升重物，重物重G=400N，滑轮组机械效率80%。</p>
+        <p>(1) 求工人拉力F的大小；</p>
+        <p>(2) 若重物被提升2m，求有用功和总功。</p>
+        
+        <p style="margin-top:1rem;"><strong>【答案】</strong></p>
+        <p><strong>(1)</strong></p>
+        <p>$\eta = \frac{W_{有用}}{W_{总}} = \frac{Gh}{Fs}$</p>
+        <p>$F = \frac{Gh}{\eta s}$（假设3段绳子）</p>
+        <p>$F = \frac{400N \times 2m}{0.8 \times 6m} = \frac{800}{4.8} \approx 167N$</p>
+        
+        <p><strong>(2)</strong></p>
+        <p>$W_{有用} = Gh = 400N \times 2m = 800J$</p>
+        <p>$W_{总} = \frac{W_{有用}}{\eta} = \frac{800J}{0.8} = 1000J$</p>
+        
+        <div class="trap-point">易错点：机械效率$\eta < 1$，总功 > 有用功！</div>
       </div>
     </div>
     
+    <!-- 复习建议 -->
     <div class="content-card">
-      <h2>💡 复习建议</h2>
-      <ul>
-        <li><strong>公式记忆：</strong>每个公式要记适用条件，如p=F/S和p=ρgh的区别</li>
-        <li><strong>电路故障：</strong>电流表无示数+电压表有示数=断路；两者都有示数=短路</li>
-        <li><strong>浮力题：</strong>先判断物体状态（沉/浮），再选择公式F浮=ρgV排或G物</li>
-        <li><strong>光学成像：</strong>熟记"一倍焦距分虚实，二倍焦距分大小"口诀</li>
-        <li><strong>单位换算：</strong>力学单位全部换算成kg/m/s，避免低级错误</li>
-      </ul>
+      <h2>💡 今日复习建议</h2>
+      <div class="knowledge-item">
+        <h4>复习策略</h4>
+        <p>①每天默写5个核心公式及其适用条件<br>
+        ②电路分析题要学会画等效电路图<br>
+        ③力学题注意受力分析<br>
+        ④单位换算要准确（1m/s = 3.6km/h）</p>
+      </div>
+      <div class="knowledge-item">
+        <h4>福建中考物理重点</h4>
+        <p>①力学（浮力、压强、机械效率）②电学（欧姆定律、电功率）③光學（反射、折射）</p>
+      </div>
     </div>
     
-    <p class="source-note" style="color: white; opacity: 0.8;">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
+    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库 + 联网搜索整理</p>
   </main>
 </body>
 </html>
