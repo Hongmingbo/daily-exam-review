@@ -1,173 +1,462 @@
-/* Daily Exam Review - Styles */
-/* Mobile-first, 统一颜色体系 */
+/* Daily Exam Review - Per-Subject Color System
+   每个科目独立的视觉风格，统一结构 + 差异化配色
+*/
+
+/* ============ SUBJECT COLOR TOKENS ============ */
 :root {
-  --primary: #4f46e5;
-  --primary-light: #818cf8;
-  --secondary: #0891b2;
-  --accent: #e74c3c;
-  --bg: #f0f4ff;
-  --card-bg: #ffffff;
-  --text: #1e293b;
-  --text-mid: #64748b;
-  --border: #e2e8f0;
-  --radius: 16px;
-  --today-highlight: #fffbeb;
-  --today-border: #f59e0b;
+  /* Physics - 橙金色系 */
+  --physics-c1: #f39c12;
+  --physics-c2: #e67e22;
+  --physics-grad: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  --physics-accent: #d35400;
+
+  /* Chinese - 中国红系 */
+  --chinese-c1: #e74c3c;
+  --chinese-c2: #c0392b;
+  --chinese-grad: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  --chinese-accent: #a93226;
+
+  /* Math - 科技蓝系 */
+  --math-c1: #3498db;
+  --math-c2: #2980b9;
+  --math-grad: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  --math-accent: #1a5276;
+
+  /* English - 皇家紫系 */
+  --english-c1: #9b59b6;
+  --english-c2: #8e44ad;
+  --english-grad: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  --english-accent: #6c3483;
+
+  /* Chemistry - 活力绿系 */
+  --chemistry-c1: #27ae60;
+  --chemistry-c2: #1e8449;
+  --chemistry-grad: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  --chemistry-accent: #145a32;
+
+  /* History - 古典橙系 */
+  --history-c1: #e67e22;
+  --history-c2: #d35400;
+  --history-grad: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  --history-accent: #a04000;
+
+  /* Politics - 清新青系 */
+  --politics-c1: #1abc9c;
+  --politics-c2: #16a085;
+  --politics-grad: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+  --politics-accent: #0e6655;
 }
 
-/* Subject colors */
-:root {
-  --chinese: #e74c3c;
-  --math: #3498db;
-  --english: #9b59b6;
-  --physics: #f39c12;
-  --chemistry: #27ae60;
-  --history: #e67e22;
-  --politics: #1abc9c;
-}
-
+/* ============ GLOBAL RESETS ============ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
+  background: #f0f4f8;
+  color: #1e293b;
+  line-height: 1.75;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container { max-width: 680px; margin: 0 auto; padding: 16px 14px; }
+.container { max-width: 720px; margin: 0 auto; padding: 0 14px 40px; }
 
-/* Site Header */
+/* ============ SITE HEADER ============ */
 .site-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: var(--physics-grad);
   color: white;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 2.5rem;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 0 0 28px 28px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
-.site-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
-.site-header p { opacity: 0.9; font-size: 0.95rem; }
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+.site-header h1 { font-size: 1.65rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.02em; position: relative; }
+.site-header p { opacity: 0.85; font-size: 0.88rem; position: relative; }
+.site-header .countdown {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 3px 14px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  position: relative;
+}
 
-/* Nav Cards */
+/* Subject-specific header backgrounds */
+.site-header.physics { background: var(--physics-grad); }
+.site-header.chinese { background: var(--chinese-grad); }
+.site-header.math { background: var(--math-grad); }
+.site-header.english { background: var(--english-grad); }
+.site-header.chemistry { background: var(--chemistry-grad); }
+.site-header.history { background: var(--history-grad); }
+.site-header.politics { background: var(--politics-grad); }
+
+/* ============ NAV CARDS ============ */
 .nav-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  max-width: 900px;
-  margin: 1.5rem auto;
+  margin-bottom: 1.5rem;
   padding: 0 14px;
 }
 .nav-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 1rem;
+  background: white;
+  border-radius: 14px;
+  padding: 0.85rem 0.5rem;
   text-align: center;
   text-decoration: none;
-  color: var(--text);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid transparent;
+  color: #475569;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  transition: transform 0.18s, box-shadow 0.18s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
+  border: 1.5px solid transparent;
+  font-size: 0.78rem;
 }
-.nav-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-.nav-card.today { border-color: var(--today-border); background: var(--today-highlight); }
-.nav-card .emoji { font-size: 2rem; }
-.nav-card .label { font-weight: 600; font-size: 0.95rem; }
-.nav-card .date { font-size: 0.75rem; color: var(--text-mid); }
+.nav-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.nav-card.today { border-color: currentColor; background: #fffbeb; }
+.nav-card .emoji { font-size: 1.6rem; line-height: 1.2; }
+.nav-card .label { font-weight: 600; font-size: 0.85rem; }
+.nav-card .day { font-size: 0.7rem; color: #94a3b8; }
 
-/* Content Header (Subject Pages) */
-.content-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  color: white;
-  padding: 2rem 1rem;
-  border-radius: 0 0 24px 24px;
-  margin-bottom: 1.5rem;
+/* Per-subject nav highlight */
+.nav-card.physics.today  { color: var(--physics-c1); }
+.nav-card.chinese.today  { color: var(--chinese-c1); }
+.nav-card.math.today     { color: var(--math-c1); }
+.nav-card.english.today  { color: var(--english-c1); }
+.nav-card.chemistry.today{ color: var(--chemistry-c1); }
+.nav-card.history.today  { color: var(--history-c1); }
+.nav-card.politics.today { color: var(--politics-c1); }
+
+/* ============ PAGE TABS (Basic/Paper switcher) ============ */
+.page-tabs {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-radius: 14px;
+  padding: 4px;
+  margin: 0 14px 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
-.content-header .back-link {
-  color: rgba(255,255,255,0.85);
-  text-decoration: none;
+.tab-btn {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
   font-size: 0.9rem;
-  display: inline-block;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #64748b;
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
-.content-header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; }
-.content-header p { opacity: 0.85; font-size: 0.9rem; }
+.tab-btn:hover { background: #f1f5f9; }
+.tab-btn.active {
+  background: var(--tab-color, #4f46e5);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 
-/* Content Cards */
+/* ============ CONTENT CARDS ============ */
 .content-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
+  background: white;
+  border-radius: 16px;
   padding: 20px 18px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
 }
-.content-card h2 { font-size: 1.15rem; margin-bottom: 14px; color: var(--text); border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+.content-card h2 {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  color: #1e293b;
+  border-bottom: 2px solid var(--card-accent, #e2e8f0);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-/* Knowledge Items */
+/* Per-subject card accent */
+.content-card.physics h2   { border-color: var(--physics-c1); }
+.content-card.chinese h2  { border-color: var(--chinese-c1); }
+.content-card.math h2     { border-color: var(--math-c1); }
+.content-card.english h2  { border-color: var(--english-c1); }
+.content-card.chemistry h2{ border-color: var(--chemistry-c1); }
+.content-card.history h2  { border-color: var(--history-c1); }
+.content-card.politics h2{ border-color: var(--politics-c1); }
+
+/* ============ KNOWLEDGE ITEMS ============ */
 .knowledge-item { margin-bottom: 14px; }
-.knowledge-item h4 { font-size: 1rem; color: var(--primary); margin-bottom: 6px; }
-.knowledge-item p { font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
+.knowledge-item:last-child { margin-bottom: 0; }
+.knowledge-item h4 {
+  font-size: 0.98rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.knowledge-item p { font-size: 0.93rem; color: #475569; margin-bottom: 3px; }
+.knowledge-item ul, .knowledge-item ol {
+  padding-left: 1.3rem;
+  font-size: 0.93rem;
+  color: #475569;
+}
+.knowledge-item li { margin-bottom: 3px; }
 
-/* Formula Box */
+/* Numbered list style */
+.num-list { list-style: none; padding: 0; }
+.num-list li {
+  padding: 6px 10px 6px 32px;
+  position: relative;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+.num-list li::before {
+  content: attr(data-n);
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--num-color, #4f46e5);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 20px;
+}
+
+/* ============ CALLOUT BOXES ============ */
 .formula-box {
-  background: #f8faff;
-  border-left: 4px solid var(--primary);
+  background: #fafbff;
+  border-left: 4px solid var(--box-accent, #4f46e5);
   padding: 10px 14px;
   margin: 8px 0;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.92rem;
 }
-.formula-box strong { font-size: 0.95rem; color: var(--primary); display: block; margin-bottom: 6px; }
-.math-block { overflow-x: auto; padding: 8px 0; font-size: 0.95rem; }
+.formula-box strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--box-accent, #4f46e5);
+  font-size: 0.9rem;
+}
+.formula-box .formula {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.02em;
+}
 
-/* Warning/Tip Box */
-.warning-box {
+.trap-box {
+  background: #fff5f5;
+  border-left: 4px solid #e74c3c;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  color: #c0392b;
+}
+.trap-box::before { content: '⚠️ '; }
+
+.tip-box {
+  background: #f0fdf4;
+  border-left: 4px solid #27ae60;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  color: #1e8449;
+}
+
+.note-box {
   background: #fff7ed;
   border-left: 4px solid #f39c12;
-  padding: 10px 14px;
+  padding: 8px 12px;
   margin: 8px 0;
   border-radius: 0 8px 8px 0;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  color: #92400e;
 }
-.trap-point {
-  background: #fef2f2;
-  border-left: 4px solid var(--accent);
+
+/* ============ QUESTION BLOCK ============ */
+.question {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  border: 1px solid #e2e8f0;
+}
+.question-meta {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.question p { font-size: 0.92rem; color: #334155; margin-bottom: 5px; }
+
+.answer-block {
+  background: #f0fdf4;
+  border-left: 3px solid #27ae60;
   padding: 8px 12px;
   margin-top: 8px;
   border-radius: 0 6px 6px 0;
   font-size: 0.9rem;
-  color: var(--accent);
+  color: #1e8449;
 }
 
-/* Question Block */
-.question { background: #fafafa; border-radius: 12px; padding: 16px; margin: 10px 0; }
-.question-meta { font-size: 0.85rem; color: var(--text-mid); margin-bottom: 8px; }
-.question p { margin-bottom: 6px; }
-
-/* Choice List */
-.choice-list { list-style: none; padding: 0; margin: 8px 0; }
-.choice-list li { padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; font-size: 0.95rem; }
-.choice-list li:hover { background: #f0f4ff; }
-
-/* Vocabulary Table */
-.vocab-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 8px 0; }
-.vocab-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: left; }
-.vocab-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); }
+/* ============ VOCABULARY / TABLE ============ */
+.vocab-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 8px 0; }
+.vocab-table th {
+  background: var(--th-color, #4f46e5);
+  color: white;
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 0.82rem;
+}
+.vocab-table td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; color: #475569; }
 .vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table tr:nth-child(even) td { background: #f8fafc; }
 
-/* Source Note */
-.source-note { text-align: center; color: var(--text-mid); font-size: 0.8rem; padding: 16px 0; }
-
-/* KaTeX fixes */
-.katex-display { margin: 10px 0 !important; overflow-x: auto; }
-.katex-display > .katex { white-space: nowrap !important; }
-
-/* Tablet/Desktop enhancement */
-@media (min-width: 768px) {
-  .container { max-width: 900px; padding: 30px 20px; }
-  .content-card { padding: 32px; }
-  .nav-cards { gap: 14px; }
+/* ============ POETRY / TEXT PASSAGE ============ */
+.passage-block {
+  background: #fefce8;
+  border: 1px solid #fef08a;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  font-size: 0.92rem;
+  line-height: 2;
 }
+.passage-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: #92400e;
+}
+.passage-content { color: #451a03; }
+
+/* ============ MATH BLOCK ============ */
+.math-block {
+  overflow-x: auto;
+  padding: 8px 4px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  background: #fafbff;
+  border-radius: 6px;
+  margin: 4px 0;
+}
+
+/* ============ EXAM PAPER IMAGE ============ */
+.paper-img-wrap { margin: 12px 0; }
+.paper-img-wrap img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  display: block;
+}
+.paper-caption {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 5px;
+}
+
+/* ============ SOURCE NOTE ============ */
+.source-note {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  padding: 20px 0 8px;
+  line-height: 1.6;
+}
+.source-note a { color: #94a3b8; }
+
+/* ============ NO-CONTENT STATE ============ */
+.no-content {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #94a3b8;
+}
+.no-content .icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.no-content p { font-size: 0.9rem; }
+
+/* ============ SUBJECT PAGE HEADER ============ */
+.content-header {
+  padding: 1.8rem 1rem 1.5rem;
+  border-radius: 0 0 24px 24px;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+.content-header.physics   { background: var(--physics-grad); color: white; }
+.content-header.chinese   { background: var(--chinese-grad); color: white; }
+.content-header.math      { background: var(--math-grad); color: white; }
+.content-header.english   { background: var(--english-grad); color: white; }
+.content-header.chemistry { background: var(--chemistry-grad); color: white; }
+.content-header.history   { background: var(--history-grad); color: white; }
+.content-header.politics { background: var(--politics-grad); color: white; }
+
+.content-header .back-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+.content-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; }
+.content-header p { opacity: 0.8; font-size: 0.85rem; }
+
+/* ============ PAGE NAV (prev/next subject) ============ */
+.page-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+.page-nav a {
+  background: white;
+  border-radius: 12px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #475569;
+  font-size: 0.85rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.15s;
+}
+.page-nav a:hover { transform: translateY(-1px); }
+.page-nav .next { text-align: right; justify-content: flex-end; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 400px) {
+  .nav-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .container { max-width: 900px; padding: 0 20px 60px; }
+  .content-card { padding: 28px 26px; }
+  .nav-cards { gap: 14px; padding: 0; }
+  .nav-card { padding: 1rem 0.5rem; }
+  .page-tabs { margin: 0 0 1.2rem; border-radius: 16px; }
+  .tab-btn { font-size: 0.95rem; padding: 12px 16px; }
+}
+
+/* ============ KaTeX OVERRIDES ============ */
+.katex-display { margin: 10px 0 !important; overflow-x: auto; }
