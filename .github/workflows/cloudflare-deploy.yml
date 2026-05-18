@@ -13,6 +13,7 @@ jobs:
       - name: Upload to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 'e63fd45070e98bd80afb6f39b8fa2430'
           projectName: 'daily-exam-review'
           directory: '.'
