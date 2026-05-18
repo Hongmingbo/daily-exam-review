@@ -1,0 +1,19 @@
+name: Cloudflare Pages Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Upload to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          accountId: 'e63fd45070e98bd80afb6f39b8fa2430'
+          projectName: 'daily-exam-review'
+          directory: '.'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
