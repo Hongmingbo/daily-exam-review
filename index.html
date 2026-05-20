@@ -12,7 +12,16 @@
 <header class="site-header math">
   <h1>📚 每日中考复习资料</h1>
   <p>洪明博 · 2026年福建中考备考</p>
-  <span class="countdown">⏳ 距中考约27天（5月21日考完）</span>
+  <span class="countdown">⏳ <span id="countdown">距中考约--天</span>（2026年5月17日起算）
+<script>
+(function(){
+  var exam=new Date('2026-05-17');
+  var now=new Date();
+  var diff=Math.ceil((exam-now)/86400000);
+  var el=document.getElementById('countdown');
+  if(el) el.textContent='距中考约'+Math.max(0,diff)+'天';
+})();
+</script></span>
 </header>
 <nav class="nav-cards">
     <a href="physics_basic.html" class="nav-card physics"><span class="emoji">⚡</span><span class="label">物理</span><span class="day">周一</span></a>
@@ -78,3 +87,14 @@
 </div>
 </body>
 </html>
+<style>
+.nav-adjacent{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.nav-adjacent a{flex:1;display:block;background:#f1f5f9;border-radius:12px;padding:12px;text-align:center;text-decoration:none;color:#475569;font-size:0.85rem;font-weight:600;transition:all 0.18s}
+.nav-adjacent a:hover{background:#e2e8f0;transform:translateY(-1px)}
+.nav-adjacent .nav-prev{color:#64748b}
+.nav-adjacent .nav-next{color:#334155}
+</style>
+<nav class="nav-adjacent">
+  <a href="chinese_basic.html" class="nav-prev">← 周二 语文</a>
+  <a href="english_basic.html" class="nav-next">周四 英语 →</a>
+</nav>
