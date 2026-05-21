@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚑 考前急救包 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.emergency-header { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #f39c12 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; text-align: center; }
+.emergency-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.emergency-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; position: relative; }
+.emergency-header p { opacity: 0.9; font-size: 0.85rem; position: relative; }
+.em-subject-tabs { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 14px; padding: 0 14px; }
+.em-tab { background: var(--bg-card); border: 1.5px solid var(--border-color); border-radius: 20px; padding: 5px 14px; font-size: 0.8rem; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; text-decoration: none; }
+.em-tab:hover, .em-tab.active { border-color: var(--c, #3498db); color: var(--c, #3498db); background: var(--bg-card); }
+.em-section { display: none; }
+.em-section.active { display: block; }
+.em-formula-row { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
+.em-formula-row:last-child { border-bottom: none; }
+.em-formula-name { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); min-width: 90px; }
+.em-formula-content { font-size: 0.88rem; color: var(--text-secondary); font-family: 'Courier New', monospace; }
+.em-warning { background: #fff5f5; border: 1px solid #fecaca; border-radius: 8px; padding: 10px 12px; margin: 8px 0; font-size: 0.82rem; color: #dc2626; }
+body.dark .em-warning { background: #450a0a; border-color: #7f1d1d; color: #fca5a5; }
+.em-trap { background: #fffbeb; border-radius: 8px; padding: 8px 12px; margin: 6px 0; font-size: 0.8rem; color: #92400e; }
+body.dark .em-trap { background: #451a03; color: #fcd34d; }
+.em-trap strong { color: inherit; }
+.em-quick-list { padding: 0; margin: 6px 0; list-style: none; }
+.em-quick-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 3px 0; display: flex; align-items: flex-start; gap: 6px; }
+.em-quick-list li::before { content: '•'; color: var(--c, #3498db); font-weight: 700; flex-shrink: 0; }
+.print-emergency-btn { display: block; width: calc(100% - 28px); margin: 0 14px 14px; background: #e74c3c; color: white; text-align: center; padding: 10px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.88rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.print-emergency-btn:hover { background: #c0392b; }
+body.dark .emergency-header { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #b45309 100%); }
+@media print {
+  .em-subject-tabs, .print-emergency-btn, #dark-toggle { display: none !important; }
+  .em-section { display: block !important; }
+  .content-card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="emergency-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>🚑 考前急救包</h1>
+  <p>各科核心公式 · 高频易错点 · 考前最后一页纸</p>
+  <p style="margin-top:6px;font-size:0.78rem;opacity:0.8">🚨 考前夜看这个就够了！</p>
+</header>
+
+<div class="em-subject-tabs">
+  <a class="em-tab active" style="--c:#e74c3c" href="#math" onclick="showTab('math',this);return false">📐 数学</a>
+  <a class="em-tab" style="--c:#f39c12" href="#physics" onclick="showTab('physics',this);return false">⚡ 物理</a>
+  <a class="em-tab" style="--c:#27ae60" href="#chemistry" onclick="showTab('chemistry',this);return false">🧪 化学</a>
+  <a class="em-tab" style="--c:#9b59b6" href="#chinese" onclick="showTab('chinese',this);return false">📝 语文</a>
+  <a class="em-tab" style="--c:#8e44ad" href="#english" onclick="showTab('english',this);return false">📖 英语</a>
+  <a class="em-tab" style="--c:#e67e22" href="#history" onclick="showTab('history',this);return false">🏛️ 历史</a>
+  <a class="em-tab" style="--c:#1abc9c" href="#politics" onclick="showTab('politics',this);return false">🎯 政治</a>
+</div>
+
+<div class="container">
+<a class="print-emergency-btn" href="javascript:window.print()">🖨️ 打印此页（Ctrl+P）</a>
+
+<!-- ====== 数学 ====== -->
+<div class="em-section active" id="tab-math">
+<div class="content-card" style="--c:#3498db">
+  <h2>📐 数学 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#3498db">① 勾股定理（必考）</h4>
+    <div class="formula-box" style="border-color:#3498db">
+      <p><strong>公式：</strong>a² + b² = c²</p>
+      <p><strong>常用勾股数：</strong>3-4-5、5-12-13、6-8-10、7-24-25、8-15-17</p>
+      <p><strong>逆定理：</strong>三边满足 a²+b²=c² → 直角三角形</p>
+      <div class="em-warning">⚠️ 只适用于直角三角形！先判断直角再套公式</div>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#3498db">② 一元二次方程</h4>
+    <div class="formula-box" style="border-color:#3498db">
+      <p><strong>求根公式：</strong>x = (-b ± √(b²-4ac)) / 2a</p>
+      <p><strong>判别式：</strong>Δ = b²-4ac</p>
+      <p>Δ&gt;0 两个不等实根 | Δ=0 两个相等实根 | Δ&lt;0 无实根</p>
+      <p><strong>韦达定理：</strong>x₁+x₂ = -b/a &nbsp; x₁·x₂ = c/a</p>
+      <div class="em-warning">⚠️ 先化为标准型 ax²+bx+c=0 再用公式</div>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#3498db">③ 圆</h4>
+    <div class="formula-box" style="border-color:#3498db">
+      <p><strong>弧长：</strong>l = nπr/180 &nbsp; <strong>扇形面积：</strong>S = nπr²/360 = lr/2</p>
+      <p><strong>垂径定理：</strong>垂直于弦的直径平分弦，并平分弦所对的两条弧</p>
+      <p><strong>圆内接四边形对角互补</strong></p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#3498db">④ 三角函数（特殊角）</h4>
+    <div class="formula-box" style="border-color:#3498db">
+      <p>sin²α + cos²α = 1</p>
+      <p>sin30° = cos60° = ½ &nbsp; cos30° = sin60° = √3/2</p>
+      <p>tan30° = √3/3 &nbsp; tan45° = 1 &nbsp; tan60° = √3</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 高频易错点</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>分式方程一定要验根（去分母可能产生增根）</li>
+      <li>二次函数顶点坐标 (-b/2a, (4ac-b²)/4a)</li>
+      <li>概率题：有放回/无放回概率不同！</li>
+      <li>相似三角形面积比 = 相似比的平方</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ====== 物理 ====== -->
+<div class="em-section" id="tab-physics">
+<div class="content-card" style="--c:#f39c12">
+  <h2>⚡ 物理 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#f39c12">① 凸透镜成像规律</h4>
+    <div class="formula-box" style="border-color:#f39c12">
+      <p>u &gt; 2f：成倒立缩小实像（照相机原理）</p>
+      <p>f &lt; u &lt; 2f：成倒立放大实像（投影仪原理）</p>
+      <p>u &lt; f：成正立放大虚像（放大镜原理）</p>
+      <p><strong>口诀：</strong>一倍焦距分虚实，二倍焦距分大小</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#f39c12">② 电路分析</h4>
+    <div class="formula-box" style="border-color:#f39c12">
+      <p><strong>欧姆定律：</strong>I = U/R &nbsp; → &nbsp; U = IR &nbsp; R = U/I</p>
+      <p><strong>串联：</strong>I相等，U=U₁+U₂，R=R₁+R₂（分压）</p>
+      <p><strong>并联：</strong>U相等，I=I₁+I₂，1/R=1/R₁+1/R₂（分流）</p>
+      <div class="em-warning">⚠️ 短路：电流不经过用电器，I急剧增大！</div>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#f39c12">③ 机械功与功率</h4>
+    <div class="formula-box" style="border-color:#f39c12">
+      <p><strong>功：</strong>W = Fs（同一方向）</p>
+      <p><strong>功率：</strong>P = W/t = Fv</p>
+      <p><strong>机械效率：</strong>η = W有/W总 × 100%</p>
+      <p><strong>动能：</strong>Eκ = ½mv² &nbsp; <strong>重力势能：</strong>Eρ = mgh</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 高频易错点</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>比热容公式：Q = cm(t₂-t₁)，c是物质的特性，与质量无关！</li>
+      <li>速度单位换算：1m/s = 3.6km/h</li>
+      <li>滑动摩擦力与速度无关，只与正压力和粗糙程度有关</li>
+      <li>杠杆平衡：F₁L₁ = F₂L₂，L是力到支点的垂直距离</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ====== 化学 ====== -->
+<div class="em-section" id="tab-chemistry">
+<div class="content-card" style="--c:#27ae60">
+  <h2>🧪 化学 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#27ae60">① 酸碱盐反应</h4>
+    <div class="formula-box" style="border-color:#27ae60">
+      <p><strong>酸的通性：</strong>酸 + 金属 → 盐 + 氢气（排在H前的金属）</p>
+      <p>酸 + 碱 → 盐 + 水（中和反应）</p>
+      <p>酸 + 盐 → 新酸 + 新盐（符合复分解条件）</p>
+      <p><strong>碱的通性：</strong>碱 + 非金属氧化物 → 盐 + 水</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#27ae60">② 复分解反应条件</h4>
+    <div class="formula-box" style="border-color:#27ae60">
+      <p>生成物中有↓（沉淀）或↑（气体）或H₂O（水）</p>
+      <p><strong>常见沉淀：</strong>BaSO₄、AgCl、CaCO₃、Cu(OH)₂（蓝）、Fe(OH)₃（红褐）</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#27ae60">③ 质量守恒定律</h4>
+    <div class="formula-box" style="border-color:#27ae60">
+      <p>化学反应前后：各原子种类、数目、质量不变</p>
+      <p><strong>化学方程式配平：</strong>观察法、最小公倍数法</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#27ae60">④ 溶液配制</h4>
+    <div class="formula-box" style="border-color:#27ae60">
+      <p><strong>溶质质量分数：</strong>w = m溶质 / m溶液 × 100%</p>
+      <p>m溶液 = m溶剂 + m溶质 = ρV</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 高频易错点</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>燃烧必须有O₂参与；缓慢氧化无火焰（如铁生锈）</li>
+      <li>金属活动性顺序：K Ca Na Mg Al Zn Fe Sn Pb H Cu Hg Ag Pt Au</li>
+      <li>置换反应：单质+化合物→新单质+新化合物</li>
+      <li>CO₂使澄清石灰水变浑浊，但SO₂也会，不能混淆</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ====== 语文 ====== -->
+<div class="em-section" id="tab-chinese">
+<div class="content-card" style="--c:#e74c3c">
+  <h2>📝 语文 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">① 文言文高频实词</h4>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>之：</strong>的（取消句子独立性）/ 代词（他、它）/ 动词（去、到）</p>
+      <p><strong>其：</strong>他的 / 它的 / 加强语气（其真无马邪？）</p>
+      <p><strong>而：</strong>表顺承（并且）/ 表转折（但是）/ 表修饰</p>
+      <p><strong>以：</strong>用 / 因为 / 凭借 / 认为</p>
+      <p><strong>于：</strong>在 / 向 / 对 / 比 / 从</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">② 作文万能素材（时事类）</h4>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>航天精神：</strong>嫦娥六号月背采样 / 可用于：坚持、创新、强国梦</p>
+      <p><strong>科技自立：</strong>芯片突破 / 可用于：自主研发、面对封锁</p>
+      <p><strong>乡村振兴：</strong>脱贫攻坚成果 / 可用于：奋斗、民生、共同富裕</p>
+      <p><strong>文化传承：</strong>非遗活化 / 可用于：传统与创新、文化自信</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">③ 病句类型</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>成分残缺：缺少主语/谓语/宾语</li>
+      <li>搭配不当：动宾不匹配、主谓不搭</li>
+      <li>语序不当：多重定语/状语顺序错误</li>
+      <li>重复累赘：意思相同的词重复出现</li>
+      <li>不合逻辑：自相矛盾或不符合常识</li>
+    </ul>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 答题规范</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>赏析句子：手法 + 内容 + 情感 + 效果</li>
+      <li>概括内容：人+事+结果，分点作答</li>
+      <li>说明文：先找说明方法，再分析作用</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ====== 英语 ====== -->
+<div class="em-section" id="tab-english">
+<div class="content-card" style="--c:#9b59b6">
+  <h2>📖 英语 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#9b59b6">① 完形填空高频短语</h4>
+    <div class="formula-box" style="border-color:#9b59b6">
+      <p>look forward to doing &nbsp; look up at &nbsp; look after = take care of</p>
+      <p>take part in = join in &nbsp; set up = establish</p>
+      <p>turn off &gt; turn on / turn down / turn up / turn in</p>
+      <p>pick up &nbsp; run out (of) &nbsp; depend on = rely on</p>
+      <p>make progress &nbsp; make a decision &nbsp; make sure</p>
+      <p>have something in common &nbsp; have trouble (in) doing</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#9b59b6">② 动词时态判断</h4>
+    <div class="formula-box" style="border-color:#9b59b6">
+      <p><strong>一般现在时：</strong>often/always/usually + 客观事实</p>
+      <p><strong>现在进行时：</strong>now/look/listen + be + v-ing</p>
+      <p><strong>一般过去时：</strong>yesterday/last week/ago + 动词过去式</p>
+      <p><strong>现在完成时：</strong>already/yet/ever/never + have/has + 过去分词</p>
+      <p><strong>过去进行时：</strong>at that time/while + was/were + v-ing</p>
+      <p><strong>一般将来时：</strong>tomorrow/next week + will + 动词原形</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#9b59b6">③ 阅读理解技巧</h4>
+    <ul class="em-quick-list" style="--c:#9b59b6">
+      <li>先读题目，划关键词，再回文章定位</li>
+      <li>细节题在原文中找原句，不要靠记忆推断</li>
+      <li>推理题看上下文，排除无中生有和过度推断项</li>
+      <li>主旨题看首段和末段，关注反复出现的词</li>
+    </ul>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 作文常用句型</h4>
+    <div class="formula-box" style="border-color:#9b59b6">
+      <p>It is + adj. + (for sb.) + to do sth.</p>
+      <p>There is something wrong with...</p>
+      <p>Whether...or not... &nbsp; Not only...but also...</p>
+      <p>The + 比较级..., the + 比较级... &nbsp; I believe...</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ====== 历史 ====== -->
+<div class="em-section" id="tab-history">
+<div class="content-card" style="--c:#e67e22">
+  <h2>🏛️ 历史 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e67e22">① 中国近代史时间线</h4>
+    <div class="formula-box" style="border-color:#e67e22">
+      <p><strong>1840 鸦片战争</strong> → 南京条约（割香港岛、赔款、开埠）</p>
+      <p><strong>1894 甲午战争</strong> → 马关条约（割台湾、赔款2亿两）</p>
+      <p><strong>1900 八国联军侵华</strong> → 辛丑条约（赔款4.5亿两，禁止反帝）</p>
+      <p><strong>1911 辛亥革命</strong> → 中华民国成立，清朝结束</p>
+      <p><strong>1919 五四运动</strong> → 马克思主义传播，新民主主义开端</p>
+      <p><strong>1921 中国共产党成立</strong></p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e67e22">② 世界史高频考点</h4>
+    <div class="formula-box" style="border-color:#e67e22">
+      <p><strong>文艺复兴（14-17世纪）：</strong>人文主义，意大利→欧洲</p>
+      <p><strong>启蒙运动（18世纪）：</strong>理性主义，孟德斯鸠、伏尔泰、卢梭</p>
+      <p><strong>工业革命（18世纪60年代英国）：</strong>瓦特改良蒸汽机</p>
+      <p><strong>美国独立（1776）：</strong>莱克星敦枪声 → 1787联邦宪法</p>
+      <p><strong>法国大革命（1789）：</strong>攻占巴士底狱 → 《人权宣言》</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 历史答题关键词</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>原因题：政治+经济+思想+外部，四维分析</li>
+      <li>影响题：积极/消极、短期/长期、国内/国际</li>
+      <li>意义题：性质+内容+地位+启示</li>
+      <li>评价题：生产力+生产关系+人民性+进步性</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ====== 政治 ====== -->
+<div class="em-section" id="tab-politics">
+<div class="content-card" style="--c:#1abc9c">
+  <h2>🎯 政治 · 急救包</h2>
+
+  <div class="knowledge-item">
+    <h4 style="color:#1abc9c">① 公民基本权利</h4>
+    <div class="formula-box" style="border-color:#1abc9c">
+      <p><strong>人身自由：</strong>不受非法拘禁、搜查、逮捕</p>
+      <p><strong>人格尊严：</strong>名誉权、肖像权、姓名权、隐私权</p>
+      <p><strong>财产权利：</strong>占有权、使用权、收益权、处分权</p>
+      <p><strong>监督权：</strong>对国家机关及工作人员批评、建议、申诉、控告</p>
+      <p><strong>选举权与被选举权：</strong>年满18周岁，未被剥夺政治权利</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#1abc9c">② 改革开放成就</h4>
+    <div class="formula-box" style="border-color:#1abc9c">
+      <p><strong>经济：</strong>GDP世界第二，全面小康，综合国力增强</p>
+      <p><strong>科技：</strong>高铁、5G、载人航天、杂交水稻</p>
+      <p><strong>外交：</strong>人类命运共同体，"一带一路"</p>
+      <p><strong>启示：</strong>坚持党的领导+改革开放+科学发展</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#1abc9c">③ 社会主义核心价值观</h4>
+    <div class="formula-box" style="border-color:#1abc9c">
+      <p><strong>国家层面：</strong>富强、民主、文明、和谐</p>
+      <p><strong>社会层面：</strong>自由、平等、公正、法治</p>
+      <p><strong>个人层面：</strong>爱国、敬业、诚信、友善</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">🚨 答题模板</h4>
+    <ul class="em-quick-list" style="--c:#e74c3c">
+      <li>原因/意义：国家+社会+个人，三层次作答</li>
+      <li>做法类：从国家/企业/个人角度分别提</li>
+      <li>认识类：是什么→为什么→怎么做</li>
+      <li>环保类：保护环境+可持续发展+绿色发展</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<p class="source-note">🚨 考前夜看这个 · 各科核心公式高频易错点<br>⚠️ 内容为个人整理，以学校老师和官方真题为准</p>
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+function showTab(id, btn) {
+  document.querySelectorAll('.em-section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.em-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Handle hash on load
+if (location.hash) {
+  var tab = location.hash.slice(1);
+  var btn = document.querySelector('.em-tab[href="#' + tab + '"]');
+  if (btn) showTab(tab, btn);
+}
+</script>
+</body>
+</html>
