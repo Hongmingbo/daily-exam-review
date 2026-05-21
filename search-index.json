@@ -1,0 +1,22 @@
+[
+  {"title":"勾股定理","category":"数学","page":"math_basic.html","snippet":"a²+b²=c²，常用勾股数3-4-5、5-12-13","keywords":"勾股定理 勾股数 直角三角形"},
+  {"title":"一元二次方程求根公式","category":"数学","page":"math_basic.html","snippet":"x=(-b±√(b²-4ac))/2a，Δ=b²-4ac","keywords":"一元二次方程 求根公式 韦达定理 判别式"},
+  {"title":"圆的弧长与扇形面积","category":"数学","page":"math_basic.html","snippet":"弧长l=nπr/180，扇形面积S=nπr²/360=lr/2","keywords":"圆 弧长 扇形面积 垂径定理"},
+  {"title":"三角函数","category":"数学","page":"math_basic.html","snippet":"sin²α+cos²α=1，特殊角三角函数值","keywords":"三角函数 sin cos tan 特殊角"},
+  {"title":"频率与概率","category":"数学","page":"math_basic.html","snippet":"频率是客观试验数据，概率是理论固定值","keywords":"频率 概率 随机事件"},
+  {"title":"全等与相似","category":"数学","page":"math_basic.html","snippet":"全等形状相同且大小相等，相似形状相同大小可不同","keywords":"全等 相似 比例 边角"},
+  {"title":"一次函数k、b的意义","category":"数学","page":"math_basic.html","snippet":"k>0过一三象限，k<0过二四象限，b是y轴截距","keywords":"一次函数 斜率 截距 象限"},
+  {"title":"物理：凸透镜成像规律","category":"物理","page":"physics_basic.html","snippet":"u>2f成倒立缩小实像，f<u<2f成倒立放大实像","keywords":"凸透镜 成像规律 实像 虚像 焦距"},
+  {"title":"物理：电路分析","category":"物理","page":"physics_basic.html","snippet":"串联分压、并联分流，欧姆定律I=U/R","keywords":"电路 串联 并联 欧姆定律 电流 电压"},
+  {"title":"物理：机械功与功率","category":"物理","page":"physics_basic.html","snippet":"W=Fs，P=W/t=Fs/t=Fv","keywords":"机械功 功率 机械效率 动能 势能"},
+  {"title":"语文：文言文实词","category":"语文","page":"chinese_basic.html","snippet":"之、其、而、以、于等常用虚词用法","keywords":"文言文 实词 虚词 文言语法"},
+  {"title":"语文：作文素材","category":"语文","page":"chinese_basic.html","snippet":"时事热点提炼成论点+金句","keywords":"作文素材 议论文 论点 名言"},
+  {"title":"英语：考纲核心词汇","category":"英语","page":"english_basic.html","snippet":"中考英语考纲1600词分类记忆","keywords":"英语单词 词汇 考纲 记忆"},
+  {"title":"英语：完形填空高频短语","category":"英语","page":"english_basic.html","snippet":"look forward to / take part in / set up 等高频短语","keywords":"完形填空 短语 固定搭配"},
+  {"title":"化学：酸碱盐","category":"化学","page":"chemistry_basic.html","snippet":"酸的通性：与活泼金属反应、与碱反应、与盐反应","keywords":"酸碱盐 化学反应 指示剂 pH值"},
+  {"title":"化学：化学方程式","category":"化学","page":"chemistry_basic.html","snippet":"质量守恒定律，化学方程式配平方法","keywords":"化学方程式 配平 质量守恒"},
+  {"title":"历史：中国近代史","category":"历史","page":"history_basic.html","snippet":"鸦片战争、辛亥革命、五四运动重要考点","keywords":"近代史 鸦片战争 辛亥革命 五四运动"},
+  {"title":"历史：世界古代史","category":"历史","page":"history_basic.html","snippet":"古希腊罗马文明、文艺复兴、启蒙运动","keywords":"古希腊 罗马 文艺复兴 启蒙运动"},
+  {"title":"政治：公民权利","category":"政治","page":"politics_basic.html","snippet":"人身自由、监督权、选举权等公民基本权利","keywords":"公民权利 人身自由 监督权 选举权"},
+  {"title":"政治：改革开放","category":"政治","page":"politics_basic.html","snippet":"改革开放的意义、主要成就","keywords":"改革开放 一国两制 基本路线"}
+]

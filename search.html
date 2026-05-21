@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搜索 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.search-header { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.search-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.search-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.search-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.search-box { background: var(--bg-card); border-radius: 14px; padding: 14px; margin-bottom: 14px; box-shadow: var(--shadow-sm); }
+.search-input-wrap { display: flex; gap: 8px; align-items: center; }
+#search-input { flex: 1; background: var(--bg-input); border: 1.5px solid var(--border-color); border-radius: 10px; padding: 10px 14px; font-size: 0.95rem; color: var(--text-primary); outline: none; font-family: inherit; transition: border-color 0.2s; }
+#search-input:focus { border-color: #1abc9c; }
+#search-input::placeholder { color: var(--text-muted); }
+#search-clear { background: none; border: none; color: var(--text-muted); font-size: 1.1rem; cursor: pointer; padding: 4px 8px; display: none; }
+.search-result { background: var(--bg-card); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; box-shadow: var(--shadow-sm); text-decoration: none; color: inherit; display: block; transition: transform 0.15s; }
+.search-result:hover { transform: translateY(-1px); }
+.search-result-title { font-weight: 600; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 3px; }
+.search-result-snippet { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 5px; }
+.search-result-meta { display: flex; gap: 8px; align-items: center; }
+.search-tag { background: #e0f2fe; color: #0369a1; border-radius: 6px; padding: 2px 8px; font-size: 0.72rem; }
+body.dark .search-tag { background: #164e63; color: #7dd3fc; }
+.search-empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
+.search-empty .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.search-count { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; }
+body.dark .search-header { background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); }
+</style>
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="search-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>🔍 搜索知识点</h1>
+  <p>输入关键词，快速查找历史内容</p>
+</header>
+<div class="container">
+<div class="search-box">
+  <div class="search-input-wrap">
+    <input id="search-input" type="search" placeholder="例如：将军饮马、二次函数平移、欧姆定律…" autocomplete="off">
+    <button id="search-clear" onclick="clearSearch()">✕</button>
+  </div>
+</div>
+<div id="search-results"></div>
+<div id="search-empty" class="search-empty" style="display:none">
+  <div class="icon">🔍</div>
+  <p id="empty-msg">输入关键词开始搜索</p>
+</div>
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+</script>
+<script>
+(function () {
+  var index = null;
+  var resultsEl = document.getElementById('search-results');
+  var emptyEl = document.getElementById('search-empty');
+  var emptyMsg = document.getElementById('empty-msg');
+  var input = document.getElementById('search-input');
+  var clearBtn = document.getElementById('search-clear');
+
+  // Load search index
+  fetch('search-index.json').then(function (r) { return r.json(); }).then(function (data) {
+    index = data;
+    // If there's a hash, search immediately
+    if (location.hash) { input.value = decodeURIComponent(location.hash.slice(1)); doSearch(); }
+  }).catch(function () { index = []; });
+
+  function escapeHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function search(query) {
+    if (!index || !query.trim()) return [];
+    var q = query.trim().toLowerCase();
+    var words = q.split(/\s+/);
+    return index.filter(function (item) {
+      var haystack = (item.title + ' ' + item.snippet + ' ' + (item.keywords||'')).toLowerCase();
+      return words.every(function (w) { return haystack.includes(w); });
+    });
+  }
+
+  function doSearch() {
+    var q = input.value.trim();
+    clearBtn.style.display = q ? 'block' : 'none';
+    if (!q) { resultsEl.innerHTML = ''; emptyEl.style.display = 'block'; emptyMsg.textContent = '输入关键词开始搜索'; return; }
+    var results = search(q);
+    if (!results.length) {
+      resultsEl.innerHTML = ''; emptyEl.style.display = 'block'; emptyMsg.textContent = '没有找到"' + escapeHtml(q) +'"相关结果'; return;
+    }
+    emptyEl.style.display = 'none';
+    var html = '<div class="search-count">找到 ' + results.length + ' 条结果</div>';
+    results.forEach(function (r) {
+      html += '<a class="search-result" href="' + r.page + '">';
+      html += '<div class="search-result-title">' + escapeHtml(r.title) + '</div>';
+      html += '<div class="search-result-snippet">' + escapeHtml(r.snippet) + '</div>';
+      html += '<div class="search-result-meta"><span class="search-tag">' + escapeHtml(r.category) + '</span><span style="font-size:0.75rem;color:var(--text-muted)">' + escapeHtml(r.page) + '</span></div>';
+      html += '</a>';
+    });
+    resultsEl.innerHTML = html;
+  }
+
+  window.clearSearch = function () { input.value = ''; doSearch(); input.focus(); };
+
+  input.addEventListener('input', doSearch);
+  input.addEventListener('keydown', function (e) { if (e.key === 'Escape') clearSearch(); });
+
+  emptyEl.style.display = 'block';
+})();
+</script>
+</body>
+</html>

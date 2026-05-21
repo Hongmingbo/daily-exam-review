@@ -9,77 +9,68 @@
 <link rel="stylesheet" href="style.css">
 <style>
 .paper-header { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; }
+.paper-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
 .paper-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
 .paper-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
-.paper-card { background: white; border-radius: 16px; padding: 20px 18px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); border-top: 3px solid #3498db; }
-.paper-img-wrap { margin: 16px 0; }
-.paper-img-wrap img { width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); display: block; }
-.paper-caption { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 6px; }
-.paper-intro { background: #e8f4fd; border-left: 4px solid #3498db; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 0.9rem; }
-.paper-intro p { margin: 4px 0; }
+.paper-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
 <header class="paper-header">
-  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>📐 数学 · 试卷练习</h1>
-  <p>2022-2023学年南平市第二次教学质量监测 · 数学试卷 · 共13页</p>
+  <p>福建中考数学质检真题 · 2026年5月</p>
+  <span class="badge">✍️ 试卷练习</span>
 </header>
 
 <div class="container">
-<div class="paper-intro">
-  <p>📖 使用说明：以下为南平市统考试卷扫描版，可放大查看。建议先自行完成，再对照答案。</p>
-  <p>🔢 <strong>答题建议：</strong>选择题用时约20分钟，填空题约15分钟，解答题约65分钟，合计90分钟。</p>
+<div class="content-card" style="border-top:3px solid #3498db">
+  <h2>📚 推荐试卷资源</h2>
+  <div class="tip-box" style="margin-bottom:12px"><strong>💡 使用说明：</strong>IMA 知识库收录福建省各地中考数学质检真题，建议配合知识点复习使用。</div>
+  <div class="knowledge-item">
+    <h4 style="color:#3498db">IMA 知识库数学试卷</h4>
+    <ul style="font-size:0.9rem;padding-left:1.2rem;color:#475569">
+      <li style="margin-bottom:6px">📄 2022-2023年南平市第二次教学质量监测数学</li>
+      <li style="margin-bottom:6px">📄 2023年龙岩市九年级学业质量检查数学</li>
+      <li style="margin-bottom:6px">📄 2023年宁德市初中毕业班质量检测数学</li>
+      <li style="margin-bottom:6px">📄 2023厦门五月一模数学</li>
+      <li style="margin-bottom:6px">📄 2022-2023年泉州市初中教学质量监测数学</li>
+      <li style="margin-bottom:6px">📄 2026年石狮市初中毕业班模拟考试数学</li>
+    </ul>
+  </div>
+  <div class="tip-box">
+    <strong>💡 提示：</strong>IMA 中的试卷为扫描版。查看完整带答案的试卷，建议访问 <a href="https://www.51test.net/zhongkao/fujian/shuxue/" target="_blank" style="color:#16a085">无忧考网福建数学真题页面</a>。
+  </div>
 </div>
 
-<div class="paper-card">
-  <div class="paper-img-wrap">
-  <img src="images/math_nanping_01.png" alt="第1页" loading="lazy">
-  <div class="paper-caption">第 1 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_02.png" alt="第2页" loading="lazy">
-  <div class="paper-caption">第 2 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_03.png" alt="第3页" loading="lazy">
-  <div class="paper-caption">第 3 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_04.png" alt="第4页" loading="lazy">
-  <div class="paper-caption">第 4 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_05.png" alt="第5页" loading="lazy">
-  <div class="paper-caption">第 5 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_06.png" alt="第6页" loading="lazy">
-  <div class="paper-caption">第 6 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_07.png" alt="第7页" loading="lazy">
-  <div class="paper-caption">第 7 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_08.png" alt="第8页" loading="lazy">
-  <div class="paper-caption">第 8 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_09.png" alt="第9页" loading="lazy">
-  <div class="paper-caption">第 9 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_10.png" alt="第10页" loading="lazy">
-  <div class="paper-caption">第 10 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_11.png" alt="第11页" loading="lazy">
-  <div class="paper-caption">第 11 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_12.png" alt="第12页" loading="lazy">
-  <div class="paper-caption">第 12 / 13 页</div>
-</div><div class="paper-img-wrap">
-  <img src="images/math_nanping_13.png" alt="第13页（答案）" loading="lazy">
-  <div class="paper-caption">第 13 / 13 页（答案）</div>
+<div class="content-card" style="border-top:3px solid #3498db">
+  <h2>📋 福建中考数学试卷结构</h2>
+  <div class="knowledge-item">
+    <div class="formula-box" style="border-color:#3498db">
+      <p><strong>选择题：</strong>10题（每题4分，共40分）</p>
+      <p><strong>填空题：</strong>6题（每题4分，共24分）</p>
+      <p><strong>解答题：</strong>9题（共86分）</p>
+      <p><strong>压轴题：</strong>二次函数综合、圆的综合题（第24/25题）</p>
+      <p><strong>总分：</strong>150分</p>
+    </div>
+  </div>
 </div>
+
+<p class="source-note">试卷来源：IMA知识库「中考复习知识库/数学/试卷」<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
 
 <div class="page-nav">
   <a href="math_basic.html">← 知识点复习</a>
-  <a href="index.html">返回首页 →</a>
+  <a href="index.html" class="next">返回首页 →</a>
 </div>
 </div>
-
-<p class="source-note">📚 每日中考复习资料 · 洪明博 · 试卷来源：IMA知识库 · 若内容与官方真题不符请以官方为准</p>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+<script src="features.js"></script>
 </body>
 </html>

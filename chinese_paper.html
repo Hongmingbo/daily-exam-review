@@ -9,78 +9,50 @@
 <link rel="stylesheet" href="style.css">
 <style>
 .paper-header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; }
+.paper-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
 .paper-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
 .paper-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
-.paper-card { background: white; border-radius: 16px; padding: 20px 18px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); border-top: 3px solid #e74c3c; }
-.paper-img-wrap { margin: 16px 0; }
-.paper-img-wrap img { width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); display: block; }
-.paper-caption { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 6px; }
-.paper-intro { background: #fdf2f2; border-left: 4px solid #e74c3c; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 0.9rem; }
-.paper-intro p { margin: 4px 0; }
+.paper-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
 <header class="paper-header">
-  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;display:block;margin-bottom:0.4rem">← 返回首页</a>
-  <h1>📝 语文 · 试卷练习</h1>
-  <p>2023年宁德市初中毕业班质量检测试卷 · 语文 · 共9页</p>
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>语文 · 试卷练习</h1>
+  <p>IMA知识库试卷 · 共 0 份 · 0 张图片</p>
+  <span class="badge">✍️ 试卷练习</span>
 </header>
+
 <div class="container">
-<div class="paper-intro">
-  <p>📖 使用说明：以下为宁德市统考试卷扫描版，可放大查看。建议先自行完成，再对照答案。</p>
-  <p>🔢 <strong>答题建议：</strong>现代文阅读约25分钟，文言文约20分钟，作文约50分钟，合计90分钟。</p>
+<div class="content-card" style="border-top:3px solid #e74c3c">
+  <h2>📄 试卷内容</h2>
+  <div class="tip-box" style="margin-bottom:12px">
+    <strong>💡 使用说明：</strong>点击图片可放大查看，建议先自己做题，再翻到后面看答案。
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 提示：</strong>试卷图片正在准备中，请稍后刷新页面查看，或访问下方外部链接查看完整试卷。
+  </div>
+  <div style="margin-top:12px">
+    <a href="https://www.51test.net" target="_blank" style="display:block;background:#f39c12;color:white;text-align:center;padding:12px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.9rem">📄 在无忧考网查看更多试卷 →</a>
+  </div>
 </div>
 
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_01.png" alt="第1页" loading="lazy">
-  <div class="paper-caption">第 1 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_02.png" alt="第2页" loading="lazy">
-  <div class="paper-caption">第 2 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_03.png" alt="第3页" loading="lazy">
-  <div class="paper-caption">第 3 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_04.png" alt="第4页" loading="lazy">
-  <div class="paper-caption">第 4 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_05.png" alt="第5页" loading="lazy">
-  <div class="paper-caption">第 5 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_06.png" alt="第6页" loading="lazy">
-  <div class="paper-caption">第 6 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_07.png" alt="第7页" loading="lazy">
-  <div class="paper-caption">第 7 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_08.png" alt="第8页" loading="lazy">
-  <div class="paper-caption">第 8 / 9 页</div>
-</div>
-
-<div class="paper-img-wrap">
-  <img src="images/chinese_ningde_09.png" alt="第9页" loading="lazy">
-  <div class="paper-caption">第 9 / 9 页</div>
-</div>
+<p class="source-note">试卷来源：IMA知识库「中考复习知识库/语文/试卷」<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
 
 <div class="page-nav">
   <a href="chinese_basic.html">← 知识点复习</a>
-  <a href="index.html">返回首页 →</a>
+  <a href="index.html" class="next">返回首页 →</a>
 </div>
 </div>
-<p class="source-note">📚 每日中考复习资料 · 洪明博 · 试卷来源：IMA知识库 · 若内容与官方真题不符请以官方为准</p>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+<script src="features.js"></script>
 </body>
 </html>

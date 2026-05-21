@@ -1,94 +1,127 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>历史·知识点复习 - 每日中考复习</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史 · 知识点复习 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.history-header { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.history-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.history-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.history-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.history-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
+</style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <header class="content-header history">
-    <a href="index.html" class="back-link">← 返回首页</a>
-    <h1>🏛️ 历史·知识点复习</h1>
-    <p>中国近代史（1840-1919）· 内容来源：IMA知识库Word文件</p>
-  </header>
-  <main class="content-body">
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="history-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>🏛️ 历史 · 知识点复习</h1>
+  <p>中国近代史 · 世界史 · 周年热点 · 2026年5月 · 距中考33天</p>
+  <span class="badge">📖 基础知识 · 历史</span>
+</header>
+<div class="container">
 
-    <div class="content-card history">
-      <h2>📌 考点一：旧民主主义时期阶段特征</h2>
-      <p style="color:#64748b;font-size:0.85rem;margin-bottom:12px">1840年鸦片战争 → 1919年五四运动，为旧民主主义革命时期</p>
+<div class="content-card" style="border-top: 3px solid #e67e22">
+  <h2>⭐ 2026年周年热点（中考重点）</h2>
+  <div class="tip-box" style="margin-bottom:10px"><strong>💡 福建中考历史必考周年热点：</strong>近3年福建中考年年考重大周年事件，2026年以下事件必须掌握！</div>
 
-      <div class="formula-box">
-        <strong>第一阶段：开始沦为半殖民地半封建社会（1840-1864）</strong>
-        <p><strong>鸦片战争（1840-1842）</strong> → 签订《南京条约》，中国开始沦为半殖民地半封建社会</p>
-        <p style="margin-top:6px"><strong>太平天国运动（1851-1864）</strong> → 农民阶级第一次救亡图存尝试，因农民阶级局限性最终失败，但暴露清政府统治漏洞，为洋务运动提供政治契机</p>
-        <div style="color:#92400e;font-size:12px;margin-top:6px">⚠️ 注意：鸦片战争是中国近代史开端，也是太平天国运动的深层背景</div>
-      </div>
-
-      <div class="formula-box">
-        <strong>第二阶段：加深沦为半殖民地半封建社会（1856-1895）</strong>
-        <p><strong>第二次鸦片战争（1856-1860）</strong> → 签订《天津条约》《北京条约》，半殖民地化程度加深，清政府陷入"内有太平天国、外有列强"的双重危机</p>
-        <p style="margin-top:6px"><strong>洋务运动（1861-1895）</strong> → 地主阶级第二次救亡尝试，主张"师夷长技以制夷"，仅学西方技术、不改封建制度。甲午战败北洋水师全军覆没宣告失败，暴露地主阶级自救的局限性</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>第三阶段：大大加深沦为半殖民地半封建社会（1894-1898）</strong>
-        <p><strong>甲午中日战争（1894-1895）</strong> → 签订《马关条约》，半殖民地化大大加深，列强掀起瓜分中国狂潮</p>
-        <p style="margin-top:6px"><strong>戊戌变法（1898）</strong> → 资产阶级维新派第三次救亡尝试，主张君主立宪、制度改革，因慈禧反对失败，暴露清政府无改革诚意</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>第四阶段：完全沦为半殖民地半封建社会（1899-1919）</strong>
-        <p><strong>八国联军侵华（1900-1901）</strong> → 签订《辛丑条约》，中国完全沦为半殖民地半封建社会，清政府彻底成为列强统治中国的工具</p>
-        <p style="margin-top:6px"><strong>辛亥革命（1911）</strong> → 推翻封建帝制，建立中华民国，但革命果实被袁世凯窃取，未改变社会性质</p>
-        <p style="margin-top:6px"><strong>二次革命（1913）、护国运动（1915-1916）、护法运动（1917-1918）</strong> → 资产阶级革命派一系列救亡尝试，均因力量薄弱或军阀阻挠失败</p>
-        <p style="margin-top:6px"><strong>新文化运动（1915-1923）</strong> → 前期宣传"民主与科学"，批判封建礼教；后期传播马克思主义，为五四运动和中国共产党成立奠定思想基础</p>
-      </div>
+  <div class="knowledge-item">
+    <h4 style="color:#e67e22">① 长征胜利90周年（1936→2026）⭐⭐⭐</h4>
+    <div class="formula-box" style="border-color:#e67e22">
+      <p><strong>时间：</strong>1934年10月—1936年10月</p>
+      <p><strong>起点：</strong>江西瑞金 &rarr; <strong>终点：</strong>甘肃会宁</p>
+      <p><strong>意义：</strong>粉碎国民党反动派围剿，使中国革命转危为安；播下了革命火种；铸就了伟大长征精神</p>
+      <p><strong>重要会议：</strong>遵义会议（1935年1月，党的生死攸关转折点）</p>
     </div>
+  </div>
 
-    <div class="content-card history">
-      <h2>📌 考点二：2026年周年热点事件</h2>
-
-      <div class="formula-box">
-        <strong>⭐ 长征胜利90周年（1936→2026）</strong>
-        <p>1936年10月，红军三大主力会师，长征胜利结束。长征是中共革命史上第一次战略转移，铸就了伟大的长征精神，是中考历史周年热点。</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>⭐ 文化大革命结束50周年（1976→2026）</strong>
-        <p>1976年10月，"四人帮"被粉碎，文化大革命结束。文革是社会主义建设中的严重曲折，中考需掌握其性质（内乱）和教训。</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>⭐ 恢复高考50周年（1977→2026）</strong>
-        <p>1977年冬，中断了11年的高考制度恢复，是中国教育史上的重大转折，为改革开放选拔了大批人才。</p>
-      </div>
+  <div class="knowledge-item">
+    <h4 style="color:#e67e22">② 文化大革命结束50周年（1976→2026）⭐⭐</h4>
+    <div class="formula-box" style="border-color:#e67e22">
+      <p><strong>文革时间：</strong>1966年—1976年</p>
+      <p><strong>文革性质：</strong>内乱，由领导错误发动，被反革命集团利用</p>
+      <p><strong>1976年重要事件：</strong>四五运动（为粉碎四人帮奠定群众基础）</p>
     </div>
+  </div>
 
-    <div class="content-card history">
-      <h2>💡 复习建议</h2>
-      <div class="knowledge-item">
-        <h4>因果关系记忆技巧</h4>
-        <p>① 用"前因→结果"链条记忆每个事件，如：鸦片战争（前因）→《南京条约》（结果）→太平天国（前因）→洋务运动（结果）</p>
-        <p>② 记住四次救亡尝试：农民阶级→地主阶级→资产阶级维新派→资产阶级革命派，层层递进</p>
-        <p>③ 新旧民主主义革命分界线：1919年五四运动（区分标志要记牢）</p>
-      </div>
-      <div class="knowledge-item">
-        <h4>中考重点</h4>
-        <p>① 鸦片战争/甲午战争/八国联军侵华的条约内容及影响</p>
-        <p>② 辛亥革命的历史意义（易考大题）③ 长征精神和意义</p>
-      </div>
+  <div class="knowledge-item">
+    <h4 style="color:#e67e22">③ 恢复高考50周年（1977→2026）⭐⭐</h4>
+    <div class="formula-box" style="border-color:#e67e22">
+      <p><strong>背景：</strong>1977年邓小平恢复高考制度</p>
+      <p><strong>意义：</strong>尊重知识、尊重人才；改变千万人命运；为改革开放培养人才</p>
     </div>
+  </div>
+</div>
 
-    <p class="source-note">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库Word文件+联网搜索整理 · 若内容与官方真题不符请以官方为准</p>
-  </main>
+<div class="content-card" style="border-top: 3px solid #d35400">
+  <h2>📌 中国近代史核心事件（1840-1949）</h2>
 
-<style>
-.nav-adj{display:flex;justify-content:space-between;gap:10px;margin:20px 0}
-.nav-adj a{flex:1;display:block;background:#e67e2222;border-radius:12px;padding:12px;text-align:center;text-decoration:none;color:#e67e22;font-size:0.85rem;font-weight:600;transition:all 0.18s}
-.nav-adj a:hover{background:#e2e8f0;transform:translateY(-1px)}
-</style><nav class="nav-adj"><a href="chemistry_basic.html">← 周五 化学</a><a href="politics_basic.html">周日 政治 →</a></nav>
+  <div class="knowledge-item">
+    <h4 style="color:#d35400">① 鸦片战争（1840-1842）</h4>
+    <div class="formula-box" style="border-color:#d35400">
+      <p><strong>《南京条约》主要内容：</strong>割香港岛、赔款2100万银元、五口通商、协定关税</p>
+      <p><strong>影响：</strong>中国开始沦为半殖民地半封建社会；中国近代史开端</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#d35400">② 辛亥革命（1911）⭐⭐⭐</h4>
+    <div class="formula-box" style="border-color:#d35400">
+      <p><strong>领导人：</strong>孙中山</p>
+      <p><strong>指导思想：</strong>三民主义（民族、民权、民生）</p>
+      <p><strong>历史意义：</strong>推翻了清王朝；结束了两千多年君主专制制度；传播了民主共和理念</p>
+      <p><strong>局限性：</strong>反帝反封建任务未完成；革命果实被袁世凯窃取</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#d35400">③ 五四运动（1919）⭐⭐⭐</h4>
+    <div class="formula-box" style="border-color:#d35400">
+      <p><strong>导火线：</strong>巴黎和会上中国外交失败</p>
+      <p><strong>口号：</strong>"外争主权，内除国贼"</p>
+      <p><strong>意义：</strong>是一次彻底的反帝反封建爱国运动；标志着中国新民主主义革命的开端</p>
+    </div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#d35400">④ 中共成立（1921）⭐⭐⭐</h4>
+    <div class="formula-box" style="border-color:#d35400">
+      <p><strong>地点：</strong>上海（最后一天转移到嘉兴南湖）</p>
+      <p><strong>意义：</strong>中国革命面貌从此焕然一新；自从有了中国共产党，中国革命面貌焕然一新</p>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" style="border-top: 3px solid #e67e22">
+  <h2>💡 复习建议</h2>
+  <div class="knowledge-item">
+    <ol style="padding-left:1.2rem">
+      <li style="margin-bottom:6px"><strong>周年热点优先：</strong>长征90周年、文革结束50周年、恢复高考50周年——必须掌握背景+意义</li>
+      <li style="margin-bottom:6px"><strong>时间轴记忆：</strong>用时间轴串联近代史大事件，弄清因果关系</li>
+      <li style="margin-bottom:6px"><strong>易错辨析：</strong>辛亥革命推翻的是君主专制制度（不是封建制度）；新民主主义革命开端是五四运动（不是中共成立）</li>
+      <li style="margin-bottom:6px"><strong>答题技巧：</strong>意义类题目分三个角度——对中国政治/经济/思想的影响</li>
+    </ol>
+  </div>
+</div>
+
+<p class="source-note">内容来源：IMA知识库「中国近代史笔记」· 权威教育平台整理<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
+
+<div class="page-nav">
+  <a href="history_paper.html">← 试卷练习</a>
+  <a href="index.html" class="next">返回首页 →</a>
+</div>
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+<script src="features.js"></script>
 </body>
 </html>

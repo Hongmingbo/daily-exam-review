@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
   <header class="content-header">
     <a href="index.html" class="back-link">← 返回首页</a>
     <h1>🧪 化学复习资料</h1>
@@ -196,5 +198,12 @@
 
     <p class="source-note">📚 每日中考复习资料 · 内容来源：初中化学课程标准知识体系 · 若需查看福建中考真题，请访问 fjeea.com 或 51test.net</p>
   </main>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+<script src="features.js"></script>
 </body>
 </html>

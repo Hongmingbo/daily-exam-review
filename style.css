@@ -2,8 +2,108 @@
    统一结构 + 差异化配色 + 装饰元素
 */
 
-/* ============ SUBJECT COLOR TOKENS ============ */
+/* ============ COLOR TOKENS & DARK MODE ============ */
 :root {
+  /* Light mode base */
+  --bg-body: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --nav-card-bg: #ffffff;
+  --formula-bg: #fafbff;
+  --question-bg: #f8fafc;
+  --answer-bg: #f0fdf4;
+  --answer-border: #27ae60;
+  --trap-bg: #fff5f5;
+  --tip-bg: #f0fdf4;
+  --note-bg: #fff7ed;
+  --passage-bg: #fefce8;
+  --table-stripe: #f8fafc;
+  --header-overlay: rgba(255,255,255,0.2);
+  --badge-bg: rgba(255,255,255,0.2);
+  --mode-toggle-bg: #ffffff;
+  --mode-toggle-border: #e2e8f0;
+  --mode-toggle-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* Dark mode — triggered by .dark class OR system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --bg-input: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    --nav-card-bg: #1e293b;
+    --formula-bg: #1e293b;
+    --question-bg: #1e293b;
+    --answer-bg: #14532d;
+    --answer-border: #27ae60;
+    --trap-bg: #450a0a;
+    --tip-bg: #14532d;
+    --note-bg: #451a03;
+    --passage-bg: #422006;
+    --table-stripe: #1e293b;
+    --header-overlay: rgba(0,0,0,0.3);
+    --badge-bg: rgba(0,0,0,0.3);
+    --mode-toggle-bg: #1e293b;
+    --mode-toggle-border: #334155;
+    --mode-toggle-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+}
+body.dark {
+  --bg-body: #0f172a;
+  --bg-card: #1e293b;
+  --bg-input: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --nav-card-bg: #1e293b;
+  --formula-bg: #1e293b;
+  --question-bg: #1e293b;
+  --answer-bg: #14532d;
+  --answer-border: #27ae60;
+  --trap-bg: #450a0a;
+  --tip-bg: #14532d;
+  --note-bg: #451a03;
+  --passage-bg: #422006;
+  --table-stripe: #1e293b;
+  --header-overlay: rgba(0,0,0,0.3);
+  --badge-bg: rgba(0,0,0,0.3);
+  --mode-toggle-bg: #1e293b;
+  --mode-toggle-border: #334155;
+  --mode-toggle-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Manual dark toggle button */
+#dark-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 9999;
+  background: var(--mode-toggle-bg);
+  border: 1.5px solid var(--mode-toggle-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  box-shadow: var(--mode-toggle-shadow);
+  transition: background 0.2s, border-color 0.2s;
+  font-family: inherit;
+}
   /* Physics - 橙金色系（闪电⚡） */
   --physics-c1: #f39c12;
   --physics-c2: #e67e22;
@@ -59,8 +159,8 @@
 
 body {
   font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f0f4f8;
-  color: #1e293b;
+  background: var(--bg-body);
+  color: var(--text-primary);
   line-height: 1.75;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -86,6 +186,7 @@ body {
   background: var(--physics-pattern);
   opacity: 1;
 }
+body.dark .site-header { color: white; }
 .site-header h1 { font-size: 1.65rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.02em; position: relative; }
 .site-header p { opacity: 0.85; font-size: 0.88rem; position: relative; }
 .site-header .countdown {
@@ -123,13 +224,13 @@ body {
   padding: 0 14px;
 }
 .nav-card {
-  background: white;
+  background: var(--nav-card-bg);
   border-radius: 14px;
   padding: 0.85rem 0.5rem;
   text-align: center;
   text-decoration: none;
-  color: #475569;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.18s, box-shadow 0.18s;
   display: flex;
   flex-direction: column;
@@ -142,7 +243,7 @@ body {
 .nav-card.today { border-color: currentColor; background: #fffbeb; }
 .nav-card .emoji { font-size: 1.6rem; line-height: 1.2; }
 .nav-card .label { font-weight: 600; font-size: 0.85rem; }
-.nav-card .day { font-size: 0.7rem; color: #94a3b8; }
+.nav-card .day { font-size: 0.7rem; color: var(--text-muted); }
 
 .nav-card.physics.today  { color: var(--physics-c1); }
 .nav-card.chinese.today  { color: var(--chinese-c1); }
@@ -164,11 +265,11 @@ body {
 
 /* ============ CONTENT CARDS ============ */
 .content-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 20px 18px;
   margin-bottom: 14px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
 }
@@ -177,12 +278,12 @@ body {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: #e2e8f0;
+  background: var(--border-color);
 }
 .content-card h2 {
   font-size: 1.05rem;
   margin-bottom: 14px;
-  color: #1e293b;
+  color: var(--text-primary);
   padding-top: 4px;
   display: flex;
   align-items: center;
@@ -207,12 +308,13 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
+  color: var(--text-primary);
 }
-.knowledge-item p { font-size: 0.93rem; color: #475569; margin-bottom: 3px; }
+.knowledge-item p { font-size: 0.93rem; color: var(--text-secondary); margin-bottom: 3px; }
 .knowledge-item ul, .knowledge-item ol {
   padding-left: 1.3rem;
   font-size: 0.93rem;
-  color: #475569;
+  color: var(--text-secondary);
 }
 .knowledge-item li { margin-bottom: 3px; }
 
@@ -242,7 +344,7 @@ body {
 
 /* ============ CALLOUT BOXES ============ */
 .formula-box {
-  background: #fafbff;
+  background: var(--formula-bg);
   border-left: 4px solid var(--box-accent, #4f46e5);
   padding: 10px 14px;
   margin: 8px 0;
@@ -258,7 +360,7 @@ body {
 .formula-box .formula {
   font-size: 1rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
   font-family: 'Courier New', monospace;
   letter-spacing: 0.02em;
 }
@@ -267,34 +369,37 @@ body {
   padding: 8px 4px;
   font-size: 0.95rem;
   white-space: nowrap;
-  background: #fafbff;
+  background: var(--formula-bg);
   border-radius: 6px;
   margin: 4px 0;
+  color: var(--text-primary);
 }
 
 .trap-box {
-  background: #fff5f5;
+  background: var(--trap-bg);
   border-left: 4px solid #e74c3c;
   padding: 8px 12px;
   margin: 8px 0;
   border-radius: 0 8px 8px 0;
   font-size: 0.88rem;
-  color: #c0392b;
+  color: #e74c3c;
 }
-.trap-box::before { content: '⚠️ '; }
+.trap-box strong { color: inherit; }
+body.dark .trap-box { color: #fca5a5; }
 
 .tip-box {
-  background: #f0fdf4;
+  background: var(--tip-bg);
   border-left: 4px solid #27ae60;
   padding: 8px 12px;
   margin: 8px 0;
   border-radius: 0 8px 8px 0;
   font-size: 0.88rem;
-  color: #1e8449;
+  color: #27ae60;
 }
+body.dark .tip-box { color: #86efac; }
 
 .note-box {
-  background: #fff7ed;
+  background: var(--note-bg);
   border-left: 4px solid #f39c12;
   padding: 8px 12px;
   margin: 8px 0;
@@ -302,32 +407,35 @@ body {
   font-size: 0.88rem;
   color: #92400e;
 }
+body.dark .note-box { color: #fcd34d; }
 
 /* ============ QUESTION BLOCK ============ */
 .question {
-  background: #f8fafc;
+  background: var(--question-bg);
   border-radius: 12px;
   padding: 14px 16px;
   margin: 10px 0;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
 }
 .question-meta {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 8px;
   font-weight: 500;
 }
-.question p { font-size: 0.92rem; color: #334155; margin-bottom: 5px; }
+.question p { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 5px; }
+.question strong { color: var(--text-primary); }
 
 .answer-block {
-  background: #f0fdf4;
-  border-left: 3px solid #27ae60;
+  background: var(--answer-bg);
+  border-left: 3px solid var(--answer-border);
   padding: 8px 12px;
   margin-top: 8px;
   border-radius: 0 6px 6px 0;
   font-size: 0.9rem;
-  color: #1e8449;
+  color: var(--answer-border);
 }
+body.dark .answer-block { color: #86efac; }
 
 /* ============ VOCABULARY / TABLE ============ */
 .vocab-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 8px 0; }
@@ -338,13 +446,13 @@ body {
   text-align: left;
   font-size: 0.82rem;
 }
-.vocab-table td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; color: #475569; }
+.vocab-table td { padding: 7px 10px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
 .vocab-table tr:last-child td { border-bottom: none; }
-.vocab-table tr:nth-child(even) td { background: #f8fafc; }
+.vocab-table tr:nth-child(even) td { background: var(--table-stripe); }
 
 /* ============ PASSAGE BLOCK ============ */
 .passage-block {
-  background: #fefce8;
+  background: var(--passage-bg);
   border: 1px solid #fef08a;
   border-radius: 10px;
   padding: 14px 16px;
@@ -352,32 +460,35 @@ body {
   font-size: 0.92rem;
   line-height: 2;
 }
+body.dark .passage-block { border-color: #422006; }
 .passage-title {
   font-weight: 700;
   font-size: 0.95rem;
   margin-bottom: 6px;
   color: #92400e;
 }
+body.dark .passage-title { color: #fcd34d; }
 .passage-content { color: #451a03; }
+body.dark .passage-content { color: #fed7aa; }
 
 /* ============ SOURCE NOTE ============ */
 .source-note {
   text-align: center;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-size: 0.78rem;
   padding: 20px 0 8px;
   line-height: 1.6;
 }
-.source-note a { color: #94a3b8; }
+.source-note a { color: var(--text-muted); }
 
 /* ============ NO-CONTENT STATE ============ */
 .no-content {
   text-align: center;
   padding: 3rem 1rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 .no-content .icon { font-size: 3rem; margin-bottom: 0.5rem; }
-.no-content p { font-size: 0.9rem; }
+.no-content p { font-size: 0.9rem; color: var(--text-muted); }
 
 /* ============ SUBJECT PAGE HEADER ============ */
 .content-header {
@@ -416,6 +527,9 @@ body {
   margin-bottom: 0.4rem;
   position: relative;
 }
+body.dark .content-header .back-link { color: rgba(255,255,255,0.7); }
+body.dark .content-header h1 { color: white; }
+body.dark .content-header p { color: rgba(255,255,255,0.85); }
 .content-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
 .content-header p { opacity: 0.8; font-size: 0.85rem; position: relative; }
 
@@ -427,13 +541,13 @@ body {
   margin-top: 16px;
 }
 .page-nav a {
-  background: white;
+  background: var(--nav-card-bg);
   border-radius: 12px;
   padding: 12px 14px;
   text-decoration: none;
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 0.85rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -451,6 +565,114 @@ body {
   .content-card { padding: 28px 26px; }
   .nav-cards { gap: 14px; padding: 0; }
   .nav-card { padding: 1rem 0.5rem; }
+}
+
+/* ============ DUAL MODE: SIMPLIFIED VIEW ============ */
+/* In simplified mode, hide detailed paragraphs and keep formulas + one-liners */
+body.mode-simplified .knowledge-item > p,
+body.mode-simplified .knowledge-item ol,
+body.mode-simplified .knowledge-item ul,
+body.mode-simplified .answer-block,
+body.mode-simplified .question > p:not(:first-child),
+body.mode-simplified .content-card:last-of-type,
+body.mode-simplified .passage-block,
+body.mode-simplified .vocab-table { display: none; }
+
+/* Show just the formula text in simplified mode */
+body.mode-simplified .formula-box { background: var(--formula-bg); }
+body.mode-simplified .formula-box .formula { display: block; }
+
+/* Keep trap-box visible in both modes (it's the key takeaway) */
+body.mode-simplified .trap-box { display: block !important; }
+
+/* Mode toggle button */
+#mode-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 9999;
+  background: var(--mode-toggle-bg);
+  border: 1.5px solid var(--mode-toggle-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  box-shadow: var(--mode-toggle-shadow);
+  transition: background 0.2s, border-color 0.2s;
+  font-family: inherit;
+}
+
+/* ============ PRINT STYLES ============ */
+@media print {
+  #dark-toggle,
+  .nav-cards,
+  .page-nav,
+  .content-header .back-link,
+  .source-note { display: none !important; }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+  .container { max-width: 100%; padding: 0; }
+  .site-header {
+    background: #1e293b !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border-radius: 0;
+    padding: 1rem;
+  }
+  .content-header {
+    background: #1e293b !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border-radius: 0;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .content-card {
+    background: white !important;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    break-inside: avoid;
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  .content-card::before { display: none; }
+  .content-card h2 { color: black; font-size: 10pt; }
+  .knowledge-item h4 { color: black; font-size: 10pt; }
+  .knowledge-item p,
+  .knowledge-item li,
+  .formula-box,
+  .formula-box .formula { color: black; font-size: 10pt; }
+  .formula-box {
+    background: #f5f5f5 !important;
+    border-left: 3px solid #333;
+  }
+  .trap-box {
+    background: #fff5f5 !important;
+    border-left: 3px solid #c00;
+    color: #c00 !important;
+  }
+  .tip-box {
+    background: #f0fff4 !important;
+    border-left: 3px solid #060;
+    color: #060 !important;
+  }
+  .question {
+    background: white !important;
+    border: 1px solid #333;
+  }
+  .answer-block {
+    background: #f0fff4 !important;
+    border-left: 3px solid #060;
+    color: #060 !important;
+  }
+  .vocab-table th { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .vocab-table td { color: black; border-bottom-color: #ccc; }
+  .source-note { display: block !important; color: #666; font-size: 8pt; }
 }
 
 /* ============ KaTeX OVERRIDES ============ */

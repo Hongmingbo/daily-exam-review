@@ -7,390 +7,154 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
-<header class="site-header math" id="siteHeader">
-  <button id="darkToggle" onclick="toggleDark()" style="position:absolute;top:12px;right:14px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;color:white;font-size:0.8rem;padding:4px 10px;cursor:pointer">🌙 深色</button>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="site-header physics">
   <h1>📚 每日中考复习资料</h1>
   <p>洪明博 · 2026年福建中考备考</p>
-
-  <!-- P0-1: 精确倒计时 -->
-  <div id="countdownBox" style="background:rgba(255,255,255,0.12);border-radius:14px;padding:10px 16px;margin-top:10px;text-align:center;display:inline-block;width:100%;max-width:360px">
-    <div id="countdownMain" style="font-size:1.25rem;font-weight:700;letter-spacing:0.05em"></div>
-    <div id="countdownSub" style="font-size:0.78rem;opacity:0.85;margin-top:2px"></div>
-    <div id="studyTime" style="font-size:0.75rem;opacity:0.8;margin-top:4px;background:rgba(255,255,255,0.08);border-radius:8px;padding:4px 10px;display:inline-block"></div>
-  </div>
+  <span class="countdown">距中考约 33 天（6月21日）</span>
 </header>
-
-<script>
-// P0-1: 精确倒计时 + 有效学习时间
-(function(){
-  var EXAM = new Date('2026-06-21T09:00:00');
-  var examEnd = new Date('2026-06-21T17:00:00');
-  var REVIEW_END = 23;
-  var REVIEW_START = 6;
-
-  function update(){
-    var now = new Date();
-    var diff = EXAM - now;
-
-    // 中考当天文案
-    var isExamDay = (now.toDateString() === EXAM.toDateString());
-    var isDayBefore = new Date(now.getTime()+86400000).toDateString() === EXAM.toDateString();
-
-    var mainEl = document.getElementById('countdownMain');
-    var subEl = document.getElementById('countdownSub');
-    var timeEl = document.getElementById('studyTime');
-
-    if(isExamDay){
-      mainEl.innerHTML = '🔥 正在中考！加油！';
-      subEl.textContent = '语文 09:00-11:00 | 数学 14:00-16:00';
-      timeEl.style.display = 'none';
-    } else if(isDayBefore){
-      mainEl.innerHTML = '🔥 明天中考！今日只看错题和公式，禁止刷新题';
-      subEl.textContent = '保持冷静，正常作息';
-      timeEl.style.display = 'none';
-    } else if(diff <= 0){
-      mainEl.textContent = '中考已结束，祝你取得好成绩！';
-      subEl.textContent = '';
-      timeEl.style.display = 'none';
-    } else {
-      var d = Math.floor(diff/86400000);
-      var h = Math.floor((diff%86400000)/3600000);
-      var m = Math.floor((diff%3600000)/60000);
-      var s = Math.floor((diff%60000)/1000);
-      mainEl.innerHTML = '距2026福建中考还有 <span style="color:#ffd700;font-size:1.4rem">'+d+'</span>天<span style="color:#ffd700;font-size:1.2rem">'+h+'</span>时<span style="color:#ffd700;font-size:1.2rem">'+m+'</span>分<span style="color:#ffd700;font-size:1.2rem">'+s+'</span>秒';
-      subEl.textContent = '2026年6月21日 · 福州';
-
-      // 今日剩余有效复习时间
-      var hour = now.getHours();
-      if(hour >= REVIEW_START && hour < REVIEW_END){
-        var remaining = REVIEW_END - hour;
-        timeEl.textContent = '📚 今日剩余有效复习时间约'+(hour>=19?'3':'约'+remaining)+'小时（'+Math.max(REVIEW_START,hour)+':00-'+REVIEW_END+':00）';
-        timeEl.style.display = 'inline-block';
-      } else if(hour >= REVIEW_END){
-        timeEl.textContent = '🌙 已过最佳复习时间，早点休息';
-        timeEl.style.display = 'inline-block';
-      } else {
-        var mins = REVIEW_START - hour;
-        timeEl.textContent = '☀️ 距今日有效复习开始还有'+mins+'小时';
-        timeEl.style.display = 'inline-block';
-      }
-    }
-  }
-  update();
-  setInterval(update, 1000);
-})();
-</script>
-
 <nav class="nav-cards">
-
-<!-- P1-1: 避坑指南自动置顶（考前3天显示） -->
-<div id="tipsBanner" style="display:none;background:linear-gradient(90deg,#dc2626,#b91c1c);color:white;text-align:center;padding:10px 14px;font-size:0.88rem;font-weight:600;border-radius:12px;margin-bottom:12px">
-  🚨 <a href="tips.html" style="color:#ffd700;text-decoration:underline">福建中考避坑指南</a>：阅卷规则+各科扣分重灾区，考前必看！
-</div>
-<script>
-(function(){
-  var tipsEl = document.getElementById("tipsBanner");
-  var examDate = new Date("2026-06-21");
-  var now = new Date();
-  var daysToExam = Math.ceil((examDate - now)/86400000);
-  // Show banner when: 3 days before exam (June 18-20) OR on May 19 (flag day)
-  var isFlagDay = (now.getMonth()===4 && now.getDate()===19); // May 19
-  var isPreExam = daysToExam <= 3 && daysToExam > 0;
-  if(isFlagDay || isPreExam){
-    tipsEl.style.display = "block";
-    tipsEl.style.animation = "slideDown 0.3s ease";
-  }
-})();
-</script>
-    <a href="physics_basic.html" class="nav-card physics"><span class="emoji">⚡</span><span class="label">物理</span><span class="day">周一</span></a>
-    <a href="chinese_basic.html" class="nav-card chinese"><span class="emoji">📝</span><span class="label">语文</span><span class="day">周二</span></a>
-    <a href="math_basic.html" class="nav-card math today"><span class="emoji">📐</span><span class="label">数学</span><span class="day" style="color:#3498db;font-weight:700">周三 · 今天</span></a>
-    <a href="english_basic.html" class="nav-card english"><span class="emoji">📖</span><span class="label">英语</span><span class="day">周四</span></a>
-    <a href="chemistry_basic.html" class="nav-card chemistry"><span class="emoji">🧪</span><span class="label">化学</span><span class="day">周五</span></a>
-    <a href="history_basic.html" class="nav-card history"><span class="emoji">🏛️</span><span class="label">历史</span><span class="day">周六</span></a>
-    <a href="politics_basic.html" class="nav-card politics"><span class="emoji">🎯</span><span class="label">政治</span><span class="day">周日</span></a>
+    <a href="physics_basic.html" class="nav-card physics">
+      <span class="emoji">⚡</span>
+      <span class="label">物理</span>
+      <span class="day">周一</span>
+    </a>
+    <a href="chinese_basic.html" class="nav-card chinese">
+      <span class="emoji">📝</span>
+      <span class="label">语文</span>
+      <span class="day">周二</span>
+    </a>
+    <a href="math_basic.html" class="nav-card math">
+      <span class="emoji">📐</span>
+      <span class="label">数学</span>
+      <span class="day">周三</span>
+    </a>
+    <a href="english_basic.html" class="nav-card english">
+      <span class="emoji">📖</span>
+      <span class="label">英语</span>
+      <span class="day">周四</span>
+    </a>
+    <a href="chemistry_basic.html" class="nav-card chemistry">
+      <span class="emoji">🧪</span>
+      <span class="label">化学</span>
+      <span class="day">周五</span>
+    </a>
+    <a href="history_basic.html" class="nav-card history">
+      <span class="emoji">🏛️</span>
+      <span class="label">历史</span>
+      <span class="day">周六</span>
+    </a>
+    <a href="politics_basic.html" class="nav-card politics">
+      <span class="emoji">🎯</span>
+      <span class="label">政治</span>
+      <span class="day">周日</span>
+    </a>
 </nav>
-
-<div style="display:flex;gap:10px;margin:0 0 16px;justify-content:center">
-  <a href="tips.html" style="flex:1;max-width:200px;display:block;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:12px;padding:8px 12px;text-align:center;text-decoration:none;color:#dc2626;font-size:0.82rem;font-weight:600">🚨 避坑指南</a>
-  <a href="templates.html" style="flex:1;max-width:200px;display:block;background:#faf5ff;border:1.5px solid #c4b5fd;border-radius:12px;padding:8px 12px;text-align:center;text-decoration:none;color:#7c3aed;font-size:0.82rem;font-weight:600">📥 答题模板</a>
-</div>
 <div class="container">
-
-<!-- P0-2: 今日核心干货（默认展开） -->
-<div class="content-card" id="todayCore" style="border-top:3px solid #3498db">
-  <h2>🎯 今日核心干货 <span style="font-size:0.8rem;color:#94a3b8;font-weight:400">· 数学 · 点击展开/收起</span></h2>
-
-  <!-- 今日必背3个核心公式 -->
-  <details open style="margin-bottom:10px">
-    <summary style="cursor:pointer;font-weight:600;color:#166534;font-size:0.92rem;padding:6px 0">✅ 今日必背3个核心公式</summary>
-    <div style="margin-top:8px">
-      <div class="formula-box" style="margin-bottom:8px">
-        <strong>二次函数顶点坐标公式</strong>
-        <p>顶点：<code style="background:#f0fdf4;padding:2px 6px;border-radius:4px">(-b/2a, (4ac-b²)/4a)</code> · 对称轴：<code>x = -b/2a</code></p>
-      </div>
-      <div class="formula-box" style="margin-bottom:8px">
-        <strong>弧长公式</strong>
-        <p><code style="background:#f0fdf4;padding:2px 6px;border-radius:4px">L = nπr/180</code> · n=圆心角度数，r=半径</p>
-      </div>
-      <div class="formula-box">
-        <strong>三角形内切圆半径</strong>
-        <p><code style="background:#f0fdf4;padding:2px 6px;border-radius:4px">r = 2S/(a+b+c)</code> · S=三角形面积，a,b,c=三边</p>
-      </div>
-    </div>
-  </details>
-
-  <!-- 今日最高频2个易错点 -->
-  <details open style="margin-bottom:10px">
-    <summary style="cursor:pointer;font-weight:600;color:#b45309;font-size:0.92rem;padding:6px 0">⚠️ 今日最高频2个易错点</summary>
-    <div style="margin-top:8px">
-      <div class="formula-box" style="margin-bottom:8px;background:#fffbeb;border-color:#fde68a">
-        <strong>二次函数「平移」易错</strong>
-        <p>抛物线 <code>y=a(x-h)²+k</code>：顶点(h,k)，往左平移则h<strong style="color:#b91c1c">增大</strong>（不是减小！）</p>
-        <p style="color:#b91c1c;font-size:0.8rem">⚠️ 错误率超60%，务必记清方向</p>
-      </div>
-      <div class="formula-box" style="background:#fffbeb;border-color:#fde68a">
-        <strong>圆「相切」vs「相离」判别</strong>
-        <p>外离：<code>d > R+r</code> · 外切：<code>d = R+r</code> · 相交：<code>|R-r| &lt; d &lt; R+r</code></p>
-        <p style="color:#b91c1c;font-size:0.8rem">⚠️ d=r时为「内切」，不是外切！</p>
-      </div>
-    </div>
-  </details>
-
-  <!-- 今日必练1道压轴题型 -->
-  <details open>
-    <summary style="cursor:pointer;font-weight:600;color:#7c3aed;font-size:0.92rem;padding:6px 0">🎯 今日必练1道压轴题型</summary>
-    <div style="margin-top:8px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:12px;padding:14px">
-      <p style="font-weight:700;color:#7c3aed;margin-bottom:8px">【二次函数与几何综合·动点问题】</p>
-      <p style="font-size:0.88rem;color:#374151;margin-bottom:8px">已知抛物线 <code>y=x²-4x+3</code>，点P在x轴上，求PA+PB最小时的P点坐标。</p>
-      <details>
-        <summary style="cursor:pointer;color:#7c3aed;font-size:0.85rem;font-weight:600">查看答案解析 ▼</summary>
-        <div style="margin-top:8px;font-size:0.88rem;color:#166534;line-height:1.7">
-          <p>① 顶点(2,-1)，PA+PB最小→P在顶点投影处</p>
-          <p>② P点坐标为(2,0)，最小值为√5</p>
-          <p>③ 方法：将军饮马模型 + 抛物线对称性</p>
-        </div>
-      </details>
-    </div>
-  </details>
-
-  <div style="text-align:center;margin-top:12px">
-    <a href="math_basic.html" style="display:inline-block;background:#3498db;color:white;padding:8px 20px;border-radius:20px;text-decoration:none;font-size:0.88rem;font-weight:600">📖 查看全部数学知识点 →</a>
-  </div>
-</div>
-
-<!-- 今日复习计划 -->
 <div class="content-card">
   <h2>📅 今日复习计划</h2>
   <div class="knowledge-item">
-    <h4 style="color:#3498db">⭐ 📐 数学</h4>
-    <p>2026年05月20日（周三）</p>
+    <h4 style="color:#e74c3c">📝 语文</h4>
+    <p>2026年05月19日（周二）· 距中考33天</p>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
-    <a href="math_basic.html" style="display:block;background:#3498db;color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">📖 知识点复习</a>
-    <a href="math_paper.html" style="display:block;background:#2980b9;color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">✍️ 试卷练习</a>
+    <a href="chinese_basic.html" style="display:block;background:#e74c3c;color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">📖 知识点复习</a>
+    <a href="chinese_paper.html" style="display:block;background:#c0392b;color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">✍️ 试卷练习</a>
+  </div>
+  <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+    <button id="checkin-btn" style="flex:1;background:linear-gradient(135deg,#f39c12,#e67e22);color:white;border:none;border-radius:12px;padding:10px;font-size:0.88rem;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15)">🔥 打卡</button>
+    <a href="favorites.html" style="flex:1;display:block;background:#3498db;color:white;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">⭐ 我的收藏</a>
+  </div>
+  <div style="margin-top:8px;text-align:center">
+    <a href="search.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">🔍 搜索历史内容</a>
+    <span style="color:var(--text-muted);margin:0 6px">·</span>
+    <a href="about.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">ℹ️ 关于</a>
   </div>
 </div>
-
-<!-- P0-3: 链接一键复制 -->
-<div class="content-card">
-  <h2>📚 备考资源</h2>
-  <div class="knowledge-item">
-    <h4>官方渠道</h4>
-    <p>福建省教育考试院 <span class="copy-btn" data-url="https://fjeea.com">📋</span> <a href="https://fjeea.com" target="_blank" class="ext-link">fjeea.com</a></p>
-    <p>福建省教育厅 <span class="copy-btn" data-url="https://jyt.fujian.gov.cn">📋</span> <a href="https://jyt.fujian.gov.cn" target="_blank" class="ext-link">jyt.fujian.gov.cn</a></p>
-  </div>
-  <div class="knowledge-item">
-    <h4>历年真题</h4>
-    <p>学科网 <span class="copy-btn" data-url="https://xkw.com">📋</span> <a href="https://xkw.com" target="_blank" class="ext-link">xkw.com</a></p>
-    <p>21世纪教育网 <span class="copy-btn" data-url="https://21cnjy.com">📋</span> <a href="https://21cnjy.com" target="_blank" class="ext-link">21cnjy.com</a></p>
-    <p>无忧考网 <span class="copy-btn" data-url="https://51test.net">📋</span> <a href="https://51test.net" target="_blank" class="ext-link">51test.net</a></p>
-  </div>
-</div>
-
-<!-- P0-4: 深色模式 + P1-2: 每日一题打卡 -->
-<div class="content-card" style="border-top:3px solid #7c3aed">
-  <h2>🏆 每日一题打卡</h2>
-  <div id="dailyQ" style="background:#faf5ff;border:1px solid #e9d5ff;border-radius:12px;padding:14px">
-    <p style="font-weight:700;color:#7c3aed;margin-bottom:8px">【数学·反比例函数·易错题】</p>
-    <p style="font-size:0.9rem;color:#374151;margin-bottom:10px">已知反比例函数 <code>y=6/x</code>，当x>0时，y随x增大而______（填"增大"或"减小"）</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="checkAns(this,'wrong')" style="flex:1;min-width:80px;padding:8px;border-radius:8px;border:1.5px solid #ddd;background:white;cursor:pointer;font-size:0.88rem">增大</button>
-      <button onclick="checkAns(this,'correct')" style="flex:1;min-width:80px;padding:8px;border-radius:8px;border:1.5px solid #ddd;background:white;cursor:pointer;font-size:0.88rem;font-weight:600">减小</button>
-    </div>
-    <div id="ansFeedback" style="margin-top:10px;display:none">
-      <p id="ansText" style="font-size:0.88rem;margin-bottom:6px"></p>
-      <p style="font-size:0.82rem;color:#6b7280">当x>0时，y=6/x，x越大y越小，所以y随x增大而<strong style="color:#7c3aed">减小</strong></p>
-    </div>
-    <div style="margin-top:10px;padding-top:10px;border-top:1px solid #e9d5ff">
-      <button onclick="markDone()" id="checkinBtn" style="background:#7c3aed;color:white;border:none;border-radius:20px;padding:7px 18px;font-size:0.85rem;cursor:pointer">✅ 我做对了</button>
-      <span id="checkinCount" style="font-size:0.82rem;color:#7c3aed;margin-left:8px"></span>
-    </div>
-  </div>
-</div>
-
-<!-- 本周轮播表 -->
 <div class="content-card">
   <h2>📋 本周轮播</h2>
   <div style="overflow-x:auto">
-  <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:420px" class="data-table">
-    <tr style="background:#3498db;color:white">
+  <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:420px">
+    <tr style="background:#f39c12;color:white">
       <th style="padding:8px 10px;text-align:left">日期</th>
       <th style="padding:8px 10px;text-align:left">科目</th>
       <th style="padding:8px 10px;text-align:left">知识点</th>
       <th style="padding:8px 10px;text-align:left">试卷</th>
     </tr>
-    <tr><td style="padding:7px 10px">05月18日</td><td style="padding:7px 10px">⚡ 物理 <span title="近3年必考：电学/力学">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="physics_basic.html" class="ext-link" style="color:#f39c12">📖 查看</a></td><td style="padding:7px 10px"><a href="physics_paper.html" class="ext-link" style="color:#e67e22">✍️ 练习</a></td></tr>
-    <tr style="background:var(--row-alt,white)"><td style="padding:7px 10px">05月19日</td><td style="padding:7px 10px">📝 语文 <span title="近3年必考：文言文/作文">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="chinese_basic.html" class="ext-link" style="color:#e74c3c">📖 查看</a></td><td style="padding:7px 10px"><a href="chinese_paper.html" class="ext-link" style="color:#c0392b">✍️ 练习</a></td></tr>
-    <tr style="background:#fffbeb;font-weight:700"><td style="padding:7px 10px">05月20日 🔥</td><td style="padding:7px 10px">📐 数学 <span title="近3年必考：二次函数/圆/几何">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="math_basic.html" class="ext-link" style="color:#3498db">📖 查看</a></td><td style="padding:7px 10px"><a href="math_paper.html" class="ext-link" style="color:#2980b9">✍️ 练习</a></td></tr>
-    <tr><td style="padding:7px 10px">05月21日</td><td style="padding:7px 10px">📖 英语 <span title="近3年必考：阅读/作文">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="english_basic.html" class="ext-link" style="color:#9b59b6">📖 查看</a></td><td style="padding:7px 10px"><a href="english_paper.html" class="ext-link" style="color:#8e44ad">✍️ 练习</a></td></tr>
-    <tr style="background:var(--row-alt,white)"><td style="padding:7px 10px">05月22日</td><td style="padding:7px 10px">🧪 化学 <span title="近3年必考：酸碱盐/方程式">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="chemistry_basic.html" class="ext-link" style="color:#27ae60">📖 查看</a></td><td style="padding:7px 10px"><a href="chemistry_paper.html" class="ext-link" style="color:#1e8449">✍️ 练习</a></td></tr>
-    <tr><td style="padding:7px 10px">05月23日</td><td style="padding:7px 10px">🏛️ 历史 <span title="近3年必考：中国近代史/世界史">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="history_basic.html" class="ext-link" style="color:#e67e22">📖 查看</a></td><td style="padding:7px 10px"><a href="history_paper.html" class="ext-link" style="color:#d35400">✍️ 练习</a></td></tr>
-    <tr style="background:var(--row-alt,white)"><td style="padding:7px 10px">05月24日</td><td style="padding:7px 10px">🎯 政治 <span title="近3年必考：道德法治/心理健康">🔥🔥🔥</span></td><td style="padding:7px 10px"><a href="politics_basic.html" class="ext-link" style="color:#1abc9c">📖 查看</a></td><td style="padding:7px 10px"><a href="politics_paper.html" class="ext-link" style="color:#16a085">✍️ 练习</a></td></tr>
+    <tr style="background:#f8fafc;">
+      <td style="padding:7px 10px">05月18日</td>
+      <td style="padding:7px 10px">⚡ 物理</td>
+      <td style="padding:7px 10px"><a href="physics_basic.html" style="color:#f39c12;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="physics_paper.html" style="color:#e67e22;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr style="background:#fffbeb;font-weight:700">
+      <td style="padding:7px 10px">05月19日 🔥</td>
+      <td style="padding:7px 10px">📝 语文</td>
+      <td style="padding:7px 10px"><a href="chinese_basic.html" style="color:#e74c3c;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="chinese_paper.html" style="color:#c0392b;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr style="background:white;">
+      <td style="padding:7px 10px">05月20日</td>
+      <td style="padding:7px 10px">📐 数学</td>
+      <td style="padding:7px 10px"><a href="math_basic.html" style="color:#3498db;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="math_paper.html" style="color:#2980b9;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr style="background:#f8fafc;">
+      <td style="padding:7px 10px">05月21日</td>
+      <td style="padding:7px 10px">📖 英语</td>
+      <td style="padding:7px 10px"><a href="english_basic.html" style="color:#9b59b6;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="english_paper.html" style="color:#8e44ad;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr style="background:white;">
+      <td style="padding:7px 10px">05月22日</td>
+      <td style="padding:7px 10px">🧪 化学</td>
+      <td style="padding:7px 10px"><a href="chemistry_basic.html" style="color:#27ae60;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="chemistry_paper.html" style="color:#1e8449;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr style="background:#f8fafc;">
+      <td style="padding:7px 10px">05月23日</td>
+      <td style="padding:7px 10px">🏛️ 历史</td>
+      <td style="padding:7px 10px"><a href="history_basic.html" style="color:#e67e22;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="history_paper.html" style="color:#d35400;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr style="background:white;">
+      <td style="padding:7px 10px">05月24日</td>
+      <td style="padding:7px 10px">🎯 政治</td>
+      <td style="padding:7px 10px"><a href="politics_basic.html" style="color:#1abc9c;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="politics_paper.html" style="color:#16a085;text-decoration:none">✍️ 练习</a></td>
+    </tr>
   </table>
   </div>
 </div>
-
-<!-- 使用说明 -->
+<div class="content-card">
+  <h2>📚 备考资源</h2>
+  <div class="knowledge-item">
+    <h4>官方渠道</h4>
+    <p>福建省教育考试院 <a href="https://fjeea.com" target="_blank" style="color:#27ae60">fjeea.com</a></p>
+    <p>福建省教育厅 <a href="https://jyt.fujian.gov.cn" target="_blank" style="color:#27ae60">jyt.fujian.gov.cn</a></p>
+  </div>
+  <div class="knowledge-item">
+    <h4>历年真题</h4>
+    <p>学科网 <a href="https://xkw.com" target="_blank">xkw.com</a> · 21世纪教育网 <a href="https://21cnjy.com" target="_blank">21cnjy.com</a></p>
+    <p>无忧考网 <a href="https://51test.net" target="_blank">51test.net</a></p>
+  </div>
+</div>
 <div class="content-card">
   <h2>ℹ️ 使用说明</h2>
   <div class="knowledge-item">
-    <p>每个科目分为 <strong style="color:#3498db">📖 知识点复习</strong> 和 <strong style="color:#2980b9">✍️ 试卷练习</strong> 两个页面。</p>
-    <p style="margin-top:6px">🌙 页面右上角可切换深色模式，保护视力。</p>
+    <p>每个科目分为 <strong style="color:#e74c3c">📖 知识点复习</strong> 和 <strong style="color:#c0392b">✍️ 试卷练习</strong> 两个页面，支持手机和电脑端浏览。</p>
   </div>
 </div>
-
 <p class="source-note">内容来源：IMA知识库 · 权威教育平台整理<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
 </div>
-
-<!-- 深色模式切换按钮样式 -->
-<style>
-#darkToggle:hover{background:rgba(255,255,255,0.25)}
-</style>
-
-<!-- P0-3: 复制链接功能 -->
+<script src="dark-mode.js"></script>
 <script>
-// 复制链接
-document.querySelectorAll('.copy-btn').forEach(function(btn){
-  btn.style.cursor='pointer';
-  btn.title='点击复制链接';
-  btn.onclick=function(){
-    var url = btn.getAttribute('data-url');
-    navigator.clipboard.writeText(url).then(function(){
-      var old = btn.textContent;
-      btn.textContent='✅';
-      setTimeout(function(){ btn.textContent=old; }, 1000);
-    });
-  };
-});
-
-// 深色模式
-function toggleDark(){
-  var isDark = document.body.classList.toggle('dark');
-  localStorage.setItem('darkMode', isDark ? '1' : '0');
-  document.getElementById('darkToggle').textContent = isDark ? '☀️ 浅色' : '🌙 深色';
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
 }
-(function(){
-  var saved = localStorage.getItem('darkMode');
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if(saved === '1' || (saved === null && prefersDark)){
-    document.body.classList.add('dark');
-    document.getElementById('darkToggle').textContent = '☀️ 浅色';
-  }
-})();
-
-// P1-2: 每日打卡
-function checkAns(btn, type){
-  var feedback = document.getElementById('ansFeedback');
-  var text = document.getElementById('ansText');
-  feedback.style.display = 'block';
-  if(type === 'correct'){
-    text.innerHTML = '<span style="color:#166534">🎉 正确！</span>';
-    btn.style.background='#dcfce7'; btn.style.borderColor='#166534';
-  } else {
-    text.innerHTML = '<span style="color:#b91c1c">❌ 错误，正确答案是「减小」</span>';
-    btn.style.background='#fee2e2'; btn.style.borderColor='#b91c1c';
-  }
-}
-function markDone(){
-  var count = parseInt(localStorage.getItem('checkinDays') || '0') + 1;
-  localStorage.setItem('checkinDays', count);
-  localStorage.setItem('lastCheckin', new Date().toDateString());
-  document.getElementById('checkinCount').textContent = '已连续打卡'+count+'天 💪';
-  document.getElementById('checkinBtn').disabled = true;
-  document.getElementById('checkinBtn').textContent = '✅ 已打卡';
-}
-(function(){
-  var last = localStorage.getItem('lastCheckin');
-  var today = new Date().toDateString();
-  var count = parseInt(localStorage.getItem('checkinDays') || '0');
-  // 如果昨天没打卡，重置计数
-  if(last && last !== today){
-    var yesterday = new Date(Date.now()-86400000).toDateString();
-    if(last !== yesterday) { count = 0; localStorage.setItem('checkinDays','0'); }
-  }
-  if(last === today && count > 0){
-    document.getElementById('checkinBtn').disabled = true;
-    document.getElementById('checkinBtn').textContent = '✅ 已打卡';
-    document.getElementById('checkinCount').textContent = '已连续打卡'+count+'天 💪';
-  }
-})();
 </script>
-
-<!-- P0-4: 深色模式CSS -->
-<style>
-/* 深色模式变量 */
-body.dark {
-  --bg-primary: #121212;
-  --bg-secondary: #1e1e1e;
-  --bg-card: #1e1e1e;
-  --text-primary: #e8e8e8;
-  --text-secondary: #a0a0a0;
-  --border-color: #333;
-  --row-alt: #1a1a1a;
-  --nav-bg: #1a1a1a;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-}
-body.dark .site-header { background: linear-gradient(135deg, #1a3a5c 0%, #0f2240 100%) !important; }
-body.dark .nav-card { background: #1e1e1e; color: #a0a0a0; box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
-body.dark .nav-card:hover { background: #2a2a2a; }
-body.dark .content-card { background: #1e1e1e; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-body.dark .knowledge-item p { color: #a0a0a0; }
-body.dark .formula-box { background: #252525; border-color: #333; }
-body.dark .formula-box strong { color: #60a5fa; }
-body.dark .formula-box p { color: #c0c0c0; }
-body.dark table { color: #e8e8e8; }
-body.dark table th { background: #1a3a5c !important; }
-body.dark table tr:nth-child(even) td { background: #1a1a1a; }
-body.dark table td { border-bottom-color: #2a2a2a; }
-body.dark a { color: #60a5fa; }
-body.dark .source-note { color: #666; }
-body.dark .nav-adj a { background: #1e1e1e; color: #60a5fa; }
-body.dark #countdownBox { background: rgba(0,0,0,0.3); }
-body.dark details { background: transparent; }
-body.dark summary { color: #e8e8e8; }
-body.dark button { color: var(--text-primary); }
-body.dark input, body.dark select { background: #2a2a2a; color: #e8e8e8; border-color: #444; }
-body.dark .vocab-table th { background: #1a3a5c !important; }
-body.dark .vocab-table td { border-bottom-color: #2a2a2a; }
-body.dark .poetry-block { background: #1a1a1a; border-left-color: #60a5fa; }
-body.dark code { background: #2a2a2a; color: #a5d6ff; }
-</style>
-
-<!-- 上/下科目导航 -->
-<style>
-.nav-adj{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
-.nav-adj a{flex:1;display:block;background:#f1f5f9;border-radius:12px;padding:12px;text-align:center;text-decoration:none;color:#475569;font-size:0.85rem;font-weight:600;transition:all 0.18s}
-.nav-adj a:hover{background:#e2e8f0;transform:translateY(-1px)}
-body.dark .nav-adj a{background:#1e1e1e;color:#60a5fa}
-body.dark .nav-adj a:hover{background:#2a2a2a}
-</style>
-<nav class="nav-adj">
-  <a href="chinese_basic.html">← 周二 语文</a>
-  <a href="english_basic.html">周四 英语 →</a>
-</nav>
 </body>
 </html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.about-header { background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.about-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.about-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.about-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.changelog-item { border-left: 3px solid var(--border-color); padding-left: 14px; margin-bottom: 20px; }
+.changelog-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-bottom: 4px; }
+.changelog-title { font-weight: 600; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 5px; }
+.changelog-body { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+.changelog-body li { margin-bottom: 3px; }
+.badge-new { display: inline-block; background: #fee2e2; color: #dc2626; border-radius: 4px; padding: 1px 6px; font-size: 0.7rem; margin-left: 6px; vertical-align: middle; }
+body.dark .badge-new { background: #7f1d1d; color: #fca5a5; }
+.section-title { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+</style>
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="about-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>ℹ️ 关于本站</h1>
+  <p>数据来源 · 更新日志 · 反馈通道</p>
+</header>
+<div class="container">
+
+<div class="content-card">
+  <h2>📖 说明</h2>
+  <div class="knowledge-item">
+    <p>本页面由 <strong>洪明博</strong> 搭建和维护，用于 2026 年福建省中考备考复习。</p>
+    <p style="margin-top:8px">所有内容整理自以下来源：</p>
+    <ul style="margin-top:6px">
+      <li>IMA 知识库「初中数学公式大全」「中考物理核心考点」等</li>
+      <li>福建省教育考试院官方文件（fjeea.com）</li>
+      <li>近 5 年福建省及全国主要省市中考真题</li>
+      <li>学科网（xkw.com）、21 世纪教育网（21cnjy.com）等平台</li>
+    </ul>
+    <div class="note-box" style="margin-top:10px">
+      <strong>⚠️ 重要：</strong>本页面内容为个人整理归纳，若与官方真题或学校老师讲解有出入，<strong>以官方和学校为准</strong>。本页面不替代课堂学习。
+    </div>
+  </div>
+</div>
+
+<div class="content-card">
+  <h2>🆕 更新日志</h2>
+  <div class="changelog-item">
+    <div class="changelog-date">2026年5月21日</div>
+    <div class="changelog-title">v2.0 重大更新 <span class="badge-new">NEW</span></div>
+    <div class="changelog-body">
+      <ul>
+        <li>🌙 深色模式：跟随系统偏好，支持手动切换</li>
+        <li>📱 PWA 支持：可添加到手机主屏幕，离线可用</li>
+        <li>⭐ 收藏功能：点击 ☆ 收藏易错题，汇总到「我的收藏」页</li>
+        <li>🔥 每日打卡：记录连续复习天数</li>
+        <li>⚡ 精简/完整双模式：课间快速过一遍用精简版</li>
+        <li>🔍 本地搜索：搜索历史知识点</li>
+        <li>🖨️ 打印友好：优化了打印样式</li>
+      </ul>
+    </div>
+  </div>
+  <div class="changelog-item">
+    <div class="changelog-date">2026年5月19日</div>
+    <div class="changelog-title">v1.0 初始版本</div>
+    <div class="changelog-body">上线 7 科知识点复习页 + 试卷练习页，支持按日期轮播。</div>
+  </div>
+</div>
+
+<div class="content-card">
+  <h2>📋 功能一览</h2>
+  <div class="knowledge-item">
+    <table class="vocab-table" style="margin:0">
+      <tr><th style="width:40%">功能</th><th>位置</th><th>说明</th></tr>
+      <tr><td>🌙 深色模式</td><td>右上角按钮</td><td>手动切换 / 自动跟随系统</td></tr>
+      <tr><td>⭐ 收藏易错题</td><td>公式框右上角 ☆</td><td>存入本地，考前集中刷</td></tr>
+      <tr><td>🔥 每日打卡</td><td>首页「今日复习」</td><td>记录连续复习天数</td></tr>
+      <tr><td>⚡ 精简模式</td><td>知识点页左上角</td><td>只显公式+易错点</td></tr>
+      <tr><td>🔍 搜索</td><td>首页「搜索历史内容」</td><td>关键词快速定位</td></tr>
+      <tr><td>🖨️ 打印</td><td>浏览器打印 Ctrl+P</td><td>优化深色/彩色打印</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="content-card">
+  <h2>💬 反馈</h2>
+  <div class="knowledge-item">
+    <p>如果发现内容有误（比如「这个公式我们这边不考」），或者有改进建议，欢迎反馈。</p>
+    <p style="margin-top:8px">反馈时请注明：</p>
+    <ul style="margin-top:4px">
+      <li>具体科目和页面（如：数学 math_basic.html）</li>
+      <li>具体问题描述</li>
+      <li>你的地区（用于判断是否属于地区差异）</li>
+    </ul>
+    <div class="tip-box" style="margin-top:10px">💡 <strong>提示：</strong>GitHub Issues 适合技术类反馈（如页面显示异常）；如果是内容纠错，直接告诉我即可。</div>
+  </div>
+</div>
+
+<div class="content-card">
+  <h2>🚫 不做什么</h2>
+  <div class="knowledge-item">
+    <ul>
+      <li>❌ 不卖课、不打广告、不收集任何个人信息</li>
+      <li>❌ 不提供在线答题或提交功能（所有数据在本地）</li>
+      <li>❌ 不保证内容 100% 准确——最终以学校老师和官方真题为准</li>
+    </ul>
+  </div>
+</div>
+
+<p class="source-note">距中考约 32 天 · 加油 💪<br>洪明博 · 2026年福建中考备考</p>
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的收藏 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.fav-header { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.fav-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.fav-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.fav-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.fav-group { margin-bottom: 20px; }
+.fav-group-title { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; padding-left: 4px; }
+.fav-item { background: var(--bg-card); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; box-shadow: var(--shadow-sm); }
+.fav-item-title { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 4px; }
+.fav-item-snippet { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.fav-item-meta { font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 12px; }
+.fav-item-actions { margin-top: 6px; }
+.fav-remove { background: #fff5f5; color: #e74c3c; border: 1px solid #fecaca; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; cursor: pointer; }
+body.dark .fav-remove { background: #450a0a; border-color: #7f1d1d; }
+.fav-go { background: #f0fdf4; color: #27ae60; border: 1px solid #bbf7d0; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; text-decoration: none; }
+body.dark .fav-go { background: #14532d; border-color: #166534; }
+</style>
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="fav-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>⭐ 我的收藏</h1>
+  <p>收藏的易错题 · 考前重点刷</p>
+</header>
+<div class="container">
+<div id="fav-list"></div>
+<div id="fav-empty" class="no-content" style="display:none">
+  <div class="icon">⭐</div>
+  <p>还没有收藏内容</p>
+  <p style="color:var(--text-muted);font-size:0.82rem;margin-top:4px">在知识点页点击 ☆ 即可收藏</p>
+  <a href="index.html" style="display:inline-block;margin-top:12px;background:#9b59b6;color:white;padding:8px 20px;border-radius:10px;text-decoration:none;font-size:0.85rem">去复习 →</a>
+</div>
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+</script>
+<script>
+(function () {
+  var FAV_KEY = 'zk-favorites';
+  var PAGE_LABELS = {
+    'physics_basic.html': '物理 · 知识点', 'physics.html': '物理 · 今日复习', 'physics_paper.html': '物理 · 试卷',
+    'chinese_basic.html': '语文 · 知识点', 'chinese.html': '语文 · 今日复习', 'chinese_paper.html': '语文 · 试卷',
+    'math_basic.html': '数学 · 知识点', 'math.html': '数学 · 今日复习', 'math_paper.html': '数学 · 试卷',
+    'english_basic.html': '英语 · 知识点', 'english.html': '英语 · 今日复习', 'english_paper.html': '英语 · 试卷',
+    'chemistry_basic.html': '化学 · 知识点', 'chemistry.html': '化学 · 今日复习', 'chemistry_paper.html': '化学 · 试卷',
+    'history_basic.html': '历史 · 知识点', 'history.html': '历史 · 今日复习', 'history_paper.html': '历史 · 试卷',
+    'politics_basic.html': '政治 · 知识点', 'politics.html': '政治 · 今日复习', 'politics_paper.html': '政治 · 试卷',
+  };
+  function getFavorites() { try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch (e) { return []; } }
+  function setFavorites(arr) { try { localStorage.setItem(FAV_KEY, JSON.stringify(arr)); } catch (e) {} }
+  function render() {
+    var favs = getFavorites();
+    var list = document.getElementById('fav-list');
+    var empty = document.getElementById('fav-empty');
+    if (!favs.length) { list.style.display = 'none'; empty.style.display = 'block'; return; }
+    empty.style.display = 'none'; list.style.display = 'block';
+    // Group by page
+    var groups = {};
+    favs.forEach(function (f) {
+      var label = PAGE_LABELS[f.page] || f.page;
+      if (!groups[label]) groups[label] = [];
+      groups[label].push(f);
+    });
+    var html = '';
+    Object.keys(groups).forEach(function (label) {
+      html += '<div class="fav-group"><div class="fav-group-title">' + label + '</div>';
+      groups[label].forEach(function (f) {
+        html += '<div class="fav-item" id="fav-' + f.id.replace(/[^a-zA-Z0-9]/g, '_') + '">';
+        html += '<div class="fav-item-title">' + escapeHtml(f.title) + '</div>';
+        html += '<div class="fav-item-snippet">' + escapeHtml(f.snippet) + '</div>';
+        html += '<div class="fav-item-meta"><span>收藏于 ' + f.date + '</span></div>';
+        html += '<div class="fav-item-actions">';
+        html += '<button class="fav-remove" onclick="removeFav(\'' + f.id + '\',\'' + f.page + '\')">🗑 移除</button>';
+        html += ' <a class="fav-go" href="' + f.page + '#' + f.id + '">去查看 →</a>';
+        html += '</div></div>';
+      });
+      html += '</div>';
+    });
+    list.innerHTML = html;
+  }
+  window.removeFav = function (id, page) {
+    var favs = getFavorites();
+    favs = favs.filter(function (f) { return !(f.id === id && f.page === page); });
+    setFavorites(favs);
+    render();
+    showToast('已移除');
+  };
+  function escapeHtml(s) { return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e293b;color:white;padding:8px 20px;border-radius:20px;font-size:0.85rem;z-index:99999;pointer-events:none;opacity:0;transition:opacity 0.3s';
+    t.textContent = msg; document.body.appendChild(t);
+    requestAnimationFrame(function () { t.style.opacity = '1'; });
+    setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2000);
+  }
+  document.addEventListener('DOMContentLoaded', render);
+})();
+</script>
+</body>
+</html>

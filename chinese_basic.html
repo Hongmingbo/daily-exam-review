@@ -3,226 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>语文·知识点复习 - 每日中考复习</title>
+<title>语文 · 知识点复习 - 每日中考复习</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.content-header.chinese { background: linear-gradient(135deg, #c0392b 0%, #8e1a1a 100%); color: white; padding: 2rem 1.2rem 1.8rem; border-radius: 0 0 24px 24px; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
-.content-header.chinese::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='35' stroke='%23ffffff' stroke-opacity='0.06' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='25' stroke='%23ffffff' stroke-opacity='0.05'/%3E%3Ccircle cx='40' cy='40' r='15' stroke='%23ffffff' stroke-opacity='0.04'/%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
-.content-header.chinese h1 { position: relative; font-size: 1.6rem; margin-bottom: 0.2rem; }
-.content-header.chinese p { position: relative; opacity: 0.85; font-size: 0.85rem; }
-.back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 0.5rem; position: relative; }
-.content-card { background: white; border-radius: 16px; padding: 20px 18px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); overflow: hidden; }
-.content-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #c0392b; }
-.content-card { position: relative; }
-.content-card h2 { font-size: 1.05rem; margin-bottom: 14px; color: #1e293b; padding-top: 4px; }
-.formula-box { background: #fff9f9; border: 1px solid #fecaca; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
-.formula-box strong { color: #8e1a1a; display: block; margin-bottom: 6px; font-size: 0.95rem; }
-.formula-box p { margin: 3px 0; font-size: 0.88rem; line-height: 1.7; color: #374151; }
-.vocab-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 8px 0; }
-.vocab-table th { background: #c0392b; color: white; padding: 7px 8px; text-align: left; }
-.vocab-table td { padding: 6px 8px; border-bottom: 1px solid #fee2e2; vertical-align: top; }
-.vocab-table tr:nth-child(even) td { background: #fef2f2; }
-.vocab-table .pinyin { color: #166534; font-weight: 500; }
-.vocab-table .word { font-weight: 600; color: #1e293b; }
-.poetry-block { background: linear-gradient(to right, #fff7f7, #fef2f2); border-left: 3px solid #c0392b; padding: 12px 16px; border-radius: 0 10px 10px 0; margin-bottom: 10px; }
-.poetry-title { color: #8e1a1a; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
-.poetry-content { color: #374151; font-size: 0.88rem; line-height: 1.9; }
-.poetry-note { color: #6b7280; font-size: 0.8rem; margin-top: 4px; }
-.knowledge-item { margin-bottom: 12px; }
-.knowledge-item h4 { color: #c0392b; font-size: 0.9rem; margin-bottom: 6px; }
-.knowledge-item p { font-size: 0.85rem; margin: 3px 0; color: #475569; }
-details { margin-top: 6px; }
-summary { color: #c0392b; cursor: pointer; font-size: 0.85rem; }
-.fill-blank { font-family: monospace; color: #c0392b; }
+.chinese-header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.chinese-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.chinese-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.chinese-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.chinese-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
-<header class="content-header chinese">
-  <a href="index.html" class="back-link">← 返回首页</a>
-  <h1>📝 语文·知识点复习</h1>
-  <p>IMA知识库Word文件 · 无忧考网51test.net · 2026年福建中考</p>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="chinese-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>📝 语文 · 知识点复习</h1>
+  <p>中考必背43首古诗文 · 2026年5月19日 · 距中考33天</p>
+  <span class="badge">📖 基础知识 · 古诗文默写</span>
 </header>
-<main class="content-body" style="max-width:720px;margin:0 auto;padding:0 14px 40px">
+<div class="container">
 
-<!-- 成语辨析 -->
-<div class="content-card">
-  <h2>📌 考点一：中考易错成语辨析</h2>
-  <div class="formula-box">
-    <strong>必须 —— 必需</strong>
-    <p><strong>必须：</strong>表示事理上必要，一定要（副词）——这件事<strong>必须</strong>做好</p>
-    <p><strong>必需：</strong>指一定要有的，不可缺少的（动词）——石油是工业<strong>必需</strong>的原料</p>
-    <p style="color:#b91c1c;font-size:12px">⚠️ 必须后可接动词，必需后可接名词</p>
-  </div>
-  <div class="formula-box">
-    <strong>暴发 —— 爆发</strong>
-    <p><strong>暴发：</strong>突然猛烈地发生，多用于贬义或水患——山洪<strong>暴发</strong>、<strong>暴发</strong>户</p>
-    <p><strong>爆发：</strong>突然变动，突出事变——火山<strong>爆发</strong>、五四运动<strong>爆发</strong></p>
-    <p style="color:#b91c1c;font-size:12px">⚠️ 记忆：情绪/事变用"爆发"；水患/意外之财用"暴发"</p>
-  </div>
-  <div class="formula-box">
-    <strong>度过 —— 渡过</strong>
-    <p><strong>度过：</strong>用于时间——<strong>度过</strong>假期、<strong>度过</strong>时光</p>
-    <p><strong>渡过：</strong>常用于江河湖海或比喻难关——<strong>渡过</strong>长江、<strong>渡过</strong>难关</p>
-    <p style="color:#b91c1c;font-size:12px">⚠️ 记忆：三点水的"渡过"与水/难关有关</p>
-  </div>
-  <div class="formula-box">
-    <strong>定金 —— 订金</strong>
-    <p><strong>定金：</strong>具有法律担保性质——给付方违约不返还，收取方违约双倍返还</p>
-    <p><strong>订金：</strong>预付款性质，不具备担保性质，可退还</p>
-    <p style="color:#b91c1c;font-size:12px">⚠️ 签合同交"定金"还是"订金"决定权责！</p>
-  </div>
-  <div class="formula-box">
-    <strong>适用范围有限的成语（易考判断题）</strong>
-    <p>妙手回春：<strong>仅</strong>用于称赞医生——误用：他的文章<span style="color:#b91c1c;text-decoration:line-through">✗ 妙手回春</span></p>
-    <p>破镜重圆：<strong>仅</strong>用于夫妻——误用：失散多年的老友<span style="color:#b91c1c;text-decoration:line-through">✗ 破镜重圆</span></p>
-    <p>鬼斧神工：<strong>仅</strong>用于建筑/雕塑——误用：大自然的景色<span style="color:#b91c1c;text-decoration:line-through">✗ 鬼斧神工</span></p>
-  </div>
-</div>
+<!-- 古诗文默写卡片 -->
+<div class="content-card" style="border-top: 3px solid #e74c3c">
+  <h2>📜 中考要求背诵古诗文（43首）</h2>
+  <div class="tip-box" style="margin-bottom:12px"><strong>💡 2025福建新变化：</strong>由4道纯理解型默写变为<strong>3道情境型 + 1道无情境</strong>理解型默写。情境题需根据提示准确填写相应诗句。</div>
 
-<!-- 文言词汇 -->
-<div class="content-card">
-  <h2>📌 考点二：文言文重点实词一词多义</h2>
-  <div class="formula-box">
-    <strong>之</strong>
-    <p>① 助词，的——君将哀而生之乎（的）</p>
-    <p>② 代词，他/她/它——彼知颦美，而不知颦之所以美（代词）</p>
-    <p>③ 动词，去、往——送孟浩然之广陵（去、往）</p>
-  </div>
-  <div class="formula-box">
-    <strong>其</strong>
-    <p>① 代词，他的/她的/它的——其家甚智其子（他的）</p>
-    <p>② 副词，难道——其真无马邪（难道）</p>
-  </div>
-  <div class="formula-box">
-    <strong>以 / 而 / 为 / 于 / 得</strong>
-    <p><strong>以：</strong>①介词，用（以君之力）②介词，因为（不以物喜）③连词，来（作《师说》以贻之）</p>
-    <p><strong>而：</strong>①连词，并且（学而时习之）②连词，却（人不知而不愠）</p>
-    <p><strong>为：</strong>①动词，做 ②介词，被（为予群辈所得）③介词，替（为人民服务）</p>
-    <p><strong>于：</strong>①在（鲁直出于左）②对、对于 ③向（告之于帝）④比（苛政猛于虎）</p>
-    <p><strong>得：</strong>①能够（二者不可得兼）②得到（故不为苟得）</p>
-  </div>
-  <p style="color:#b91c1c;font-size:12px">⚠️ 一词多义是文言文阅读基础，同一个词在不同语境中意思完全不同</p>
-</div>
-
-<!-- 古诗词 -->
-<div class="content-card">
-  <h2>📌 考点三：中考必背古诗词</h2>
-  <div class="poetry-block">
-    <div class="poetry-title">《使至塞上》唐·王维</div>
-    <div class="poetry-content">
-      单车欲问边，属国过居延。<br>
-      征蓬出汉塞，归雁入胡天。<br>
-      <strong style="color:#8e1a1a">大漠孤烟直，长河落日圆。</strong><br>
-      萧关逢候骑，都护在燕然。
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">七年级（上）</h4>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>1. 观沧海</strong> 曹操（2022直）<br>东临碣石，以观沧海。<strong>水何澹澹，山岛竦峙。</strong>树木丛生，百草丰茂。秋风萧瑟，洪波涌起。<br><em>易考名句：</em><mark>日月之行，若出其中；星汉灿烂，若出其里。</mark></p>
+      <p><strong>2. 闻王昌龄左迁龙标遥有此寄</strong> 李白<br><mark>我寄愁心与明月，随君直到夜郎西。</mark>（明月拟人化，表达思念）</p>
+      <p><strong>3. 次北固山下</strong> 王湾（9年3考）<br><mark>海日生残夜，江春入旧年。</mark>（新旧交替，生生不息）<br><mark>乡书何处达？归雁洛阳边。</mark>（2021直）</p>
+      <p><strong>4. 天净沙·秋思</strong> 马致远（2017）<br><mark>夕阳西下，断肠人在天涯。</mark>（思念家乡）</p>
+      <p><strong>5. 夜雨寄北</strong> 李商隐（9年2考）<br><mark>何当共剪西窗烛，却话巴山夜雨时。</mark>（2022直，渴望团聚）</p>
     </div>
-    <div class="poetry-note">名句赏析：以"直"写烟之静，以"圆"写日之暮，意境开阔</div>
   </div>
-  <div class="poetry-block">
-    <div class="poetry-title">《游山西村》南宋·陆游</div>
-    <div class="poetry-content">
-      莫笑农家腊酒浑，丰年留客足鸡豚。<br>
-      <strong style="color:#8e1a1a">山重水复疑无路，柳暗花明又一村。</strong><br>
-      箫鼓追随春社近，衣冠简朴古风存。<br>
-      从今若许闲乘月，拄杖无时夜叩门。
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">七年级（下）</h4>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>6. 木兰诗</strong>《乐府诗集》（2020）<br><mark>万里赴戎机，关山度若飞。</mark>（夸张，写木兰奔赴战场）<br><mark>朔气传金柝，寒光照铁衣。</mark>（边塞军营艰苦）<br><mark>将军百战死，壮士十年归。</mark>（2020直，互文）</p>
+      <p><strong>8. 望岳</strong> 杜甫（2021）<br><mark>会当凌绝顶，一览众山小。</mark>（2021理，乐观自信）</p>
+      <p><strong>9. 登飞来峰</strong> 王安石（2021）<br><mark>不畏浮云遮望眼，自缘身在最高层。</mark>（2021直，变化革新）</p>
+      <p><strong>10. 游山西村</strong> 陆游（9年2考）<br><mark>山重水复疑无路，柳暗花明又一村。</mark>（2022理，困境中坚持）</p>
+      <p><strong>11. 己亥杂诗</strong> 龚自珍（2020）<br><mark>落红不是无情物，化作春泥更护花。</mark>（联想比喻，移情于物）</p>
     </div>
-    <div class="poetry-note">名句赏析：比喻困境中出现转机，蕴含人生哲理</div>
+  </div>
+
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">八年级（上）</h4>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>13. 野望</strong> 王绩<br><mark>树树皆秋色，山山唯落晖。</mark>（远景静态，田园美景）</p>
+      <p><strong>14. 黄鹤楼</strong> 崔颢（9年2考）<br><mark>日暮乡关何处是？烟波江上使人愁。</mark>（2024理，由景生情）</p>
+      <p><strong>15. 使至塞上</strong> 王维（2018）<br><mark>大漠孤烟直，长河落日圆。</mark>（2022直，奇美壮丽）</p>
+      <p><strong>17. 钱塘湖春行</strong> 白居易<br><mark>乱花渐欲迷人眼，浅草才能没马蹄。</mark>（花草欣欣向荣）</p>
+      <p><strong>18. 饮酒（其五）</strong> 陶渊明（9年3考）<br><mark>采菊东篱下，悠然见南山。</mark>（2021直，悠然自得）</p>
+      <p><strong>19. 春望</strong> 杜甫（2017）<br><mark>感时花溅泪，恨别鸟惊心。</mark>（2017直，忧国伤时）</p>
+      <p><strong>20. 雁门太守行</strong> 李贺（2020）<br><mark>黑云压城城欲摧，甲光向日金鳞开。</mark>（2020直）</p>
+    </div>
   </div>
 </div>
 
-<!-- 生字词 -->
-<div class="content-card">
-  <h2>📌 考点四：初中语文重点生字词（七年级上册精选）</h2>
-  <p style="color:#64748b;font-size:0.82rem;margin-bottom:10px">📚 来源：IMA知识库《全册语文生字词》Word文件（完整版见知识库）</p>
-  <div class="formula-box">
-    <strong>《春》核心词汇</strong>
-    <table class="vocab-table">
-      <tr><th style="width:22%">词语</th><th style="width:18%">拼音</th><th>释义</th></tr>
-      <tr><td class="word">酝酿</td><td class="pinyin">yùn niàng</td><td>造酒的发酵过程，也指事情逐渐成熟的准备过程</td></tr>
-      <tr><td class="word">卖弄</td><td class="pinyin">mài nòng</td><td>有意显示、炫耀（自己的本领）</td></tr>
-      <tr><td class="word">嘹亮</td><td class="pinyin">liáo liàng</td><td>（声音）清晰响亮</td></tr>
-      <tr><td class="word">烘托</td><td class="pinyin">hōng tuō</td><td>1.指陪衬，使明显突出 2.中国画技法 3.写作方法（侧面描写）</td></tr>
-      <tr><td class="word">静默</td><td class="pinyin">jìng mò</td><td>1.寂静，没有声音 2.肃立不做声，表示悼念</td></tr>
-      <tr><td class="word">抖擞</td><td class="pinyin">dǒu sǒu</td><td>振动，引申为振作。形容精神振奋，饱满</td></tr>
-      <tr><td class="word">健壮</td><td class="pinyin">jiàn zhuàng</td><td>强壮而健康，身体十分有活力的样子，一般用于形容人</td></tr>
-    </table>
+<!-- 字音字形卡片 -->
+<div class="content-card" style="border-top: 3px solid #c0392b">
+  <h2>📖 字音字形易错字（九年级重点）</h2>
+  <div class="knowledge-item">
+    <h4 style="color:#c0392b">① 九年级上册高频易错字音</h4>
+    <div class="formula-box" style="border-color:#c0392b">
+      <p>| 字词 | 错误读音 | 正确读音 |</p>
+      <p>| 励精图治 | lì jīng → lì jīng（无错）| — |</p>
+      <p>| 佝偻 | gōu lóu | gōu lóu |</p>
+      <p>| 扶掖 | fú yè | fú yè | 提示：不可读成 yē |</p>
+    </div>
   </div>
-  <div class="formula-box">
-    <strong>《济南的冬天》核心词汇</strong>
-    <table class="vocab-table">
-      <tr><th style="width:22%">词语</th><th style="width:18%">拼音</th><th>释义</th></tr>
-      <tr><td class="word">安适</td><td class="pinyin">ān shì</td><td>安静而舒适</td></tr>
-      <tr><td class="word">着落</td><td class="pinyin">zhuó luò</td><td>1.事情有归宿、有结果 2.依托、靠头、指靠</td></tr>
-      <tr><td class="word">慈善</td><td class="pinyin">cí shàn</td><td>对人关怀而有同情心，仁慈而善良。慈善是一项活动</td></tr>
-      <tr><td class="word">宽敞</td><td class="pinyin">kuān chang</td><td>宽大、开阔、宽阔</td></tr>
-      <tr><td class="word">贮蓄</td><td class="pinyin">zhù xù</td><td>1.储存，积聚 2.储存的物品 3.把钱存起来</td></tr>
-      <tr><td class="word">空灵</td><td class="pinyin">kōng líng</td><td>灵活而无法捉摸</td></tr>
-    </table>
+  <div class="knowledge-item">
+    <h4 style="color:#c0392b">② 八年级下册易错字</h4>
+    <div class="formula-box" style="border-color:#c0392b">
+      <p><strong>字形：</strong>辨析"辨、辩、辩"——<br>
+      <mark>辨（分辨）</mark>：用刀切分 → 需要分辨<br>
+      <mark>辩（争论）</mark>：用语言争辩 → 辩解<br>
+      <mark>辫（编织）</mark>：丝线编织 → 辫子</p>
+      <p><strong>易错字：</strong>绮（qǐ）丽 ≠ 奇（qí）丽 · 羁（jī）绊 ≠ 羁（jì）绊</p>
+    </div>
   </div>
 </div>
 
-<!-- 古诗文易错字 -->
-<div class="content-card">
-  <h2>📌 考点五：古诗文易错字默写训练</h2>
-  <p style="color:#64748b;font-size:0.82rem;margin-bottom:10px">📚 来源：IMA知识库《八年级下册古诗文易错字》Word文件</p>
-  <div class="formula-box">
-    <strong>《关雎》·《诗经·周南》</strong>
-    <p>关关<span class="fill-blank">____</span>，在河之<span class="fill-blank">____</span>。</p>
-    <p><span class="fill-blank">____</span>淑女，君子好<span class="fill-blank">____</span>。</p>
-    <p>参差<span class="fill-blank">____</span>菜，左右流之。</p>
-    <p>窈窕淑女，<span class="fill-blank">____</span><span class="fill-blank">____</span>求之。</p>
-    <details><summary style="color:#c0392b;cursor:pointer;font-size:0.85rem">参考答案 ▼</summary>
-    <div style="margin-top:6px;color:#166534;font-size:0.85rem">答案：雎鸠、洲、窈窕、逑、荇菜、寤寐求之</div></details>
+<!-- 阅读方法卡片 -->
+<div class="content-card" style="border-top: 3px solid #e74c3c">
+  <h2>📚 记叙文阅读解题技巧</h2>
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">① 概括题（人物+事件+情感）</h4>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>公式：</strong>谁（人物）+ 在什么情况下 + 做了一件什么事 + 结果如何</p>
+      <p><strong>格式：</strong>文章写了<mark>主人公</mark>在<mark>特定情境</mark>中<mark>做了什么</mark>，表现了<mark>情感/主题</mark>。</p>
+    </div>
   </div>
-  <div class="formula-box">
-    <strong>《蒹葭》·《诗经·秦风》</strong>
-    <p>蒹葭苍苍，白露为<span class="fill-blank">____</span>。所谓<span class="fill-blank">____</span>人，在水一方。</p>
-    <p>溯洄从之，道阻且<span class="fill-blank">____</span>。溯游从之，宛在水中央。</p>
-    <details><summary style="color:#c0392b;cursor:pointer;font-size:0.85rem">参考答案 ▼</summary>
-    <div style="margin-top:6px;color:#166534;font-size:0.85rem">答案：霜、伊、躅</div></details>
-  </div>
-  <div class="formula-box">
-    <strong>《石壕吏》·唐·杜甫</strong>
-    <p>老翁<span class="fill-blank">____</span>墙走，老妇出门看。</p>
-    <p><span class="fill-blank">____</span>呼一何怒！妇<span class="fill-blank">____</span>一何苦！</p>
-    <p>三男<span class="fill-blank">____</span>城<span class="fill-blank">____</span>。一男<span class="fill-blank">____</span>书至，二男新战死。</p>
-    <p>存者且偷生，死者长<span class="fill-blank">____</span>矣！</p>
-    <details><summary style="color:#c0392b;cursor:pointer;font-size:0.85rem">参考答案 ▼</summary>
-    <div style="margin-top:6px;color:#166534;font-size:0.85rem">答案：逾、吏、啼、邺、戍、附、已</div></details>
+  <div class="knowledge-item">
+    <h4 style="color:#e74c3c">② 赏析题（修辞/描写/词语）</h4>
+    <div class="trap-box"><strong>⚠️ 常见失分：</strong>只写修辞手法，不写内容分析；只写表达效果，不结合句子具体分析。</div>
+    <div class="formula-box" style="border-color:#e74c3c">
+      <p><strong>修辞赏析格式：</strong><br>
+      ① 判断修辞手法（比喻/拟人/排比等）<br>
+      ② 生动/形象地写出了+具体内容<br>
+      ③ 表达了+情感/中心</p>
+      <p><strong>词语赏析格式：</strong><br>
+      ① 解释词语在句中含义<br>
+      ② 分析表达效果（生动/准确）<br>
+      ③ 体现情感或主题</p>
+    </div>
   </div>
 </div>
 
 <!-- 复习建议 -->
-<div class="content-card">
-  <h2>💡 今日复习建议</h2>
+<div class="content-card" style="border-top: 3px solid #e74c3c">
+  <h2>💡 复习建议</h2>
   <div class="knowledge-item">
-    <h4>成语辨析技巧</h4>
-    <p>① 关注适用对象：妙手回春/破镜重圆/鬼斧神工只能用于特定范围</p>
-    <p>② 关注感情色彩：褒义/贬义/中性，不可混用</p>
-    <p>③ 每天做5道成语辨析题，积累易错类型</p>
-  </div>
-  <div class="knowledge-item">
-    <h4>文言文复习策略</h4>
-    <p>① 每天背5个实词一词多义，整理到笔记本</p>
-    <p>② 学会根据上下文语境推断词义</p>
-    <p>③ 课内文言文逐字逐句翻译，重点实词必须掌握</p>
-  </div>
-  <div class="knowledge-item">
-    <h4>古诗文复习策略</h4>
-    <p>① 名句默写不仅会背，还要准确写对每个字</p>
-    <p>② 名句赏析：记住修辞手法+景物描写+情感表达套路</p>
-    <p>③ 初中课标古诗词全部背熟，重点篇目会默写</p>
+    <ol style="padding-left:1.2rem">
+      <li style="margin-bottom:6px"><strong>古诗文每天背5首：</strong>先背原文，再做理解型默写，第三轮默写强化易错字</li>
+      <li style="margin-bottom:6px"><strong>情境型默写：</strong>找准关键词，代入诗句，注意不要写错别字</li>
+      <li style="margin-bottom:6px"><strong>字音字形：</strong>整理近3年福建中考出现过的字音字形题，找规律</li>
+      <li style="margin-bottom:6px"><strong>阅读理解：</strong>每天做1篇记叙文阅读，重点练概括题和赏析题</li>
+      <li style="margin-bottom:6px"><strong>作文：</strong>准备3-5个万能素材（亲情、成长、传统文化、时代英雄）</li>
+    </ol>
   </div>
 </div>
 
-<p style="text-align:center;color:#94a3b8;font-size:0.8rem;margin-top:24px">📚 每日中考复习资料 · 洪明博 · 内容来源：IMA知识库Word文件（生字词/古诗文易错字）+ 无忧考网51test.net · 若内容与官方真题不符请以官方为准</p>
-</main>
+<p class="source-note">
+  内容来源：IMA知识库「中考要求背诵古诗文梳理」· 权威教育平台整理<br>
+  ⚠️ 若内容与官方真题不符，请以官方为准
+</p>
 
-<style>
-.nav-adj{display:flex;justify-content:space-between;gap:10px;margin:20px 0}
-.nav-adj a{flex:1;display:block;background:#c0392b22;border-radius:12px;padding:12px;text-align:center;text-decoration:none;color:#c0392b;font-size:0.85rem;font-weight:600;transition:all 0.18s}
-.nav-adj a:hover{background:#e2e8f0;transform:translateY(-1px)}
-</style><nav class="nav-adj"><a href="physics_basic.html">← 周一 物理</a><a href="math_basic.html">周三 数学 →</a></nav>
+<div class="page-nav">
+  <a href="chinese_paper.html">← 试卷练习</a>
+  <a href="index.html" class="next">返回首页 →</a>
+</div>
+
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+<script src="features.js"></script>
 </body>
 </html>

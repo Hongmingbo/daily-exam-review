@@ -18,8 +18,10 @@
 .paper-img-wrap img { width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); display: block; }
 .paper-caption { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 6px; }
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
 <header class="paper-header">
   <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>🧪 化学 · 试卷练习</h1>
@@ -70,5 +72,12 @@
   <a href="index.html" class="next">返回首页 →</a>
 </div>
 </div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+<script src="features.js"></script>
 </body>
 </html>
