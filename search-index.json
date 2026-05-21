@@ -382,5 +382,245 @@
     "snippet": "维护国家统一和全国各民族团结、遵守宪法和法律、维护国家安全/荣誉/利益、依法纳税",
     "keywords": "公民义务 宪法 法律 国家安全 纳税 服兵役",
     "region": "全国通用"
+  },
+  {
+    "title": "速度与平均速度",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "v=s/t，平均速度=总路程/总时间，注意单位换算1m/s=3.6km/h",
+    "keywords": "速度 平均速度 s/t 单位换算 m/s km/h",
+    "region": "全国通用"
+  },
+  {
+    "title": "压强公式",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "固体压强p=F/S，液体压强p=ρgh，连通器原理",
+    "keywords": "压强 固体压强 液体压强 连通器 p=ρgh F/S",
+    "region": "全国通用"
+  },
+  {
+    "title": "浮力计算",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "F浮=G排=ρ液gV排，阿基米德原理，物体沉浮条件",
+    "keywords": "浮力 阿基米德原理 G排 ρ液V排 沉浮条件",
+    "region": "全国通用"
+  },
+  {
+    "title": "光的折射与反射",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "反射定律：三线共面、两线分居、两角相等；折射：空气角较大",
+    "keywords": "光的反射 折射 反射定律 折射定律 空气角",
+    "region": "全国通用"
+  },
+  {
+    "title": "内能与热机",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "内能=分子动能+分子势能，热传递三种方式：传导/对流/辐射，热机效率η=W有用/Q总",
+    "keywords": "内能 热传递 热机 效率 分子",
+    "region": "全国通用"
+  },
+  {
+    "title": "杠杆分类",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "省力杠杆(L1>L2)、费力杠杆(L1<L2)、等臂杠杆(L1=L2)，判断力臂是解题关键",
+    "keywords": "杠杆 省力杠杆 费力杠杆 等臂杠杆 力臂",
+    "region": "全国通用"
+  },
+  {
+    "title": "密度与质量",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "ρ=m/V，密度是物质特性（与m、V无关），水凝固时体积变大",
+    "keywords": "密度 质量 m/V 物质特性",
+    "region": "全国通用"
+  },
+  {
+    "title": "电能与电功",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "W=UIt，1度电=1kW·h=3.6×10⁶J，电能表读数",
+    "keywords": "电能 电功 kW·h 度电",
+    "region": "福建必考"
+  },
+  {
+    "title": "物质的分类",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "混合物（空气/溶液/合金）vs 纯净物（单质/化合物）；氧化物/酸/碱/盐",
+    "keywords": "物质分类 纯净物 混合物 单质 化合物 氧化物",
+    "region": "全国通用"
+  },
+  {
+    "title": "化学式与化合价",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "化合价口诀：一价钾钠氯氢银，二价氧钙钡镁锌，Al三Si四P三五，S二四六ClBrI七",
+    "keywords": "化合价 化学式 口诀 常见元素化合价",
+    "region": "福建必考"
+  },
+  {
+    "title": "燃烧与灭火",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "燃烧条件：可燃物+氧气+着火点；灭火原理：破坏任一条件",
+    "keywords": "燃烧 灭火 着火点 燃烧条件",
+    "region": "全国通用"
+  },
+  {
+    "title": "溶解度曲线",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "溶解度随温度变化，大多数固体溶解度随温度升高而增大（Ca(OH)₂相反）",
+    "keywords": "溶解度 溶解度曲线 温度 结晶",
+    "region": "全国通用"
+  },
+  {
+    "title": "粗盐提纯",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "溶解→过滤→蒸发结晶（除去不溶性杂质）；去除可溶性杂质需化学方法",
+    "keywords": "粗盐提纯 过滤 蒸发 结晶",
+    "region": "福建高频"
+  },
+  {
+    "title": "常见化学反应类型",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "化合反应(A+B→AB)、分解反应(AB→A+B)、置换反应(A+BC→AC+B)、复分解反应(AB+CD→AD+CB)",
+    "keywords": "化合反应 分解反应 置换反应 复分解反应",
+    "region": "全国通用"
+  },
+  {
+    "title": "形容词比较级最高级",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "比较级+than，最高级+of/in，短形容词加-er/-est，多音节加more/most",
+    "keywords": "形容词比较级 最高级 -er -est more most",
+    "region": "全国通用"
+  },
+  {
+    "title": "情态动词用法",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "can表能力，may表许可，must表必须，should表建议，need表需要",
+    "keywords": "情态动词 can may must should need",
+    "region": "全国通用"
+  },
+  {
+    "title": "宾语从句",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "连接词that/if/whether/疑问词，从句用陈述语序，一般现在时代替一般将来时",
+    "keywords": "宾语从句 that if whether 连接词 语序",
+    "region": "全国通用"
+  },
+  {
+    "title": "定语从句基础",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "who/whom/which/that作主语或宾语，that比which更常见，介词+which/whom",
+    "keywords": "定语从句 who which that whom",
+    "region": "全国通用"
+  },
+  {
+    "title": "主谓一致",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "就近原则：either...or/neither...nor/not only...but also；each/no/every作主语用单数",
+    "keywords": "主谓一致 就近原则 each every neither either",
+    "region": "全国通用"
+  },
+  {
+    "title": "公民的基本义务",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "维护国家统一和全国各民族团结；遵守宪法和法律；维护国家安全、荣誉和利益；依法服兵役；依法纳税",
+    "keywords": "公民义务 服兵役 纳税 宪法 法律",
+    "region": "福建必考"
+  },
+  {
+    "title": "人民代表大会制度",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "我国根本政治制度，全国人大是最高国家权力机关，县级以上人大设立常委会",
+    "keywords": "人民代表大会 根本政治制度 全国人大",
+    "region": "福建必考"
+  },
+  {
+    "title": "一国两制",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "一个中国是前提，社会主义制度是主体，港澳台保持原有制度50年不变",
+    "keywords": "一国两制 一个中国 港澳台 社会主义制度",
+    "region": "福建必考"
+  },
+  {
+    "title": "科教兴国战略",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "把科技和教育摆在经济社会发展的优先位置，创新驱动发展战略",
+    "keywords": "科教兴国 创新驱动 科技 教育",
+    "region": "福建高频"
+  },
+  {
+    "title": "乡村振兴战略",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "产业兴旺/生态宜居/乡风文明/治理有效/生活富裕二十字方针",
+    "keywords": "乡村振兴 二十字方针 产业兴旺 生态宜居",
+    "region": "福建高频"
+  },
+  {
+    "title": "新民主主义革命",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1919五四运动是新民主主义革命开端，新民主主义革命由无产阶级领导",
+    "keywords": "新民主主义革命 五四运动 马克思主义",
+    "region": "全国通用"
+  },
+  {
+    "title": "抗日战争",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1937七七事变→全面抗战，国民党正面战场，共产党敌后战场，台儿庄战役/平型关大捷",
+    "keywords": "抗日战争 七七事变 台儿庄 平型关 敌后战场",
+    "region": "全国通用"
+  },
+  {
+    "title": "解放战争",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1946年国民党进攻中原解放区→全面内战，三大战役（辽沈/淮海/平津），1949年新中国成立",
+    "keywords": "解放战争 三大战役 辽沈 淮海 平津 新中国成立",
+    "region": "全国通用"
+  },
+  {
+    "title": "新中国成立后的成就",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1956三大改造完成（社会主义制度确立）；两弹一星；改革开放（1978）；重返联合国（1971）",
+    "keywords": "三大改造 两弹一星 改革开放 新中国成立",
+    "region": "福建高频"
+  },
+  {
+    "title": "三次科技革命",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "第一次：蒸汽机(18c60s英国)；第二次：电气(19c70s美国德国)；第三次：信息原子能(20c40s美国)",
+    "keywords": "科技革命 蒸汽机 电气 信息技术 第三次科技革命",
+    "region": "全国通用"
+  },
+  {
+    "title": "明治维新与洋务运动",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "日本明治维新(1868)：君主立宪；中国洋务运动(19c60s)：器物学习，均失败",
+    "keywords": "明治维新 洋务运动 君主立宪 自强 求富",
+    "region": "全国通用"
   }
 ]
