@@ -22,6 +22,7 @@ SUBJECTS = {
         'page': 'math.html',
         'basic_page': 'math_basic.html',
         'color': '#3498db',
+        'paper_folder': 'folder_7461795233036275',
     },
     'chinese': {
         'folder': 'folder_7461799959991117',
@@ -29,6 +30,7 @@ SUBJECTS = {
         'page': 'chinese.html',
         'basic_page': 'chinese_basic.html',
         'color': '#e74c3c',
+        'paper_folder': 'folder_7461792464797113',
     },
     'history': {
         'folder': 'folder_7461792599014306',
@@ -36,6 +38,39 @@ SUBJECTS = {
         'page': 'history.html',
         'basic_page': 'history_basic.html',
         'color': '#e67e22',
+        'paper_folder': 'folder_7461792649344818',
+    },
+    'english': {
+        'folder': 'folder_7461792905171288',
+        'label': '📖 英语',
+        'page': 'english.html',
+        'basic_page': 'english_basic.html',
+        'color': '#9b59b6',
+        'paper_folder': 'folder_7461794322848125',
+    },
+    'physics': {
+        'folder': 'folder_7461794624862125',
+        'label': '⚡ 物理',
+        'page': 'physics.html',
+        'basic_page': 'physics_basic.html',
+        'color': '#f39c12',
+        'paper_folder': 'folder_7461794670998044',
+    },
+    'chemistry': {
+        'folder': 'folder_7461792687071154',
+        'label': '🧪 化学',
+        'page': 'chemistry.html',
+        'basic_page': 'chemistry_basic.html',
+        'color': '#27ae60',
+        'paper_folder': 'folder_7461792729036437',
+    },
+    'politics': {
+        'folder': 'folder_7461792527686439',
+        'label': '🎯 政治',
+        'page': 'politics.html',
+        'basic_page': 'politics_basic.html',
+        'color': '#1abc9c',
+        'paper_folder': 'folder_7461792557071449',
     },
 }
 

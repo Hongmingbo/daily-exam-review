@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📅 周回顾归档 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.archive-header { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.archive-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.archive-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.archive-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.week-selector { display: flex; gap: 6px; overflow-x: auto; padding: 0 14px 10px; scrollbar-width: none; }
+.week-selector::-webkit-scrollbar { display: none; }
+.week-btn { flex-shrink: 0; background: var(--bg-card); border: 1.5px solid var(--border-color); border-radius: 10px; padding: 6px 14px; font-size: 0.8rem; cursor: pointer; color: var(--text-secondary); text-decoration: none; white-space: nowrap; transition: all 0.15s; }
+.week-btn:hover { border-color: #3498db; color: #3498db; }
+.week-btn.active { background: #3498db; color: white; border-color: #3498db; }
+.day-card { background: var(--bg-card); border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--c, #3498db); }
+.day-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.day-card-date { font-size: 0.78rem; color: var(--text-muted); }
+.day-card-subject { font-weight: 600; font-size: 0.92rem; color: var(--c, #3498db); }
+.day-card-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.day-link { background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 8px; padding: 5px 12px; font-size: 0.8rem; text-decoration: none; color: var(--text-secondary); transition: all 0.15s; }
+.day-link:hover { border-color: var(--c, #3498db); color: var(--c, #3498db); }
+.day-link.done::before { content: '✓ '; color: #27ae60; }
+.day-link.kb::before { content: '🆕 '; }
+.mindmap { background: var(--bg-card); border-radius: 12px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); }
+.mindmap-title { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 8px; }
+.mindmap pre { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; white-space: pre; overflow-x: auto; }
+.section-label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin: 12px 14px 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+body.dark .archive-header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+</style>
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="archive-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>📅 周回顾归档</h1>
+  <p id="week-label">第 21 周 · 5月19日 - 5月25日</p>
+</header>
+
+<div class="week-selector" id="week-selector"></div>
+
+<div class="container">
+<div id="week-content"></div>
+<div id="empty-state" class="no-content" style="display:none">
+  <div class="icon">📅</div>
+  <p>该周暂无内容</p>
+</div>
+</div>
+
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+</script>
+<script>
+// 7天轮播结构
+var WEEKS = [
+  {
+    label: '第21周 · 5月19日-5月25日',
+    days: [
+      { date: '05月18日', weekday: '周一', subject: 'physics', subjectLabel: '⚡ 物理', color: '#f39c12', basic: 'physics_basic.html', paper: 'physics_paper.html', topics: '凸透镜成像 · 电路分析 · 机械功与功率' },
+      { date: '05月19日', weekday: '周二', subject: 'chinese', subjectLabel: '📝 语文', color: '#e74c3c', basic: 'chinese_basic.html', paper: 'chinese_paper.html', topics: '文言虚词 · 病句类型 · 作文素材' },
+      { date: '05月20日', weekday: '周三', subject: 'math', subjectLabel: '📐 数学', color: '#3498db', basic: 'math_basic.html', paper: 'math_paper.html', topics: '勾股定理 · 一元二次方程 · 圆' },
+      { date: '05月21日', weekday: '周四', subject: 'english', subjectLabel: '📖 英语', color: '#9b59b6', basic: 'english_basic.html', paper: 'english_paper.html', topics: '完形填空高频短语 · 动词时态' },
+      { date: '05月22日', weekday: '周五', subject: 'chemistry', subjectLabel: '🧪 化学', color: '#27ae60', basic: 'chemistry_basic.html', paper: 'chemistry_paper.html', topics: '酸碱盐 · 复分解条件 · 质量守恒' },
+      { date: '05月23日', weekday: '周六', subject: 'history', subjectLabel: '🏛️ 历史', color: '#e67e22', basic: 'history_basic.html', paper: 'history_paper.html', topics: '中国近代史时间线 · 世界史高频考点' },
+      { date: '05月24日', weekday: '周日', subject: 'politics', subjectLabel: '🎯 政治', color: '#1abc9c', basic: 'politics_basic.html', paper: 'politics_paper.html', topics: '公民权利 · 改革开放 · 核心价值观' },
+    ]
+  },
+  {
+    label: '第20周 · 5月12日-5月18日',
+    days: [
+      { date: '05月12日', weekday: '周一', subject: 'physics', subjectLabel: '⚡ 物理', color: '#f39c12', basic: 'physics_basic.html', paper: 'physics_paper.html', topics: '运动与力 · 速度计算' },
+      { date: '05月13日', weekday: '周二', subject: 'chinese', subjectLabel: '📝 语文', color: '#e74c3c', basic: 'chinese_basic.html', paper: 'chinese_paper.html', topics: '阅读理解答题公式' },
+      { date: '05月14日', weekday: '周三', subject: 'math', subjectLabel: '📐 数学', color: '#3498db', basic: 'math_basic.html', paper: 'math_paper.html', topics: '一次函数 · 二次函数基础' },
+      { date: '05月15日', weekday: '周四', subject: 'english', subjectLabel: '📖 英语', color: '#9b59b6', basic: 'english_basic.html', paper: 'english_paper.html', topics: '阅读技巧定位法' },
+      { date: '05月16日', weekday: '周五', subject: 'chemistry', subjectLabel: '🧪 化学', color: '#27ae60', basic: 'chemistry_basic.html', paper: 'chemistry_paper.html', topics: '溶液配制 · 化学方程式' },
+      { date: '05月17日', weekday: '周六', subject: 'history', subjectLabel: '🏛️ 历史', color: '#e67e22', basic: 'history_basic.html', paper: 'history_paper.html', topics: '文艺复兴 · 启蒙运动' },
+      { date: '05月18日', weekday: '周日', subject: 'politics', subjectLabel: '🎯 政治', color: '#1abc9c', basic: 'politics_basic.html', paper: 'politics_paper.html', topics: '生态文明 · 公民义务' },
+    ]
+  },
+  {
+    label: '第19周 · 5月05日-5月11日',
+    days: [
+      { date: '05月05日', weekday: '周一', subject: 'physics', subjectLabel: '⚡ 物理', color: '#f39c12', basic: 'physics_basic.html', paper: 'physics_paper.html', topics: '凸透镜 · 电路基础' },
+      { date: '05月06日', weekday: '周二', subject: 'chinese', subjectLabel: '📝 语文', color: '#e74c3c', basic: 'chinese_basic.html', paper: 'chinese_paper.html', topics: '说明文阅读 · 小说答题' },
+      { date: '05月07日', weekday: '周三', subject: 'math', subjectLabel: '📐 数学', color: '#3498db', basic: 'math_basic.html', paper: 'math_paper.html', topics: '三角函数 · 概率初步' },
+      { date: '05月08日', weekday: '周四', subject: 'english', subjectLabel: '📖 英语', color: '#9b59b6', basic: 'english_basic.html', paper: 'english_paper.html', topics: '完形高频短语 · 作文句型' },
+      { date: '05月09日', weekday: '周五', subject: 'chemistry', subjectLabel: '🧪 化学', color: '#27ae60', basic: 'chemistry_basic.html', paper: 'chemistry_paper.html', topics: '金属活动性 · 燃烧条件' },
+      { date: '05月10日', weekday: '周六', subject: 'history', subjectLabel: '🏛️ 历史', color: '#e67e22', basic: 'history_basic.html', paper: 'history_paper.html', topics: '辛亥革命 · 五四运动' },
+      { date: '05月11日', weekday: '周日', subject: 'politics', subjectLabel: '🎯 政治', color: '#1abc9c', basic: 'politics_basic.html', paper: 'politics_paper.html', topics: '基本路线 · 依法治国' },
+    ]
+  },
+  {
+    label: '更早...',
+    days: []
+  }
+];
+
+var currentWeek = 0;
+
+function renderWeek(idx) {
+  currentWeek = idx;
+  var week = WEEKS[idx];
+  document.getElementById('week-label').textContent = week.label;
+
+  // Update tab active states
+  document.querySelectorAll('.week-btn').forEach(function(btn, i) {
+    btn.classList.toggle('active', i === idx);
+  });
+
+  var container = document.getElementById('week-content');
+  var empty = document.getElementById('empty-state');
+
+  if (!week.days || !week.days.length) {
+    container.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  var html = '';
+
+  // Mind map overview
+  html += '<div class="mindmap"><div class="mindmap-title">📋 本周知识结构图</div><pre>';
+  week.days.forEach(function(d) {
+    html += d.weekday + ' · ' + d.subjectLabel + '\n';
+    html += '  📖 ' + d.topics.split(' · ')[0] + '\n';
+    if (d.topics.split(' · ').length > 1) {
+      html += '  📝 ' + d.topics.split(' · ').slice(1).join('\n  📝 ') + '\n';
+    }
+    html += '\n';
+  });
+  html += '</pre></div>';
+
+  // Day cards
+  week.days.forEach(function(d) {
+    var isToday = d.date === getTodayStr();
+    html += '<div class="day-card" style="--c:' + d.color + '">';
+    html += '<div class="day-card-header">';
+    html += '<span class="day-card-date">' + d.date + ' · ' + d.weekday + (isToday ? ' 🔥' : '') + '</span>';
+    html += '<span class="day-card-subject">' + d.subjectLabel + '</span>';
+    html += '</div>';
+    html += '<div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:8px">' + d.topics + '</div>';
+    html += '<div class="day-card-links">';
+    html += '<a class="day-link' + (isToday ? ' done' : '') + ' href="' + d.basic + '">📖 知识点</a>';
+    html += '<a class="day-link" href="' + d.paper + '">✍️ 试卷练习</a>';
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function getTodayStr() {
+  var d = new Date();
+  var m = d.getMonth() + 1;
+  var day = d.getDate();
+  return (m < 10 ? '0' + m : '' + m) + '月' + (day < 10 ? '0' + day : '' + day) + '日';
+}
+
+function init() {
+  var selector = document.getElementById('week-selector');
+  WEEKS.forEach(function(week, i) {
+    var btn = document.createElement('a');
+    btn.className = 'week-btn' + (i === 0 ? ' active' : '');
+    btn.href = '#';
+    btn.textContent = week.label.split('·')[0].trim();
+    btn.onclick = function() { renderWeek(i); return false; };
+    selector.appendChild(btn);
+  });
+  renderWeek(0);
+}
+
+init();
+</script>
+</body>
+</html>

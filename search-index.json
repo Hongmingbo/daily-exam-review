@@ -1,50 +1,386 @@
 [
-  {"title":"勾股定理","category":"数学","page":"math_basic.html","snippet":"a²+b²=c²，常用勾股数3-4-5、5-12-13、6-8-10、7-24-25","keywords":"勾股定理 勾股数 直角三角形 毕达哥拉斯"},
-  {"title":"一元二次方程求根公式","category":"数学","page":"math_basic.html","snippet":"x=(-b±√(b²-4ac))/2a，判别式Δ=b²-4ac，韦达定理","keywords":"一元二次方程 求根公式 韦达定理 判别式 根"},
-  {"title":"圆：弧长与扇形面积","category":"数学","page":"math_basic.html","snippet":"弧长l=nπr/180，扇形面积S=nπr²/360=lr/2，垂径定理","keywords":"圆 弧长 扇形面积 垂径定理 圆心角"},
-  {"title":"三角函数特殊角","category":"数学","page":"math_basic.html","snippet":"sin30°=cos60°=½，cos30°=sin60°=√3/2，tan30°=√3/3，tan45°=1，tan60°=√3","keywords":"三角函数 sin cos tan 特殊角 30度 45度 60度"},
-  {"title":"频率与概率","category":"数学","page":"math_basic.html","snippet":"频率是客观试验数据（可变化），概率是理论固定值（抛硬币正面=0.5）","keywords":"频率 概率 随机事件 大量重复试验"},
-  {"title":"全等与相似","category":"数学","page":"math_basic.html","snippet":"全等(≅)：形状相同+大小相等；相似(∽)：形状相同，大小成比例，面积比=相似比²","keywords":"全等 相似 比例 边角对应 SSS SAS ASA AAS"},
-  {"title":"一次函数k、b几何意义","category":"数学","page":"math_basic.html","snippet":"y=kx+b：k>0过一三象限，k<0过二四象限，|k|越大直线越陡，b是y轴截距","keywords":"一次函数 斜率 截距 象限 k值 b值"},
-  {"title":"二次函数顶点坐标","category":"数学","page":"math_basic.html","snippet":"顶点(-b/2a, (4ac-b²)/4a)，对称轴x=-b/2a，与y轴交点(0,c)","keywords":"二次函数 顶点 对称轴 开口方向 最大值 最小值"},
-  {"title":"分式方程验根","category":"数学","page":"math_basic.html","snippet":"去分母可能产生增根（代入公分母=0的解要舍去）","keywords":"分式方程 增根 验根 分母为零"},
-  {"title":"概率：有放回vs无放回","category":"数学","page":"math_basic.html","snippet":"有放回：每次独立，概率不变；无放回：条件概率，总数减少","keywords":"概率 有放回 无放回 条件概率 独立事件"},
-  {"title":"凸透镜成像规律","category":"物理","page":"physics_basic.html","snippet":"u>2f倒立缩小实像(照相机)，f<u<2f倒立放大实像(投影仪)，u<f正立放大虚像(放大镜)","keywords":"凸透镜 成像规律 实像 虚像 焦距 照相机 投影仪"},
-  {"title":"欧姆定律","category":"物理","page":"physics_basic.html","snippet":"I=U/R，串联分压(I相等)，并联分流(U相等)","keywords":"欧姆定律 电流 电压 电阻 串联 并联"},
-  {"title":"机械功与功率","category":"物理","page":"physics_basic.html","snippet":"W=Fs，P=W/t=Fv，机械效率η=W有/W总×100%","keywords":"机械功 功率 机械效率 有用功 总功"},
-  {"title":"比热容","category":"物理","page":"physics_basic.html","snippet":"Q=cm(t₂-t₁)，c是物质的特性（与质量无关），单位J/(kg·℃)","keywords":"比热容 热量 温度变化 吸热 放热"},
-  {"title":"速度单位换算","category":"物理","page":"physics_basic.html","snippet":"1m/s = 3.6km/h，这是中考最常考的单位换算之一","keywords":"速度 m/s km/h 单位换算"},
-  {"title":"滑动摩擦力","category":"物理","page":"physics_basic.html","snippet":"f=μN，与速度无关，与正压力和粗糙程度有关","keywords":"滑动摩擦力 正压力 粗糙程度 μ 静摩擦"},
-  {"title":"杠杆平衡条件","category":"物理","page":"physics_basic.html","snippet":"F₁L₁=F₂L₂，L是力到支点的垂直距离（不是直线距离）","keywords":"杠杆 平衡 动力 阻力 力臂 支点"},
-  {"title":"酸碱盐通性","category":"化学","page":"chemistry_basic.html","snippet":"酸+金属→盐+氢气↑，酸+碱→盐+水，酸+盐→新酸+新盐","keywords":"酸的通性 碱的通性 中和反应 复分解"},
-  {"title":"复分解反应条件","category":"化学","page":"chemistry_basic.html","snippet":"生成物有↓(沉淀)或↑(气体)或H₂O，常见沉淀：BaSO₄、AgCl、CaCO₃、Cu(OH)₂、Fe(OH)₃","keywords":"复分解 沉淀 气体 水 沉淀表"},
-  {"title":"质量守恒定律","category":"化学","page":"chemistry_basic.html","snippet":"化学反应前后：各原子种类、数目、质量不变，化学方程式配平","keywords":"质量守恒 原子 化学方程式 配平 化学反应"},
-  {"title":"溶液质量分数","category":"化学","page":"chemistry_basic.html","snippet":"w=m溶质/m溶液×100%，m溶液=ρV=m溶剂+m溶质","keywords":"溶液 溶质 质量分数 配制 稀释"},
-  {"title":"金属活动性顺序","category":"化学","page":"chemistry_basic.html","snippet":"K Ca Na Mg Al Zn Fe Sn Pb H Cu Hg Ag Pt Au，H前金属能置换酸中氢","keywords":"金属活动性 置换反应 氢前金属 金属性"},
-  {"title":"燃烧条件","category":"化学","page":"chemistry_basic.html","snippet":"燃烧需要：可燃物+氧气+达到着火点，三者缺一不可","keywords":"燃烧 着火点 缓慢氧化 自燃 灭火原理"},
-  {"title":"文言虚词「之」的用法","category":"语文","page":"chinese_basic.html","snippet":"之：①的(取消句子独立性)②代词(他/它)③动词(去、到)④音节助词无义","keywords":"之 文言虚词 的 代词 动词 无义"},
-  {"title":"文言虚词「其」的用法","category":"语文","page":"chinese_basic.html","snippet":"其：①他的/它的②加强语气(其真无马邪？)③难道(其可怪也欤)","keywords":"其 文言虚词 所有格 加强语气 难道"},
-  {"title":"文言虚词「而」的用法","category":"语文","page":"chinese_basic.html","snippet":"而：①表顺承(并且)②表转折(但是)③表修饰(地)④表因果","keywords":"而 文言虚词 顺承 转折 修饰 因果"},
-  {"title":"文言虚词「以」的用法","category":"语文","page":"chinese_basic.html","snippet":"以：①用②因为③凭借④认为⑤在(以刀劈狼首)","keywords":"以 文言虚词 原因 方式 凭借"},
-  {"title":"病句类型","category":"语文","page":"chinese_basic.html","snippet":"成分残缺、搭配不当、语序不当、重复累赘、不合逻辑","keywords":"病句 成分残缺 搭配不当 语序不当 重复累赘"},
-  {"title":"小说阅读答题公式","category":"语文","page":"chinese_basic.html","snippet":"人物形象=语言+动作+心理+外貌+细节；环境描写作用=渲染+铺垫+象征","keywords":"小说阅读 人物形象 环境描写 情节 主题"},
-  {"title":"说明文阅读","category":"语文","page":"chinese_basic.html","snippet":"先找说明方法(举例子/列数字/作比较/打比方)，再分析作用","keywords":"说明文 说明方法 举例子 列数字 作比较 打比方"},
-  {"title":"作文万能素材：航天精神","category":"语文","page":"chinese_basic.html","snippet":"嫦娥六号月背采样 / 可用于：坚持、创新、强国梦、科技报国","keywords":"航天 嫦娥 科技强国 创新 坚持"},
-  {"title":"完形填空高频短语","category":"英语","page":"english_basic.html","snippet":"look forward to doing / look after = take care of / take part in = join in / set up / pick up / run out of / depend on = rely on","keywords":"完形填空 短语 look set take pick run depend"},
-  {"title":"动词时态判断","category":"英语","page":"english_basic.html","snippet":"一般现在时(often/usually+客观)，现在进行时(now/be+v-ing)，过去式(yesterday/last+过去式)","keywords":"动词时态 现在时 过去时 进行时 完成时 一般现在时"},
-  {"title":"It is + adj. + for sb. to do","category":"英语","page":"english_basic.html","snippet":"It is important for us to learn English. (不定式逻辑主语用for)","keywords":"it形式主语 不定式 for sb to do 句型"},
-  {"title":"There is something wrong with","category":"英语","page":"english_basic.html","snippet":"There is something wrong with my computer. 出故障了","keywords":"there be 句型 something wrong with 故障"},
-  {"title":"比较级句型","category":"英语","page":"english_basic.html","snippet":"The more you study, the smarter you become. 越…越…","keywords":"比较级 最高级 the more the more 倍数表达"},
-  {"title":"阅读理解定位法","category":"英语","page":"english_basic.html","snippet":"先读题目划关键词→回原文定位→对比选项→排除无中生有和过度推断","keywords":"阅读理解 定位 细节题 推理题 主旨题"},
-  {"title":"中国近代史时间线","category":"历史","page":"history_basic.html","snippet":"1840鸦片战争→1857英法联军→1894甲午→1900八国联军→1911辛亥→1919五四→1921中共成立","keywords":"近代史 鸦片战争 甲午战争 辛亥革命 五四运动 中共党史"},
-  {"title":"南京条约主要内容","category":"历史","page":"history_basic.html","snippet":"1842年：割香港岛、赔款2100万银元、开放五口通商、协定关税","keywords":"南京条约 割地 赔款 通商 关税"},
-  {"title":"马关条约与辛丑条约","category":"历史","page":"history_basic.html","snippet":"马关(1895)：割台湾、赔款2亿两、开工厂；辛丑(1901)：赔款4.5亿两、禁止反帝","keywords":"马关条约 辛丑条约 赔款 台湾 禁止反帝"},
-  {"title":"辛亥革命意义","category":"历史","page":"history_basic.html","snippet":"推翻了清王朝统治，结束了两千多年的封建君主专制制度，建立了中华民国","keywords":"辛亥革命 中华民国 民主共和 封建君主专制"},
-  {"title":"文艺复兴与启蒙运动","category":"历史","page":"history_basic.html","snippet":"文艺复兴(14-17世纪)：人文主义；启蒙运动(18世纪)：理性主义，孟德斯鸠/伏尔泰/卢梭","keywords":"文艺复兴 人文主义 启蒙运动 理性主义 孟德斯鸠 伏尔泰 卢梭"},
-  {"title":"工业革命","category":"历史","page":"history_basic.html","snippet":"1760s英国开始，瓦特改良蒸汽机是标志，珍妮纺纱机，火车机车(史蒂芬孙)","keywords":"工业革命 蒸汽机 珍妮纺纱机 瓦特 史蒂芬孙 火车"},
-  {"title":"公民基本权利","category":"政治","page":"politics_basic.html","snippet":"人身自由、人格尊严(名誉/肖像/姓名/隐私权)、财产权利、监督权、选举权","keywords":"公民权利 人身自由 人格尊严 监督权 选举权"},
-  {"title":"改革开放成就","category":"政治","page":"politics_basic.html","snippet":"GDP世界第二、高铁/5G/载人航天/杂交水稻、一带一路、人类命运共同体","keywords":"改革开放 成就 高铁 5G 一带一路 脱贫攻坚"},
-  {"title":"社会主义核心价值观","category":"政治","page":"politics_basic.html","snippet":"国家：富强民主文明和谐；社会：自由平等公正法治；个人：爱国敬业诚信友善","keywords":"社会主义核心价值观 富强 民主 文明 和谐 自由 平等"},
-  {"title":"生态文明建设","category":"政治","page":"politics_basic.html","snippet":"可持续发展、绿水青山就是金山银山、碳达峰碳中和","keywords":"生态文明 可持续发展 绿水青山 环保 碳达峰"},
-  {"title":"公民义务","category":"政治","page":"politics_basic.html","snippet":"维护国家统一和全国各民族团结、遵守宪法和法律、维护国家安全/荣誉/利益、依法纳税","keywords":"公民义务 宪法 法律 国家安全 纳税 服兵役"}
+  {
+    "title": "勾股定理",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "a²+b²=c²，常用勾股数3-4-5、5-12-13、6-8-10、7-24-25",
+    "keywords": "勾股定理 勾股数 直角三角形 毕达哥拉斯",
+    "region": "福建必考"
+  },
+  {
+    "title": "一元二次方程求根公式",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "x=(-b±√(b²-4ac))/2a，判别式Δ=b²-4ac，韦达定理",
+    "keywords": "一元二次方程 求根公式 韦达定理 判别式 根",
+    "region": "福建必考"
+  },
+  {
+    "title": "圆：弧长与扇形面积",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "弧长l=nπr/180，扇形面积S=nπr²/360=lr/2，垂径定理",
+    "keywords": "圆 弧长 扇形面积 垂径定理 圆心角",
+    "region": "全国通用"
+  },
+  {
+    "title": "三角函数特殊角",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "sin30°=cos60°=½，cos30°=sin60°=√3/2，tan30°=√3/3，tan45°=1，tan60°=√3",
+    "keywords": "三角函数 sin cos tan 特殊角 30度 45度 60度",
+    "region": "福建必考"
+  },
+  {
+    "title": "频率与概率",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "频率是客观试验数据（可变化），概率是理论固定值（抛硬币正面=0.5）",
+    "keywords": "频率 概率 随机事件 大量重复试验",
+    "region": "全国通用"
+  },
+  {
+    "title": "全等与相似",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "全等(≅)：形状相同+大小相等；相似(∽)：形状相同，大小成比例，面积比=相似比²",
+    "keywords": "全等 相似 比例 边角对应 SSS SAS ASA AAS",
+    "region": "全国通用"
+  },
+  {
+    "title": "一次函数k、b几何意义",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "y=kx+b：k>0过一三象限，k<0过二四象限，|k|越大直线越陡，b是y轴截距",
+    "keywords": "一次函数 斜率 截距 象限 k值 b值",
+    "region": "全国通用"
+  },
+  {
+    "title": "二次函数顶点坐标",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "顶点(-b/2a, (4ac-b²)/4a)，对称轴x=-b/2a，与y轴交点(0,c)",
+    "keywords": "二次函数 顶点 对称轴 开口方向 最大值 最小值",
+    "region": "全国通用"
+  },
+  {
+    "title": "分式方程验根",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "去分母可能产生增根（代入公分母=0的解要舍去）",
+    "keywords": "分式方程 增根 验根 分母为零",
+    "region": "全国通用"
+  },
+  {
+    "title": "概率：有放回vs无放回",
+    "category": "数学",
+    "page": "math_basic.html",
+    "snippet": "有放回：每次独立，概率不变；无放回：条件概率，总数减少",
+    "keywords": "概率 有放回 无放回 条件概率 独立事件",
+    "region": "全国通用"
+  },
+  {
+    "title": "凸透镜成像规律",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "u>2f倒立缩小实像(照相机)，f<u<2f倒立放大实像(投影仪)，u<f正立放大虚像(放大镜)",
+    "keywords": "凸透镜 成像规律 实像 虚像 焦距 照相机 投影仪",
+    "region": "福建必考"
+  },
+  {
+    "title": "欧姆定律",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "I=U/R，串联分压(I相等)，并联分流(U相等)",
+    "keywords": "欧姆定律 电流 电压 电阻 串联 并联",
+    "region": "福建必考"
+  },
+  {
+    "title": "机械功与功率",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "W=Fs，P=W/t=Fv，机械效率η=W有/W总×100%",
+    "keywords": "机械功 功率 机械效率 有用功 总功",
+    "region": "全国通用"
+  },
+  {
+    "title": "比热容",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "Q=cm(t₂-t₁)，c是物质的特性（与质量无关），单位J/(kg·℃)",
+    "keywords": "比热容 热量 温度变化 吸热 放热",
+    "region": "全国通用"
+  },
+  {
+    "title": "速度单位换算",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "1m/s = 3.6km/h，这是中考最常考的单位换算之一",
+    "keywords": "速度 m/s km/h 单位换算",
+    "region": "全国通用"
+  },
+  {
+    "title": "滑动摩擦力",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "f=μN，与速度无关，与正压力和粗糙程度有关",
+    "keywords": "滑动摩擦力 正压力 粗糙程度 μ 静摩擦",
+    "region": "全国通用"
+  },
+  {
+    "title": "杠杆平衡条件",
+    "category": "物理",
+    "page": "physics_basic.html",
+    "snippet": "F₁L₁=F₂L₂，L是力到支点的垂直距离（不是直线距离）",
+    "keywords": "杠杆 平衡 动力 阻力 力臂 支点",
+    "region": "全国通用"
+  },
+  {
+    "title": "酸碱盐通性",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "酸+金属→盐+氢气↑，酸+碱→盐+水，酸+盐→新酸+新盐",
+    "keywords": "酸的通性 碱的通性 中和反应 复分解",
+    "region": "全国通用"
+  },
+  {
+    "title": "复分解反应条件",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "生成物有↓(沉淀)或↑(气体)或H₂O，常见沉淀：BaSO₄、AgCl、CaCO₃、Cu(OH)₂、Fe(OH)₃",
+    "keywords": "复分解 沉淀 气体 水 沉淀表",
+    "region": "全国通用"
+  },
+  {
+    "title": "质量守恒定律",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "化学反应前后：各原子种类、数目、质量不变，化学方程式配平",
+    "keywords": "质量守恒 原子 化学方程式 配平 化学反应",
+    "region": "全国通用"
+  },
+  {
+    "title": "溶液质量分数",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "w=m溶质/m溶液×100%，m溶液=ρV=m溶剂+m溶质",
+    "keywords": "溶液 溶质 质量分数 配制 稀释",
+    "region": "全国通用"
+  },
+  {
+    "title": "金属活动性顺序",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "K Ca Na Mg Al Zn Fe Sn Pb H Cu Hg Ag Pt Au，H前金属能置换酸中氢",
+    "keywords": "金属活动性 置换反应 氢前金属 金属性",
+    "region": "全国通用"
+  },
+  {
+    "title": "燃烧条件",
+    "category": "化学",
+    "page": "chemistry_basic.html",
+    "snippet": "燃烧需要：可燃物+氧气+达到着火点，三者缺一不可",
+    "keywords": "燃烧 着火点 缓慢氧化 自燃 灭火原理",
+    "region": "全国通用"
+  },
+  {
+    "title": "文言虚词「之」的用法",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "之：①的(取消句子独立性)②代词(他/它)③动词(去、到)④音节助词无义",
+    "keywords": "之 文言虚词 的 代词 动词 无义",
+    "region": "福建必考"
+  },
+  {
+    "title": "文言虚词「其」的用法",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "其：①他的/它的②加强语气(其真无马邪？)③难道(其可怪也欤)",
+    "keywords": "其 文言虚词 所有格 加强语气 难道",
+    "region": "全国通用"
+  },
+  {
+    "title": "文言虚词「而」的用法",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "而：①表顺承(并且)②表转折(但是)③表修饰(地)④表因果",
+    "keywords": "而 文言虚词 顺承 转折 修饰 因果",
+    "region": "全国通用"
+  },
+  {
+    "title": "文言虚词「以」的用法",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "以：①用②因为③凭借④认为⑤在(以刀劈狼首)",
+    "keywords": "以 文言虚词 原因 方式 凭借",
+    "region": "全国通用"
+  },
+  {
+    "title": "病句类型",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "成分残缺、搭配不当、语序不当、重复累赘、不合逻辑",
+    "keywords": "病句 成分残缺 搭配不当 语序不当 重复累赘",
+    "region": "全国通用"
+  },
+  {
+    "title": "小说阅读答题公式",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "人物形象=语言+动作+心理+外貌+细节；环境描写作用=渲染+铺垫+象征",
+    "keywords": "小说阅读 人物形象 环境描写 情节 主题",
+    "region": "全国通用"
+  },
+  {
+    "title": "说明文阅读",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "先找说明方法(举例子/列数字/作比较/打比方)，再分析作用",
+    "keywords": "说明文 说明方法 举例子 列数字 作比较 打比方",
+    "region": "全国通用"
+  },
+  {
+    "title": "作文万能素材：航天精神",
+    "category": "语文",
+    "page": "chinese_basic.html",
+    "snippet": "嫦娥六号月背采样 / 可用于：坚持、创新、强国梦、科技报国",
+    "keywords": "航天 嫦娥 科技强国 创新 坚持",
+    "region": "全国通用"
+  },
+  {
+    "title": "完形填空高频短语",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "look forward to doing / look after = take care of / take part in = join in / set up / pick up / run out of / depend on = rely on",
+    "keywords": "完形填空 短语 look set take pick run depend",
+    "region": "全国通用"
+  },
+  {
+    "title": "动词时态判断",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "一般现在时(often/usually+客观)，现在进行时(now/be+v-ing)，过去式(yesterday/last+过去式)",
+    "keywords": "动词时态 现在时 过去时 进行时 完成时 一般现在时",
+    "region": "全国通用"
+  },
+  {
+    "title": "It is + adj. + for sb. to do",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "It is important for us to learn English. (不定式逻辑主语用for)",
+    "keywords": "it形式主语 不定式 for sb to do 句型",
+    "region": "全国通用"
+  },
+  {
+    "title": "There is something wrong with",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "There is something wrong with my computer. 出故障了",
+    "keywords": "there be 句型 something wrong with 故障",
+    "region": "全国通用"
+  },
+  {
+    "title": "比较级句型",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "The more you study, the smarter you become. 越…越…",
+    "keywords": "比较级 最高级 the more the more 倍数表达",
+    "region": "全国通用"
+  },
+  {
+    "title": "阅读理解定位法",
+    "category": "英语",
+    "page": "english_basic.html",
+    "snippet": "先读题目划关键词→回原文定位→对比选项→排除无中生有和过度推断",
+    "keywords": "阅读理解 定位 细节题 推理题 主旨题",
+    "region": "全国通用"
+  },
+  {
+    "title": "中国近代史时间线",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1840鸦片战争→1857英法联军→1894甲午→1900八国联军→1911辛亥→1919五四→1921中共成立",
+    "keywords": "近代史 鸦片战争 甲午战争 辛亥革命 五四运动 中共党史",
+    "region": "全国通用"
+  },
+  {
+    "title": "南京条约主要内容",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1842年：割香港岛、赔款2100万银元、开放五口通商、协定关税",
+    "keywords": "南京条约 割地 赔款 通商 关税",
+    "region": "全国通用"
+  },
+  {
+    "title": "马关条约与辛丑条约",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "马关(1895)：割台湾、赔款2亿两、开工厂；辛丑(1901)：赔款4.5亿两、禁止反帝",
+    "keywords": "马关条约 辛丑条约 赔款 台湾 禁止反帝",
+    "region": "全国通用"
+  },
+  {
+    "title": "辛亥革命意义",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "推翻了清王朝统治，结束了两千多年的封建君主专制制度，建立了中华民国",
+    "keywords": "辛亥革命 中华民国 民主共和 封建君主专制",
+    "region": "福建必考"
+  },
+  {
+    "title": "文艺复兴与启蒙运动",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "文艺复兴(14-17世纪)：人文主义；启蒙运动(18世纪)：理性主义，孟德斯鸠/伏尔泰/卢梭",
+    "keywords": "文艺复兴 人文主义 启蒙运动 理性主义 孟德斯鸠 伏尔泰 卢梭",
+    "region": "全国通用"
+  },
+  {
+    "title": "工业革命",
+    "category": "历史",
+    "page": "history_basic.html",
+    "snippet": "1760s英国开始，瓦特改良蒸汽机是标志，珍妮纺纱机，火车机车(史蒂芬孙)",
+    "keywords": "工业革命 蒸汽机 珍妮纺纱机 瓦特 史蒂芬孙 火车",
+    "region": "全国通用"
+  },
+  {
+    "title": "公民基本权利",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "人身自由、人格尊严(名誉/肖像/姓名/隐私权)、财产权利、监督权、选举权",
+    "keywords": "公民权利 人身自由 人格尊严 监督权 选举权",
+    "region": "福建必考"
+  },
+  {
+    "title": "改革开放成就",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "GDP世界第二、高铁/5G/载人航天/杂交水稻、一带一路、人类命运共同体",
+    "keywords": "改革开放 成就 高铁 5G 一带一路 脱贫攻坚",
+    "region": "全国通用"
+  },
+  {
+    "title": "社会主义核心价值观",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "国家：富强民主文明和谐；社会：自由平等公正法治；个人：爱国敬业诚信友善",
+    "keywords": "社会主义核心价值观 富强 民主 文明 和谐 自由 平等",
+    "region": "福建必考"
+  },
+  {
+    "title": "生态文明建设",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "可持续发展、绿水青山就是金山银山、碳达峰碳中和",
+    "keywords": "生态文明 可持续发展 绿水青山 环保 碳达峰",
+    "region": "全国通用"
+  },
+  {
+    "title": "公民义务",
+    "category": "政治",
+    "page": "politics_basic.html",
+    "snippet": "维护国家统一和全国各民族团结、遵守宪法和法律、维护国家安全/荣誉/利益、依法纳税",
+    "keywords": "公民义务 宪法 法律 国家安全 纳税 服兵役",
+    "region": "全国通用"
+  }
 ]
