@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="每日中考复习资料站，涵盖数学/语文/英语/物理/化学/历史/政治，福建专用，含公式速背、易错题、试卷真题。">
+<meta name="keywords" content="中考复习,福建中考,中考数学,中考物理,中考化学,公式速背,易错题">
+<meta property="og:title" content="每日中考复习 | 福建专用">
+<meta property="og:description" content="7科全覆盖 · 公式速背+易错题+试卷真题 · 考前冲刺必备">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hdzkfx.dpdns.org/">
+<meta property="og:image" content="https://hdzkfx.dpdns.org/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="每日中考复习 | 福建专用">
+<meta name="twitter:description" content="7科全覆盖 · 公式速背+易错题+试卷真题">
 <title>每日中考复习资料 - 洪明博</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -14,8 +24,59 @@
 <header class="site-header physics">
   <h1>📚 每日中考复习资料</h1>
   <p>洪明博 · 2026年福建中考备考</p>
-  <span class="countdown">距中考约 31 天（6月21日）</span>
 </header>
+
+<!-- Exam countdown bar -->
+<div class="countdown-bar" id="countdown-bar">
+  <div class="countdown-days">
+    <span class="cd-num" id="cd-days">31</span>
+    <span class="cd-label">天</span>
+  </div>
+  <div class="cd-info">
+    <div class="cd-title">距中考还有</div>
+    <div class="cd-date">6月21日（周日）· 福建省统一中考</div>
+    <div class="cd-tip">💡 今天距中考 <strong id="cd-days2">31</strong> 天，建议主攻薄弱科目！</div>
+  </div>
+  <div class="cd-subjects">
+    <span class="cd-subject physics">⚡ 物理</span>
+    <span class="cd-subject chinese">📝 语文</span>
+    <span class="cd-subject math">📐 数学</span>
+    <span class="cd-subject english">📖 英语</span>
+    <span class="cd-subject chemistry">🧪 化学</span>
+    <span class="cd-subject history">🏛️ 历史</span>
+    <span class="cd-subject politics">🎯 政治</span>
+  </div>
+</div>
+
+<style>
+.countdown-bar { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 16px 20px; border-radius: 0 0 20px 20px; margin: 0 0 16px 0; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.countdown-days { display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; }
+.cd-num { font-size: 3rem; font-weight: 800; color: #ffd700; line-height: 1; }
+.cd-label { font-size: 1.2rem; color: rgba(255,255,255,0.7); }
+.cd-info { flex: 1; min-width: 160px; }
+.cd-title { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+.cd-date { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-bottom: 4px; }
+.cd-tip { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+.cd-tip strong { color: #ffd700; }
+.cd-subjects { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.cd-subject { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px 10px; font-size: 0.75rem; }
+.countdown-bar.physics { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+body.dark .countdown-bar { background: linear-gradient(135deg, #0d0d1a 0%, #111827 100%); }
+@media (max-width: 480px) { .countdown-bar { flex-direction: column; text-align: center; gap: 10px; } .cd-info { min-width: unset; } .cd-subjects { justify-content: center; } }
+</style>
+<script>
+// Update countdown from today to June 21, 2026
+(function(){
+  var exam = new Date(2026, 5, 21); // June 21 = month 5 (0-indexed)
+  var today = new Date();
+  var diff = Math.ceil((exam - today) / (1000*60*60*24));
+  var el = document.getElementById('cd-days');
+  var el2 = document.getElementById('cd-days2');
+  if(el) { el.textContent = diff; }
+  if(el2) { el2.textContent = diff; }
+})();
+</script>
+
 <nav class="nav-cards">
     <a href="physics_basic.html" class="nav-card physics">
       <span class="emoji">⚡</span>

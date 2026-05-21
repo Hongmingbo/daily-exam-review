@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main pages -->
+  <url><loc>https://hdzkfx.dpdns.org/</loc><priority>1.0</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/emergency.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/archive.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/search.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/favorites.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/mistakes.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/about.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <!-- Math -->
+  <url><loc>https://hdzkfx.dpdns.org/math_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/math.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/math_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- Physics -->
+  <url><loc>https://hdzkfx.dpdns.org/physics_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/physics.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/physics_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- Chinese -->
+  <url><loc>https://hdzkfx.dpdns.org/chinese_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/chinese.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/chinese_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- English -->
+  <url><loc>https://hdzkfx.dpdns.org/english_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/english.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/english_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- Chemistry -->
+  <url><loc>https://hdzkfx.dpdns.org/chemistry_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/chemistry.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/chemistry_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- History -->
+  <url><loc>https://hdzkfx.dpdns.org/history_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/history.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/history_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- Politics -->
+  <url><loc>https://hdzkfx.dpdns.org/politics_basic.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/politics.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/politics_paper.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <!-- Biology -->
+  <url><loc>https://hdzkfx.dpdns.org/biology.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://hdzkfx.dpdns.org/biology_basic.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+</urlset>

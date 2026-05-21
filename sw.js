@@ -14,6 +14,8 @@ const STATIC_ASSETS = [
   '/chemistry_basic.html', '/chemistry.html', '/chemistry_paper.html',
   '/history_basic.html', '/history.html', '/history_paper.html',
   '/politics_basic.html', '/politics.html', '/politics_paper.html',
+  // SEO + utility
+  '/sitemap.xml', '/robots.txt', '/search-index.json',
 ];
 
 // Install: pre-cache static assets
