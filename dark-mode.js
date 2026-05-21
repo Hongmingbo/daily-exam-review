@@ -1,6 +1,11 @@
 // Dark mode toggle — auto-detects system preference, respects manual override via localStorage
 (function () {
   var KEY = 'zk-dark-mode'; // zk = zhongkao, avoids collisions
+  window.__zkDarkObserver = window.__zkDarkObserver || [];
+
+  function notify() {
+    window.__zkDarkObserver.forEach(function (fn) { fn(); });
+  }
 
   function apply(mode) {
     if (mode === 'dark') {
@@ -9,6 +14,7 @@
       document.body.classList.remove('dark');
     }
     try { localStorage.setItem(KEY, mode); } catch (e) {}
+    notify();
   }
 
   function init() {
