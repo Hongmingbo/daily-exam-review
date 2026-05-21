@@ -156,7 +156,31 @@
 
   /* ---- fav-star hover style ---- */
   var style = document.createElement('style');
-  style.textContent = '.fav-star:hover { opacity: 1 !important; } .fav-star.active { opacity: 1 !important; }';
+  style.textContent = [
+    '.fav-star:hover { opacity: 1 !important; }',
+    '.fav-star.active { opacity: 1 !important; }',
+    '.answer-details { margin-top: 8px; border-radius: 8px; overflow: hidden; }',
+    '.answer-summary {',
+    '  background: rgba(16, 185, 129, 0.1);',
+    '  border: 1px solid rgba(16, 185, 129, 0.3);',
+    '  border-radius: 8px;',
+    '  padding: 7px 14px;',
+    '  font-size: 0.82rem;',
+    '  color: #10b981;',
+    '  cursor: pointer;',
+    '  list-style: none;',
+    '  user-select: none;',
+    '  transition: background 0.15s;',
+    '}',
+    '.answer-summary:hover { background: rgba(16, 185, 129, 0.18); }',
+    '.answer-summary::marker { display: none; }',
+    'body.dark .answer-summary {',
+    '  background: rgba(16, 185, 129, 0.15);',
+    '  border-color: rgba(16, 185, 129, 0.4);',
+    '  color: #6ee7b7;',
+    '}',
+    'body.dark .answer-summary:hover { background: rgba(16, 185, 129, 0.25); }'
+  ].join(' ');
   document.head.appendChild(style);
 
   /* ---- dual mode (simplified/complete) ---- */
@@ -186,10 +210,70 @@
     }
   }
 
+  /* ---- answer folding for .question blocks ---- */
+  function initAnswerFolding() {
+    var questions = document.querySelectorAll('.question');
+    if (!questions.length) return;
+    var page = getPageName();
+    var storageKey = 'zk-answers-shown-' + page;
+
+    var shown = {};
+    try { shown = JSON.parse(sessionStorage.getItem(storageKey)) || {}; } catch(e) {}
+
+    questions.forEach(function(q, i) {
+      var answer = q.querySelector('.answer-block');
+      if (!answer) return;
+      var qId = 'q-' + i;
+
+      // Build collapsible wrapper
+      var details = document.createElement('details');
+      details.className = 'answer-details';
+
+      var summary = document.createElement('summary');
+      summary.className = 'answer-summary';
+      summary.textContent = '👆 点击展开答案';
+
+      details.appendChild(summary);
+      details.appendChild(answer);
+
+      // Restore state
+      if (shown[qId]) {
+        details.open = true;
+        summary.textContent = '✅ 已查看答案';
+      }
+
+      details.addEventListener('toggle', function() {
+        if (details.open) {
+          shown[qId] = true;
+          try { sessionStorage.setItem(storageKey, JSON.stringify(shown)); } catch(e) {}
+          summary.textContent = '✅ 已查看答案';
+          // Record in checkin data
+          recordAnswer(page, qId);
+        }
+      });
+
+      q.appendChild(details);
+    });
+  }
+
+  function recordAnswer(page, qId) {
+    // Track how many answers viewed today for checkin bonus
+    var key = 'zk-answers-done';
+    var data = {};
+    try { data = JSON.parse(localStorage.getItem(key)) || {}; } catch(e) {}
+    var today = todayStr();
+    if (!data[today]) data[today] = [];
+    if (!data[today].some(function(d) { return d.page === page && d.qId === qId; })) {
+      data[today].push({ page: page, qId: qId, time: Date.now() });
+      try { localStorage.setItem(key, JSON.stringify(data)); } catch(e) {}
+    }
+  }
+
   /* ---- auto-init ---- */
   document.addEventListener('DOMContentLoaded', function () {
     initFavorites();
     initCheckin();
     initDualMode();
+    initAnswerFolding();
   });
 })();

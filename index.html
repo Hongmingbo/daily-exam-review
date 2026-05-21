@@ -28,14 +28,22 @@
 
 <!-- Exam countdown bar -->
 <div class="countdown-bar" id="countdown-bar">
-  <div class="countdown-days">
-    <span class="cd-num" id="cd-days">31</span>
-    <span class="cd-label">天</span>
+  <div class="countdown-main">
+    <div class="countdown-days">
+      <span class="cd-num" id="cd-days">--</span>
+      <span class="cd-label">天</span>
+      <span class="cd-num" id="cd-hours">--</span>
+      <span class="cd-label">时</span>
+      <span class="cd-num" id="cd-mins">--</span>
+      <span class="cd-label">分</span>
+      <span class="cd-num" id="cd-secs">--</span>
+      <span class="cd-label">秒</span>
+    </div>
   </div>
   <div class="cd-info">
-    <div class="cd-title">距中考还有</div>
-    <div class="cd-date">6月21日（周日）· 福建省统一中考</div>
-    <div class="cd-tip">💡 今天距中考 <strong id="cd-days2">31</strong> 天，建议主攻薄弱科目！</div>
+    <div class="cd-title">距2026年福建中考还有</div>
+    <div class="cd-date">📅 6月21日（周日）· 福建省统一中考</div>
+    <div class="cd-tip">💡 建议今天主攻：<strong id="cd-tip-subject">数学</strong></div>
   </div>
   <div class="cd-subjects">
     <span class="cd-subject physics">⚡ 物理</span>
@@ -49,31 +57,89 @@
 </div>
 
 <style>
-.countdown-bar { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 16px 20px; border-radius: 0 0 20px 20px; margin: 0 0 16px 0; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.countdown-days { display: flex; align-items: baseline; gap: 4px; flex-shrink: 0; }
-.cd-num { font-size: 3rem; font-weight: 800; color: #ffd700; line-height: 1; }
-.cd-label { font-size: 1.2rem; color: rgba(255,255,255,0.7); }
-.cd-info { flex: 1; min-width: 160px; }
-.cd-title { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
-.cd-date { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-bottom: 4px; }
-.cd-tip { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+.countdown-bar { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 14px 18px; border-radius: 0 0 20px 20px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.countdown-main { flex-shrink: 0; }
+.countdown-days { display: flex; align-items: baseline; gap: 3px; flex-wrap: wrap; max-width: 220px; }
+.cd-num { font-size: 2rem; font-weight: 800; color: #ffd700; line-height: 1; }
+.cd-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-right: 4px; }
+.cd-info { flex: 1; min-width: 150px; }
+.cd-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+.cd-date { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-bottom: 3px; }
+.cd-tip { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
 .cd-tip strong { color: #ffd700; }
-.cd-subjects { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.cd-subject { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px 10px; font-size: 0.75rem; }
+.cd-subjects { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.cd-subject { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 3px 9px; font-size: 0.72rem; }
 .countdown-bar.physics { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
 body.dark .countdown-bar { background: linear-gradient(135deg, #0d0d1a 0%, #111827 100%); }
-@media (max-width: 480px) { .countdown-bar { flex-direction: column; text-align: center; gap: 10px; } .cd-info { min-width: unset; } .cd-subjects { justify-content: center; } }
+@media (max-width: 520px) {
+  .countdown-bar { flex-direction: column; text-align: center; gap: 8px; }
+  .cd-info { min-width: unset; }
+  .cd-subjects { justify-content: center; }
+  .countdown-days { justify-content: center; max-width: 100%; }
+  .cd-num { font-size: 1.6rem; }
+}
 </style>
 <script>
-// Update countdown from today to June 21, 2026
+// 倒计时精确到时分秒，2026年6月21日福建中考
 (function(){
-  var exam = new Date(2026, 5, 21); // June 21 = month 5 (0-indexed)
-  var today = new Date();
-  var diff = Math.ceil((exam - today) / (1000*60*60*24));
-  var el = document.getElementById('cd-days');
-  var el2 = document.getElementById('cd-days2');
-  if(el) { el.textContent = diff; }
-  if(el2) { el2.textContent = diff; }
+  var exam = new Date(2026, 5, 21, 8, 0, 0); // 6月21日 08:00
+  var subjects = ['数学','英语','化学','历史','政治','物理','语文'];
+  // 7天循环：周一=物理(index 5) → (dayOfYear-1)%7映射
+  function getTodaySubject() {
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    var diff = now - start;
+    var dayOfYear = Math.floor(diff / 86400000);
+    return subjects[(dayOfYear - 1) % 7];
+  }
+  function tick() {
+    var now = new Date();
+    var diff = exam - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      document.getElementById('cd-secs').textContent = '0';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+    var el = document.getElementById('cd-days');
+    var elH = document.getElementById('cd-hours');
+    var elM = document.getElementById('cd-mins');
+    var elS = document.getElementById('cd-secs');
+    if(el)  el.textContent  = d;
+    if(elH) elH.textContent = pad(h);
+    if(elM) elM.textContent = pad(m);
+    if(elS) elS.textContent = pad(s);
+    var tip = document.getElementById('cd-tip-subject');
+    if(tip && tip.textContent === '--') tip.textContent = getTodaySubject();
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// 昨天快捷入口：根据星期计算昨天科目
+(function(){
+  var SUBJECTS = ['物理','语文','数学','英语','化学','历史','政治']; // 周一=0
+  var PAGES    = ['physics_basic','chinese_basic','math_basic','english_basic','chemistry_basic','history_basic','politics_basic'];
+  var days = ['周日','周一','周二','周三','周四','周五','周六'];
+  var now = new Date();
+  var yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  var ydow = yesterday.getDay(); // 0=周日
+  var ySubject = SUBJECTS[ydow];
+  var yPage = PAGES[ydow] + '.html';
+  var yLabel = days[ydow];
+  var bar = document.getElementById('yesterday-bar');
+  if (!bar) return;
+  bar.innerHTML =
+    '<span style="font-size:0.78rem;color:var(--text-muted)">昨日复习：</span>' +
+    '<a href="' + yPage + '" style="display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:5px 14px;text-decoration:none;font-size:0.82rem;color:var(--text);font-weight:500">' +
+    '← 昨天 ' + yLabel + ' · ' + ySubject + '</a>';
 })();
 </script>
 
@@ -114,6 +180,7 @@ body.dark .countdown-bar { background: linear-gradient(135deg, #0d0d1a 0%, #1118
       <span class="day">周日</span>
     </a>
 </nav>
+<div id="yesterday-bar" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px"></div>
 <div class="container">
 <div class="content-card" id="today-card">
   <h2 id="today-title">📅 今日复习计划</h2>
