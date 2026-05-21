@@ -1,7 +1,7 @@
 name: Cloudflare Pages Deploy
-on:
+于:
   push:
-    branches: [main]
+    分支: [main]
   workflow_dispatch:
 
 permissions:
@@ -23,3 +23,5 @@ jobs:
           projectName: 'daily-exam-review'
           directory: '.'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      commitMessage: 'Update content [skip ci]'
+      wranglerVersion: '3'
