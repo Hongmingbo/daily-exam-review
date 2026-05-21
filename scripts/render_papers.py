@@ -42,6 +42,16 @@ print("Rendered", min(len(doc), max_p), "pages to", outdir)
         print(f'  ERR: {r.stderr.strip()[:200]}')
     return r.returncode == 0
 
+def safe_name(title):
+    """Convert title to ASCII-safe folder name for web hosting."""
+    import re
+    # Replace Chinese and special chars with underscores
+    name = re.sub(r'[^\w]', '_', title)
+    name = re.sub(r'_+', '_', name)  # collapse multiple underscores
+    # Shorten and clean
+    name = name.strip('_')[:25]
+    return name.lower() or 'paper'
+
 def get_latest_pdfs(folder_id, out_dir, max_count=2, max_pages=4):
     resp = api('openapi/wiki/v1/get_knowledge_list', {
         'knowledge_base_id': KB_ID,
@@ -53,12 +63,13 @@ def get_latest_pdfs(folder_id, out_dir, max_count=2, max_pages=4):
         return
     items = resp.get('data', {}).get('knowledge_list', [])
     pdfs = [it for it in items if it.get('media_type') == 1]
+    total_rendered = 0
     for item in pdfs[:max_count]:
         mid = item.get('media_id', '')
         title = item.get('title', 'untitled')
         if not mid:
             continue
-        print(f'Processing: {title[:50]}')
+        print(f'Processing: {title[:60]}')
         info = api('openapi/wiki/v1/get_media_info', {'media_id': mid})
         url = info.get('data', {}).get('url_info', {}).get('url', '') if info else ''
         if not url:
@@ -72,12 +83,28 @@ def get_latest_pdfs(folder_id, out_dir, max_count=2, max_pages=4):
                 continue
         size_mb = os.path.getsize(pdf_file) / 1024 / 1024
         print(f'  PDF size: {size_mb:.1f}MB')
-        name_short = title.split('】')[0] + '】' if '】' in title else title[:20]
-        render_pdf(pdf_file, out_dir, name_short, max_pages)
+        folder_name = safe_name(title)
+        paper_dir = os.path.join(out_dir, folder_name)
+        if render_pdf(pdf_file, paper_dir, folder_name, max_pages):
+            total_rendered += 1
+    return total_rendered
 
 if __name__ == '__main__':
-    print('=== Physics ===')
-    get_latest_pdfs('folder_7461794670998044', f'{IMG_DIR}/phys_longyan', max_count=2, max_pages=4)
-    print('\n=== Chemistry ===')
-    get_latest_pdfs('folder_7461792729036437', f'{IMG_DIR}/chem_nanping', max_count=2, max_pages=4)
+    import sys
+    target = sys.argv[1] if len(sys.argv) > 1 else 'all'
+
+    paper_folders = {
+        'english':   ('folder_7461794322848125', f'{IMG_DIR}/english_paper', 2, 4),
+        'physics':   ('folder_7461794670998044', f'{IMG_DIR}/phys_longyan',  2, 4),
+        'chemistry': ('folder_7461792729036437', f'{IMG_DIR}/chem_nanping',  2, 4),
+        'math':      ('folder_7461795233036275', f'{IMG_DIR}/math_longyan',  2, 4),
+        'chinese':   ('folder_7461792464797113', f'{IMG_DIR}/chinese_paper', 2, 4),
+        'history':   ('folder_7461792649344818', f'{IMG_DIR}/history_paper', 2, 4),
+        'politics':  ('folder_7461792557071449', f'{IMG_DIR}/politics_paper',2, 4),
+    }
+
+    targets = paper_folders.items() if target == 'all' else [(target, paper_folders[target])]
+    for name, (folder_id, out_dir, count, pages) in targets:
+        print(f'\n=== {name.upper()} ===')
+        get_latest_pdfs(folder_id, out_dir, max_count=count, max_pages=pages)
     print('\nDone')
