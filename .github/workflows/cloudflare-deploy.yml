@@ -1,5 +1,5 @@
 name: Cloudflare Pages Deploy
-于:
+on:
   push:
     branches: [main]
   workflow_dispatch:
