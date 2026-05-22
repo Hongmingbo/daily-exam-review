@@ -99,23 +99,158 @@
       btn.disabled = true;
       btn.style.opacity = '0.7';
     } else {
-      updateStreak(btn, ci, today);
+      // 未打卡：点击弹出每日一题
+      btn.addEventListener('click', function () {
+        showDailyQuestionModal(btn);
+      });
     }
-    btn.addEventListener('click', function () {
-      var ci2 = getCheckin();
-      updateStreak(btn, ci2, todayStr());
-    });
   }
 
-  function updateStreak(btn, ci, today) {
-    var yesterday = yesterdayStr();
-    var streak = (ci.date === yesterday) ? (ci.streak || 0) + 1 : 1;
-    var obj = { date: today, streak: streak };
-    setCheckin(obj);
-    btn.textContent = '🔥 今日已打卡 ' + streak + '天连击';
-    btn.disabled = true;
-    btn.style.opacity = '0.7';
-    showToast('打卡成功！连续' + streak + '天 💪');
+  function showDailyQuestionModal(btn) {
+    // 获取今日科目对应的题目
+    var dow = new Date().getDay(); // 0=周日
+    var qIndex = (dow === 0) ? 6 : dow - 1; // 周一→0, ..., 周六→5, 周日→6
+    var q = DAILY_QUESTIONS[qIndex];
+    if (!q) return;
+
+    // 已有弹窗则关闭
+    var existing = document.getElementById('zk-q-modal');
+    if (existing) existing.remove();
+
+    var modal = document.createElement('div');
+    modal.id = 'zk-q-modal';
+    modal.style.cssText = [
+      'position:fixed', 'top:0', 'left:0', 'right:0', 'bottom:0',
+      'background:rgba(0,0,0,0.55)', 'z-index:99998',
+      'display:flex', 'align-items:center', 'justify-content:center',
+      'padding:16px'
+    ].join(';');
+
+    var card = document.createElement('div');
+    card.style.cssText = [
+      'background:white', 'border-radius:16px', 'padding:24px 20px',
+      'max-width:420px', 'width:100%', 'max-height:90vh', 'overflow-y:auto',
+      'box-shadow:0 8px 32px rgba(0,0,0,0.18)', 'font-family:inherit'
+    ].join(';');
+
+    var subjectLabels = ['⚡物理','📝语文','📐数学','📖英语','🧪化学','🏛️历史','🎯政治'];
+    var colors = ['#f39c12','#e74c3c','#3498db','#9b59b6','#27ae60','#e67e22','#1abc9c'];
+    var subjColor = colors[qIndex] || '#f39c12';
+
+    card.innerHTML = [
+      '<div style="text-align:center;margin-bottom:16px">',
+        '<span style="display:inline-block;background:' + subjColor + ';color:white;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:600">',
+          '📅 每日一题 · ' + subjectLabels[qIndex],
+        '</span>',
+      '</div>',
+      '<p style="font-size:0.95rem;font-weight:600;margin-bottom:14px;line-height:1.5;color:#1e293b">' + q.q + '</p>',
+      '<div id="zk-q-options" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>',
+      '<div id="zk-q-result" style="display:none;margin-bottom:16px"></div>',
+      '<div style="display:flex;gap:10px" id="zk-q-btns">',
+        '<button id="zk-q-submit" style="flex:1;background:' + subjColor + ';color:white;border:none;border-radius:10px;',
+          'padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer">提交答案</button>',
+        '<button id="zk-q-close" style="flex:1;background:#e2e8f0;color:#64748b;border:none;border-radius:10px;',
+          'padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer">取消</button>',
+      '</div>',
+      '<div id="zk-q-success" style="display:none;text-align:center;padding:16px 0">',
+        '<div style="font-size:2rem;margin-bottom:8px">🎉</div>',
+        '<div id="zk-q-streak-text" style="font-size:1.1rem;font-weight:700;color:#f39c12;margin-bottom:4px"></div>',
+        '<div style="font-size:0.85rem;color:#64748b">坚持学习，你离目标越来越近！</div>',
+      '</div>'
+    ].join('');
+
+    modal.appendChild(card);
+    document.body.appendChild(modal);
+
+    // 填充选项
+    var optsDiv = document.getElementById('zk-q-options');
+    q.opts.forEach(function (opt, i) {
+      var label = document.createElement('label');
+      label.style.cssText = [
+        'display:flex', 'align-items:center', 'gap:8px',
+        'padding:9px 12px', 'border-radius:8px', 'border:1.5px solid #e2e8f0',
+        'cursor:pointer', 'font-size:0.88rem', 'transition:all 0.15s', 'color:#374151'
+      ].join(';');
+      label.innerHTML = '<input type="radio" name="zk-q" value="' + i + '" style="accent-color:' + subjColor + '"> ' + opt;
+      label.addEventListener('click', function () {
+        label.style.background = 'rgba(0,0,0,0.04)';
+        label.style.borderColor = subjColor;
+        label.style.color = subjColor;
+        optsDiv.querySelectorAll('label').forEach(function (other) {
+          if (other !== label) {
+            other.style.background = '';
+            other.style.borderColor = '#e2e8f0';
+            other.style.color = '#374151';
+          }
+        });
+      });
+      optsDiv.appendChild(label);
+    });
+
+    // 提交答案
+    document.getElementById('zk-q-submit').addEventListener('click', function () {
+      var selected = document.querySelector('input[name="zk-q"]:checked');
+      if (!selected) { showToast('请先选择一个答案'); return; }
+      var chosen = parseInt(selected.value);
+      var resultDiv = document.getElementById('zk-q-result');
+      var optsDivEl = document.getElementById('zk-q-options');
+      var btnsDiv = document.getElementById('zk-q-btns');
+      var successDiv = document.getElementById('zk-q-success');
+
+      optsDivEl.style.display = 'none';
+      btnsDiv.style.display = 'none';
+      resultDiv.style.display = 'block';
+
+      if (chosen === q.ans) {
+        // 答对 → 打卡
+        var ci = getCheckin();
+        var yesterday = yesterdayStr();
+        var streak = (ci.date === yesterday) ? (ci.streak || 0) + 1 : 1;
+        var obj = { date: todayStr(), streak: streak };
+        setCheckin(obj);
+
+        resultDiv.innerHTML = '<div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:10px;padding:12px 14px">' +
+          '<div style="font-weight:700;color:#10b981;margin-bottom:4px">✅ 回答正确！</div>' +
+          '<div style="font-size:0.82rem;color:#64748b;line-height:1.5">' + q.exp + '</div></div>';
+
+        document.getElementById('zk-q-streak-text').textContent = '🔥 今日已打卡 ' + streak + '天连击';
+
+        var modalCard = modal.querySelector('div');
+        modalCard.style.padding = '24px 20px';
+        successDiv.style.display = 'block';
+        successDiv.style.background = 'rgba(243,156,18,0.08)';
+        successDiv.style.borderRadius = '10px';
+        successDiv.style.marginBottom = '16px';
+
+        // 更新首页打卡按钮
+        var homeBtn = document.getElementById('checkin-btn');
+        if (homeBtn) {
+          homeBtn.textContent = '🔥 今日已打卡 ' + streak + '天连击';
+          homeBtn.disabled = true;
+          homeBtn.style.opacity = '0.7';
+        }
+
+        showToast('打卡成功！连续' + streak + '天 💪');
+        setTimeout(function () { modal.remove(); }, 2200);
+      } else {
+        // 答错 → 显示解析，可重试
+        resultDiv.innerHTML = '<div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:12px 14px;margin-bottom:10px">' +
+          '<div style="font-weight:700;color:#ef4444;margin-bottom:4px">❌ 回答错误，请再试一次</div>' +
+          '<div style="font-size:0.82rem;color:#64748b;line-height:1.5">' + q.exp + '</div></div>';
+        var retryBtn = document.createElement('button');
+        retryBtn.textContent = '🔄 重新答题';
+        retryBtn.style.cssText = 'width:100%;background:#f39c12;color:white;border:none;border-radius:10px;padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer;margin-top:8px';
+        retryBtn.addEventListener('click', function () {
+          modal.remove();
+          showDailyQuestionModal(btn);
+        });
+        resultDiv.appendChild(retryBtn);
+      }
+    });
+
+    // 取消/关闭
+    document.getElementById('zk-q-close').addEventListener('click', function () { modal.remove(); });
+    modal.addEventListener('click', function (e) { if (e.target === modal) modal.remove(); });
   }
 
   /* ---- utils ---- */
