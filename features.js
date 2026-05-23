@@ -405,10 +405,15 @@
   }
 
   /* ---- auto-init ---- */
-  document.addEventListener('DOMContentLoaded', function () {
+  function boot() {
     initFavorites();
     initCheckin();
     initDualMode();
     initAnswerFolding();
-  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot(); // DOM already complete
+  }
 })();
