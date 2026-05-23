@@ -249,6 +249,20 @@ def main():
             done.append(subj)
             time.sleep(0.3)
     validate_html_files(done)
+
+    git = ["git", "-C", str(REPO_DIR)]
+    subprocess.run(git + ["config", "user.name", "Hongmingbo"], capture_output=True)
+    subprocess.run(git + ["config", "user.email", "hongmingbo2011@163.com"], capture_output=True)
+    subprocess.run(git + ["add", "*.html", "sw.js", "scripts/download_and_build_papers.py", "images/"], capture_output=True)
+    status = subprocess.run(git + ["status", "--porcelain"], capture_output=True, text=True)
+    if status.stdout.strip():
+        msg = "auto: update complete paper pages"
+        subprocess.run(git + ["commit", "-m", msg], capture_output=True, check=True)
+        subprocess.run(git + ["push", "origin", "main"], capture_output=True, check=True)
+        print("Git pushed:", msg)
+    else:
+        print("No git changes")
+
     print("\nDone:", ", ".join(done))
 
 if __name__ == "__main__":
