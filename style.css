@@ -522,6 +522,23 @@ body.dark .week-row a {
   color: #bfdbfe !important;
   font-weight: 700;
 }
+/* Fallback: override old inline white table backgrounds even if week-row class is cached/missing */
+body.dark .content-card table tr {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+body.dark .content-card table tr:nth-child(even) {
+  background: #111827 !important;
+}
+body.dark .content-card table td,
+body.dark .content-card table th {
+  color: #f8fafc !important;
+  border-color: #475569 !important;
+}
+body.dark .content-card table a {
+  color: #bfdbfe !important;
+  font-weight: 700;
+}
 
 /* ============ NO-CONTENT STATE ============ */
 .no-content {
