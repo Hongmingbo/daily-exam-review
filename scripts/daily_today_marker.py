@@ -41,7 +41,8 @@ def build_week_table():
         bg = "#fffbeb" if is_today else ("#f8fafc" if i % 2 == 0 else "white")
         fire = " 🔥" if is_today else ""
         date_str = day.strftime("%m月%d日")
-        rows.append(f'''    <tr style="background:{bg};{"font-weight:700" if is_today else ""}">
+        row_class = f"week-row {subj_key} {'week-today' if is_today else ''}".strip()
+        rows.append(f'''    <tr class="{row_class}" style="background:{bg};{'font-weight:700' if is_today else ''}">
       <td style="padding:7px 10px">{date_str}{fire}</td>
       <td style="padding:7px 10px">{label}</td>
       <td style="padding:7px 10px"><a href="{basic}" style="color:{color};text-decoration:none">📖 查看</a></td>

@@ -502,6 +502,26 @@ body.dark .paper-header p {
   opacity: 1;
   color: rgba(255,255,255,0.96);
 }
+body.dark .week-row {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid #475569;
+}
+body.dark .week-row:nth-child(even) {
+  background: #111827 !important;
+}
+body.dark .week-row.week-today {
+  background: #422006 !important;
+  color: #fff7ed !important;
+  box-shadow: inset 4px 0 0 #f59e0b;
+}
+body.dark .week-row td {
+  color: inherit !important;
+}
+body.dark .week-row a {
+  color: #bfdbfe !important;
+  font-weight: 700;
+}
 
 /* ============ NO-CONTENT STATE ============ */
 .no-content {
