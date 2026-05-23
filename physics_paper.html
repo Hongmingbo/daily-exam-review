@@ -9,95 +9,77 @@
 <link rel="stylesheet" href="style.css">
 <style>
 .paper-header { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; }
-.paper-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
 .paper-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
-.paper-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.paper-header p { opacity: 0.92; font-size: 0.86rem; position: relative; line-height: 1.5; }
 .paper-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
+.paper-meta { font-size: 0.86rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 12px; }
 </style>
-<link rel="manifest" href="manifest.json">
 </head>
 <body>
-<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
-<header class="paper-header">
-  <button onclick="window.print()" style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:8px;padding:4px 12px;font-size:0.75rem;color:white;cursor:pointer;z-index:10">🖨 打印</button>
-  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+<header class="paper-header physics">
+  <a href="index.html" style="color:rgba(255,255,255,0.86);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>⚡ 物理 · 试卷练习</h1>
-  <p>福建中考物理质检试卷 · 2026年5月</p>
-  <span class="badge">✍️ 试卷练习</span>
+  <p>【物理试卷+答案】2023 年龙岩市九年级学业质量检查_扫描版.pdf</p>
+  <span class="badge">一份完整试卷 · 全部 10 页 · 含答案页</span>
 </header>
 
 <div class="container">
-<div class="content-card" style="border-top:3px solid #f39c12">
-  <h2>📄 试卷练习说明</h2>
-  <div class="tip-box" style="margin-bottom:12px">
-    <strong>💡 使用说明：</strong>以下试卷来自 IMA 知识库，均为福建省各地中考质检真题。建议先自己做题，再核对答案。
-  </div>
-</div>
-
-<div class="content-card" style="border-top:3px solid #f39c12">
-  <h2>📚 推荐试卷资源</h2>
-  <div class="knowledge-item">
-    <h4 style="color:#f39c12">IMA 知识库物理试卷（扫描版PDF）</h4>
-    <p style="font-size:0.88rem;color:#64748b;margin-bottom:8px">以下试卷收录于 IMA 知识库「中考复习知识库 / 物理 / 试卷」</p>
-    <ul style="font-size:0.9rem;padding-left:1.2rem;color:#475569">
-      <li style="margin-bottom:6px">📄 2023年龙岩市九年级学业质量检查物理</li>
-      <li style="margin-bottom:6px">📄 2022-2023学年南平市第二次教学质量监测物理</li>
-      <li style="margin-bottom:6px">📄 2022-2023学年泉州市初中教学质量监测物理</li>
-      <li style="margin-bottom:6px">📄 2023年宁德市初中毕业班质量检测试卷物理</li>
-      <li style="margin-bottom:6px">📄 2023年莆田市初中毕业班质量检测试卷物理</li>
-      <li style="margin-bottom:6px">📄 2023厦门五月一模物理</li>
-      <li style="margin-bottom:6px">📄 2022-2023学年三明市初中毕业班第二次教学质量监测物理</li>
-    </ul>
-  </div>
-  <div class="tip-box">
-    <strong>💡 提示：</strong>IMA 知识库中的试卷为扫描版，文字提取受限。建议配合 <a href="https://www.51test.net/zhongkao/fujian/wuli/" target="_blank" style="color:#16a085">无忧考网福建物理真题页面</a> 查看完整真题答案。
-  </div>
-</div>
-
-<div class="content-card" style="border-top:3px solid #f39c12">
-  <h2>📋 福建中考物理试卷结构（参考）</h2>
-  <div class="knowledge-item">
-    <div class="formula-box" style="border-color:#f39c12">
-      <p><strong>选择题：</strong>约20题（2分/题，共40分）</p>
-      <p><strong>填空题：</strong>约10题（1分/题，共10分）</p>
-      <p><strong>作图题：</strong>2-3题（光路图/受力图/电路图）</p>
-      <p><strong>实验探究题：</strong>3-4题（力学/电学/光学）</p>
-      <p><strong>计算题：</strong>3题（压强与浮力、欧姆定律、电功率）</p>
-      <p><strong>总分：</strong>100分</p>
+  <div class="content-card physics" style="border-top:3px solid #f39c12">
+    <h2>📄 试卷内容</h2>
+    <div class="tip-box" style="margin-bottom:12px">
+      <strong>使用说明：</strong>从第1页开始按顺序做题，答案页在后面。建议先做完再翻答案。
     </div>
+    <div class="paper-meta">来源：IMA知识库「中考复习知识库/物理/试卷」 · 更新：2026-05-24</div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_01.png" alt="物理试卷第1页" loading="lazy">
+        <div class="paper-caption">第 1 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_02.png" alt="物理试卷第2页" loading="lazy">
+        <div class="paper-caption">第 2 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_03.png" alt="物理试卷第3页" loading="lazy">
+        <div class="paper-caption">第 3 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_04.png" alt="物理试卷第4页" loading="lazy">
+        <div class="paper-caption">第 4 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_05.png" alt="物理试卷第5页" loading="lazy">
+        <div class="paper-caption">第 5 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_06.png" alt="物理试卷第6页" loading="lazy">
+        <div class="paper-caption">第 6 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_07.png" alt="物理试卷第7页" loading="lazy">
+        <div class="paper-caption">第 7 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_08.png" alt="物理试卷第8页" loading="lazy">
+        <div class="paper-caption">第 8 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_09.png" alt="物理试卷第9页" loading="lazy">
+        <div class="paper-caption">第 9 / 10 页</div>
+      </div>
+      <div class="paper-img-wrap">
+        <img src="images/physics_paper_current/page_10.png" alt="物理试卷第10页" loading="lazy">
+        <div class="paper-caption">第 10 / 10 页</div>
+      </div>
   </div>
-</div>
 
-<div class="content-card" style="border-top:3px solid #f39c12">
-  <h2>📸 龙岩市2023年九年级质检物理</h2>
-  <div class="knowledge-item">
-    <p style="font-size:0.82rem;color:#64748b;margin-bottom:8px">来源：IMA知识库 · 扫描版PDF · 建议横屏查看</p>
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <img src="images/phys_longyan/page_01.png" alt="龙岩物理 第1页" loading="lazy" style="width:100%;border-radius:8px;border:1px solid #e2e8f0">
-      <img src="images/phys_longyan/page_02.png" alt="龙岩物理 第2页" loading="lazy" style="width:100%;border-radius:8px;border:1px solid #e2e8f0">
-      <img src="images/phys_longyan/page_03.png" alt="龙岩物理 第3页" loading="lazy" style="width:100%;border-radius:8px;border:1px solid #e2e8f0">
-      <img src="images/phys_longyan/page_04.png" alt="龙岩物理 第4页" loading="lazy" style="width:100%;border-radius:8px;border:1px solid #e2e8f0">
-      <img src="images/phys_longyan/page_05.png" alt="龙岩物理 第5页" loading="lazy" style="width:100%;border-radius:8px;border:1px solid #e2e8f0">
-    </div>
+  <p class="source-note">试卷来源：IMA知识库「中考复习知识库/物理/试卷」<br>⚠️ 若内容与官方真题不符，请以官方发布或学校老师要求为准。</p>
+
+  <div class="page-nav">
+    <a href="physics_basic.html">← 知识点复习</a>
+    <a href="index.html" class="next">返回首页 →</a>
   </div>
-</div>
-
-<p class="source-note">试卷来源：IMA知识库「中考复习知识库/物理/试卷」<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
-
-<div class="page-nav">
-  <a href="physics_basic.html">← 知识点复习</a>
-  <a href="index.html" class="next">返回首页 →</a>
-</div>
 </div>
 <script src="dark-mode.js"></script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
-}
-</script>
 <script src="features.js"></script>
-
-<script src="mindmap-data.js"></script>
-<script src="mindmap.js"></script>
 </body>
 </html>
