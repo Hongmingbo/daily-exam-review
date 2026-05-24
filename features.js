@@ -471,14 +471,36 @@
 
 
   /* ---- paper page: jump-to-answer floating button (Task 1) ---- */
+  function getAnswerStartIdx(wraps) {
+    // 优先读取 HTML 中的 data-answer-start 属性（1-based 页码）
+    var container = wraps[0] ? wraps[0].parentElement : null;
+    if (container) {
+      var attr = container.getAttribute('data-answer-start');
+      if (attr) {
+        var page = parseInt(attr, 10);
+        if (page > 0 && page <= wraps.length) return page - 1; // 转 0-based
+      }
+      // 也检查 content-card
+      var card = container.closest('.content-card');
+      if (card) {
+        attr = card.getAttribute('data-answer-start');
+        if (attr) {
+          var page = parseInt(attr, 10);
+          if (page > 0 && page <= wraps.length) return page - 1;
+        }
+      }
+    }
+    // 兜底：旧算法
+    var total = wraps.length;
+    return Math.max(Math.floor(total * 0.65), total - 3);
+  }
+
   function initPaperJump() {
     var wraps = document.querySelectorAll('.paper-img-wrap');
     if (wraps.length < 4) return; // not a paper page
     // Add id to each wrap for anchoring
     wraps.forEach(function(w, i) { w.id = 'paper-page-' + (i + 1); });
-    // Estimate answer section: last ~35% of pages
-    var total = wraps.length;
-    var answerIdx = Math.max(Math.floor(total * 0.65), total - 3);
+    var answerIdx = getAnswerStartIdx(wraps);
     // Create floating button
     var btn = document.createElement('button');
     btn.id = 'jump-answer-btn';
@@ -576,7 +598,7 @@
     var wraps = document.querySelectorAll('.paper-img-wrap');
     if (wraps.length < 4) return;
     var total = wraps.length;
-    var answerStartIdx = Math.max(Math.floor(total * 0.65), total - 3);
+    var answerStartIdx = getAnswerStartIdx(wraps);
     var key = 'zk-answer-revealed-' + location.pathname.split('/').pop();
     var revealed = localStorage.getItem(key) === '1';
 
