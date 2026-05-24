@@ -92,17 +92,19 @@
   function initCheckin() {
     var btn = document.getElementById('checkin-btn');
     if (!btn) return;
+    // 确保按钮可点击：同时使用 onclick + addEventListener
+    if (!btn.getAttribute('data-checkin-ready')) {
+      btn.setAttribute('data-checkin-ready', '1');
+      btn.onclick = function () { showDailyQuestionModal(btn); };
+    }
     var ci = getCheckin();
     var today = todayStr();
     if (ci.date === today) {
       btn.textContent = '🔥 今日已打卡 ' + ci.streak + '天连击';
       btn.disabled = true;
       btn.style.opacity = '0.7';
-    } else {
-      // 未打卡：点击弹出每日一题
-      btn.addEventListener('click', function () {
-        showDailyQuestionModal(btn);
-      });
+      btn.onclick = null;
+      btn.removeAttribute('data-checkin-ready');
     }
   }
 
