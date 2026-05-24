@@ -494,6 +494,48 @@ body.dark .page-nav a {
   color: #e2e8f0;
   border: 1px solid #475569;
 }
+/* ===== Paper / Exam pages ===== */
+.paper-img-wrap {
+  margin: 0 -4px 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+  position: relative;
+}
+.paper-img-wrap img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  cursor: zoom-in;
+  transition: transform 0.2s;
+}
+.paper-caption {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-mid, #64748b);
+  padding: 4px 0 8px;
+}
+.paper-meta {
+  font-size: 0.86rem;
+  color: var(--text-mid, #64748b);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+/* Zoom overlay: tap to enlarge on mobile */
+.paper-img-wrap:active img,
+.paper-img-wrap:focus-within img {
+  transform: scale(1.02);
+}
+/* Full-screen zoom via :target (pure CSS, no JS) */
+.paper-img-wrap a.zoom-link {
+  display: none;
+}
+
+/* Dark mode */
+body.dark .paper-img-wrap {
+  background: #1e293b;
+}
 body.dark .paper-meta,
 body.dark .paper-caption {
   color: #e2e8f0 !important;
