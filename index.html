@@ -57,6 +57,34 @@
   </div>
 </div>
 
+
+<!-- Ebbinghaus review reminder + study heatmap (B3+B5) -->
+<div id="zk-reminder-bar" style="display:none;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;padding:12px 14px;margin:0 0 12px;display:none;align-items:center;gap:10px;cursor:pointer;border-left:4px solid #f59e0b" onclick="location.href='mistakes.html'">
+  <div style="font-size:1.4rem">🔔</div>
+  <div style="flex:1;font-size:0.85rem">
+    <div id="zk-reminder-title" style="font-weight:700;color:#92400e;margin-bottom:2px">今日需复习 <span id="zk-reminder-count">0</span> 道错题</div>
+    <div style="font-size:0.72rem;color:#a16207">艾宾浩斯曲线建议：1天/3天/7天/15天前的错题</div>
+  </div>
+  <div style="color:#92400e;font-size:1.1rem">→</div>
+</div>
+
+<div id="zk-heatmap-card" style="background:var(--bg-card);border-radius:14px;padding:14px;margin:0 0 14px;box-shadow:var(--shadow-sm);display:none">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary)">📊 学习热力图</div>
+    <div style="font-size:0.72rem;color:var(--text-muted)" id="zk-total-time">总计 0 分钟</div>
+  </div>
+  <div id="zk-heatmap" style="display:grid;grid-template-columns:repeat(28,1fr);gap:3px;margin-bottom:6px"></div>
+  <div style="display:flex;align-items:center;gap:6px;justify-content:flex-end;font-size:0.68rem;color:var(--text-muted)">
+    <span>少</span>
+    <span style="width:10px;height:10px;background:#ebedf0;border-radius:2px"></span>
+    <span style="width:10px;height:10px;background:#9be9a8;border-radius:2px"></span>
+    <span style="width:10px;height:10px;background:#40c463;border-radius:2px"></span>
+    <span style="width:10px;height:10px;background:#30a14e;border-radius:2px"></span>
+    <span style="width:10px;height:10px;background:#216e39;border-radius:2px"></span>
+    <span>多</span>
+  </div>
+</div>
+
 <style>
 .countdown-bar { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 14px 18px; border-radius: 0 0 20px 20px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .countdown-main { flex-shrink: 0; }
@@ -443,6 +471,99 @@ initToday();
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
 }
+</script>
+<script>
+
+// Ebbinghaus reminder + heatmap (B3+B5)
+(function(){
+  // ---- Study time tracking ----
+  var TIME_KEY = 'zk-study-time';
+  function getStudyTime() { try { return JSON.parse(localStorage.getItem(TIME_KEY)) || {}; } catch(e) { return {}; } }
+  function todayKey() {
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
+  }
+
+  // Track time on this page (visible only)
+  var sessionStart = Date.now();
+  var totalTracked = 0;
+  function flush() {
+    if (document.visibilityState !== 'visible') return;
+    var now = Date.now();
+    var diff = Math.min(now - sessionStart, 60000); // cap 60s per flush
+    if (diff < 1000) return;
+    var t = getStudyTime();
+    var k = todayKey();
+    t[k] = (t[k] || 0) + Math.floor(diff/1000);
+    localStorage.setItem(TIME_KEY, JSON.stringify(t));
+    sessionStart = now;
+    totalTracked += diff;
+  }
+  setInterval(flush, 30000);
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') flush();
+    else sessionStart = Date.now();
+  });
+  window.addEventListener('beforeunload', flush);
+
+  // ---- Render heatmap (last 28 days) ----
+  function renderHeatmap() {
+    var card = document.getElementById('zk-heatmap-card');
+    if (!card) return;
+    var times = getStudyTime();
+    var total = Object.values(times).reduce(function(a,b){return a+b;}, 0);
+    if (total < 60) return; // hide if no data
+    card.style.display = 'block';
+
+    var grid = document.getElementById('zk-heatmap');
+    grid.innerHTML = '';
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    var cells = [];
+    for (var i = 27; i >= 0; i--) {
+      var d = new Date(today);
+      d.setDate(d.getDate() - i);
+      var k = d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
+      var sec = times[k] || 0;
+      var min = Math.floor(sec/60);
+      var color = '#ebedf0';
+      if (min >= 1) color = '#9be9a8';
+      if (min >= 15) color = '#40c463';
+      if (min >= 30) color = '#30a14e';
+      if (min >= 60) color = '#216e39';
+      cells.push('<div title="' + k + ': ' + min + '分钟" style="aspect-ratio:1;background:' + color + ';border-radius:2px"></div>');
+    }
+    grid.innerHTML = cells.join('');
+    document.getElementById('zk-total-time').textContent = '近4周共 ' + Math.round(total/60) + ' 分钟';
+  }
+  renderHeatmap();
+  setInterval(renderHeatmap, 60000);
+
+  // ---- Ebbinghaus mistake reminder ----
+  function getMistakes() { try { return JSON.parse(localStorage.getItem('zk-mistakes')) || []; } catch(e) { return []; } }
+  function daysAgo(dateStr) {
+    var d = new Date(dateStr);
+    var now = new Date();
+    now.setHours(0,0,0,0); d.setHours(0,0,0,0);
+    return Math.floor((now - d) / 86400000);
+  }
+  function renderReminder() {
+    var bar = document.getElementById('zk-reminder-bar');
+    if (!bar) return;
+    var mistakes = getMistakes();
+    if (!mistakes.length) return;
+    // Ebbinghaus intervals: 1, 3, 7, 15 days
+    var review = mistakes.filter(function(m) {
+      var ago = daysAgo(m.date);
+      return ago === 1 || ago === 3 || ago === 7 || ago === 15;
+    });
+    if (review.length === 0) return;
+    bar.style.display = 'flex';
+    document.getElementById('zk-reminder-count').textContent = review.length;
+  }
+  renderReminder();
+})();
+
 </script>
 </body>
 </html>
