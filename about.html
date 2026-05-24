@@ -29,7 +29,7 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
 <header class="about-header">
   <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>ℹ️ 关于本站</h1>
-  <p>数据来源 · 更新日志 · 反馈通道</p>
+  <p>更新日志 · 功能说明 · 反馈通道</p>
 </header>
 <div class="container">
 
@@ -52,6 +52,32 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
 
 <div class="content-card">
   <h2>🆕 更新日志</h2>
+  <div class="changelog-item">
+    <div class="changelog-date">2026年5月24日</div>
+    <div class="changelog-title">v3.0 体验优化 <span class="badge-new">NEW</span></div>
+    <div class="changelog-body">
+      <ul>
+        <li>📍 试卷页新增「跳转答案」浮动按钮，到达答案区后自动变「回到题目」</li>
+        <li>📄 试卷图加载时显示骨架屏，无网络时显示「需要联网查看」提示</li>
+        <li>📋 错题本新增「导出错题」功能，一键复制到剪贴板</li>
+        <li>🔍 搜索页加范围提示，避免误以为搜索全站内容</li>
+        <li>⏱️ 首页倒计时新增「学习日」（不含周日）</li>
+        <li>🎯 每日一题题库扩充至 35 题（每科 5 题），不再重复</li>
+        <li>📲 微信推送摘要新增试卷标题 + 页数 + 4 个直达链接</li>
+      </ul>
+    </div>
+  </div>
+  <div class="changelog-item">
+    <div class="changelog-date">2026年5月23日</div>
+    <div class="changelog-title">v2.5 试卷轮换</div>
+    <div class="changelog-body">
+      <ul>
+        <li>📄 试卷页每周自动换卷，9-13 套福建真题轮换不重复</li>
+        <li>🖼️ 修复试卷图片大小不一致问题，统一响应式宽度</li>
+        <li>⚡ Service Worker 升级 v9，CSS/JS 改用 stale-while-revalidate，无需强制刷新</li>
+      </ul>
+    </div>
+  </div>
   <div class="changelog-item">
     <div class="changelog-date">2026年5月21日</div>
     <div class="changelog-title">v2.0 重大更新 <span class="badge-new">NEW</span></div>
@@ -85,6 +111,11 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
       <tr><td>⚡ 精简模式</td><td>知识点页左上角</td><td>只显公式+易错点</td></tr>
       <tr><td>🔍 搜索</td><td>首页「搜索历史内容」</td><td>关键词快速定位</td></tr>
       <tr><td>🖨️ 打印</td><td>浏览器打印 Ctrl+P</td><td>优化深色/彩色打印</td></tr>
+      <tr><td>📍 跳转答案</td><td>试卷页右下角</td><td>一键跳到答案区，再点回题目</td></tr>
+      <tr><td>📋 导出错题</td><td>错题本「📋 导出」</td><td>复制全部错题到剪贴板，可发微信</td></tr>
+      <tr><td>📒 错题本</td><td>首页「📒 错题」</td><td>分科目记录错题+错因分类</td></tr>
+      <tr><td>🚑 急救包</td><td>首页「考前急救包」</td><td>各科一页纸核心知识速查</td></tr>
+      <tr><td>📅 周回顾</td><td>首页「📅 归档」</td><td>查看历史日期复习内容</td></tr>
     </table>
   </div>
 </div>
@@ -114,11 +145,21 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
   </div>
 </div>
 
-<p class="source-note">距中考约 32 天 · 加油 💪<br>2026年福建中考备考</p>
+<p class="source-note" id="about-countdown">距中考约 -- 天 · 加油 💪<br>2026年福建中考备考</p>
 </div>
 <script src="dark-mode.js"></script>
 <script>
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+</script>
+<script>
+// Dynamic countdown for about page
+(function(){
+  var exam = new Date(2026, 5, 21);
+  var now = new Date();
+  var days = Math.ceil((exam - now) / 86400000);
+  var el = document.getElementById('about-countdown');
+  if(el) el.innerHTML = '距中考约 ' + days + ' 天 · 加油 💪<br>2026年福建中考备考';
+})();
 </script>
 </body>
 </html>
