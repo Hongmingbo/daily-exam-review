@@ -511,6 +511,9 @@
     initCheckin();
     initDualMode();
     initAnswerFolding();
+    initPaperJump();
+    initPaperSkeleton();
+    initPaperImgError();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
