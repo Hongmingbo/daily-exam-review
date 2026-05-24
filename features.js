@@ -166,9 +166,23 @@
     var subjColor = colors[subjectIdx] || '#f39c12';
 
     var isFill = (q.type === 'fill');
-    var inputHtml = isFill
-      ? '<input id="zk-q-fill" type="text" placeholder="输入答案..." style="width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;box-sizing:border-box">'
-      : '';
+    // 多空填空题：用逗号分隔答案
+    var fillParts = isFill ? (q.ans || '').split('，').length : 1;
+    var inputHtml = '';
+    if (isFill) {
+      if (fillParts > 1) {
+        inputHtml = '<div id="zk-q-fills" style="display:flex;flex-direction:column;gap:10px">';
+        for (var fi = 0; fi < fillParts; fi++) {
+          inputHtml += '<div style="display:flex;align-items:center;gap:8px">' +
+            '<span style="font-size:0.82rem;color:#64748b;white-space:nowrap">空' + (fi+1) + '：</span>' +
+            '<input class="zk-q-fill-item" data-idx="' + fi + '" type="text" placeholder="输入第' + (fi+1) + '个答案..." style="flex:1;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;box-sizing:border-box">' +
+            '</div>';
+        }
+        inputHtml += '</div>';
+      } else {
+        inputHtml = '<input id="zk-q-fill" type="text" placeholder="输入答案..." style="width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;box-sizing:border-box">';
+      }
+    }
 
     card.innerHTML = [
       '<div style="text-align:center;margin-bottom:16px">',
@@ -180,11 +194,11 @@
       inputHtml,
       '<div id="zk-q-options" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>',
       '<div id="zk-q-result" style="display:none;margin-bottom:16px"></div>',
-      '<div style="display:flex;gap:10px" id="zk-q-btns">',
+      '<div style="display:flex;gap:12px;margin-top:4px" id="zk-q-btns">',
         '<button id="zk-q-submit" style="flex:1;background:' + subjColor + ';color:white;border:none;border-radius:10px;',
-          'padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer">提交答案</button>',
+          'padding:12px 16px;font-weight:600;font-size:0.9rem;cursor:pointer">提交答案</button>',
         '<button id="zk-q-close" style="flex:1;background:#e2e8f0;color:#64748b;border:none;border-radius:10px;',
-          'padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer">取消</button>',
+          'padding:12px 16px;font-weight:600;font-size:0.9rem;cursor:pointer">取消</button>',
       '</div>',
       '<div id="zk-q-success" style="display:none;text-align:center;padding:16px 0">',
         '<div style="font-size:2rem;margin-bottom:8px">🎉</div>',
@@ -229,11 +243,27 @@
     document.getElementById('zk-q-submit').addEventListener('click', function () {
       var correct;
       if (isFill) {
-        var input = document.getElementById('zk-q-fill');
-        if (!input || !input.value.trim()) { showToast('请先输入答案'); return; }
-        var userAns = input.value.trim().replace(/\s+/g, '');
-        var correctAns = (q.ans || '').toString().trim().replace(/\s+/g, '');
-        correct = (userAns === correctAns);
+        if (fillParts > 1) {
+          // 多空填空题
+          var inputs = document.querySelectorAll('.zk-q-fill-item');
+          var allFilled = true;
+          var userParts = [];
+          inputs.forEach(function(inp) {
+            var val = inp.value.trim();
+            if (!val) allFilled = false;
+            userParts.push(val.replace(/\s+/g, ''));
+          });
+          if (!allFilled) { showToast('请填写所有空'); return; }
+          var correctParts = q.ans.split('，').map(function(s) { return s.trim().replace(/\s+/g, ''); });
+          correct = userParts.every(function(up, i) { return up === correctParts[i]; });
+        } else {
+          // 单空填空题
+          var input = document.getElementById('zk-q-fill');
+          if (!input || !input.value.trim()) { showToast('请先输入答案'); return; }
+          var userAns = input.value.trim().replace(/\s+/g, '');
+          var correctAns = (q.ans || '').toString().trim().replace(/\s+/g, '');
+          correct = (userAns === correctAns);
+        }
       } else {
         var selected = document.querySelector('input[name="zk-q"]:checked');
         if (!selected) { showToast('请先选择一个答案'); return; }
@@ -246,6 +276,8 @@
       var btnsDiv = document.getElementById('zk-q-btns');
 
       if (fillEl) fillEl.disabled = true;
+      // 禁用多空填空题的所有输入框
+      document.querySelectorAll('.zk-q-fill-item').forEach(function(inp) { inp.disabled = true; });
       optsDivEl.style.display = 'none';
       btnsDiv.style.display = 'none';
       resultDiv.style.display = 'block';
@@ -264,7 +296,7 @@
       } else {
         resultDiv.innerHTML = '<div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:12px 14px;margin-bottom:10px">' +
           '<div style="font-weight:700;color:#ef4444;margin-bottom:4px">❌ 回答错误</div>' +
-          '<div style="font-size:0.82rem;color:#64748b;line-height:1.5">正确答案：' + (isFill ? q.ans : q.opts[q.ans]) + '</div>' +
+          '<div style="font-size:0.82rem;color:#64748b;line-height:1.5">正确答案：' + (isFill ? q.ans.replace(/，/g, ' | ') : q.opts[q.ans]) + '</div>' +
           '<div style="font-size:0.82rem;color:#64748b;line-height:1.5;margin-top:6px">' + q.exp + '</div></div>';
         var quizBtn = document.getElementById('daily-quiz-btn');
         if (quizBtn) quizBtn.textContent = '📝 今日已答 ❌';
