@@ -29,7 +29,7 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
 <header class="about-header">
   <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>ℹ️ 关于本站</h1>
-  <p>更新日志 · 功能说明 · 反馈通道</p>
+  <p>更新日志 · 功能说明 · 数据安全</p>
 </header>
 <div class="container">
 
@@ -52,6 +52,20 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
 
 <div class="content-card">
   <h2>🆕 更新日志</h2>
+  <div class="changelog-item">
+    <div class="changelog-date">2026年5月24日 · 晚间</div>
+    <div class="changelog-title">v4.0 备考冲刺增强 <span class="badge-new">NEW</span></div>
+    <div class="changelog-body">
+      <ul>
+        <li>💾 <strong>数据备份/恢复</strong>：错题本支持一键备份所有学习数据为 JSON，可粘贴到微信留存，防止手机清缓存丢数据</li>
+        <li>🔒 <strong>答案默认遮罩</strong>：试卷答案区自动模糊，必须点击「揭示」按钮才能查看，强制先做题再对答案</li>
+        <li>🔔 <strong>艾宾浩斯提醒</strong>：首页自动浮现 1/3/7/15 天前的错题，按遗忘曲线复习</li>
+        <li>📥 <strong>试卷 PDF 下载</strong>：试卷页一键调用浏览器打印生成 PDF，方便打印做题</li>
+        <li>📊 <strong>学习热力图</strong>：所有页面自动后台统计学习时长，首页 28 格热力图直观看到坚持程度</li>
+        <li>📱 <strong>试卷全屏阅读</strong>：试卷页一键进入沉浸模式，隐藏所有 UI 专注做题</li>
+      </ul>
+    </div>
+  </div>
   <div class="changelog-item">
     <div class="changelog-date">2026年5月24日</div>
     <div class="changelog-title">v3.0 体验优化 <span class="badge-new">NEW</span></div>
@@ -116,6 +130,12 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
       <tr><td>📒 错题本</td><td>首页「📒 错题」</td><td>分科目记录错题+错因分类</td></tr>
       <tr><td>🚑 急救包</td><td>首页「考前急救包」</td><td>各科一页纸核心知识速查</td></tr>
       <tr><td>📅 周回顾</td><td>首页「📅 归档」</td><td>查看历史日期复习内容</td></tr>
+      <tr><td>💾 数据备份</td><td>错题本「💾 备份」</td><td>导出全部数据为 JSON，防丢失</td></tr>
+      <tr><td>🔒 答案遮罩</td><td>试卷页答案区</td><td>默认模糊，点击「揭示」才看</td></tr>
+      <tr><td>🔔 艾宾浩斯</td><td>首页提醒条</td><td>1/3/7/15 天前的错题自动提醒</td></tr>
+      <tr><td>📥 下载 PDF</td><td>试卷页右下</td><td>浏览器打印生成 PDF 文件</td></tr>
+      <tr><td>📊 学习热力图</td><td>首页</td><td>28 格可视化每日学习时长</td></tr>
+      <tr><td>📱 全屏阅读</td><td>试卷页右下</td><td>沉浸式做题，隐藏所有 UI</td></tr>
     </table>
   </div>
 </div>
@@ -131,6 +151,17 @@ body.dark .about-header { background: linear-gradient(135deg, #1e293b 0%, #0f172
       <li>你的地区（用于判断是否属于地区差异）</li>
     </ul>
     <div class="tip-box" style="margin-top:10px">💡 <strong>提示：</strong>GitHub Issues 适合技术类反馈（如页面显示异常）；如果是内容纠错，直接告诉我即可。</div>
+  </div>
+</div>
+
+<div class="content-card">
+  <h2>⚠️ 数据安全提示</h2>
+  <div class="knowledge-item">
+    <p>本站所有数据（错题、收藏、打卡、学习时长）存储在<strong>浏览器本地（localStorage）</strong>，<strong>不上传到任何服务器</strong>。</p>
+    <div class="note-box" style="margin-top:10px;background:rgba(220,38,38,0.08);border-left:4px solid #dc2626">
+      <strong>🚨 重要：</strong>iOS Safari 默认 14 天不访问会自动清除 localStorage。<strong>强烈建议每周打开错题本，点「💾 备份全部数据」</strong>，把 JSON 文本粘贴到微信文件传输助手存档。万一数据丢失，用「📥 恢复数据」一键还原。
+    </div>
+    <p style="margin-top:10px;font-size:0.85rem;color:var(--text-secondary)">备份内容包含：错题本 / 收藏 / 打卡记录 / 学习时长 / 双模式偏好 / 深色模式偏好。</p>
   </div>
 </div>
 
