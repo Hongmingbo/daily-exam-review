@@ -148,6 +148,10 @@ body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 1
   <p id="empty-msg">还没有错题记录</p>
   <div class="ml-actions">
     <a href="index.html" class="btn-export">去复习 →</a>
+    <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+    <button class="btn-export" onclick="backupAllData()" style="flex:1;min-width:120px" title="备份错题+收藏+打卡所有数据">💾 备份全部数据</button>
+    <button class="btn-export" onclick="restoreData()" style="flex:1;min-width:120px;background:#fef3c7;color:#92400e;border-color:#fcd34d" title="从备份文本恢复数据">📥 恢复数据</button>
+  </div>
     <button class="btn-export" onclick="exportErrors()" style="margin-top:6px;display:block;width:100%">📋 导出错题（复制到剪贴板）</button>
     <button class="btn-export" onclick="exportErrors()" style="margin-right:6px" title="复制所有错题为文本">📋 导出</button><button class="btn-clear" onclick="confirmClear()">清空全部</button>
   </div>
@@ -246,6 +250,104 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
       showToast('复制失败，请手动复制');
     }
     document.body.removeChild(ta);
+  }
+
+
+  window.backupAllData = function() {
+    // Collect all localStorage keys related to the app
+    var keys = ['zk-mistakes','zk-favorites','zk-checkin','zk-answers-done','zk-view-mode','zk-dark-mode'];
+    var backup = { version: 1, date: todayStr(), data: {} };
+    keys.forEach(function(k) {
+      var v = localStorage.getItem(k);
+      if (v !== null) backup.data[k] = v;
+    });
+    // Also collect zk-answers-shown-* (per-page)
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (k && k.startsWith('zk-answers-shown-')) {
+        backup.data[k] = localStorage.getItem(k);
+      }
+    }
+    var json = JSON.stringify(backup, null, 2);
+    var stats = Object.keys(backup.data).length + ' 项数据';
+
+    // Show modal with the backup text
+    var modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:99998;display:flex;align-items:center;justify-content:center;padding:16px';
+    var card = document.createElement('div');
+    card.style.cssText = 'background:white;border-radius:14px;padding:20px;max-width:480px;width:100%;max-height:85vh;display:flex;flex-direction:column';
+    card.innerHTML =
+      '<h3 style="margin:0 0 8px;font-size:1.05rem;color:#1e293b">💾 数据备份</h3>' +
+      '<p style="font-size:0.82rem;color:#64748b;margin-bottom:10px">已打包 ' + stats + '。<strong style="color:#dc2626">复制以下文本</strong>到微信文件传输助手或备忘录，丢失后可粘回恢复。</p>' +
+      '<textarea id="zk-backup-text" readonly style="flex:1;min-height:200px;font-family:monospace;font-size:0.72rem;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;resize:vertical;background:#f8fafc;color:#1e293b">' + json + '</textarea>' +
+      '<div style="display:flex;gap:8px;margin-top:12px">' +
+      '<button id="zk-bk-copy" style="flex:1;background:#3498db;color:white;border:none;border-radius:8px;padding:10px;font-weight:600;cursor:pointer">📋 复制</button>' +
+      '<button id="zk-bk-close" style="flex:1;background:#e2e8f0;color:#64748b;border:none;border-radius:8px;padding:10px;font-weight:600;cursor:pointer">关闭</button>' +
+      '</div>';
+    modal.appendChild(card);
+    document.body.appendChild(modal);
+    document.getElementById('zk-bk-copy').onclick = function() {
+      var ta = document.getElementById('zk-backup-text');
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(json).then(function() { showToast('✅ 已复制，请粘贴保存'); }).catch(function() { document.execCommand('copy'); showToast('✅ 已复制'); });
+      } else {
+        try { document.execCommand('copy'); showToast('✅ 已复制'); } catch(e) { showToast('请手动选中复制'); }
+      }
+    };
+    document.getElementById('zk-bk-close').onclick = function() { modal.remove(); };
+    modal.onclick = function(e) { if (e.target === modal) modal.remove(); };
+  };
+
+  window.restoreData = function() {
+    var modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:99998;display:flex;align-items:center;justify-content:center;padding:16px';
+    var card = document.createElement('div');
+    card.style.cssText = 'background:white;border-radius:14px;padding:20px;max-width:480px;width:100%;max-height:85vh;display:flex;flex-direction:column';
+    card.innerHTML =
+      '<h3 style="margin:0 0 8px;font-size:1.05rem;color:#1e293b">📥 恢复数据</h3>' +
+      '<p style="font-size:0.82rem;color:#64748b;margin-bottom:10px">粘贴之前备份的 JSON 文本到下方框。<strong style="color:#dc2626">⚠️ 当前数据会被覆盖</strong>。</p>' +
+      '<textarea id="zk-restore-text" placeholder="粘贴备份的 JSON 文本..." style="flex:1;min-height:200px;font-family:monospace;font-size:0.72rem;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;resize:vertical;color:#1e293b"></textarea>' +
+      '<div style="display:flex;gap:8px;margin-top:12px">' +
+      '<button id="zk-rs-apply" style="flex:1;background:#10b981;color:white;border:none;border-radius:8px;padding:10px;font-weight:600;cursor:pointer">✅ 恢复</button>' +
+      '<button id="zk-rs-close" style="flex:1;background:#e2e8f0;color:#64748b;border:none;border-radius:8px;padding:10px;font-weight:600;cursor:pointer">取消</button>' +
+      '</div>';
+    modal.appendChild(card);
+    document.body.appendChild(modal);
+    document.getElementById('zk-rs-apply').onclick = function() {
+      var text = document.getElementById('zk-restore-text').value.trim();
+      if (!text) { showToast('请先粘贴备份文本'); return; }
+      try {
+        var obj = JSON.parse(text);
+        if (!obj.data || typeof obj.data !== 'object') throw new Error('格式错误');
+        if (!confirm('确认恢复？当前所有数据将被覆盖！')) return;
+        var count = 0;
+        Object.keys(obj.data).forEach(function(k) {
+          localStorage.setItem(k, obj.data[k]);
+          count++;
+        });
+        modal.remove();
+        showToast('✅ 已恢复 ' + count + ' 项数据，刷新中...');
+        setTimeout(function() { location.reload(); }, 1200);
+      } catch(e) {
+        showToast('❌ 格式错误：' + e.message);
+      }
+    };
+    document.getElementById('zk-rs-close').onclick = function() { modal.remove(); };
+    modal.onclick = function(e) { if (e.target === modal) modal.remove(); };
+  };
+
+  function showToast(msg) {
+    var existing = document.getElementById('zk-toast');
+    if (existing) existing.remove();
+    var t = document.createElement('div');
+    t.id = 'zk-toast';
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e293b;color:white;padding:8px 20px;border-radius:20px;font-size:0.85rem;z-index:99999;opacity:0;transition:opacity 0.3s';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(function() { t.style.opacity = '1'; });
+    setTimeout(function() { t.style.opacity='0'; setTimeout(function(){t.remove();}, 300); }, 2200);
   }
 
   window.confirmClear = function () {
