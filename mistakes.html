@@ -150,10 +150,10 @@ body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 1
 
 <!-- Action buttons: always visible, independent of error-list -->
 <div id="zk-mistake-actions" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
-  <button class="btn-export" onclick="backupAllData()" style="flex:1;min-width:100px" title="备份错题+收藏+打卡所有数据">💾 备份全部数据</button>
-  <button class="btn-export" onclick="restoreData()" style="flex:1;min-width:100px;background:#fef3c7;color:#92400e;border-color:#fcd34d" title="从备份文本恢复数据">📥 恢复数据</button>
-  <button class="btn-export" id="zk-btn-export" onclick="exportErrors()" style="flex:1;min-width:120px" title="复制所有错题为文本">📋 导出错题</button>
-  <button class="btn-clear" onclick="confirmClear()" style="flex:1;min-width:80px">清空全部</button>
+  <button class="btn-export" onclick="backupAllData()" style="flex:1;min-width:0" title="备份错题+收藏+打卡所有数据">备份数据</button>
+  <button class="btn-export" onclick="restoreData()" style="flex:1;min-width:0;background:#fef3c7;color:#92400e;border-color:#fcd34d" title="从备份文本恢复数据">恢复数据</button>
+  <button class="btn-export" id="zk-btn-export" onclick="exportErrors()" style="flex:1;min-width:0" title="复制所有错题为文本">导出错题</button>
+  <button class="btn-clear" onclick="confirmClear()" style="flex:1;min-width:0">清空全部</button>
 </div>
 
 </div>
