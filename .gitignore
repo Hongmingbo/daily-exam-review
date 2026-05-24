@@ -1,2 +1,24 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Temp downloads
+tmp_downloads/
 tmp_kb_sync/
 downloads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Wrangler
+.wrangler/
+wrangler.toml
