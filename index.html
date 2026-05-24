@@ -1,432 +1,431 @@
-     1|<!DOCTYPE html>
-     2|<html lang="zh-CN">
-     3|<head>
-     4|<meta charset="UTF-8">
-     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-     6|<meta name="description" content="每日中考复习资料站，涵盖数学/语文/英语/物理/化学/历史/政治，福建专用，含公式速背、易错题、试卷真题。">
-     7|<meta name="keywords" content="中考复习,福建中考,中考数学,中考物理,中考化学,公式速背,易错题">
-     8|<meta property="og:title" content="每日中考复习 | 福建专用">
-     9|<meta property="og:description" content="7科全覆盖 · 公式速背+易错题+试卷真题 · 考前冲刺必备">
-    10|<meta property="og:type" content="website">
-    11|<meta property="og:url" content="https://hdzkfx.dpdns.org/">
-    12|<meta property="og:image" content="https://hdzkfx.dpdns.org/og-image.png">
-    13|<meta name="twitter:card" content="summary_large_image">
-    14|<meta name="twitter:title" content="每日中考复习 | 福建专用">
-    15|<meta name="twitter:description" content="7科全覆盖 · 公式速背+易错题+试卷真题">
-    16|<title>每日中考复习资料 - 洪明博</title>
-    17|<link rel="preconnect" href="https://fonts.googleapis.com">
-    18|<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    19|<link rel="stylesheet" href="style.css">
-    20|<link rel="manifest" href="manifest.json">
-    21|</head>
-    22|<body>
-    23|<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
-    24|<header class="site-header physics">
-    25|  <h1>📚 每日中考复习资料</h1>
-    26|  <p>洪明博 · 2026年福建中考备考</p>
-    27|</header>
-    28|
-    29|<!-- Exam countdown bar -->
-    30|<div class="countdown-bar" id="countdown-bar">
-    31|  <div class="countdown-main">
-    32|    <div class="countdown-days">
-    33|      <span class="cd-num" id="cd-days">--</span>
-    34|      <span class="cd-label">天</span>
-    35|      <span class="cd-num" id="cd-hours">--</span>
-    36|      <span class="cd-label">时</span>
-    37|      <span class="cd-num" id="cd-mins">--</span>
-    38|      <span class="cd-label">分</span>
-    39|      <span class="cd-num" id="cd-secs">--</span>
-    40|      <span class="cd-label">秒</span>
-    41|    </div>
-    42|  </div>
-    43|  <div class="cd-info">
-    44|    <div class="cd-title">距2026年福建中考还有</div>
-    45|    <div class="cd-date">📅 6月21日（周日）· 福建省统一中考</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="每日中考复习资料站，涵盖数学/语文/英语/物理/化学/历史/政治，福建专用，含公式速背、易错题、试卷真题。">
+<meta name="keywords" content="中考复习,福建中考,中考数学,中考物理,中考化学,公式速背,易错题">
+<meta property="og:title" content="每日中考复习 | 福建专用">
+<meta property="og:description" content="7科全覆盖 · 公式速背+易错题+试卷真题 · 考前冲刺必备">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hdzkfx.dpdns.org/">
+<meta property="og:image" content="https://hdzkfx.dpdns.org/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="每日中考复习 | 福建专用">
+<meta name="twitter:description" content="7科全覆盖 · 公式速背+易错题+试卷真题">
+<title>每日中考复习资料 - 洪明博</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="site-header physics">
+  <h1>📚 每日中考复习资料</h1>
+  <p>洪明博 · 2026年福建中考备考</p>
+</header>
+
+<!-- Exam countdown bar -->
+<div class="countdown-bar" id="countdown-bar">
+  <div class="countdown-main">
+    <div class="countdown-days">
+      <span class="cd-num" id="cd-days">--</span>
+      <span class="cd-label">天</span>
+      <span class="cd-num" id="cd-hours">--</span>
+      <span class="cd-label">时</span>
+      <span class="cd-num" id="cd-mins">--</span>
+      <span class="cd-label">分</span>
+      <span class="cd-num" id="cd-secs">--</span>
+      <span class="cd-label">秒</span>
+    </div>
+  </div>
+  <div class="cd-info">
+    <div class="cd-title">距2026年福建中考还有</div>
+    <div class="cd-date">📅 6月21日（周日）· 福建省统一中考</div>
     <div class="cd-study-days" id="cd-study-days" style="font-size:0.72rem;opacity:0.75;margin-top:2px"></div>
-    46|    <div class="cd-tip">💡 建议今天主攻：<strong id="cd-tip-subject">数学</strong></div>
-    47|  </div>
-    48|  <div class="cd-subjects">
-    49|    <span class="cd-subject physics">⚡ 物理</span>
-    50|    <span class="cd-subject chinese">📝 语文</span>
-    51|    <span class="cd-subject math">📐 数学</span>
-    52|    <span class="cd-subject english">📖 英语</span>
-    53|    <span class="cd-subject chemistry">🧪 化学</span>
-    54|    <span class="cd-subject history">🏛️ 历史</span>
-    55|    <span class="cd-subject politics">🎯 政治</span>
-    56|  </div>
-    57|</div>
-    58|
-    59|<style>
-    60|.countdown-bar { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 14px 18px; border-radius: 0 0 20px 20px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    61|.countdown-main { flex-shrink: 0; }
-    62|.countdown-days { display: flex; align-items: baseline; gap: 3px; flex-wrap: wrap; max-width: 220px; }
-    63|.cd-num { font-size: 2rem; font-weight: 800; color: #ffd700; line-height: 1; }
-    64|.cd-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-right: 4px; }
-    65|.cd-info { flex: 1; min-width: 150px; }
-    66|.cd-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
-    67|.cd-date { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-bottom: 3px; }
-    68|.cd-tip { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
-    69|.cd-tip strong { color: #ffd700; }
-    70|.cd-subjects { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-    71|.cd-subject { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 3px 9px; font-size: 0.72rem; }
-    72|.countdown-bar.physics { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
-    73|body.dark .countdown-bar { background: linear-gradient(135deg, #0d0d1a 0%, #111827 100%); }
-    74|@media (max-width: 520px) {
-    75|  .countdown-bar { flex-direction: column; text-align: center; gap: 8px; }
-    76|  .cd-info { min-width: unset; }
-    77|  .cd-subjects { justify-content: center; }
-    78|  .countdown-days { justify-content: center; max-width: 100%; }
-    79|  .cd-num { font-size: 1.6rem; }
-    80|}
-    81|</style>
-    82|<script>
-    83|// 倒计时精确到时分秒，2026年6月21日福建中考
-    84|(function(){
-    85|  var exam = new Date(2026, 5, 21, 8, 0, 0); // 6月21日 08:00
-    86|  var subjects = ['数学','英语','化学','历史','政治','物理','语文'];
-    87|  // 7天循环：周一=物理(index 5) → (dayOfYear-1)%7映射
-    88|  function getTodaySubject() {
-    89|    var now = new Date();
-    90|    var start = new Date(now.getFullYear(), 0, 0);
-    91|    var diff = now - start;
-    92|    var dayOfYear = Math.floor(diff / 86400000);
-    93|    return subjects[(dayOfYear - 1) % 7];
-    94|  }
-    95|  function tick() {
-    96|    var now = new Date();
-    97|    var diff = exam - now;
-    98|    if (diff <= 0) {
-    99|      document.getElementById('cd-days').textContent = '0';
-   100|      document.getElementById('cd-hours').textContent = '0';
-   101|      document.getElementById('cd-mins').textContent = '0';
-   102|      document.getElementById('cd-secs').textContent = '0';
-   103|      return;
-   104|    }
-   105|    var d = Math.floor(diff / 86400000);
-   106|    var h = Math.floor((diff % 86400000) / 3600000);
-   107|    var m = Math.floor((diff % 3600000) / 60000);
-   108|    var s = Math.floor((diff % 60000) / 1000);
-   109|    var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
-   110|    var el = document.getElementById('cd-days');
-   111|    var elH = document.getElementById('cd-hours');
-   112|    var elM = document.getElementById('cd-mins');
-   113|    var elS = document.getElementById('cd-secs');
-   114|    if(el)  el.textContent  = d;
-   115|    if(elH) elH.textContent = pad(h);
-   116|    if(elM) elM.textContent = pad(m);
-   117|    if(elS) elS.textContent = pad(s);
-   118|    var tip = document.getElementById('cd-tip-subject');
-   119|    if(tip && tip.textContent === '--') tip.textContent = getTodaySubject();
-   120|  }
-   121|  tick();
-   122|  setInterval(tick, 1000);
-   123|})();
-   124|
-   125|// 昨天快捷入口：根据星期计算昨天科目
-   126|(function(){
-   127|  var SUBJECTS = ['物理','语文','数学','英语','化学','历史','政治']; // 周一=0
-   128|  var PAGES    = ['physics_basic','chinese_basic','math_basic','english_basic','chemistry_basic','history_basic','politics_basic'];
-   129|  var days = ['周日','周一','周二','周三','周四','周五','周六'];
-   130|  var now = new Date();
-   131|  var yesterday = new Date(now);
-   132|  yesterday.setDate(now.getDate() - 1);
-   133|  var ydow = yesterday.getDay(); // 0=周日
-   134|  var ySubject = SUBJECTS[ydow];
-   135|  var yPage = PAGES[ydow] + '.html';
-   136|  var yLabel = days[ydow];
-   137|  var bar = document.getElementById('yesterday-bar');
-   138|  if (!bar) return;
-   139|  bar.innerHTML =
-   140|    '<span style="font-size:0.78rem;color:var(--text-muted)">昨日复习：</span>' +
-   141|    '<a href="' + yPage + '" style="display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:5px 14px;text-decoration:none;font-size:0.82rem;color:var(--text);font-weight:500">' +
-   142|    '← 昨天 ' + yLabel + ' · ' + ySubject + '</a>';
-   143|})();
-   144|</script>
-   145|
-   146|<nav class="nav-cards">
-   147|    <a href="physics_basic.html" class="nav-card physics">
-   148|      <span class="emoji">⚡</span>
-   149|      <span class="label">物理</span>
-   150|      <span class="day">周一</span>
-   151|    </a>
-   152|    <a href="chinese_basic.html" class="nav-card chinese">
-   153|      <span class="emoji">📝</span>
-   154|      <span class="label">语文</span>
-   155|      <span class="day">周二</span>
-   156|    </a>
-   157|    <a href="math_basic.html" class="nav-card math">
-   158|      <span class="emoji">📐</span>
-   159|      <span class="label">数学</span>
-   160|      <span class="day">周三</span>
-   161|    </a>
-   162|    <a href="english_basic.html" class="nav-card english">
-   163|      <span class="emoji">📖</span>
-   164|      <span class="label">英语</span>
-   165|      <span class="day">周四</span>
-   166|    </a>
-   167|    <a href="chemistry_basic.html" class="nav-card chemistry">
-   168|      <span class="emoji">🧪</span>
-   169|      <span class="label">化学</span>
-   170|      <span class="day">周五</span>
-   171|    </a>
-   172|    <a href="history_basic.html" class="nav-card history">
-   173|      <span class="emoji">🏛️</span>
-   174|      <span class="label">历史</span>
-   175|      <span class="day">周六</span>
-   176|    </a>
-   177|    <a href="politics_basic.html" class="nav-card politics">
-   178|      <span class="emoji">🎯</span>
-   179|      <span class="label">政治</span>
-   180|      <span class="day">周日</span>
-   181|    </a>
-   182|</nav>
-   183|<div id="yesterday-bar" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px"></div>
-   184|<div class="container">
-   185|<div class="content-card" id="today-card">
-   186|  <h2 id="today-title">📅 今日复习计划</h2>
-   187|  <div id="today-subject-info"></div>
-   188|  <div id="today-quick-formulas" style="margin-top:10px"></div>
-   189|  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px" id="today-links"></div>
-   190|  <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-   191|    <button id="checkin-btn" style="flex:1;background:linear-gradient(135deg,#f39c12,#e67e22);color:white;border:none;border-radius:12px;padding:10px;font-size:0.88rem;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15)">🔥 打卡</button>
-   192|    <a href="favorites.html" style="flex:1;display:block;background:#3498db;color:white;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">⭐ 我的收藏</a>
-   193|  </div>
-   194|  <div style="margin-top:8px;text-align:center">
-   195|    <a href="search.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">🔍 搜索</a>
-   196|    <span style="color:var(--text-muted);margin:0 4px">·</span>
-   197|    <a href="archive.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">📅 归档</a>
-   198|    <span style="color:var(--text-muted);margin:0 4px">·</span>
-   199|    <a href="mistakes.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">📒 错题</a>
-   200|    <span style="color:var(--text-muted);margin:0 4px">·</span>
-   201|    <a href="about.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">ℹ️ 关于</a>
-   202|  </div>
-   203|  <div style="margin-top:10px;padding:0 14px">
-   204|    <a href="emergency.html" style="display:block;background:linear-gradient(135deg,#c0392b,#e74c3c);color:white;text-align:center;padding:12px;border-radius:14px;text-decoration:none;font-weight:700;font-size:0.9rem;box-shadow:0 2px 10px rgba(231,76,60,0.3)">🚑 考前急救包 · 各科一页纸</a>
-   205|  </div>
-   206|</div>
-   207|<script>
-   208|// 今日科目数据（每周7天循环）
-   209|var WEEK_DATA = [
-   210|  { // 0 = 周一
-   211|    subj:'physics', label:'⚡ 物理', color:'#f39c12', bg:'linear-gradient(135deg,#f39c12,#e67e22)',
-   212|    basic:'physics_basic.html', paper:'physics_paper.html',
-   213|    dayName:'周一',
-   214|    quick:[
-   215|      '① 凸透镜：u&gt;2f倒立缩小实像 | f&lt;u&lt;2f倒立放大实像 | u&lt;f正立放大虚像',
-   216|      '② 欧姆定律：I=U/R，串联分压(I相等)，并联分流(U相等)',
-   217|      '③ W=Fs，P=W/t，比热容Q=cm(t₂-t₁)'
-   218|    ]
-   219|  },
-   220|  { // 1 = 周二
-   221|    subj:'chinese', label:'📝 语文', color:'#e74c3c', bg:'linear-gradient(135deg,#e74c3c,#c0392b)',
-   222|    basic:'chinese_basic.html', paper:'chinese_paper.html',
-   223|    dayName:'周二',
-   224|    quick:[
-   225|      '① 之：的/代词/动词(去、到) | 其：他的/加强语气 | 而：顺承/转折/修饰',
-   226|      '② 以：用/因为/凭借 | 于：在/向/对/比/从',
-   227|      '③ 病句4类型：成分残缺·搭配不当·语序不当·重复累赘'
-   228|    ]
-   229|  },
-   230|  { // 2 = 周三
-   231|    subj:'math', label:'📐 数学', color:'#3498db', bg:'linear-gradient(135deg,#3498db,#2980b9)',
-   232|    basic:'math_basic.html', paper:'math_paper.html',
-   233|    dayName:'周三',
-   234|    quick:[
-   235|      '① 勾股定理：a²+b²=c²，常用勾股数3-4-5、5-12-13、8-15-17',
-   236|      '② 一元二次：x=(-b±√(b²-4ac))/2a，韦达定理x₁+x₂=-b/a',
-   237|      '③ sin²α+cos²α=1，弧长l=nπr/180'
-   238|    ]
-   239|  },
-   240|  { // 3 = 周四
-   241|    subj:'english', label:'📖 英语', color:'#9b59b6', bg:'linear-gradient(135deg,#9b59b6,#8e44ad)',
-   242|    basic:'english_basic.html', paper:'english_paper.html',
-   243|    dayName:'周四',
-   244|    quick:[
-   245|      '① look forward to doing | take part in=join in | set up | pick up | run out of',
-   246|      '② 一般现在时(often+客观) | 进行时(now+be+v-ing) | 过去式(yesterday+过去式)',
-   247|      '③ It is +adj.+ for sb.+ to do | There is something wrong with | The more..., the more...'
-   248|    ]
-   249|  },
-   250|  { // 4 = 周五
-   251|    subj:'chemistry', label:'🧪 化学', color:'#27ae60', bg:'linear-gradient(135deg,#27ae60,#1e8449)',
-   252|    basic:'chemistry_basic.html', paper:'chemistry_paper.html',
-   253|    dayName:'周五',
-   254|    quick:[
-   255|      '① 复分解条件：生成↓(BaSO₄/AgCl/CaCO₃)或↑或H₂O',
-   256|      '② 金属活动性：K Ca Na Mg Al Zn Fe Sn Pb H Cu Hg Ag Pt Au',
-   257|      '③ w=m溶质/m溶液×100%，质量守恒：原子种类数目不变'
-   258|    ]
-   259|  },
-   260|  { // 5 = 周六
-   261|    subj:'history', label:'🏛️ 历史', color:'#e67e22', bg:'linear-gradient(135deg,#e67e22,#d35400)',
-   262|    basic:'history_basic.html', paper:'history_paper.html',
-   263|    dayName:'周六',
-   264|    quick:[
-   265|      '① 1840鸦片战争→1857英法联军→1894甲午→1900八国联军→1911辛亥→1919五四',
-   266|      '② 文艺复兴(14-17c)：人文主义 | 启蒙运动(18c)：理性主义',
-   267|      '③ 工业革命：瓦特蒸汽机 | 美国独立1776 | 法国大革命1789'
-   268|    ]
-   269|  },
-   270|  { // 6 = 周日
-   271|    subj:'politics', label:'🎯 政治', color:'#1abc9c', bg:'linear-gradient(135deg,#1abc9c,#16a085)',
-   272|    basic:'politics_basic.html', paper:'politics_paper.html',
-   273|    dayName:'周日',
-   274|    quick:[
-   275|      '① 人身自由·人格尊严·财产权利·监督权·选举权',
-   276|      '② 富强民主文明和谐 | 自由平等公正法治 | 爱国敬业诚信友善',
-   277|      '③ 改革开放成就：GDP世界第二·高铁·5G·一带一路·人类命运共同体'
-   278|    ]
-   279|  }
-   280|];
-   281|
-   282|var EXAM_DATE = new Date('2026-06-21');
-   283|function daysToExam() {
-   284|  var today = new Date();
-   285|  today.setHours(0,0,0,0);
-   286|  EXAM_DATE.setHours(0,0,0,0);
-   287|  return Math.round((EXAM_DATE - today) / 86400000);
-   288|}
-   289|
-   290|function pad(n) { return n < 10 ? '0' + n : '' + n; }
-   291|function todayDateStr() {
-   292|  var d = new Date();
-   293|  return d.getFullYear() + '年' + pad(d.getMonth()+1) + '月' + pad(d.getDate()) + '日';
-   294|}
-   295|
-   296|function initToday() {
-   297|  var wd = new Date().getDay(); // 0=Sun, 1=Mon...6=Sat
-   298|  // Adjust: JS getDay() 0=Sun, but WEEK_DATA[0]=Mon, so shift by -1 (mod 7)
-   299|  var today = WEEK_DATA[(wd + 6) % 7];
-   300|  if (!today) return;
-   301|
-   302|  // Update title and header color
-   303|  var card = document.getElementById('today-card');
-   304|  card.style.borderTop = '3px solid ' + today.color;
-   305|  var days = daysToExam();
-   306|  var dateStr = todayDateStr() + '（' + today.dayName + '）';
-   307|
-   308|  document.getElementById('today-title').textContent = '📅 ' + today.dayName + '复习计划';
-   309|
-   310|  // Subject info
-   311|  document.getElementById('today-subject-info').innerHTML =
-   312|    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
-   313|    '<span style="font-size:1.1rem">' + today.label + '</span>' +
-   314|    '<span style="font-size:0.8rem;color:var(--text-muted)">' + dateStr + ' · 距中考' + days + '天</span>' +
-   315|    '</div>';
-   316|
-   317|  // Quick formulas
-   318|  var qHtml = '<div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.9">';
-   319|  today.quick.forEach(function(line) {
-   320|    qHtml += '<div style="border-left:3px solid ' + today.color + ';padding-left:8px;margin-bottom:6px">' + line + '</div>';
-   321|  });
-   322|  qHtml += '</div>';
-   323|  document.getElementById('today-quick-formulas').innerHTML = qHtml;
-   324|
-   325|  // Links
-   326|  document.getElementById('today-links').innerHTML =
-   327|    '<a href="' + today.basic + '" style="display:block;background:' + today.color + ';color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">📖 知识点复习</a>' +
-   328|    '<a href="' + today.paper + '" style="display:block;background:' + today.color + ';color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);opacity:0.85">✍️ 试卷练习</a>';
-   329|
-   330|  // Also update site-header
-   331|  var hdr = document.querySelector('.site-header');
-   332|  if (hdr) {
-   333|    hdr.className = 'site-header ' + today.subj;
-   334|    hdr.style.background = today.bg;
-   335|  }
-   336|}
-   337|
-   338|document.addEventListener('DOMContentLoaded', initToday);
-   339|initToday();
-   340|</script>
-   341|<div class="content-card">
-   342|  <h2>📋 本周轮播</h2>
-   343|  <div style="overflow-x:auto">
-   344|  <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:420px">
-   345|
-   346|
-   347|
-   348|
-   349|
-   350|    <tr class="week-row physics" style="background:#f8fafc;">
-   351|      <td style="padding:7px 10px">05月18日</td>
-   352|      <td style="padding:7px 10px">⚡ 物理</td>
-   353|      <td style="padding:7px 10px"><a href="physics_basic.html" style="color:#f39c12;text-decoration:none">📖 查看</a></td>
-   354|      <td style="padding:7px 10px"><a href="physics_paper.html" style="color:#f39c12;text-decoration:none">✍️ 练习</a></td>
-   355|    </tr>
-   356|    <tr class="week-row chinese" style="background:white;">
-   357|      <td style="padding:7px 10px">05月19日</td>
-   358|      <td style="padding:7px 10px">📝 语文</td>
-   359|      <td style="padding:7px 10px"><a href="chinese_basic.html" style="color:#e74c3c;text-decoration:none">📖 查看</a></td>
-   360|      <td style="padding:7px 10px"><a href="chinese_paper.html" style="color:#e74c3c;text-decoration:none">✍️ 练习</a></td>
-   361|    </tr>
-   362|    <tr class="week-row math" style="background:#f8fafc;">
-   363|      <td style="padding:7px 10px">05月20日</td>
-   364|      <td style="padding:7px 10px">📐 数学</td>
-   365|      <td style="padding:7px 10px"><a href="math_basic.html" style="color:#3498db;text-decoration:none">📖 查看</a></td>
-   366|      <td style="padding:7px 10px"><a href="math_paper.html" style="color:#3498db;text-decoration:none">✍️ 练习</a></td>
-   367|    </tr>
-   368|    <tr class="week-row english" style="background:white;">
-   369|      <td style="padding:7px 10px">05月21日</td>
-   370|      <td style="padding:7px 10px">📖 英语</td>
-   371|      <td style="padding:7px 10px"><a href="english_basic.html" style="color:#9b59b6;text-decoration:none">📖 查看</a></td>
-   372|      <td style="padding:7px 10px"><a href="english_paper.html" style="color:#9b59b6;text-decoration:none">✍️ 练习</a></td>
-   373|    </tr>
-   374|    <tr class="week-row chemistry" style="background:#f8fafc;">
-   375|      <td style="padding:7px 10px">05月22日</td>
-   376|      <td style="padding:7px 10px">🧪 化学</td>
-   377|      <td style="padding:7px 10px"><a href="chemistry_basic.html" style="color:#27ae60;text-decoration:none">📖 查看</a></td>
-   378|      <td style="padding:7px 10px"><a href="chemistry_paper.html" style="color:#27ae60;text-decoration:none">✍️ 练习</a></td>
-   379|    </tr>
-   380|    <tr class="week-row history" style="background:white;">
-   381|      <td style="padding:7px 10px">05月23日</td>
-   382|      <td style="padding:7px 10px">🏛️ 历史</td>
-   383|      <td style="padding:7px 10px"><a href="history_basic.html" style="color:#e67e22;text-decoration:none">📖 查看</a></td>
-   384|      <td style="padding:7px 10px"><a href="history_paper.html" style="color:#e67e22;text-decoration:none">✍️ 练习</a></td>
-   385|    </tr>
-   386|    <tr class="week-row politics week-today" style="background:#fffbeb;font-weight:700">
-   387|      <td style="padding:7px 10px">05月24日 🔥</td>
-   388|      <td style="padding:7px 10px">🎯 政治</td>
-   389|      <td style="padding:7px 10px"><a href="politics_basic.html" style="color:#1abc9c;text-decoration:none">📖 查看</a></td>
-   390|      <td style="padding:7px 10px"><a href="politics_paper.html" style="color:#1abc9c;text-decoration:none">✍️ 练习</a></td>
-   391|    </tr>
-   392|
-   393|
-   394|
-   395|
-   396|
-   397|  </table>
-   398|  </div>
-   399|</div>
-   400|<div class="content-card">
-   401|  <h2>📚 备考资源</h2>
-   402|  <div class="knowledge-item">
-   403|    <h4>官方渠道</h4>
-   404|    <p>福建省教育考试院 <a href="https://fjeea.com" target="_blank" style="color:#27ae60">fjeea.com</a></p>
-   405|    <p>福建省教育厅 <a href="https://jyt.fujian.gov.cn" target="_blank" style="color:#27ae60">jyt.fujian.gov.cn</a></p>
-   406|  </div>
-   407|  <div class="knowledge-item">
-   408|    <h4>历年真题</h4>
-   409|    <p>学科网 <a href="https://xkw.com" target="_blank">xkw.com</a> · 21世纪教育网 <a href="https://21cnjy.com" target="_blank">21cnjy.com</a></p>
-   410|    <p>无忧考网 <a href="https://51test.net" target="_blank">51test.net</a></p>
-   411|  </div>
-   412|</div>
-   413|<div class="content-card">
-   414|  <h2>ℹ️ 使用说明</h2>
-   415|  <div class="knowledge-item">
-   416|    <p>每个科目分为 <strong style="color:#e74c3c">📖 知识点复习</strong> 和 <strong style="color:#c0392b">✍️ 试卷练习</strong> 两个页面，支持手机和电脑端浏览。</p>
-   417|  </div>
-   418|</div>
-   419|<p class="source-note">内容来源：IMA知识库 · 权威教育平台整理<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
-   420|</div>
-   421|<script src="dark-mode.js"></script>
-   422|<script src="questions.js"></script>
-   423|<script src="features.js"></script>
-   424|<script>
-   425|if ('serviceWorker' in navigator) {
-   426|  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
-   427|}
-   428|</script>
-   429|</body>
-   430|</html>
-   431|
+    <div class="cd-tip">💡 建议今天主攻：<strong id="cd-tip-subject">数学</strong></div>
+  </div>
+  <div class="cd-subjects">
+    <span class="cd-subject physics">⚡ 物理</span>
+    <span class="cd-subject chinese">📝 语文</span>
+    <span class="cd-subject math">📐 数学</span>
+    <span class="cd-subject english">📖 英语</span>
+    <span class="cd-subject chemistry">🧪 化学</span>
+    <span class="cd-subject history">🏛️ 历史</span>
+    <span class="cd-subject politics">🎯 政治</span>
+  </div>
+</div>
+
+<style>
+.countdown-bar { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 14px 18px; border-radius: 0 0 20px 20px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.countdown-main { flex-shrink: 0; }
+.countdown-days { display: flex; align-items: baseline; gap: 3px; flex-wrap: wrap; max-width: 220px; }
+.cd-num { font-size: 2rem; font-weight: 800; color: #ffd700; line-height: 1; }
+.cd-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-right: 4px; }
+.cd-info { flex: 1; min-width: 150px; }
+.cd-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+.cd-date { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-bottom: 3px; }
+.cd-tip { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+.cd-tip strong { color: #ffd700; }
+.cd-subjects { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.cd-subject { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 3px 9px; font-size: 0.72rem; }
+.countdown-bar.physics { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+body.dark .countdown-bar { background: linear-gradient(135deg, #0d0d1a 0%, #111827 100%); }
+@media (max-width: 520px) {
+  .countdown-bar { flex-direction: column; text-align: center; gap: 8px; }
+  .cd-info { min-width: unset; }
+  .cd-subjects { justify-content: center; }
+  .countdown-days { justify-content: center; max-width: 100%; }
+  .cd-num { font-size: 1.6rem; }
+}
+</style>
+<script>
+// 倒计时精确到时分秒，2026年6月21日福建中考
+(function(){
+  var exam = new Date(2026, 5, 21, 8, 0, 0); // 6月21日 08:00
+  var subjects = ['数学','英语','化学','历史','政治','物理','语文'];
+  // 7天循环：周一=物理(index 5) → (dayOfYear-1)%7映射
+  function getTodaySubject() {
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    var diff = now - start;
+    var dayOfYear = Math.floor(diff / 86400000);
+    return subjects[(dayOfYear - 1) % 7];
+  }
+  function tick() {
+    var now = new Date();
+    var diff = exam - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      document.getElementById('cd-secs').textContent = '0';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+    var el = document.getElementById('cd-days');
+    var elH = document.getElementById('cd-hours');
+    var elM = document.getElementById('cd-mins');
+    var elS = document.getElementById('cd-secs');
+    if(el)  el.textContent  = d;
+    if(elH) elH.textContent = pad(h);
+    if(elM) elM.textContent = pad(m);
+    if(elS) elS.textContent = pad(s);
+    var tip = document.getElementById('cd-tip-subject');
+    if(tip && tip.textContent === '--') tip.textContent = getTodaySubject();
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// 昨天快捷入口：根据星期计算昨天科目
+(function(){
+  var SUBJECTS = ['物理','语文','数学','英语','化学','历史','政治']; // 周一=0
+  var PAGES    = ['physics_basic','chinese_basic','math_basic','english_basic','chemistry_basic','history_basic','politics_basic'];
+  var days = ['周日','周一','周二','周三','周四','周五','周六'];
+  var now = new Date();
+  var yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  var ydow = yesterday.getDay(); // 0=周日
+  var ySubject = SUBJECTS[ydow];
+  var yPage = PAGES[ydow] + '.html';
+  var yLabel = days[ydow];
+  var bar = document.getElementById('yesterday-bar');
+  if (!bar) return;
+  bar.innerHTML =
+    '<span style="font-size:0.78rem;color:var(--text-muted)">昨日复习：</span>' +
+    '<a href="' + yPage + '" style="display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:5px 14px;text-decoration:none;font-size:0.82rem;color:var(--text);font-weight:500">' +
+    '← 昨天 ' + yLabel + ' · ' + ySubject + '</a>';
+})();
+</script>
+
+<nav class="nav-cards">
+    <a href="physics_basic.html" class="nav-card physics">
+      <span class="emoji">⚡</span>
+      <span class="label">物理</span>
+      <span class="day">周一</span>
+    </a>
+    <a href="chinese_basic.html" class="nav-card chinese">
+      <span class="emoji">📝</span>
+      <span class="label">语文</span>
+      <span class="day">周二</span>
+    </a>
+    <a href="math_basic.html" class="nav-card math">
+      <span class="emoji">📐</span>
+      <span class="label">数学</span>
+      <span class="day">周三</span>
+    </a>
+    <a href="english_basic.html" class="nav-card english">
+      <span class="emoji">📖</span>
+      <span class="label">英语</span>
+      <span class="day">周四</span>
+    </a>
+    <a href="chemistry_basic.html" class="nav-card chemistry">
+      <span class="emoji">🧪</span>
+      <span class="label">化学</span>
+      <span class="day">周五</span>
+    </a>
+    <a href="history_basic.html" class="nav-card history">
+      <span class="emoji">🏛️</span>
+      <span class="label">历史</span>
+      <span class="day">周六</span>
+    </a>
+    <a href="politics_basic.html" class="nav-card politics">
+      <span class="emoji">🎯</span>
+      <span class="label">政治</span>
+      <span class="day">周日</span>
+    </a>
+</nav>
+<div id="yesterday-bar" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px"></div>
+<div class="container">
+<div class="content-card" id="today-card">
+  <h2 id="today-title">📅 今日复习计划</h2>
+  <div id="today-subject-info"></div>
+  <div id="today-quick-formulas" style="margin-top:10px"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px" id="today-links"></div>
+  <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+    <button id="checkin-btn" style="flex:1;background:linear-gradient(135deg,#f39c12,#e67e22);color:white;border:none;border-radius:12px;padding:10px;font-size:0.88rem;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15)">🔥 打卡</button>
+    <a href="favorites.html" style="flex:1;display:block;background:#3498db;color:white;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">⭐ 我的收藏</a>
+  </div>
+  <div style="margin-top:8px;text-align:center">
+    <a href="search.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">🔍 搜索</a>
+    <span style="color:var(--text-muted);margin:0 4px">·</span>
+    <a href="archive.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">📅 归档</a>
+    <span style="color:var(--text-muted);margin:0 4px">·</span>
+    <a href="mistakes.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">📒 错题</a>
+    <span style="color:var(--text-muted);margin:0 4px">·</span>
+    <a href="about.html" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none">ℹ️ 关于</a>
+  </div>
+  <div style="margin-top:10px;padding:0 14px">
+    <a href="emergency.html" style="display:block;background:linear-gradient(135deg,#c0392b,#e74c3c);color:white;text-align:center;padding:12px;border-radius:14px;text-decoration:none;font-weight:700;font-size:0.9rem;box-shadow:0 2px 10px rgba(231,76,60,0.3)">🚑 考前急救包 · 各科一页纸</a>
+  </div>
+</div>
+<script>
+// 今日科目数据（每周7天循环）
+var WEEK_DATA = [
+  { // 0 = 周一
+    subj:'physics', label:'⚡ 物理', color:'#f39c12', bg:'linear-gradient(135deg,#f39c12,#e67e22)',
+    basic:'physics_basic.html', paper:'physics_paper.html',
+    dayName:'周一',
+    quick:[
+      '① 凸透镜：u&gt;2f倒立缩小实像 | f&lt;u&lt;2f倒立放大实像 | u&lt;f正立放大虚像',
+      '② 欧姆定律：I=U/R，串联分压(I相等)，并联分流(U相等)',
+      '③ W=Fs，P=W/t，比热容Q=cm(t₂-t₁)'
+    ]
+  },
+  { // 1 = 周二
+    subj:'chinese', label:'📝 语文', color:'#e74c3c', bg:'linear-gradient(135deg,#e74c3c,#c0392b)',
+    basic:'chinese_basic.html', paper:'chinese_paper.html',
+    dayName:'周二',
+    quick:[
+      '① 之：的/代词/动词(去、到) | 其：他的/加强语气 | 而：顺承/转折/修饰',
+      '② 以：用/因为/凭借 | 于：在/向/对/比/从',
+      '③ 病句4类型：成分残缺·搭配不当·语序不当·重复累赘'
+    ]
+  },
+  { // 2 = 周三
+    subj:'math', label:'📐 数学', color:'#3498db', bg:'linear-gradient(135deg,#3498db,#2980b9)',
+    basic:'math_basic.html', paper:'math_paper.html',
+    dayName:'周三',
+    quick:[
+      '① 勾股定理：a²+b²=c²，常用勾股数3-4-5、5-12-13、8-15-17',
+      '② 一元二次：x=(-b±√(b²-4ac))/2a，韦达定理x₁+x₂=-b/a',
+      '③ sin²α+cos²α=1，弧长l=nπr/180'
+    ]
+  },
+  { // 3 = 周四
+    subj:'english', label:'📖 英语', color:'#9b59b6', bg:'linear-gradient(135deg,#9b59b6,#8e44ad)',
+    basic:'english_basic.html', paper:'english_paper.html',
+    dayName:'周四',
+    quick:[
+      '① look forward to doing | take part in=join in | set up | pick up | run out of',
+      '② 一般现在时(often+客观) | 进行时(now+be+v-ing) | 过去式(yesterday+过去式)',
+      '③ It is +adj.+ for sb.+ to do | There is something wrong with | The more..., the more...'
+    ]
+  },
+  { // 4 = 周五
+    subj:'chemistry', label:'🧪 化学', color:'#27ae60', bg:'linear-gradient(135deg,#27ae60,#1e8449)',
+    basic:'chemistry_basic.html', paper:'chemistry_paper.html',
+    dayName:'周五',
+    quick:[
+      '① 复分解条件：生成↓(BaSO₄/AgCl/CaCO₃)或↑或H₂O',
+      '② 金属活动性：K Ca Na Mg Al Zn Fe Sn Pb H Cu Hg Ag Pt Au',
+      '③ w=m溶质/m溶液×100%，质量守恒：原子种类数目不变'
+    ]
+  },
+  { // 5 = 周六
+    subj:'history', label:'🏛️ 历史', color:'#e67e22', bg:'linear-gradient(135deg,#e67e22,#d35400)',
+    basic:'history_basic.html', paper:'history_paper.html',
+    dayName:'周六',
+    quick:[
+      '① 1840鸦片战争→1857英法联军→1894甲午→1900八国联军→1911辛亥→1919五四',
+      '② 文艺复兴(14-17c)：人文主义 | 启蒙运动(18c)：理性主义',
+      '③ 工业革命：瓦特蒸汽机 | 美国独立1776 | 法国大革命1789'
+    ]
+  },
+  { // 6 = 周日
+    subj:'politics', label:'🎯 政治', color:'#1abc9c', bg:'linear-gradient(135deg,#1abc9c,#16a085)',
+    basic:'politics_basic.html', paper:'politics_paper.html',
+    dayName:'周日',
+    quick:[
+      '① 人身自由·人格尊严·财产权利·监督权·选举权',
+      '② 富强民主文明和谐 | 自由平等公正法治 | 爱国敬业诚信友善',
+      '③ 改革开放成就：GDP世界第二·高铁·5G·一带一路·人类命运共同体'
+    ]
+  }
+];
+
+var EXAM_DATE = new Date('2026-06-21');
+function daysToExam() {
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  EXAM_DATE.setHours(0,0,0,0);
+  return Math.round((EXAM_DATE - today) / 86400000);
+}
+
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+function todayDateStr() {
+  var d = new Date();
+  return d.getFullYear() + '年' + pad(d.getMonth()+1) + '月' + pad(d.getDate()) + '日';
+}
+
+function initToday() {
+  var wd = new Date().getDay(); // 0=Sun, 1=Mon...6=Sat
+  // Adjust: JS getDay() 0=Sun, but WEEK_DATA[0]=Mon, so shift by -1 (mod 7)
+  var today = WEEK_DATA[(wd + 6) % 7];
+  if (!today) return;
+
+  // Update title and header color
+  var card = document.getElementById('today-card');
+  card.style.borderTop = '3px solid ' + today.color;
+  var days = daysToExam();
+  var dateStr = todayDateStr() + '（' + today.dayName + '）';
+
+  document.getElementById('today-title').textContent = '📅 ' + today.dayName + '复习计划';
+
+  // Subject info
+  document.getElementById('today-subject-info').innerHTML =
+    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
+    '<span style="font-size:1.1rem">' + today.label + '</span>' +
+    '<span style="font-size:0.8rem;color:var(--text-muted)">' + dateStr + ' · 距中考' + days + '天</span>' +
+    '</div>';
+
+  // Quick formulas
+  var qHtml = '<div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.9">';
+  today.quick.forEach(function(line) {
+    qHtml += '<div style="border-left:3px solid ' + today.color + ';padding-left:8px;margin-bottom:6px">' + line + '</div>';
+  });
+  qHtml += '</div>';
+  document.getElementById('today-quick-formulas').innerHTML = qHtml;
+
+  // Links
+  document.getElementById('today-links').innerHTML =
+    '<a href="' + today.basic + '" style="display:block;background:' + today.color + ';color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15)">📖 知识点复习</a>' +
+    '<a href="' + today.paper + '" style="display:block;background:' + today.color + ';color:white;text-align:center;padding:11px;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.88rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);opacity:0.85">✍️ 试卷练习</a>';
+
+  // Also update site-header
+  var hdr = document.querySelector('.site-header');
+  if (hdr) {
+    hdr.className = 'site-header ' + today.subj;
+    hdr.style.background = today.bg;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initToday);
+initToday();
+</script>
+<div class="content-card">
+  <h2>📋 本周轮播</h2>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:420px">
+
+
+
+
+
+    <tr class="week-row physics" style="background:#f8fafc;">
+      <td style="padding:7px 10px">05月18日</td>
+      <td style="padding:7px 10px">⚡ 物理</td>
+      <td style="padding:7px 10px"><a href="physics_basic.html" style="color:#f39c12;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="physics_paper.html" style="color:#f39c12;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr class="week-row chinese" style="background:white;">
+      <td style="padding:7px 10px">05月19日</td>
+      <td style="padding:7px 10px">📝 语文</td>
+      <td style="padding:7px 10px"><a href="chinese_basic.html" style="color:#e74c3c;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="chinese_paper.html" style="color:#e74c3c;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr class="week-row math" style="background:#f8fafc;">
+      <td style="padding:7px 10px">05月20日</td>
+      <td style="padding:7px 10px">📐 数学</td>
+      <td style="padding:7px 10px"><a href="math_basic.html" style="color:#3498db;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="math_paper.html" style="color:#3498db;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr class="week-row english" style="background:white;">
+      <td style="padding:7px 10px">05月21日</td>
+      <td style="padding:7px 10px">📖 英语</td>
+      <td style="padding:7px 10px"><a href="english_basic.html" style="color:#9b59b6;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="english_paper.html" style="color:#9b59b6;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr class="week-row chemistry" style="background:#f8fafc;">
+      <td style="padding:7px 10px">05月22日</td>
+      <td style="padding:7px 10px">🧪 化学</td>
+      <td style="padding:7px 10px"><a href="chemistry_basic.html" style="color:#27ae60;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="chemistry_paper.html" style="color:#27ae60;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr class="week-row history" style="background:white;">
+      <td style="padding:7px 10px">05月23日</td>
+      <td style="padding:7px 10px">🏛️ 历史</td>
+      <td style="padding:7px 10px"><a href="history_basic.html" style="color:#e67e22;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="history_paper.html" style="color:#e67e22;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+    <tr class="week-row politics week-today" style="background:#fffbeb;font-weight:700">
+      <td style="padding:7px 10px">05月24日 🔥</td>
+      <td style="padding:7px 10px">🎯 政治</td>
+      <td style="padding:7px 10px"><a href="politics_basic.html" style="color:#1abc9c;text-decoration:none">📖 查看</a></td>
+      <td style="padding:7px 10px"><a href="politics_paper.html" style="color:#1abc9c;text-decoration:none">✍️ 练习</a></td>
+    </tr>
+
+
+
+
+
+  </table>
+  </div>
+</div>
+<div class="content-card">
+  <h2>📚 备考资源</h2>
+  <div class="knowledge-item">
+    <h4>官方渠道</h4>
+    <p>福建省教育考试院 <a href="https://fjeea.com" target="_blank" style="color:#27ae60">fjeea.com</a></p>
+    <p>福建省教育厅 <a href="https://jyt.fujian.gov.cn" target="_blank" style="color:#27ae60">jyt.fujian.gov.cn</a></p>
+  </div>
+  <div class="knowledge-item">
+    <h4>历年真题</h4>
+    <p>学科网 <a href="https://xkw.com" target="_blank">xkw.com</a> · 21世纪教育网 <a href="https://21cnjy.com" target="_blank">21cnjy.com</a></p>
+    <p>无忧考网 <a href="https://51test.net" target="_blank">51test.net</a></p>
+  </div>
+</div>
+<div class="content-card">
+  <h2>ℹ️ 使用说明</h2>
+  <div class="knowledge-item">
+    <p>每个科目分为 <strong style="color:#e74c3c">📖 知识点复习</strong> 和 <strong style="color:#c0392b">✍️ 试卷练习</strong> 两个页面，支持手机和电脑端浏览。</p>
+  </div>
+</div>
+<p class="source-note">内容来源：IMA知识库 · 权威教育平台整理<br>⚠️ 若内容与官方真题不符，请以官方为准</p>
+</div>
+<script src="dark-mode.js"></script>
+<script src="questions.js"></script>
+<script src="features.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW register failed', e); });
+}
+</script>
+</body>
+</html>
