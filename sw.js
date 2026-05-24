@@ -1,5 +1,5 @@
 // Service Worker — 离线缓存，让学生在没网时也能看
-const CACHE_NAME = 'zk-review-v8';
+const CACHE_NAME = 'zk-review-v9';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
@@ -47,15 +47,18 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch: network-first for HTML (fresh content), cache-first for static assets
+// Fetch strategy:
+// - HTML: network-first (always fresh)
+// - CSS/JS: stale-while-revalidate (fast from cache + silent background update)
+// - Images: cache-first (large files, update on SW version bump)
 self.addEventListener('fetch', (event) => {
   var url = new URL(event.request.url);
 
-  // Skip non-GET and cross-origin requests (e.g. Google Fonts)
+  // Skip non-GET and cross-origin requests
   if (event.request.method !== 'GET') return;
   if (url.origin !== self.location.origin && !url.hostname.includes('fonts.googleapis.com')) return;
 
-  // For HTML pages: network-first, fall back to cache
+  // HTML pages: network-first, fall back to cache
   if (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
     event.respondWith(
       fetch(event.request)
@@ -71,7 +74,30 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For static assets (CSS, JS, images): cache-first
+  // CSS and JS: stale-while-revalidate
+  // Return cached version immediately (fast), then silently update from network in background.
+  // Next visit gets the fresh version — no hard refresh needed!
+  if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(event.request).then((cached) => {
+          // Background fetch to update cache for next visit
+          var fetchPromise = fetch(event.request).then((response) => {
+            if (response.ok) {
+              cache.put(event.request, response.clone());
+            }
+            return response;
+          }).catch(() => cached);
+
+          // Return cached immediately if available, otherwise wait for network
+          return cached || fetchPromise;
+        });
+      })
+    );
+    return;
+  }
+
+  // Images and other static assets: cache-first
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
