@@ -1,5 +1,5 @@
 // Service Worker — 离线缓存，让学生在没网时也能看
-const CACHE_NAME = 'zk-review-v22';
+const CACHE_NAME = 'zk-review-v23';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
