@@ -132,7 +132,7 @@
     }
   }
 
-  function showDailyQuestionModal(btn) {
+  window.showDailyQuestionModal = function(btn) {
     var dow = new Date().getDay();
     var subjectIdx = (dow === 0) ? 6 : dow - 1;
     var startIdx = subjectIdx * 8;
@@ -316,7 +316,7 @@
     // 取消/关闭
     document.getElementById('zk-q-close').addEventListener('click', function () { modal.remove(); });
     modal.addEventListener('click', function (e) { if (e.target === modal) modal.remove(); });
-  }
+  };
 
   /* ---- utils ---- */
   function todayStr() {
