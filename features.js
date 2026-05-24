@@ -505,6 +505,95 @@
     });
   }
 
+
+  /* ---- paper page: answer mask (B2) + PDF download (B4) + fullscreen (B6) ---- */
+  function initPaperAnswerMask() {
+    var wraps = document.querySelectorAll('.paper-img-wrap');
+    if (wraps.length < 4) return;
+    var total = wraps.length;
+    var answerStartIdx = Math.max(Math.floor(total * 0.65), total - 3);
+    var key = 'zk-answer-revealed-' + location.pathname.split('/').pop();
+    var revealed = localStorage.getItem(key) === '1';
+
+    for (var i = answerStartIdx; i < total; i++) {
+      var wrap = wraps[i];
+      wrap.setAttribute('data-answer', '1');
+      if (!revealed) wrap.classList.add('paper-masked');
+    }
+    if (revealed) return; // already revealed
+
+    // Insert reveal button before first answer page
+    var revealBtn = document.createElement('div');
+    revealBtn.id = 'paper-reveal-zone';
+    revealBtn.style.cssText = 'background:linear-gradient(135deg,#fee2e2,#fecaca);border:2px dashed #ef4444;border-radius:14px;padding:24px 16px;margin:16px 0;text-align:center;cursor:pointer;transition:all 0.2s';
+    revealBtn.innerHTML =
+      '<div style="font-size:1.8rem;margin-bottom:6px">🔒</div>' +
+      '<div style="font-weight:700;color:#dc2626;font-size:0.95rem;margin-bottom:4px">答案区已遮盖</div>' +
+      '<div style="font-size:0.78rem;color:#7f1d1d">建议先做完再看答案 · 点击此处揭示</div>';
+    revealBtn.onclick = function() {
+      if (!confirm('确定要查看答案吗？建议先把题做完再看。')) return;
+      document.querySelectorAll('.paper-masked').forEach(function(w) { w.classList.remove('paper-masked'); });
+      localStorage.setItem(key, '1');
+      revealBtn.remove();
+    };
+    wraps[answerStartIdx].parentElement.insertBefore(revealBtn, wraps[answerStartIdx]);
+
+    // Inject mask CSS
+    if (!document.getElementById('zk-mask-style')) {
+      var s = document.createElement('style');
+      s.id = 'zk-mask-style';
+      s.textContent = '.paper-masked{position:relative}.paper-masked img{filter:blur(28px) brightness(0.85);pointer-events:none}.paper-masked::after{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.92);color:#dc2626;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem;box-shadow:0 4px 12px rgba(0,0,0,0.15)}body.dark .paper-masked::after{background:rgba(15,23,42,0.92);color:#fca5a5}';
+      document.head.appendChild(s);
+    }
+  }
+
+  function initPaperDownload() {
+    var wraps = document.querySelectorAll('.paper-img-wrap');
+    if (wraps.length < 4) return;
+    var btn = document.createElement('button');
+    btn.id = 'paper-pdf-btn';
+    btn.innerHTML = '📥 下载PDF';
+    btn.title = '调用浏览器打印生成PDF';
+    btn.style.cssText = 'position:fixed;bottom:74px;right:16px;z-index:9998;background:linear-gradient(135deg,#3498db,#2980b9);color:white;border:none;border-radius:24px;padding:8px 14px;font-size:0.78rem;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(52,152,219,0.35);opacity:0.9;font-family:inherit';
+    btn.onmouseenter = function() { btn.style.opacity = '1'; };
+    btn.onmouseleave = function() { btn.style.opacity = '0.9'; };
+    btn.onclick = function() {
+      showToast('💡 在打印界面选「另存为PDF」');
+      setTimeout(function() { window.print(); }, 500);
+    };
+    document.body.appendChild(btn);
+    // Print-specific CSS
+    if (!document.getElementById('zk-print-style')) {
+      var s = document.createElement('style');
+      s.id = 'zk-print-style';
+      s.textContent = '@media print{@page{size:A4;margin:8mm}body{background:white!important}#paper-pdf-btn,#jump-answer-btn,#paper-fullscreen-btn,.paper-header,.paper-meta,.page-nav,.source-note,#dark-toggle,header{display:none!important}.paper-masked img{filter:none!important;opacity:1!important}.paper-masked::after{display:none!important}.paper-img-wrap{page-break-inside:avoid;margin:0 0 4mm 0!important}.paper-img-wrap img{max-width:100%;width:100%}.container{max-width:100%!important;padding:0!important}.content-card{box-shadow:none!important;background:white!important;padding:0!important}h2,.tip-box{display:none!important}}';
+      document.head.appendChild(s);
+    }
+  }
+
+  function initPaperFullscreen() {
+    var wraps = document.querySelectorAll('.paper-img-wrap');
+    if (wraps.length < 4) return;
+    var btn = document.createElement('button');
+    btn.id = 'paper-fullscreen-btn';
+    btn.innerHTML = '📱 全屏';
+    btn.title = '沉浸式阅读模式';
+    btn.style.cssText = 'position:fixed;bottom:128px;right:16px;z-index:9998;background:linear-gradient(135deg,#1abc9c,#16a085);color:white;border:none;border-radius:24px;padding:8px 14px;font-size:0.78rem;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(26,188,156,0.35);opacity:0.9;font-family:inherit';
+    btn.onmouseenter = function() { btn.style.opacity = '1'; };
+    btn.onmouseleave = function() { btn.style.opacity = '0.9'; };
+    btn.onclick = function() {
+      document.body.classList.toggle('paper-immersive');
+      btn.innerHTML = document.body.classList.contains('paper-immersive') ? '🔙 退出' : '📱 全屏';
+    };
+    document.body.appendChild(btn);
+    if (!document.getElementById('zk-immersive-style')) {
+      var s = document.createElement('style');
+      s.id = 'zk-immersive-style';
+      s.textContent = 'body.paper-immersive header,body.paper-immersive .paper-meta,body.paper-immersive .page-nav,body.paper-immersive .source-note,body.paper-immersive h2,body.paper-immersive .tip-box,body.paper-immersive #dark-toggle{display:none!important}body.paper-immersive .container{max-width:100%!important;padding:0 4px!important}body.paper-immersive .content-card{padding:8px 0!important;box-shadow:none!important;border:none!important;background:white!important}body.paper-immersive.dark .content-card{background:#0f172a!important}body.paper-immersive .paper-img-wrap{margin:0 0 6px 0!important}';
+      document.head.appendChild(s);
+    }
+  }
+
   /* ---- auto-init ---- */
   function boot() {
     initFavorites();
@@ -514,6 +603,9 @@
     initPaperJump();
     initPaperSkeleton();
     initPaperImgError();
+    initPaperAnswerMask();
+    initPaperDownload();
+    initPaperFullscreen();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
