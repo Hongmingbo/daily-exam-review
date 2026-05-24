@@ -8,6 +8,9 @@ tmp_downloads/
 tmp_kb_sync/
 downloads/
 
+# Wrangler local cache
+.wrangler/
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -18,7 +21,3 @@ Thumbs.db
 *~
 .vscode/
 .idea/
-
-# Wrangler
-.wrangler/
-wrangler.toml
