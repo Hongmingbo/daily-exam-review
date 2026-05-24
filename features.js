@@ -196,30 +196,34 @@
     modal.appendChild(card);
     document.body.appendChild(modal);
 
-    // 填充选项
+    // 填充选项（仅选择题）
     var optsDiv = document.getElementById('zk-q-options');
-    q.opts.forEach(function (opt, i) {
-      var label = document.createElement('label');
-      label.style.cssText = [
-        'display:flex', 'align-items:center', 'gap:8px',
-        'padding:9px 12px', 'border-radius:8px', 'border:1.5px solid #e2e8f0',
-        'cursor:pointer', 'font-size:0.88rem', 'transition:all 0.15s', 'color:#374151'
-      ].join(';');
-      label.innerHTML = '<input type="radio" name="zk-q" value="' + i + '" style="accent-color:' + subjColor + '"> ' + opt;
-      label.addEventListener('click', function () {
-        label.style.background = 'rgba(0,0,0,0.04)';
-        label.style.borderColor = subjColor;
-        label.style.color = subjColor;
-        optsDiv.querySelectorAll('label').forEach(function (other) {
-          if (other !== label) {
-            other.style.background = '';
-            other.style.borderColor = '#e2e8f0';
-            other.style.color = '#374151';
-          }
+    if (!isFill && q.opts) {
+      q.opts.forEach(function (opt, i) {
+        var label = document.createElement('label');
+        label.style.cssText = [
+          'display:flex', 'align-items:center', 'gap:8px',
+          'padding:9px 12px', 'border-radius:8px', 'border:1.5px solid #e2e8f0',
+          'cursor:pointer', 'font-size:0.88rem', 'transition:all 0.15s', 'color:#374151'
+        ].join(';');
+        label.innerHTML = '<input type="radio" name="zk-q" value="' + i + '" style="accent-color:' + subjColor + '"> ' + opt;
+        label.addEventListener('click', function () {
+          label.style.background = 'rgba(0,0,0,0.04)';
+          label.style.borderColor = subjColor;
+          label.style.color = subjColor;
+          optsDiv.querySelectorAll('label').forEach(function (other) {
+            if (other !== label) {
+              other.style.background = '';
+              other.style.borderColor = '#e2e8f0';
+              other.style.color = '#374151';
+            }
+          });
         });
+        optsDiv.appendChild(label);
       });
-      optsDiv.appendChild(label);
-    });
+    } else {
+      optsDiv.style.display = 'none';
+    }
 
     // 提交答案
     document.getElementById('zk-q-submit').addEventListener('click', function () {
