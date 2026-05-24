@@ -536,9 +536,6 @@ if ('serviceWorker' in navigator) {
     grid.innerHTML = cells.join('');
     document.getElementById('zk-total-time').textContent = '近4周共 ' + Math.round(total/60) + ' 分钟';
   }
-  renderHeatmap();
-  setInterval(renderHeatmap, 60000);
-
   // ---- Ebbinghaus mistake reminder ----
   function getMistakes() { try { return JSON.parse(localStorage.getItem('zk-mistakes')) || []; } catch(e) { return []; } }
   function daysAgo(dateStr) {
@@ -552,7 +549,6 @@ if ('serviceWorker' in navigator) {
     if (!bar) return;
     var mistakes = getMistakes();
     if (!mistakes.length) return;
-    // Ebbinghaus intervals: 1, 3, 7, 15 days
     var review = mistakes.filter(function(m) {
       var ago = daysAgo(m.date);
       return ago === 1 || ago === 3 || ago === 7 || ago === 15;
@@ -561,7 +557,18 @@ if ('serviceWorker' in navigator) {
     bar.style.display = 'flex';
     document.getElementById('zk-reminder-count').textContent = review.length;
   }
-  renderReminder();
+
+  // Wait for DOM ready before rendering
+  function initUI() {
+    renderHeatmap();
+    renderReminder();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUI);
+  } else {
+    initUI();
+  }
+  setInterval(renderHeatmap, 60000);
 })();
 
 </script>
