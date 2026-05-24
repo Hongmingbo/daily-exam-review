@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="每日中考复习 | 福建专用">
 <meta name="twitter:description" content="7科全覆盖 · 公式速背+易错题+试卷真题">
-<title>每日中考复习资料 - 洪明博</title>
+<title>每日中考复习资料</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -23,7 +23,7 @@
 <button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
 <header class="site-header physics">
   <h1>📚 每日中考复习资料</h1>
-  <p>洪明博 · 2026年福建中考备考</p>
+  <p>2026年福建中考备考</p>
 </header>
 
 <!-- Exam countdown bar -->
@@ -121,6 +121,23 @@ body.dark .countdown-bar { background: linear-gradient(135deg, #0d0d1a 0%, #1118
   }
   tick();
   setInterval(tick, 1000);
+})();
+
+
+// Study days countdown
+(function(){
+  var exam = new Date(2026, 5, 21);
+  var now = new Date();
+  var studyDays = 0;
+  var d = new Date(now);
+  d.setHours(0,0,0,0);
+  while(d < exam) {
+    var dow = d.getDay();
+    if(dow !== 0) studyDays++;
+    d.setDate(d.getDate() + 1);
+  }
+  var el = document.getElementById('cd-study-days');
+  if(el) el.textContent = '⏱️ 约' + studyDays + '个学习日（不含周日）';
 })();
 
 // 昨天快捷入口：根据星期计算昨天科目
