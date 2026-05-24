@@ -146,15 +146,14 @@ body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 1
 <div id="empty-state" class="ml-empty" style="display:none">
   <div class="icon">📒</div>
   <p id="empty-msg">还没有错题记录</p>
-  <div class="ml-actions">
-    <a href="index.html" class="btn-export">去复习 →</a>
-    <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
-    <button class="btn-export" onclick="backupAllData()" style="flex:1;min-width:120px" title="备份错题+收藏+打卡所有数据">💾 备份全部数据</button>
-    <button class="btn-export" onclick="restoreData()" style="flex:1;min-width:120px;background:#fef3c7;color:#92400e;border-color:#fcd34d" title="从备份文本恢复数据">📥 恢复数据</button>
-  </div>
-    <button class="btn-export" onclick="exportErrors()" style="margin-top:6px;display:block;width:100%">📋 导出错题（复制到剪贴板）</button>
-    <button class="btn-export" onclick="exportErrors()" style="margin-right:6px" title="复制所有错题为文本">📋 导出</button><button class="btn-clear" onclick="confirmClear()">清空全部</button>
-  </div>
+</div>
+
+<!-- Action buttons: always visible, independent of error-list -->
+<div id="zk-mistake-actions" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+  <button class="btn-export" onclick="backupAllData()" style="flex:1;min-width:100px" title="备份错题+收藏+打卡所有数据">💾 备份全部数据</button>
+  <button class="btn-export" onclick="restoreData()" style="flex:1;min-width:100px;background:#fef3c7;color:#92400e;border-color:#fcd34d" title="从备份文本恢复数据">📥 恢复数据</button>
+  <button class="btn-export" id="zk-btn-export" onclick="exportErrors()" style="flex:1;min-width:120px" title="复制所有错题为文本">📋 导出错题</button>
+  <button class="btn-clear" onclick="confirmClear()" style="flex:1;min-width:80px">清空全部</button>
 </div>
 
 </div>
@@ -412,10 +411,12 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
       listEl.innerHTML = '';
       emptyEl.style.display = 'block';
       document.getElementById('empty-msg').textContent = '还没有错题记录，快去复习吧';
+      document.getElementById('zk-btn-export').style.display = 'none';
       return;
     }
 
     emptyEl.style.display = 'none';
+    document.getElementById('zk-btn-export').style.display = '';</｜DSML｜parameter>
 
     var html = '';
     filtered.forEach(function (m) {
