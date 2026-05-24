@@ -140,12 +140,12 @@
 
     var subjectLabels = ['⚡物理','📝语文','📐数学','📖英语','🧪化学','🏛️历史','🎯政治'];
     var colors = ['#f39c12','#e74c3c','#3498db','#9b59b6','#27ae60','#e67e22','#1abc9c'];
-    var subjColor = colors[qIndex] || '#f39c12';
+    var subjColor = colors[subjectIdx] || '#f39c12';
 
     card.innerHTML = [
       '<div style="text-align:center;margin-bottom:16px">',
         '<span style="display:inline-block;background:' + subjColor + ';color:white;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:600">',
-          '📅 每日一题 · ' + subjectLabels[qIndex],
+          '📅 每日一题 · ' + subjectLabels[subjectIdx],
         '</span>',
       '</div>',
       '<p style="font-size:0.95rem;font-weight:600;margin-bottom:14px;line-height:1.5;color:#1e293b">' + q.q + '</p>',
