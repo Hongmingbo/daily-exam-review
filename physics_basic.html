@@ -3,26 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>物理复习资料 - 每日中考复习</title>
+  <title>物理 · 知识点复习 - 每日中考复习</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <!-- Math formulas use Unicode characters (²³√≠≤≥ρΩπ), no KaTeX needed -->
+  <style>
+  .physics-header { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+  .physics-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+  .physics-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+  .physics-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+  .physics-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
+  </style>
 <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
-  <header class="content-header">
+<header class="physics-header">
   <button onclick="window.print()" style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:8px;padding:4px 12px;font-size:0.75rem;color:white;cursor:pointer;z-index:10">🖨 打印</button>
   <button id="mode-toggle" onclick="void(0)" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:8px;padding:4px 12px;font-size:0.75rem;color:white;cursor:pointer;z-index:10">⚡ 精简版</button>
 
-    <a href="index.html" class="back-link">← 返回首页</a>
-    <h1>⚡ 物理复习资料</h1>
-    <p>2026年5月17日 · 每周轮播 · 距中考35天</p>
-  </header>
-  <main class="content-body">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>⚡ 物理 · 知识点复习</h1>
+  <p>力学 · 电学 · 热学 · 光学 · 电磁学 · 2026年5月</p>
+  <span class="badge">📖 核心公式 · 物理</span>
+</header>
 
-    <!-- 考点速记 -->
+<div class="container">
+
+  <!-- 考点速记 -->
     <div class="content-card">
       <h2>📌 力学核心公式</h2>
 
@@ -219,7 +228,13 @@
       </div>
     </div>
 
-  </main>
+  <div class="page-nav">
+    <a href="physics_paper.html">← 试卷练习</a>
+    <a href="index.html" class="next">返回首页 →</a>
+  </div>
+
+</div>
+
 <script src="dark-mode.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
