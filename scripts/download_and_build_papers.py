@@ -327,7 +327,7 @@ def main():
 
     git = ["git", "-C", str(REPO_DIR)]
     subprocess.run(git + ["config", "user.name", "Hongmingbo"], capture_output=True)
-    subprocess.run(git + ["config", "user.email", "hongmingbo2011@163.com"], capture_output=True)
+    subprocess.run(git + ["config", "user.email", "user@users.noreply.github.com"], capture_output=True)
     subprocess.run(git + ["add", "*.html", "sw.js", "scripts/download_and_build_papers.py", "images/"], capture_output=True)
     status = subprocess.run(git + ["status", "--porcelain"], capture_output=True, text=True)
     if status.stdout.strip():
