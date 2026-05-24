@@ -1,213 +1,213 @@
-     1|<!DOCTYPE html>
-     2|<html lang="zh-CN">
-     3|<head>
-     4|<meta charset="UTF-8">
-     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-     6|<title>📒 错题本 - 每日中考复习</title>
-     7|<link rel="preconnect" href="https://fonts.googleapis.com">
-     8|<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-     9|<link rel="stylesheet" href="style.css">
-    10|<link rel="manifest" href="manifest.json">
-    11|<style>
-    12|.ml-header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
-    13|.ml-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
-    14|.ml-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
-    15|.ml-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
-    16|.ml-header .streak { position: relative; margin-top: 6px; font-size: 0.82rem; }
-    17|
-    18|.add-form { background: var(--bg-card); border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow-sm); }
-    19|.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-    20|.form-row.full { grid-template-columns: 1fr; }
-    21|select.form-input, textarea.form-input, input.form-input { width: 100%; background: var(--bg-input); border: 1.5px solid var(--border-color); border-radius: 10px; padding: 9px 12px; font-size: 0.88rem; color: var(--text-primary); font-family: inherit; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
-    22|select.form-input:focus, textarea.form-input:focus, input.form-input:focus { border-color: #e74c3c; }
-    23|textarea.form-input { resize: vertical; min-height: 70px; line-height: 1.5; }
-    24|select.form-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-    25|.btn-add { width: 100%; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
-    26|.btn-add:hover { opacity: 0.9; }
-    27|
-    28|.error-card { background: var(--bg-card); border-radius: 12px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--c, #e74c3c); }
-    29|.error-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-    30|.error-subject { font-weight: 700; font-size: 0.85rem; color: var(--c, #e74c3c); }
-    31|.error-type { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-muted); }
-    32|.error-type.concept { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
-    33|.error-type.calc { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
-    34|.error-type.careless { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
-    35|.error-type.reading { background: #f3e8ff; color: #7c3aed; border-color: #c4b5fd; }
-    36|body.dark .error-type.concept { background: #451a03; color: #fcd34d; border-color: #92400e; }
-    37|body.dark .error-type.calc { background: #450a0a; color: #fca5a5; border-color: #dc2626; }
-    38|body.dark .error-type.careless { background: #164e63; color: #7dd3fc; border-color: #0369a1; }
-    39|body.dark .error-type.reading { background: #3b0764; color: #c4b5fd; border-color: #7c3aed; }
-    40|.error-date { font-size: 0.72rem; color: var(--text-muted); margin-left: auto; }
-    41|.error-problem { font-size: 0.88rem; color: var(--text-primary); font-weight: 500; margin-bottom: 6px; line-height: 1.5; }
-    42|.error-answer { font-size: 0.82rem; color: #27ae60; margin-bottom: 5px; }
-    43|.error-answer::before { content: '✅ 正确答案：'; font-weight: 600; }
-    44|.error-notes { font-size: 0.82rem; color: var(--text-secondary); font-style: italic; margin-bottom: 8px; line-height: 1.5; }
-    45|.error-actions { display: flex; gap: 6px; justify-content: flex-end; }
-    46|.btn-del { background: #fff5f5; color: #e74c3c; border: 1px solid #fecaca; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; cursor: pointer; }
-    47|body.dark .btn-del { background: #450a0a; border-color: #7f1d1d; }
-    48|.btn-goto { background: #f0fdf4; color: #27ae60; border: 1px solid #bbf7d0; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; text-decoration: none; }
-    49|body.dark .btn-goto { background: #14532d; border-color: #166534; }
-    50|
-    51|.filter-bar { display: flex; gap: 6px; overflow-x: auto; padding: 0 14px 10px; scrollbar-width: none; flex-wrap: wrap; }
-    52|.filter-bar::-webkit-scrollbar { display: none; }
-    53|.filter-btn { flex-shrink: 0; background: var(--bg-card); border: 1.5px solid var(--border-color); border-radius: 20px; padding: 5px 13px; font-size: 0.78rem; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; white-space: nowrap; }
-    54|.filter-btn:hover { border-color: #e74c3c; color: #e74c3c; }
-    55|.filter-btn.active { background: #e74c3c; color: white; border-color: #e74c3c; }
-    56|.filter-btn[data-sub="physics"].active { background: #f39c12; border-color: #f39c12; }
-    57|.filter-btn[data-sub="math"].active { background: #3498db; border-color: #3498db; }
-    58|.filter-btn[data-sub="chinese"].active { background: #e74c3c; border-color: #e74c3c; }
-    59|.filter-btn[data-sub="english"].active { background: #9b59b6; border-color: #9b59b6; }
-    60|.filter-btn[data-sub="chemistry"].active { background: #27ae60; border-color: #27ae60; }
-    61|.filter-btn[data-sub="history"].active { background: #e67e22; border-color: #e67e22; }
-    62|.filter-btn[data-sub="politics"].active { background: #1abc9c; border-color: #1abc9c; }
-    63|
-    64|.stats-row { display: flex; gap: 8px; margin-bottom: 12px; }
-    65|.stat-chip { flex: 1; background: var(--bg-card); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: var(--shadow-sm); }
-    66|.stat-chip .num { font-size: 1.3rem; font-weight: 700; color: var(--c, #e74c3c); }
-    67|.stat-chip .label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
-    68|.stat-chip.concept { --c: #f59e0b; }
-    69|.stat-chip.calc { --c: #dc2626; }
-    70|.stat-chip.careless { --c: #0284c7; }
-    71|.stat-chip.reading { --c: #7c3aed; }
-    72|
-    73|.ml-empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
-    74|.ml-empty .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    75|.ml-actions { display: flex; gap: 8px; margin-top: 8px; }
-    76|.btn-export { flex: 1; background: #f0fdf4; color: #27ae60; border: 1px solid #bbf7d0; border-radius: 10px; padding: 9px; font-size: 0.82rem; cursor: pointer; text-align: center; text-decoration: none; }
-    77|.btn-clear { flex: 1; background: #fff5f5; color: #e74c3c; border: 1px solid #fecaca; border-radius: 10px; padding: 9px; font-size: 0.82rem; cursor: pointer; }
-    78|body.dark .btn-export { background: #14532d; border-color: #166534; color: #86efac; }
-    79|body.dark .btn-clear { background: #450a0a; border-color: #7f1d1d; color: #fca5a5; }
-    80|
-    81|body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); }
-    82|@media print {
-    83|  .add-form, .filter-bar, .error-actions, #dark-toggle, .ml-header .btn { display: none !important; }
-    84|  .error-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
-    85|  body { background: white !important; color: black !important; }
-    86|}
-    87|</style>
-    88|</head>
-    89|<body>
-    90|<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
-    91|<header class="ml-header">
-    92|  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
-    93|  <h1>📒 错题本</h1>
-    94|  <p>记录每一次错误，中考前集中消灭</p>
-    95|  <div class="streak" id="ml-streak">🔥 暂无记录</div>
-    96|</header>
-    97|
-    98|<div class="filter-bar" id="filter-bar"></div>
-    99|
-   100|<div class="container">
-   101|
-   102|<!-- Add form -->
-   103|<div class="add-form">
-   104|  <h2 style="font-size:0.95rem;margin-bottom:12px;color:var(--text-primary)">➕ 添加错题</h2>
-   105|  <div class="form-row">
-   106|    <select id="f-subject" class="form-input">
-   107|      <option value="">选择科目</option>
-   108|      <option value="math">📐 数学</option>
-   109|      <option value="physics">⚡ 物理</option>
-   110|      <option value="chinese">📝 语文</option>
-   111|      <option value="english">📖 英语</option>
-   112|      <option value="chemistry">🧪 化学</option>
-   113|      <option value="history">🏛️ 历史</option>
-   114|      <option value="politics">🎯 政治</option>
-   115|    </select>
-   116|    <select id="f-type" class="form-input">
-   117|      <option value="">错因类型</option>
-   118|      <option value="concept">🧠 概念不清</option>
-   119|      <option value="calc">🔢 计算失误</option>
-   120|      <option value="careless">😓 粗心大意</option>
-   121|      <option value="reading">📖 审题错误</option>
-   122|    </select>
-   123|  </div>
-   124|  <div class="form-row full">
-   125|    <textarea id="f-problem" class="form-input" placeholder="📋 错题描述（题目大意，或直接写错误原因）"></textarea>
-   126|  </div>
-   127|  <div class="form-row full">
-   128|    <input id="f-answer" class="form-input" type="text" placeholder="✅ 正确答案 / 正确解法">
-   129|  </div>
-   130|  <div class="form-row full">
-   131|    <textarea id="f-notes" class="form-input" placeholder="💡 我的理解 / 防止再错的记忆点" style="min-height:56px"></textarea>
-   132|  </div>
-   133|  <button class="btn-add" onclick="addError()">记录这道错题</button>
-   134|</div>
-   135|
-   136|<!-- Stats -->
-   137|<div class="stats-row" id="stats-row">
-   138|  <div class="stat-chip concept"><div class="num" id="stat-concept">0</div><div class="label">概念不清</div></div>
-   139|  <div class="stat-chip calc"><div class="num" id="stat-calc">0</div><div class="label">计算失误</div></div>
-   140|  <div class="stat-chip careless"><div class="num" id="stat-careless">0</div><div class="label">粗心大意</div></div>
-   141|  <div class="stat-chip reading"><div class="num" id="stat-reading">0</div><div class="label">审题错误</div></div>
-   142|</div>
-   143|
-   144|<!-- List -->
-   145|<div id="error-list"></div>
-   146|<div id="empty-state" class="ml-empty" style="display:none">
-   147|  <div class="icon">📒</div>
-   148|  <p id="empty-msg">还没有错题记录</p>
-   149|  <div class="ml-actions">
-   150|    <a href="index.html" class="btn-export">去复习 →</a>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📒 错题本 - 每日中考复习</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.ml-header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+.ml-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+.ml-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+.ml-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+.ml-header .streak { position: relative; margin-top: 6px; font-size: 0.82rem; }
+
+.add-form { background: var(--bg-card); border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow-sm); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.form-row.full { grid-template-columns: 1fr; }
+select.form-input, textarea.form-input, input.form-input { width: 100%; background: var(--bg-input); border: 1.5px solid var(--border-color); border-radius: 10px; padding: 9px 12px; font-size: 0.88rem; color: var(--text-primary); font-family: inherit; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+select.form-input:focus, textarea.form-input:focus, input.form-input:focus { border-color: #e74c3c; }
+textarea.form-input { resize: vertical; min-height: 70px; line-height: 1.5; }
+select.form-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+.btn-add { width: 100%; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
+.btn-add:hover { opacity: 0.9; }
+
+.error-card { background: var(--bg-card); border-radius: 12px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--c, #e74c3c); }
+.error-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.error-subject { font-weight: 700; font-size: 0.85rem; color: var(--c, #e74c3c); }
+.error-type { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-muted); }
+.error-type.concept { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+.error-type.calc { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+.error-type.careless { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
+.error-type.reading { background: #f3e8ff; color: #7c3aed; border-color: #c4b5fd; }
+body.dark .error-type.concept { background: #451a03; color: #fcd34d; border-color: #92400e; }
+body.dark .error-type.calc { background: #450a0a; color: #fca5a5; border-color: #dc2626; }
+body.dark .error-type.careless { background: #164e63; color: #7dd3fc; border-color: #0369a1; }
+body.dark .error-type.reading { background: #3b0764; color: #c4b5fd; border-color: #7c3aed; }
+.error-date { font-size: 0.72rem; color: var(--text-muted); margin-left: auto; }
+.error-problem { font-size: 0.88rem; color: var(--text-primary); font-weight: 500; margin-bottom: 6px; line-height: 1.5; }
+.error-answer { font-size: 0.82rem; color: #27ae60; margin-bottom: 5px; }
+.error-answer::before { content: '✅ 正确答案：'; font-weight: 600; }
+.error-notes { font-size: 0.82rem; color: var(--text-secondary); font-style: italic; margin-bottom: 8px; line-height: 1.5; }
+.error-actions { display: flex; gap: 6px; justify-content: flex-end; }
+.btn-del { background: #fff5f5; color: #e74c3c; border: 1px solid #fecaca; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; cursor: pointer; }
+body.dark .btn-del { background: #450a0a; border-color: #7f1d1d; }
+.btn-goto { background: #f0fdf4; color: #27ae60; border: 1px solid #bbf7d0; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; text-decoration: none; }
+body.dark .btn-goto { background: #14532d; border-color: #166534; }
+
+.filter-bar { display: flex; gap: 6px; overflow-x: auto; padding: 0 14px 10px; scrollbar-width: none; flex-wrap: wrap; }
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-btn { flex-shrink: 0; background: var(--bg-card); border: 1.5px solid var(--border-color); border-radius: 20px; padding: 5px 13px; font-size: 0.78rem; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; white-space: nowrap; }
+.filter-btn:hover { border-color: #e74c3c; color: #e74c3c; }
+.filter-btn.active { background: #e74c3c; color: white; border-color: #e74c3c; }
+.filter-btn[data-sub="physics"].active { background: #f39c12; border-color: #f39c12; }
+.filter-btn[data-sub="math"].active { background: #3498db; border-color: #3498db; }
+.filter-btn[data-sub="chinese"].active { background: #e74c3c; border-color: #e74c3c; }
+.filter-btn[data-sub="english"].active { background: #9b59b6; border-color: #9b59b6; }
+.filter-btn[data-sub="chemistry"].active { background: #27ae60; border-color: #27ae60; }
+.filter-btn[data-sub="history"].active { background: #e67e22; border-color: #e67e22; }
+.filter-btn[data-sub="politics"].active { background: #1abc9c; border-color: #1abc9c; }
+
+.stats-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.stat-chip { flex: 1; background: var(--bg-card); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: var(--shadow-sm); }
+.stat-chip .num { font-size: 1.3rem; font-weight: 700; color: var(--c, #e74c3c); }
+.stat-chip .label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+.stat-chip.concept { --c: #f59e0b; }
+.stat-chip.calc { --c: #dc2626; }
+.stat-chip.careless { --c: #0284c7; }
+.stat-chip.reading { --c: #7c3aed; }
+
+.ml-empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
+.ml-empty .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.ml-actions { display: flex; gap: 8px; margin-top: 8px; }
+.btn-export { flex: 1; background: #f0fdf4; color: #27ae60; border: 1px solid #bbf7d0; border-radius: 10px; padding: 9px; font-size: 0.82rem; cursor: pointer; text-align: center; text-decoration: none; }
+.btn-clear { flex: 1; background: #fff5f5; color: #e74c3c; border: 1px solid #fecaca; border-radius: 10px; padding: 9px; font-size: 0.82rem; cursor: pointer; }
+body.dark .btn-export { background: #14532d; border-color: #166534; color: #86efac; }
+body.dark .btn-clear { background: #450a0a; border-color: #7f1d1d; color: #fca5a5; }
+
+body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); }
+@media print {
+  .add-form, .filter-bar, .error-actions, #dark-toggle, .ml-header .btn { display: none !important; }
+  .error-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  body { background: white !important; color: black !important; }
+}
+</style>
+</head>
+<body>
+<button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
+<header class="ml-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>📒 错题本</h1>
+  <p>记录每一次错误，中考前集中消灭</p>
+  <div class="streak" id="ml-streak">🔥 暂无记录</div>
+</header>
+
+<div class="filter-bar" id="filter-bar"></div>
+
+<div class="container">
+
+<!-- Add form -->
+<div class="add-form">
+  <h2 style="font-size:0.95rem;margin-bottom:12px;color:var(--text-primary)">➕ 添加错题</h2>
+  <div class="form-row">
+    <select id="f-subject" class="form-input">
+      <option value="">选择科目</option>
+      <option value="math">📐 数学</option>
+      <option value="physics">⚡ 物理</option>
+      <option value="chinese">📝 语文</option>
+      <option value="english">📖 英语</option>
+      <option value="chemistry">🧪 化学</option>
+      <option value="history">🏛️ 历史</option>
+      <option value="politics">🎯 政治</option>
+    </select>
+    <select id="f-type" class="form-input">
+      <option value="">错因类型</option>
+      <option value="concept">🧠 概念不清</option>
+      <option value="calc">🔢 计算失误</option>
+      <option value="careless">😓 粗心大意</option>
+      <option value="reading">📖 审题错误</option>
+    </select>
+  </div>
+  <div class="form-row full">
+    <textarea id="f-problem" class="form-input" placeholder="📋 错题描述（题目大意，或直接写错误原因）"></textarea>
+  </div>
+  <div class="form-row full">
+    <input id="f-answer" class="form-input" type="text" placeholder="✅ 正确答案 / 正确解法">
+  </div>
+  <div class="form-row full">
+    <textarea id="f-notes" class="form-input" placeholder="💡 我的理解 / 防止再错的记忆点" style="min-height:56px"></textarea>
+  </div>
+  <button class="btn-add" onclick="addError()">记录这道错题</button>
+</div>
+
+<!-- Stats -->
+<div class="stats-row" id="stats-row">
+  <div class="stat-chip concept"><div class="num" id="stat-concept">0</div><div class="label">概念不清</div></div>
+  <div class="stat-chip calc"><div class="num" id="stat-calc">0</div><div class="label">计算失误</div></div>
+  <div class="stat-chip careless"><div class="num" id="stat-careless">0</div><div class="label">粗心大意</div></div>
+  <div class="stat-chip reading"><div class="num" id="stat-reading">0</div><div class="label">审题错误</div></div>
+</div>
+
+<!-- List -->
+<div id="error-list"></div>
+<div id="empty-state" class="ml-empty" style="display:none">
+  <div class="icon">📒</div>
+  <p id="empty-msg">还没有错题记录</p>
+  <div class="ml-actions">
+    <a href="index.html" class="btn-export">去复习 →</a>
     <button class="btn-export" onclick="exportErrors()" style="margin-top:6px;display:block;width:100%">📋 导出错题（复制到剪贴板）</button>
-   151|    <button class="btn-export" onclick="exportErrors()" style="margin-right:6px" title="复制所有错题为文本">📋 导出</button><button class="btn-clear" onclick="confirmClear()">清空全部</button>
-   152|  </div>
-   153|</div>
-   154|
-   155|</div>
-   156|<script src="dark-mode.js"></script>
-   157|<script>
-   158|if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
-   159|</script>
-   160|<script>
-   161|(function () {
-   162|  var KEY = 'zk-mistakes';
-   163|  var SUBJECTS = {
-   164|    math: { label: '📐 数学', color: '#3498db', page: 'math_basic.html' },
-   165|    physics: { label: '⚡ 物理', color: '#f39c12', page: 'physics_basic.html' },
-   166|    chinese: { label: '📝 语文', color: '#e74c3c', page: 'chinese_basic.html' },
-   167|    english: { label: '📖 英语', color: '#9b59b6', page: 'english_basic.html' },
-   168|    chemistry: { label: '🧪 化学', color: '#27ae60', page: 'chemistry_basic.html' },
-   169|    history: { label: '🏛️ 历史', color: '#e67e22', page: 'history_basic.html' },
-   170|    politics: { label: '🎯 政治', color: '#1abc9c', page: 'politics_basic.html' }
-   171|  };
-   172|  var TYPE_LABELS = { concept: '概念不清', calc: '计算失误', careless: '粗心大意', reading: '审题错误' };
-   173|  var activeFilter = 'all';
-   174|
-   175|  function getMistakes() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
-   176|  function setMistakes(arr) { try { localStorage.setItem(KEY, JSON.stringify(arr)); } catch (e) {} }
-   177|
-   178|  function todayStr() {
-   179|    var d = new Date();
-   180|    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-   181|  }
-   182|  function pad(n) { return n < 10 ? '0' + n : '' + n; }
-   183|
-   184|  window.addError = function () {
-   185|    var subj = document.getElementById('f-subject').value;
-   186|    var type = document.getElementById('f-type').value;
-   187|    var problem = document.getElementById('f-problem').value.trim();
-   188|    var answer = document.getElementById('f-answer').value.trim();
-   189|    var notes = document.getElementById('f-notes').value.trim();
-   190|    if (!subj) { showToast('请选择科目'); return; }
-   191|    if (!type) { showToast('请选择错因类型'); return; }
-   192|    if (!problem && !answer) { showToast('请填写题目或答案'); return; }
-   193|    var mistakes = getMistakes();
-   194|    mistakes.unshift({ id: Date.now(), subject: subj, errorType: type, problem: problem, answer: answer, notes: notes, date: todayStr() });
-   195|    setMistakes(mistakes);
-   196|    // Clear form
-   197|    ['f-subject','f-type','f-problem','f-answer','f-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
-   198|    render();
-   199|    showToast('已记录 ✓');
-   200|  };
-   201|
-   202|  window.delError = function (id) {
-   203|    var mistakes = getMistakes().filter(function (m) { return m.id !== id; });
-   204|    setMistakes(mistakes);
-   205|    render();
-   206|    showToast('已删除');
-   207|  };
-   208|
-   209|
+    <button class="btn-export" onclick="exportErrors()" style="margin-right:6px" title="复制所有错题为文本">📋 导出</button><button class="btn-clear" onclick="confirmClear()">清空全部</button>
+  </div>
+</div>
+
+</div>
+<script src="dark-mode.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(e) {}); }
+</script>
+<script>
+(function () {
+  var KEY = 'zk-mistakes';
+  var SUBJECTS = {
+    math: { label: '📐 数学', color: '#3498db', page: 'math_basic.html' },
+    physics: { label: '⚡ 物理', color: '#f39c12', page: 'physics_basic.html' },
+    chinese: { label: '📝 语文', color: '#e74c3c', page: 'chinese_basic.html' },
+    english: { label: '📖 英语', color: '#9b59b6', page: 'english_basic.html' },
+    chemistry: { label: '🧪 化学', color: '#27ae60', page: 'chemistry_basic.html' },
+    history: { label: '🏛️ 历史', color: '#e67e22', page: 'history_basic.html' },
+    politics: { label: '🎯 政治', color: '#1abc9c', page: 'politics_basic.html' }
+  };
+  var TYPE_LABELS = { concept: '概念不清', calc: '计算失误', careless: '粗心大意', reading: '审题错误' };
+  var activeFilter = 'all';
+
+  function getMistakes() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function setMistakes(arr) { try { localStorage.setItem(KEY, JSON.stringify(arr)); } catch (e) {} }
+
+  function todayStr() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  window.addError = function () {
+    var subj = document.getElementById('f-subject').value;
+    var type = document.getElementById('f-type').value;
+    var problem = document.getElementById('f-problem').value.trim();
+    var answer = document.getElementById('f-answer').value.trim();
+    var notes = document.getElementById('f-notes').value.trim();
+    if (!subj) { showToast('请选择科目'); return; }
+    if (!type) { showToast('请选择错因类型'); return; }
+    if (!problem && !answer) { showToast('请填写题目或答案'); return; }
+    var mistakes = getMistakes();
+    mistakes.unshift({ id: Date.now(), subject: subj, errorType: type, problem: problem, answer: answer, notes: notes, date: todayStr() });
+    setMistakes(mistakes);
+    // Clear form
+    ['f-subject','f-type','f-problem','f-answer','f-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
+    render();
+    showToast('已记录 ✓');
+  };
+
+  window.delError = function (id) {
+    var mistakes = getMistakes().filter(function (m) { return m.id !== id; });
+    setMistakes(mistakes);
+    render();
+    showToast('已删除');
+  };
+
+
   window.exportErrors = function () {
     var mistakes = getMistakes();
     if (!mistakes.length) { showToast('暂无错题可导出'); return; }
@@ -249,127 +249,126 @@
   }
 
   window.confirmClear = function () {
-   210|    if (!confirm('确定清空全部错题记录？此操作不可恢复。')) return;
-   211|    setMistakes([]);
-   212|    render();
-   213|    showToast('已清空');
-   214|  };
-   215|
-   216|  window.setFilter = function (subj) {
-   217|    activeFilter = subj;
-   218|    document.querySelectorAll('.filter-btn').forEach(function (btn) {
-   219|      btn.classList.toggle('active', btn.getAttribute('data-sub') === subj);
-   220|    });
-   221|    render();
-   222|  };
-   223|
-   224|  function getStreak() {
-   225|    var mistakes = getMistakes();
-   226|    if (!mistakes.length) return 0;
-   227|    var dates = {};
-   228|    mistakes.forEach(function (m) { dates[m.date] = true; });
-   229|    var streak = 0;
-   230|    var d = new Date();
-   231|    for (var i = 0; i < 365; i++) {
-   232|      var key = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-   233|      if (dates[key]) { streak++; d.setDate(d.getDate() - 1); }
-   234|      else break;
-   235|    }
-   236|    return streak;
-   237|  }
-   238|
-   239|  function updateStreak() {
-   240|    var streak = getStreak();
-   241|    var el = document.getElementById('ml-streak');
-   242|    if (streak > 0) {
-   243|      el.textContent = '🔥 连续记录 ' + streak + ' 天 · 共 ' + getMistakes().length + ' 道错题';
-   244|    } else {
-   245|      el.textContent = '共 ' + getMistakes().length + ' 道错题';
-   246|    }
-   247|  }
-   248|
-   249|  function updateStats() {
-   250|    var mistakes = getMistakes();
-   251|    var counts = { concept: 0, calc: 0, careless: 0, reading: 0 };
-   252|    mistakes.forEach(function (m) { if (counts[m.errorType] !== undefined) counts[m.errorType]++; });
-   253|    ['concept', 'calc', 'careless', 'reading'].forEach(function (t) {
-   254|      var el = document.getElementById('stat-' + t);
-   255|      if (el) el.textContent = counts[t];
-   256|    });
-   257|  }
-   258|
-   259|  function render() {
-   260|    var mistakes = getMistakes();
-   261|    var filtered = activeFilter === 'all' ? mistakes : mistakes.filter(function (m) { return m.subject === activeFilter; });
-   262|    var listEl = document.getElementById('error-list');
-   263|    var emptyEl = document.getElementById('empty-state');
-   264|    updateStreak();
-   265|    updateStats();
-   266|
-   267|    if (!mistakes.length) {
-   268|      listEl.innerHTML = '';
-   269|      emptyEl.style.display = 'block';
-   270|      document.getElementById('empty-msg').textContent = '还没有错题记录，快去复习吧';
-   271|      return;
-   272|    }
-   273|
-   274|    emptyEl.style.display = 'none';
-   275|
-   276|    var html = '';
-   277|    filtered.forEach(function (m) {
-   278|      var subj = SUBJECTS[m.subject] || SUBJECTS.math;
-   279|      html += '<div class="error-card" style="--c:' + subj.color + '">';
-   280|      html += '<div class="error-header">';
-   281|      html += '<span class="error-subject">' + subj.label + '</span>';
-   282|      html += '<span class="error-type ' + (m.errorType || '') + '">' + (TYPE_LABELS[m.errorType] || m.errorType) + '</span>';
-   283|      html += '<span class="error-date">' + m.date + '</span>';
-   284|      html += '</div>';
-   285|      if (m.problem) html += '<div class="error-problem">' + escapeHtml(m.problem) + '</div>';
-   286|      if (m.answer) html += '<div class="error-answer">' + escapeHtml(m.answer) + '</div>';
-   287|      if (m.notes) html += '<div class="error-notes">' + escapeHtml(m.notes) + '</div>';
-   288|      html += '<div class="error-actions">';
-   289|      html += '<a class="btn-goto" href="' + subj.page + '">去复习 →</a>';
-   290|      html += '<button class="btn-del" onclick="delError(' + m.id + ')">🗑 删除</button>';
-   291|      html += '</div></div>';
-   292|    });
-   293|
-   294|    listEl.innerHTML = html;
-   295|  }
-   296|
-   297|  function initFilters() {
-   298|    var bar = document.getElementById('filter-bar');
-   299|    var btns = [{ sub: 'all', label: '全部' }];
-   300|    Object.keys(SUBJECTS).forEach(function (k) { btns.push({ sub: k, label: SUBJECTS[k].label }); });
-   301|    bar.innerHTML = btns.map(function (b) {
-   302|      return '<button class="filter-btn' + (b.sub === 'all' ? ' active' : '') + '" data-sub="' + b.sub + '" onclick="setFilter(\'' + b.sub + '\')">' + b.label + '</button>';
-   303|    }).join('');
-   304|  }
-   305|
-   306|  function escapeHtml(s) {
-   307|    return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '<br>');
-   308|  }
-   309|
-   310|  function showToast(msg) {
-   311|    var existing = document.getElementById('zk-toast');
-   312|    if (existing) existing.remove();
-   313|    var toast = document.createElement('div');
-   314|    toast.id = 'zk-toast';
-   315|    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e293b;color:white;padding:8px 20px;border-radius:20px;font-size:0.85rem;z-index:99999;pointer-events:none;opacity:0;transition:opacity 0.3s;white-space:nowrap';
-   316|    toast.textContent = msg;
-   317|    document.body.appendChild(toast);
-   318|    requestAnimationFrame(function () { toast.style.opacity = '1'; });
-   319|    setTimeout(function () { toast.style.opacity = '0'; setTimeout(function () { toast.remove(); }, 300); }, 2000);
-   320|  }
-   321|
-   322|  // Enter key submits form
-   323|  document.addEventListener('keydown', function (e) {
-   324|    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) addError();
-   325|  });
-   326|
-   327|  initFilters();
-   328|  render();
-   329|})();
-   330|</script>
-   331|</body>
-   332|</html>
-   333|
+    if (!confirm('确定清空全部错题记录？此操作不可恢复。')) return;
+    setMistakes([]);
+    render();
+    showToast('已清空');
+  };
+
+  window.setFilter = function (subj) {
+    activeFilter = subj;
+    document.querySelectorAll('.filter-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-sub') === subj);
+    });
+    render();
+  };
+
+  function getStreak() {
+    var mistakes = getMistakes();
+    if (!mistakes.length) return 0;
+    var dates = {};
+    mistakes.forEach(function (m) { dates[m.date] = true; });
+    var streak = 0;
+    var d = new Date();
+    for (var i = 0; i < 365; i++) {
+      var key = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      if (dates[key]) { streak++; d.setDate(d.getDate() - 1); }
+      else break;
+    }
+    return streak;
+  }
+
+  function updateStreak() {
+    var streak = getStreak();
+    var el = document.getElementById('ml-streak');
+    if (streak > 0) {
+      el.textContent = '🔥 连续记录 ' + streak + ' 天 · 共 ' + getMistakes().length + ' 道错题';
+    } else {
+      el.textContent = '共 ' + getMistakes().length + ' 道错题';
+    }
+  }
+
+  function updateStats() {
+    var mistakes = getMistakes();
+    var counts = { concept: 0, calc: 0, careless: 0, reading: 0 };
+    mistakes.forEach(function (m) { if (counts[m.errorType] !== undefined) counts[m.errorType]++; });
+    ['concept', 'calc', 'careless', 'reading'].forEach(function (t) {
+      var el = document.getElementById('stat-' + t);
+      if (el) el.textContent = counts[t];
+    });
+  }
+
+  function render() {
+    var mistakes = getMistakes();
+    var filtered = activeFilter === 'all' ? mistakes : mistakes.filter(function (m) { return m.subject === activeFilter; });
+    var listEl = document.getElementById('error-list');
+    var emptyEl = document.getElementById('empty-state');
+    updateStreak();
+    updateStats();
+
+    if (!mistakes.length) {
+      listEl.innerHTML = '';
+      emptyEl.style.display = 'block';
+      document.getElementById('empty-msg').textContent = '还没有错题记录，快去复习吧';
+      return;
+    }
+
+    emptyEl.style.display = 'none';
+
+    var html = '';
+    filtered.forEach(function (m) {
+      var subj = SUBJECTS[m.subject] || SUBJECTS.math;
+      html += '<div class="error-card" style="--c:' + subj.color + '">';
+      html += '<div class="error-header">';
+      html += '<span class="error-subject">' + subj.label + '</span>';
+      html += '<span class="error-type ' + (m.errorType || '') + '">' + (TYPE_LABELS[m.errorType] || m.errorType) + '</span>';
+      html += '<span class="error-date">' + m.date + '</span>';
+      html += '</div>';
+      if (m.problem) html += '<div class="error-problem">' + escapeHtml(m.problem) + '</div>';
+      if (m.answer) html += '<div class="error-answer">' + escapeHtml(m.answer) + '</div>';
+      if (m.notes) html += '<div class="error-notes">' + escapeHtml(m.notes) + '</div>';
+      html += '<div class="error-actions">';
+      html += '<a class="btn-goto" href="' + subj.page + '">去复习 →</a>';
+      html += '<button class="btn-del" onclick="delError(' + m.id + ')">🗑 删除</button>';
+      html += '</div></div>';
+    });
+
+    listEl.innerHTML = html;
+  }
+
+  function initFilters() {
+    var bar = document.getElementById('filter-bar');
+    var btns = [{ sub: 'all', label: '全部' }];
+    Object.keys(SUBJECTS).forEach(function (k) { btns.push({ sub: k, label: SUBJECTS[k].label }); });
+    bar.innerHTML = btns.map(function (b) {
+      return '<button class="filter-btn' + (b.sub === 'all' ? ' active' : '') + '" data-sub="' + b.sub + '" onclick="setFilter(\'' + b.sub + '\')">' + b.label + '</button>';
+    }).join('');
+  }
+
+  function escapeHtml(s) {
+    return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '<br>');
+  }
+
+  function showToast(msg) {
+    var existing = document.getElementById('zk-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'zk-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e293b;color:white;padding:8px 20px;border-radius:20px;font-size:0.85rem;z-index:99999;pointer-events:none;opacity:0;transition:opacity 0.3s;white-space:nowrap';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function () { toast.style.opacity = '1'; });
+    setTimeout(function () { toast.style.opacity = '0'; setTimeout(function () { toast.remove(); }, 300); }, 2000);
+  }
+
+  // Enter key submits form
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) addError();
+  });
+
+  initFilters();
+  render();
+})();
+</script>
+</body>
+</html>
