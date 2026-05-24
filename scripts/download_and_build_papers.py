@@ -30,7 +30,82 @@ SUBJECTS = {
     "politics":  {"cn": "政治", "c1": "#1abc9c", "c2": "#16a085", "folder": "folder_7461792557071449", "icon": "🎯"},
 }
 WEEKDAY_SUBJECTS = ["physics", "chinese", "math", "english", "chemistry", "history", "politics"]
-BAD_TITLE_WORDS = ("听力原稿", "详细解析", "评析")
+BAD_TITLE_WORDS = ("听力原稿", "详细解析", "评析", "听力原文")
+ROTATION_STATE_FILE = REPO_DIR / "scripts" / "paper_rotation_state.json"
+
+
+def load_rotation_state():
+    """Load weekly rotation state from JSON file."""
+    if ROTATION_STATE_FILE.exists():
+        try:
+            return json.loads(ROTATION_STATE_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, KeyError):
+            pass
+    return {"week_number": 0, "subjects": {}}
+
+
+def save_rotation_state(state):
+    """Persist rotation state to JSON file."""
+    state["last_updated"] = date.today().isoformat()
+    ROTATION_STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def choose_rotating_pdf(pdfs, subj):
+    """Select a different PDF each week, cycling through all available papers.
+    
+    Rotation logic:
+    - Each subject has a rotation_index that increments weekly
+    - When all PDFs have been used, reset to 0 (cycle)
+    - Never repeat the same PDF two weeks in a row
+    """
+    if not pdfs:
+        return None
+    
+    state = load_rotation_state()
+    current_week = date.today().isocalendar()[1]
+    subj_state = state.get("subjects", {}).get(subj, {})
+    last_week = state.get("week_number", 0)
+    
+    # Build list of valid PDFs (excluding analysis-only docs)
+    valid_pdfs = []
+    for item in pdfs:
+        title = item.get("title", "")
+        if not any(w in title for w in BAD_TITLE_WORDS):
+            valid_pdfs.append(item)
+    if not valid_pdfs:
+        valid_pdfs = pdfs  # fallback: use all if filtering removes everything
+    
+    # If same week, return last used (no re-download needed)
+    if current_week == last_week and subj_state.get("last_used_media_id"):
+        last_id = subj_state["last_used_media_id"]
+        for item in valid_pdfs:
+            if item["media_id"] == last_id:
+                return item
+    
+    # New week: advance rotation
+    idx = subj_state.get("rotation_index", 0)
+    total = len(valid_pdfs)
+    
+    # If index is out of range (new PDFs added), wrap around
+    idx = idx % total
+    
+    selected = valid_pdfs[idx]
+    next_idx = (idx + 1) % total  # wrap around when exhausted
+    
+    # Update state
+    if "subjects" not in state:
+        state["subjects"] = {}
+    state["week_number"] = current_week
+    state["subjects"][subj] = {
+        "rotation_index": next_idx,
+        "last_used_media_id": selected["media_id"],
+        "last_used_title": selected.get("title", ""),
+    }
+    save_rotation_state(state)
+    
+    print(f"  Rotation: week={current_week}, idx={idx}/{total}, next={next_idx}")
+    print(f"  Selected: {selected.get('title', '?')}")
+    return selected
 
 def load_creds():
     cid = Path("/home/hmb/.config/ima/client_id").read_text().strip()
@@ -186,7 +261,7 @@ def process_subject(subj):
     print(f"\n=== {cfg['cn']} ({subj}) ===")
     pdfs = get_kb_pdfs(cfg["folder"])
     print(f"  KB PDFs: {len(pdfs)}")
-    item = choose_one_complete_pdf(pdfs)
+    item = choose_rotating_pdf(pdfs, subj)
     if not item:
         print("  No PDF found, skip")
         return False
