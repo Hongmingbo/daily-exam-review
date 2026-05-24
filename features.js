@@ -111,7 +111,10 @@
   function showDailyQuestionModal(btn) {
     // 获取今日科目对应的题目
     var dow = new Date().getDay(); // 0=周日
-    var qIndex = (dow === 0) ? 6 : dow - 1; // 周一→0, ..., 周六→5, 周日→6
+    var subjectIdx = (dow === 0) ? 6 : dow - 1; // 周一→0, ..., 周六→5, 周日→6
+    var startIdx = subjectIdx * 5; // 每科5题，取对应科目的题组
+    var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+    var qIndex = startIdx + (dayOfYear % 5); // 同科目内按日期轮换
     var q = DAILY_QUESTIONS[qIndex];
     if (!q) return;
 
