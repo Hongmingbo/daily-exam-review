@@ -210,6 +210,28 @@
     modal.appendChild(card);
     document.body.appendChild(modal);
 
+    // 深色模式适配
+    if (document.body.classList.contains('dark')) {
+      card.style.background = '#1e293b';
+      card.style.color = '#f1f5f9';
+      card.querySelectorAll('[style*="color:#1e293b"],[style*="color: #1e293b"]').forEach(function(el) {
+        el.style.color = '#f1f5f9';
+      });
+      card.querySelectorAll('[style*="border:1.5px solid #e2e8f0"]').forEach(function(el) {
+        el.style.borderColor = '#475569';
+      });
+      card.querySelectorAll('[style*="color:#374151"]').forEach(function(el) {
+        el.style.color = '#f1f5f9';
+      });
+      card.querySelectorAll('[style*="background:#e2e8f0"]').forEach(function(el) {
+        el.style.background = '#334155';
+        el.style.color = '#f1f5f9';
+      });
+      card.querySelectorAll('[style*="color:#64748b"]').forEach(function(el) {
+        el.style.color = '#94a3b8';
+      });
+    }
+
     // 填充选项（仅选择题）
     var optsDiv = document.getElementById('zk-q-options');
     if (!isFill && q.opts) {

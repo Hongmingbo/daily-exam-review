@@ -5,6 +5,7 @@ window.__ZK_MINDMAP__ = {
     title: "数学知识脉络",
     icon: "📐",
     color: "#3498db",
+    url: "math_paper.html",
     branches: [
       { label: "📌 核心公式", sub: ["勾股定理 · a²+b²=c²", "一元二次方程 · 求根公式+韦达定理", "圆 · 弧长/扇形/垂径定理", "三角函数 · sin²α+cos²α=1"] },
       { label: "⚠️ 易混概念", sub: ["频率 vs 概率（客观数据 vs 理论值）", "全等(≅) vs 相似(∽) · 面积比=相似比²", "一次函数 · k管倾斜/方向，b管截距"] },
@@ -16,6 +17,7 @@ window.__ZK_MINDMAP__ = {
     title: "英语知识脉络",
     icon: "📖",
     color: "#9b59b6",
+    url: "english_paper.html",
     branches: [
       { label: "📝 高频词汇", sub: ["动词短语：look forward to / take part in / put off", "形近词：alone vs lonely / receive vs accept", "介词搭配：in/on/at/by 四大金刚"] },
       { label: "📌 核心语法", sub: ["定语从句 · who/which/that + 先行词", "被动语态 · be + 过去分词", "宾语从句 · 陈述语序 + 时态呼应"] },
@@ -27,6 +29,7 @@ window.__ZK_MINDMAP__ = {
     title: "语文知识脉络",
     icon: "📚",
     color: "#e74c3c",
+    url: "chinese_paper.html",
     branches: [
       { label: "📝 必背古诗文", sub: ["课内古诗词：理解意象+情感+手法", "文言文实词：之/其/以/为/于 一词多义", "名句默写：高频考句每天背3句"] },
       { label: "📌 阅读理解", sub: ["记叙文：六要素+线索+中心思想", "说明文：说明方法+语言准确性", "议论文：论点+论据+论证方法"] },
@@ -38,6 +41,7 @@ window.__ZK_MINDMAP__ = {
     title: "物理知识脉络",
     icon: "⚡",
     color: "#2ecc71",
+    url: "physics_paper.html",
     branches: [
       { label: "📌 力学", sub: ["速度 v=s/t · 匀速/变速", "二力平衡 · 同体/等大/反向/共线", "压强 p=F/S · 固/液/大气压强"] },
       { label: "⚡ 电学", sub: ["欧姆定律 I=U/R · 串反并同", "电功率 P=UI · 额定/实际功率", "动态电路 · 滑动变阻器分析"] },
@@ -49,6 +53,7 @@ window.__ZK_MINDMAP__ = {
     title: "化学知识脉络",
     icon: "🧪",
     color: "#1abc9c",
+    url: "chemistry_paper.html",
     branches: [
       { label: "📌 物质构成", sub: ["分子/原子/离子 · 三粒子模型", "元素符号 · 熟记常见元素", "化学式 · 化合价口诀"] },
       { label: "⚗️ 化学反应", sub: ["四大基本反应类型：化合/分解/置换/复分解", "质量守恒定律 · 化学方程式配平", "金属活动性顺序 · KCaNaMgAl..."] },
@@ -60,6 +65,7 @@ window.__ZK_MINDMAP__ = {
     title: "历史知识脉络",
     icon: "🏛️",
     color: "#d35400",
+    url: "history_paper.html",
     branches: [
       { label: "📌 中国古代史", sub: ["先秦：诸子百家 · 百家争鸣", "秦汉：统一/郡县制/丝绸之路", "唐宋：三省六部/科举/经济重心南移"] },
       { label: "⚡ 中国近代史", sub: ["鸦片战争：南京条约/半殖民地", "洋务运动：师夷长技以自强", "辛亥革命：同盟会/三民主义/中华民国"] },
@@ -71,6 +77,7 @@ window.__ZK_MINDMAP__ = {
     title: "道德与法治脉络",
     icon: "⚖️",
     color: "#8e44ad",
+    url: "politics_paper.html",
     branches: [
       { label: "📌 成长中的我", sub: ["认识自我：优缺点/接纳变化", "学习：自主/合作/探究", "情绪：调控方法（理智/转移/幽默/暗示）"] },
       { label: "🤝 我与他人", sub: ["友谊：原则+澄清冲突", "师生：新型关系/主动沟通", "亲子：理解+换位思考"] },
