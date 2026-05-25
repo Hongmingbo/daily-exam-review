@@ -311,6 +311,13 @@
         showDailyQuestionModal(btn);
       });
       resultDiv.appendChild(retryBtn);
+      // Report error link
+      var reportLink = document.createElement("a");
+      reportLink.href = "https://github.com/Hongmingbo/daily-exam-review/issues/new?title=题目报错&body=请描述问题（科目/日期/题目内容）：";
+      reportLink.target = "_blank";
+      reportLink.style.cssText = "display:block;text-align:center;font-size:12px;color:#999;margin-top:8px;text-decoration:none";
+      reportLink.textContent = "🐛 本题有误？点此反馈";
+      resultDiv.appendChild(reportLink);
     });
 
     // 取消/关闭

@@ -536,6 +536,12 @@ body.dark .page-nav a {
 body.dark .paper-img-wrap {
   background: #1e293b;
 }
+body.dark .paper-img-wrap img {
+  background-color: #2c2c2c;
+  padding: 8px;
+  border-radius: 6px;
+  filter: brightness(0.9);
+}
 body.dark .paper-meta,
 body.dark .paper-caption {
   color: #e2e8f0 !important;
