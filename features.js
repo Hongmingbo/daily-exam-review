@@ -660,7 +660,7 @@
     if (!document.getElementById('zk-mask-style')) {
       var s = document.createElement('style');
       s.id = 'zk-mask-style';
-      s.textContent = '.paper-masked{position:relative;overflow:hidden}.paper-masked img{opacity:0;pointer-events:none}.paper-masked::after{content:"";position:absolute;inset:0;background:#f1f5f9;pointer-events:none}.paper-masked::before{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,0.12);color:#dc2626;padding:12px 28px;border-radius:24px;font-weight:700;font-size:0.95rem;border:2px dashed rgba(239,68,68,0.35);z-index:1;white-space:nowrap;letter-spacing:0.02em}body.dark .paper-masked::after{background:#1e293b}body.dark .paper-masked::before{color:#fca5a5;background:rgba(239,68,68,0.08);border-color:rgba(252,165,165,0.25)}';
+      s.textContent = '.paper-masked{position:relative;overflow:hidden}.paper-masked img{filter:blur(40px) saturate(0) brightness(0.6);transform:scale(1.1);pointer-events:none}.paper-masked::after{content:"";position:absolute;inset:0;background:rgba(241,245,249,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}.paper-masked::before{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,0.12);color:#dc2626;padding:12px 28px;border-radius:24px;font-weight:700;font-size:0.95rem;border:2px dashed rgba(239,68,68,0.35);z-index:1;white-space:nowrap;letter-spacing:0.02em}body.dark .paper-masked::after{background:rgba(30,41,59,0.7)}body.dark .paper-masked::before{color:#fca5a5;background:rgba(239,68,68,0.08);border-color:rgba(252,165,165,0.25)}';
       document.head.appendChild(s);
     }
   }

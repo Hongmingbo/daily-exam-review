@@ -6,33 +6,34 @@
 <title>问题反馈 · 中考复习</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.fb-wrap{max-width:480px;margin:0 auto;padding:0 4px}
-.fb-card{background:var(--bg-card,#fff);border-radius:16px;padding:22px 20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+/* 不用 .container，自己控制宽度，避免继承偏移 */
+.fb-page{max-width:520px;margin:0 auto;padding:16px 16px 32px;box-sizing:border-box}
+.fb-card{background:var(--bg-card,#fff);border-radius:16px;padding:22px 20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);box-sizing:border-box}
 .fb-title{font-size:1.15rem;font-weight:700;margin:0 0 6px;color:var(--text-primary)}
 .fb-subtitle{font-size:0.8rem;color:var(--text-mid,#64748b);margin-bottom:18px;line-height:1.55}
 .fb-label{display:block;font-weight:600;font-size:0.82rem;margin-bottom:5px;color:var(--text-secondary,#475569);letter-spacing:0.01em}
-.fb-input,.fb-select,.fb-textarea{width:100%;box-sizing:border-box;padding:11px 14px;border:1.5px solid var(--border,#e2e8f0);border-radius:10px;font-size:0.9rem;outline:none;margin-bottom:18px;background:var(--bg-body,#f8fafc);color:var(--text-primary,#1e293b);-webkit-appearance:none;transition:border-color .2s}
+.fb-input,.fb-select,.fb-textarea{display:block;width:100%;box-sizing:border-box;padding:11px 14px;border:1.5px solid var(--border,#e2e8f0);border-radius:10px;font-size:0.9rem;outline:none;margin-bottom:18px;background:var(--bg-body,#f8fafc);color:var(--text-primary,#1e293b);-webkit-appearance:none;transition:border-color .2s}
 .fb-input:focus,.fb-select:focus,.fb-textarea:focus{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.1)}
 body.dark .fb-input,body.dark .fb-select,body.dark .fb-textarea{border-color:#475569;background:#0f172a;color:#f1f5f9}
 body.dark .fb-input:focus,body.dark .fb-select:focus,body.dark .fb-textarea:focus{border-color:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,0.15)}
 .fb-textarea{min-height:110px;resize:vertical;font-family:inherit;line-height:1.5}
 .fb-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-.fb-btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ef4444,#dc2626);transition:transform .12s,box-shadow .2s;box-shadow:0 4px 14px rgba(239,68,68,0.3)}
+.fb-btn{display:block;width:100%;box-sizing:border-box;padding:14px;border:none;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ef4444,#dc2626);transition:transform .12s,box-shadow .2s;box-shadow:0 4px 14px rgba(239,68,68,0.3)}
 .fb-btn:active{transform:scale(0.97)}
-.fb-btn-outline{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border:1.5px solid var(--border,#e2e8f0);border-radius:12px;font-size:0.88rem;font-weight:600;cursor:pointer;background:transparent;color:var(--text-primary,#1e293b);transition:all .15s;text-decoration:none;margin-top:10px}
+.fb-btn-outline{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;box-sizing:border-box;padding:13px;border:1.5px solid var(--border,#e2e8f0);border-radius:12px;font-size:0.88rem;font-weight:600;cursor:pointer;background:transparent;color:var(--text-primary,#1e293b);transition:all .15s;text-decoration:none;margin-top:10px}
 .fb-btn-outline:active{transform:scale(0.97)}
 body.dark .fb-btn-outline{border-color:#475569;color:#e2e8f0}
 .fb-btn-outline:hover{border-color:#ef4444;color:#ef4444}
-.fb-result{display:none;background:var(--bg-card,#f0fdf4);border:1.5px solid #86efac;border-radius:14px;padding:18px;margin-top:18px}
+.fb-result{display:none;background:var(--bg-card,#f0fdf4);border:1.5px solid #86efac;border-radius:14px;padding:18px;margin-top:18px;box-sizing:border-box}
 body.dark .fb-result{background:#052e16;border-color:#166534}
 .fb-result-title{font-weight:700;font-size:0.92rem;margin-bottom:10px;color:#166534}
 body.dark .fb-result-title{color:#86efac}
-.fb-result-text{font-size:0.82rem;line-height:1.65;color:var(--text-secondary,#374151);white-space:pre-wrap;word-break:break-all;background:rgba(0,0,0,0.03);border-radius:8px;padding:12px;margin-bottom:12px}
+.fb-result-text{font-size:0.82rem;line-height:1.65;color:var(--text-secondary,#374151);white-space:pre-wrap;word-break:break-all;background:rgba(0,0,0,0.03);border-radius:8px;padding:12px;margin-bottom:12px;box-sizing:border-box}
 body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
 .fb-result-tip{text-align:center;font-size:0.78rem;color:var(--text-mid,#64748b);margin-top:10px;line-height:1.5}
-.fb-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-mid,#94a3b8);font-size:0.78rem}
+.fb-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--text-mid,#94a3b8);font-size:0.78rem}
 .fb-divider::before,.fb-divider::after{content:'';flex:1;height:1px;background:var(--border,#e2e8f0)}
-.fb-alt-card{background:var(--bg-card,#fff);border-radius:16px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.fb-alt-card{background:var(--bg-card,#fff);border-radius:16px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);box-sizing:border-box}
 .fb-alt-title{font-weight:700;font-size:0.92rem;margin-bottom:8px;color:var(--text-primary)}
 .fb-alt-tip{font-size:0.78rem;color:var(--text-mid,#64748b);margin-bottom:14px;line-height:1.5}
 .back-link{color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.85rem;display:inline-block;margin-bottom:6px}
@@ -47,7 +48,7 @@ body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
   <p>发现内容错误或使用问题？在这里提交反馈</p>
 </header>
 
-<div class="container fb-wrap">
+<div class="fb-page">
   <div class="fb-card">
     <div class="fb-title">📝 提交反馈</div>
     <div class="fb-subtitle">填写后会自动生成反馈文本，复制到<strong>微信</strong>发给我就行 ✅</div>
@@ -95,7 +96,7 @@ body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
   <div class="fb-alt-card">
     <div class="fb-alt-title">📧 邮件反馈</div>
     <div class="fb-alt-tip">微信不方便的话，也可以发邮件描述问题</div>
-    <a id="fb-mailto" href="#" class="fb-btn-outline">✉️ 打开邮件客户端</a>
+    <a id="fb-mailto" href="#" class="fb-btn-outline" style="display:flex">✉️ 打开邮件客户端</a>
   </div>
 </div>
 
