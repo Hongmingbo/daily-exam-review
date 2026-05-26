@@ -64,17 +64,6 @@ body.dark .fb-channel{border-color:#475569}
     <div class="fb-subtitle">选择一种方式提交反馈，我们会尽快处理</div>
 
     <div class="fb-channel">
-      <div class="fb-channel-icon" style="background:#07c160;color:#fff">💬</div>
-      <div class="fb-channel-info">
-        <div class="fb-channel-name">微信公众号留言</div>
-        <div class="fb-channel-desc">关注公众号「中考复习站」直接留言</div>
-      </div>
-      <div class="fb-channel-action">
-        <button class="fb-channel-btn" style="background:#07c160;color:#fff" onclick="copyText('中考复习站')">复制名称</button>
-      </div>
-    </div>
-
-    <div class="fb-channel">
       <div class="fb-channel-icon" style="background:#ef4444;color:#fff">📋</div>
       <div class="fb-channel-info">
         <div class="fb-channel-name">复制反馈文本</div>
@@ -89,7 +78,7 @@ body.dark .fb-channel{border-color:#475569}
       <div class="fb-channel-icon" style="background:#3b82f6;color:#fff">✉️</div>
       <div class="fb-channel-info">
         <div class="fb-channel-name">邮件反馈</div>
-        <div class="fb-channel-desc">填写表单后可自动生成邮件</div>
+        <div class="fb-channel-desc">hongmingbo2011@qq.com · 填写表单后可直接发送</div>
       </div>
       <div class="fb-channel-action">
         <button class="fb-channel-btn" style="background:#3b82f6;color:#fff" onclick="document.getElementById('fb-desc').focus()">去填写</button>
@@ -180,7 +169,7 @@ function copyFeedback(){
 function sendByEmail(){
   if(!_fbGeneratedText){generateFeedback();return}
   var sl=document.getElementById('fb-email-btn').dataset.subject||'中考复习反馈';
-  window.location.href='mailto:?subject='+encodeURIComponent(sl)+'&body='+encodeURIComponent(_fbGeneratedText);
+  window.location.href='mailto:hongmingbo2011@qq.com?subject='+encodeURIComponent(sl)+'&body='+encodeURIComponent(_fbGeneratedText);
 }
 
 function copyText(name){
