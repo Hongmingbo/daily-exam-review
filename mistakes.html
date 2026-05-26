@@ -256,7 +256,7 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
 
   window.backupAllData = function() {
     // Collect all localStorage keys related to the app
-    var keys = ['zk-mistakes','zk-favorites','zk-checkin','zk-answers-done','zk-view-mode','zk-dark-mode'];
+    var keys = ['zk-mistakes','zk-favorites','zk-checkin','zk-answers-done','zk-view-mode','zk-dark-mode','zk-study-time','zk-daily-quiz'];
     var backup = { version: 1, date: todayStr(), data: {} };
     keys.forEach(function(k) {
       var v = localStorage.getItem(k);
