@@ -10,42 +10,15 @@
 .fb-card{background:var(--bg-card,#fff);border-radius:16px;padding:22px 20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);box-sizing:border-box}
 .fb-title{font-size:1.15rem;font-weight:700;margin:0 0 6px;color:var(--text-primary)}
 .fb-subtitle{font-size:0.8rem;color:var(--text-mid,#64748b);margin-bottom:18px;line-height:1.55}
-.fb-label{display:block;font-weight:600;font-size:0.82rem;margin-bottom:5px;color:var(--text-secondary,#475569);letter-spacing:0.01em}
-.fb-input,.fb-select,.fb-textarea{display:block;width:100%;box-sizing:border-box;padding:11px 14px;border:1.5px solid var(--border,#e2e8f0);border-radius:10px;font-size:0.9rem;outline:none;margin-bottom:18px;background:var(--bg-body,#f8fafc);color:var(--text-primary,#1e293b);-webkit-appearance:none;transition:border-color .2s}
-.fb-input:focus,.fb-select:focus,.fb-textarea:focus{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.1)}
-body.dark .fb-input,body.dark .fb-select,body.dark .fb-textarea{border-color:#475569;background:#0f172a;color:#f1f5f9}
-body.dark .fb-input:focus,body.dark .fb-select:focus,body.dark .fb-textarea:focus{border-color:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,0.15)}
-.fb-textarea{min-height:110px;resize:vertical;font-family:inherit;line-height:1.5}
-.fb-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-.fb-btn{display:block;width:100%;box-sizing:border-box;padding:14px;border:none;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ef4444,#dc2626);transition:transform .12s,box-shadow .2s;box-shadow:0 4px 14px rgba(239,68,68,0.3)}
-.fb-btn:active{transform:scale(0.97)}
-.fb-btn-outline{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;box-sizing:border-box;padding:13px;border:1.5px solid var(--border,#e2e8f0);border-radius:12px;font-size:0.88rem;font-weight:600;cursor:pointer;background:transparent;color:var(--text-primary,#1e293b);transition:all .15s;text-decoration:none;margin-top:10px}
-.fb-btn-outline:active{transform:scale(0.97)}
-body.dark .fb-btn-outline{border-color:#475569;color:#e2e8f0}
-.fb-btn-outline:hover{border-color:#ef4444;color:#ef4444}
-.fb-result{display:none;background:var(--bg-card,#f0fdf4);border:1.5px solid #86efac;border-radius:14px;padding:18px;margin-top:18px;box-sizing:border-box}
-body.dark .fb-result{background:#052e16;border-color:#166534}
-.fb-result-title{font-weight:700;font-size:0.92rem;margin-bottom:10px;color:#166534}
-body.dark .fb-result-title{color:#86efac}
-.fb-result-text{font-size:0.82rem;line-height:1.65;color:var(--text-secondary,#374151);white-space:pre-wrap;word-break:break-all;background:rgba(0,0,0,0.03);border-radius:8px;padding:12px;margin-bottom:12px;box-sizing:border-box}
-body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
-.fb-result-tip{text-align:center;font-size:0.78rem;color:var(--text-mid,#64748b);margin-top:10px;line-height:1.5}
-.fb-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--text-mid,#94a3b8);font-size:0.78rem}
-.fb-divider::before,.fb-divider::after{content:'';flex:1;height:1px;background:var(--border,#e2e8f0)}
-.fb-alt-card{background:var(--bg-card,#fff);border-radius:16px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);box-sizing:border-box}
-.fb-alt-title{font-weight:700;font-size:0.92rem;margin-bottom:8px;color:var(--text-primary)}
-.fb-alt-tip{font-size:0.78rem;color:var(--text-mid,#64748b);margin-bottom:14px;line-height:1.5}
-.fb-channel{display:flex;align-items:center;gap:12px;padding:14px;border:1.5px solid var(--border,#e2e8f0);border-radius:12px;margin-bottom:10px;box-sizing:border-box}
-body.dark .fb-channel{border-color:#475569}
-.fb-channel-icon{font-size:1.6rem;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px}
-.fb-channel-info{flex:1;min-width:0}
-.fb-channel-name{font-weight:700;font-size:0.88rem;color:var(--text-primary)}
-.fb-channel-desc{font-size:0.75rem;color:var(--text-mid,#64748b);margin-top:2px}
-.fb-channel-action{flex-shrink:0}
-.fb-channel-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;border:none;transition:transform .1s}
-.fb-channel-btn:active{transform:scale(0.95)}
+.fb-iframe-wrap{position:relative;width:100%;padding-bottom:140%;height:0;overflow:hidden;border-radius:12px;border:1.5px solid var(--border,#e2e8f0)}
+body.dark .fb-iframe-wrap{border-color:#475569}
+.fb-iframe-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.fb-tip{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--bg-body,#f8fafc);border-radius:10px;margin-top:14px;font-size:0.78rem;color:var(--text-mid,#64748b);line-height:1.5}
+body.dark .fb-tip{background:#0f172a;color:#94a3b8}
+.fb-tip-icon{font-size:1.1rem;flex-shrink:0}
+.fb-alt-tip{font-size:0.82rem;color:var(--text-mid,#64748b);text-align:center;margin-top:10px;line-height:1.6}
 .back-link{color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.85rem;display:inline-block;margin-bottom:6px;position:relative;z-index:1}
-@media(max-width:400px){.fb-card,.fb-alt-card{padding:18px 16px;border-radius:14px}.fb-btn{padding:13px;font-size:0.9rem}}
+@media(max-width:400px){.fb-card{padding:18px 16px;border-radius:14px}.fb-iframe-wrap{padding-bottom:160%}}
 </style>
 </head>
 <body>
@@ -57,143 +30,19 @@ body.dark .fb-channel{border-color:#475569}
 </header>
 
 <div class="fb-page">
-
-  <!-- 反馈渠道 -->
-  <div class="fb-card">
-    <div class="fb-title">📮 反馈渠道</div>
-    <div class="fb-subtitle">选择一种方式提交反馈，我们会尽快处理</div>
-
-    <div class="fb-channel">
-      <div class="fb-channel-icon" style="background:#ef4444;color:#fff">📋</div>
-      <div class="fb-channel-info">
-        <div class="fb-channel-name">复制反馈文本</div>
-        <div class="fb-channel-desc">填写下方表单 → 生成文本 → 粘贴发送</div>
-      </div>
-      <div class="fb-channel-action">
-        <button class="fb-channel-btn" style="background:#ef4444;color:#fff" onclick="document.getElementById('fb-desc').focus()">去填写</button>
-      </div>
-    </div>
-
-    <div class="fb-channel">
-      <div class="fb-channel-icon" style="background:#3b82f6;color:#fff">✉️</div>
-      <div class="fb-channel-info">
-        <div class="fb-channel-name">邮件反馈</div>
-        <div class="fb-channel-desc">hongmingbo2011@qq.com · 填写表单后可直接发送</div>
-      </div>
-      <div class="fb-channel-action">
-        <button class="fb-channel-btn" style="background:#3b82f6;color:#fff" onclick="document.getElementById('fb-desc').focus()">去填写</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 反馈表单 -->
   <div class="fb-card">
     <div class="fb-title">📝 填写反馈</div>
-    <div class="fb-subtitle">填写后会自动生成反馈文本，复制后发送到上述任一渠道即可</div>
-
-    <label class="fb-label">反馈类型</label>
-    <select id="fb-type" class="fb-select">
-      <option value="题目错误">📝 题目/答案错误</option>
-      <option value="内容缺失">📦 内容缺失</option>
-      <option value="显示问题">🖥️ 显示/排版问题</option>
-      <option value="功能建议">💡 功能建议</option>
-      <option value="其他">📎 其他</option>
-    </select>
-
-    <label class="fb-label">涉及科目</label>
-    <select id="fb-subject" class="fb-select">
-      <option value="">（可选）选择科目</option>
-      <option value="物理">⚡ 物理</option>
-      <option value="语文">📝 语文</option>
-      <option value="数学">📐 数学</option>
-      <option value="英语">📖 英语</option>
-      <option value="化学">🧪 化学</option>
-      <option value="历史">📜 历史</option>
-      <option value="政治">⚖️ 政治</option>
-      <option value="网站通用">🌐 网站通用</option>
-    </select>
-
-    <label class="fb-label">问题描述 <span style="color:#ef4444">*</span></label>
-    <textarea id="fb-desc" class="fb-textarea" placeholder="越具体越好，例如：&#10;物理试卷第3页第5题，答案应该是B不是C"></textarea>
-
-    <label class="fb-label">联系方式（可选）</label>
-    <input id="fb-contact" class="fb-input" type="text" placeholder="微信号 / 手机号 / 邮箱，方便回复你">
-
-    <button type="button" class="fb-btn" onclick="generateFeedback()">📤 生成反馈文本</button>
-
-    <div id="fb-result" class="fb-result">
-      <div class="fb-result-title">✅ 反馈文本已生成</div>
-      <div id="fb-text" class="fb-result-text"></div>
-      <button type="button" class="fb-btn-outline" id="fb-copy-btn" onclick="copyFeedback()">📋 复制到剪贴板</button>
-      <button type="button" class="fb-btn-outline" id="fb-email-btn" onclick="sendByEmail()" style="margin-top:8px">✉️ 通过邮件发送</button>
-      <div class="fb-result-tip">复制后打开微信/邮件，粘贴发送即可</div>
+    <div class="fb-subtitle">直接在下方表单中填写并提交，我们会尽快处理 ✅</div>
+    <div class="fb-iframe-wrap">
+      <iframe src="https://wj.qq.com/s2/26820106/11si/" allowfullscreen></iframe>
+    </div>
+    <div class="fb-tip">
+      <span class="fb-tip-icon">💡</span>
+      <span>提交后反馈会自动汇总到后台，你也可以直接发邮件到 <strong style="color:var(--text-primary)">hongmingbo2011@qq.com</strong></span>
     </div>
   </div>
-
 </div>
 
 <script src="dark-mode.js"></script>
-<script>
-// 全局存储生成的反馈文本
-var _fbGeneratedText = '';
-
-function generateFeedback(){
-  var type=document.getElementById('fb-type').value;
-  var subject=document.getElementById('fb-subject').value||'未指定';
-  var desc=document.getElementById('fb-desc').value.trim();
-  var contact=document.getElementById('fb-contact').value.trim();
-  if(!desc){alert('请填写问题描述');return}
-  _fbGeneratedText='【中考复习网站反馈】\n'+
-    '类型：'+type+'\n'+
-    '科目：'+subject+'\n'+
-    '描述：'+desc+'\n'+
-    (contact?'联系：'+contact+'\n':'')+
-    '页面：'+location.href.split('?')[0].replace('feedback.html','')+'\n'+
-    '时间：'+new Date().toLocaleString('zh-CN');
-  document.getElementById('fb-text').textContent=_fbGeneratedText;
-  document.getElementById('fb-result').style.display='block';
-  // 更新邮件链接
-  var sl='[中考复习反馈] '+type+' - '+subject;
-  document.getElementById('fb-email-btn').dataset.subject=sl;
-  document.getElementById('fb-result').scrollIntoView({behavior:'smooth',block:'center'});
-}
-
-function copyFeedback(){
-  if(!_fbGeneratedText){generateFeedback();return}
-  var text=_fbGeneratedText;
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(function(){showBtnDone('fb-copy-btn','📋 复制到剪贴板','✅ 已复制！','#10b981')}).catch(function(){fallbackCopy(text)});
-  }else{fallbackCopy(text)}
-}
-
-function sendByEmail(){
-  if(!_fbGeneratedText){generateFeedback();return}
-  var sl=document.getElementById('fb-email-btn').dataset.subject||'中考复习反馈';
-  window.location.href='mailto:hongmingbo2011@qq.com?subject='+encodeURIComponent(sl)+'&body='+encodeURIComponent(_fbGeneratedText);
-}
-
-function copyText(name){
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(name).then(function(){showBtnDone(event.target,'复制名称','✅ 已复制','#07c160')}).catch(function(){fallbackCopy(name)});
-  }else{fallbackCopy(name)}
-}
-
-function fallbackCopy(text){
-  var ta=document.createElement('textarea');ta.value=text;
-  ta.style.cssText='position:fixed;left:-9999px';
-  document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');alert('✅ 已复制')}catch(e){alert('复制失败，请手动复制：\n'+text)}
-  document.body.removeChild(ta);
-}
-
-function showBtnDone(id,origText,doneText,color){
-  var btn=document.getElementById(id);
-  if(!btn){return}
-  var orig=btn.innerHTML;
-  btn.textContent=doneText;
-  btn.style.borderColor=color;btn.style.color=color;
-  setTimeout(function(){btn.innerHTML=orig;btn.style.borderColor='';btn.style.color=''},2000);
-}
-</script>
 </body>
 </html>
