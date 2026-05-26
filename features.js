@@ -210,38 +210,19 @@
     modal.appendChild(card);
     document.body.appendChild(modal);
 
-    // 深色模式适配
-    var isDarkMode = document.body.classList.contains('dark');
-    if (isDarkMode) {
-      card.style.background = '#1e293b';
-      card.style.color = '#f1f5f9';
-      card.querySelectorAll('[style*="color:#1e293b"],[style*="color: #1e293b"]').forEach(function(el) {
-        el.style.color = '#f1f5f9';
-      });
-      card.querySelectorAll('[style*="border:1.5px solid #e2e8f0"]').forEach(function(el) {
-        el.style.borderColor = '#475569';
-      });
-      card.querySelectorAll('[style*="color:#374151"]').forEach(function(el) {
-        el.style.color = '#e2e8f0';
-      });
-      card.querySelectorAll('[style*="background:#e2e8f0"]').forEach(function(el) {
-        el.style.background = '#334155';
-        el.style.color = '#f1f5f9';
-      });
-      card.querySelectorAll('[style*="color:#64748b"]').forEach(function(el) {
-        el.style.color = '#94a3b8';
-      });
-    }
-
     // 填充选项（仅选择题）
+    var isDarkMode = document.body.classList.contains('dark');
     var optsDiv = document.getElementById('zk-q-options');
     if (!isFill && q.opts) {
       q.opts.forEach(function (opt, i) {
         var label = document.createElement('label');
+        var optBorder = isDarkMode ? '#475569' : '#e2e8f0';
+        var optColor = isDarkMode ? '#e2e8f0' : '#374151';
         label.style.cssText = [
           'display:flex', 'align-items:center', 'gap:8px',
-          'padding:9px 12px', 'border-radius:8px', 'border:1.5px solid #e2e8f0',
-          'cursor:pointer', 'font-size:0.88rem', 'transition:all 0.15s', 'color:#374151'
+          'padding:9px 12px', 'border-radius:8px', 'border:1.5px solid ' + optBorder,
+          'cursor:pointer', 'font-size:0.88rem', 'transition:all 0.15s', 'color:' + optColor,
+          isDarkMode ? 'background:transparent' : ''
         ].join(';');
         label.innerHTML = '<input type="radio" name="zk-q" value="' + i + '" style="accent-color:' + subjColor + '"> ' + opt;
         label.addEventListener('click', function () {
@@ -261,6 +242,25 @@
       });
     } else {
       optsDiv.style.display = 'none';
+    }
+
+    // 深色模式适配（选项已创建，现在统一修复）
+    if (isDarkMode) {
+      card.style.background = '#1e293b';
+      card.style.color = '#f1f5f9';
+      card.querySelectorAll('[style*="color:#1e293b"],[style*="color: #1e293b"]').forEach(function(el) {
+        el.style.color = '#f1f5f9';
+      });
+      card.querySelectorAll('[style*="color:#374151"]').forEach(function(el) {
+        el.style.color = '#e2e8f0';
+      });
+      card.querySelectorAll('[style*="background:#e2e8f0"]').forEach(function(el) {
+        el.style.background = '#334155';
+        el.style.color = '#f1f5f9';
+      });
+      card.querySelectorAll('[style*="color:#64748b"]').forEach(function(el) {
+        el.style.color = '#94a3b8';
+      });
     }
 
     // 提交答案
@@ -660,7 +660,7 @@
     if (!document.getElementById('zk-mask-style')) {
       var s = document.createElement('style');
       s.id = 'zk-mask-style';
-      s.textContent = '.paper-masked{position:relative;overflow:hidden}.paper-masked img{filter:blur(30px) brightness(0.7);pointer-events:none;visibility:visible}.paper-masked::after{content:"";position:absolute;inset:0;background:rgba(30,41,59,0.95);pointer-events:none}.paper-masked::before{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,0.15);color:#dc2626;padding:10px 24px;border-radius:24px;font-weight:700;font-size:0.95rem;border:2px solid rgba(239,68,68,0.3);z-index:1;white-space:nowrap}body.dark .paper-masked::after{background:rgba(15,23,42,0.97)}body.dark .paper-masked::before{color:#fca5a5;background:rgba(239,68,68,0.1);border-color:rgba(252,165,165,0.3)}';
+      s.textContent = '.paper-masked{position:relative;overflow:hidden}.paper-masked img{opacity:0;pointer-events:none}.paper-masked::after{content:"";position:absolute;inset:0;background:#f1f5f9;pointer-events:none}.paper-masked::before{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,0.12);color:#dc2626;padding:12px 28px;border-radius:24px;font-weight:700;font-size:0.95rem;border:2px dashed rgba(239,68,68,0.35);z-index:1;white-space:nowrap;letter-spacing:0.02em}body.dark .paper-masked::after{background:#1e293b}body.dark .paper-masked::before{color:#fca5a5;background:rgba(239,68,68,0.08);border-color:rgba(252,165,165,0.25)}';
       document.head.appendChild(s);
     }
   }
