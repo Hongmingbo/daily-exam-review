@@ -6,7 +6,6 @@
 <title>问题反馈 · 中考复习</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* 不用 .container，自己控制宽度，避免继承偏移 */
 .fb-page{max-width:520px;margin:0 auto;padding:16px 16px 32px;box-sizing:border-box}
 .fb-card{background:var(--bg-card,#fff);border-radius:16px;padding:22px 20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);box-sizing:border-box}
 .fb-title{font-size:1.15rem;font-weight:700;margin:0 0 6px;color:var(--text-primary)}
@@ -36,6 +35,15 @@ body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
 .fb-alt-card{background:var(--bg-card,#fff);border-radius:16px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);box-sizing:border-box}
 .fb-alt-title{font-weight:700;font-size:0.92rem;margin-bottom:8px;color:var(--text-primary)}
 .fb-alt-tip{font-size:0.78rem;color:var(--text-mid,#64748b);margin-bottom:14px;line-height:1.5}
+.fb-channel{display:flex;align-items:center;gap:12px;padding:14px;border:1.5px solid var(--border,#e2e8f0);border-radius:12px;margin-bottom:10px;box-sizing:border-box}
+body.dark .fb-channel{border-color:#475569}
+.fb-channel-icon{font-size:1.6rem;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px}
+.fb-channel-info{flex:1;min-width:0}
+.fb-channel-name{font-weight:700;font-size:0.88rem;color:var(--text-primary)}
+.fb-channel-desc{font-size:0.75rem;color:var(--text-mid,#64748b);margin-top:2px}
+.fb-channel-action{flex-shrink:0}
+.fb-channel-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;border:none;transition:transform .1s}
+.fb-channel-btn:active{transform:scale(0.95)}
 .back-link{color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.85rem;display:inline-block;margin-bottom:6px}
 @media(max-width:400px){.fb-card,.fb-alt-card{padding:18px 16px;border-radius:14px}.fb-btn{padding:13px;font-size:0.9rem}}
 </style>
@@ -49,9 +57,50 @@ body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
 </header>
 
 <div class="fb-page">
+
+  <!-- 反馈渠道 -->
   <div class="fb-card">
-    <div class="fb-title">📝 提交反馈</div>
-    <div class="fb-subtitle">填写后会自动生成反馈文本，复制到<strong>微信</strong>发给我就行 ✅</div>
+    <div class="fb-title">📮 反馈渠道</div>
+    <div class="fb-subtitle">选择一种方式提交反馈，我们会尽快处理</div>
+
+    <div class="fb-channel">
+      <div class="fb-channel-icon" style="background:#07c160;color:#fff">💬</div>
+      <div class="fb-channel-info">
+        <div class="fb-channel-name">微信公众号留言</div>
+        <div class="fb-channel-desc">关注公众号「中考复习站」直接留言</div>
+      </div>
+      <div class="fb-channel-action">
+        <button class="fb-channel-btn" style="background:#07c160;color:#fff" onclick="copyText('中考复习站')">复制名称</button>
+      </div>
+    </div>
+
+    <div class="fb-channel">
+      <div class="fb-channel-icon" style="background:#ef4444;color:#fff">📋</div>
+      <div class="fb-channel-info">
+        <div class="fb-channel-name">复制反馈文本</div>
+        <div class="fb-channel-desc">填写下方表单 → 生成文本 → 粘贴发送</div>
+      </div>
+      <div class="fb-channel-action">
+        <button class="fb-channel-btn" style="background:#ef4444;color:#fff" onclick="document.getElementById('fb-desc').focus()">去填写</button>
+      </div>
+    </div>
+
+    <div class="fb-channel">
+      <div class="fb-channel-icon" style="background:#3b82f6;color:#fff">✉️</div>
+      <div class="fb-channel-info">
+        <div class="fb-channel-name">邮件反馈</div>
+        <div class="fb-channel-desc">填写表单后可自动生成邮件</div>
+      </div>
+      <div class="fb-channel-action">
+        <button class="fb-channel-btn" style="background:#3b82f6;color:#fff" onclick="document.getElementById('fb-desc').focus()">去填写</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 反馈表单 -->
+  <div class="fb-card">
+    <div class="fb-title">📝 填写反馈</div>
+    <div class="fb-subtitle">填写后会自动生成反馈文本，复制后发送到上述任一渠道即可</div>
 
     <label class="fb-label">反馈类型</label>
     <select id="fb-type" class="fb-select">
@@ -79,70 +128,82 @@ body.dark .fb-result-text{background:rgba(0,0,0,0.2);color:#d1d5db}
     <textarea id="fb-desc" class="fb-textarea" placeholder="越具体越好，例如：&#10;物理试卷第3页第5题，答案应该是B不是C"></textarea>
 
     <label class="fb-label">联系方式（可选）</label>
-    <input id="fb-contact" class="fb-input" type="text" placeholder="微信号 / 手机号，方便回复你">
+    <input id="fb-contact" class="fb-input" type="text" placeholder="微信号 / 手机号 / 邮箱，方便回复你">
 
-    <button class="fb-btn" onclick="generateFeedback()">📤 生成反馈文本</button>
+    <button type="button" class="fb-btn" onclick="generateFeedback()">📤 生成反馈文本</button>
 
     <div id="fb-result" class="fb-result">
       <div class="fb-result-title">✅ 反馈文本已生成</div>
       <div id="fb-text" class="fb-result-text"></div>
-      <button class="fb-btn-outline" onclick="copyFeedback()">📋 复制到剪贴板</button>
-      <div class="fb-result-tip">复制后打开微信 → 粘贴发给<strong>文件传输助手</strong>或直接发给我</div>
+      <button type="button" class="fb-btn-outline" id="fb-copy-btn" onclick="copyFeedback()">📋 复制到剪贴板</button>
+      <button type="button" class="fb-btn-outline" id="fb-email-btn" onclick="sendByEmail()" style="margin-top:8px">✉️ 通过邮件发送</button>
+      <div class="fb-result-tip">复制后打开微信/邮件，粘贴发送即可</div>
     </div>
   </div>
 
-  <div class="fb-divider">其他方式</div>
-
-  <div class="fb-alt-card">
-    <div class="fb-alt-title">📧 邮件反馈</div>
-    <div class="fb-alt-tip">微信不方便的话，也可以发邮件描述问题</div>
-    <a id="fb-mailto" href="#" class="fb-btn-outline" style="display:flex">✉️ 打开邮件客户端</a>
-  </div>
 </div>
 
 <script src="dark-mode.js"></script>
 <script>
+// 全局存储生成的反馈文本
+var _fbGeneratedText = '';
+
 function generateFeedback(){
   var type=document.getElementById('fb-type').value;
   var subject=document.getElementById('fb-subject').value||'未指定';
   var desc=document.getElementById('fb-desc').value.trim();
   var contact=document.getElementById('fb-contact').value.trim();
   if(!desc){alert('请填写问题描述');return}
-  var text='【中考复习网站反馈】\n'+
+  _fbGeneratedText='【中考复习网站反馈】\n'+
     '类型：'+type+'\n'+
     '科目：'+subject+'\n'+
     '描述：'+desc+'\n'+
     (contact?'联系：'+contact+'\n':'')+
-    '页面：'+location.href.split('?')[0]+'\n'+
+    '页面：'+location.href.split('?')[0].replace('feedback.html','')+'\n'+
     '时间：'+new Date().toLocaleString('zh-CN');
-  document.getElementById('fb-text').textContent=text;
+  document.getElementById('fb-text').textContent=_fbGeneratedText;
   document.getElementById('fb-result').style.display='block';
+  // 更新邮件链接
   var sl='[中考复习反馈] '+type+' - '+subject;
-  document.getElementById('fb-mailto').href='mailto:?subject='+encodeURIComponent(sl)+'&body='+encodeURIComponent(text);
+  document.getElementById('fb-email-btn').dataset.subject=sl;
   document.getElementById('fb-result').scrollIntoView({behavior:'smooth',block:'center'});
 }
+
 function copyFeedback(){
-  var text=document.getElementById('fb-text').textContent;
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(showCopyDone).catch(function(){fallbackCopy(text)})}
-  else{fallbackCopy(text)}
+  if(!_fbGeneratedText){generateFeedback();return}
+  var text=_fbGeneratedText;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){showBtnDone('fb-copy-btn','📋 复制到剪贴板','✅ 已复制！','#10b981')}).catch(function(){fallbackCopy(text)});
+  }else{fallbackCopy(text)}
 }
+
+function sendByEmail(){
+  if(!_fbGeneratedText){generateFeedback();return}
+  var sl=document.getElementById('fb-email-btn').dataset.subject||'中考复习反馈';
+  window.location.href='mailto:?subject='+encodeURIComponent(sl)+'&body='+encodeURIComponent(_fbGeneratedText);
+}
+
+function copyText(name){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(name).then(function(){showBtnDone(event.target,'复制名称','✅ 已复制','#07c160')}).catch(function(){fallbackCopy(name)});
+  }else{fallbackCopy(name)}
+}
+
 function fallbackCopy(text){
   var ta=document.createElement('textarea');ta.value=text;
   ta.style.cssText='position:fixed;left:-9999px';
   document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');showCopyDone()}catch(e){alert('复制失败，请手动选中文字复制')}
+  try{document.execCommand('copy');alert('✅ 已复制')}catch(e){alert('复制失败，请手动复制：\n'+text)}
   document.body.removeChild(ta);
 }
-function showCopyDone(){
-  var btns=document.querySelectorAll('.fb-btn-outline');
-  btns.forEach(function(btn){
-    if(btn.textContent.indexOf('复制')>=0){
-      var orig=btn.innerHTML;
-      btn.innerHTML='✅ 已复制！';
-      btn.style.borderColor='#10b981';btn.style.color='#10b981';
-      setTimeout(function(){btn.innerHTML=orig;btn.style.borderColor='';btn.style.color=''},2000);
-    }
-  });
+
+function showBtnDone(id,origText,doneText,color){
+  var btn=document.getElementById(id);
+  if(!btn){return}
+  var orig=btn.innerHTML;
+  btn.textContent=doneText;
+  btn.style.borderColor=color;btn.style.color=color;
+  setTimeout(function(){btn.innerHTML=orig;btn.style.borderColor='';btn.style.color=''},2000);
 }
 </script>
 </body>
