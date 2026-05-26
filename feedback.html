@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>问题反馈 · 中考复习</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.feedback-card{background:#fff;border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+body.dark .feedback-card{background:var(--bg-card)}
+label.fb{display:block;font-weight:600;font-size:0.88rem;margin-bottom:4px;color:var(--text-primary)}
+label.fb+input,label.fb+textarea,label.fb+select{width:100%;box-sizing:border-box;padding:10px 12px;border:1.5px solid var(--border,#e2e8f0);border-radius:8px;font-size:0.9rem;outline:none;margin-bottom:14px;background:var(--bg-body,#fff);color:var(--text-primary)}
+body.dark label.fb+input,body.dark label.fb+textarea,body.dark label.fb+select{border-color:#475569;background:#1e293b;color:#f1f5f9}
+textarea.fb-desc{min-height:100px;resize:vertical;font-family:inherit}
+.btn-submit{display:block;width:100%;padding:14px;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ef4444,#dc2626);transition:transform .15s}
+.btn-submit:active{transform:scale(0.97)}
+.btn-copy{display:block;width:100%;padding:12px;border:2px solid var(--border,#e2e8f0);border-radius:10px;font-size:0.9rem;font-weight:600;cursor:pointer;background:transparent;color:var(--text-primary);margin-top:10px;transition:all .15s}
+.btn-copy:active{transform:scale(0.97)}
+body.dark .btn-copy{border-color:#475569;color:#e2e8f0}
+.result-box{display:none;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:16px;margin-top:14px;font-size:0.85rem;line-height:1.6;color:#166534;word-break:break-all}
+body.dark .result-box{background:#052e16;border-color:#166534;color:#86efac}
+.tip{font-size:0.78rem;color:var(--text-mid,#94a3b8);margin-bottom:16px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<header class="site-header" style="text-align:left">
+  <a href="index.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.85rem;display:block;margin-bottom:0.4rem">← 返回首页</a>
+  <h1>🐛 问题反馈</h1>
+  <p>发现内容错误或使用问题？在这里提交反馈</p>
+</header>
+
+<div class="container">
+  <div class="feedback-card">
+    <p class="tip">💡 填写后会自动生成反馈文本，复制后粘贴到<strong>微信发给我</strong>即可（最快方式）。也可以用邮件发送。</p>
+
+    <label class="fb">反馈类型</label>
+    <select id="fb-type">
+      <option value="题目错误">📝 题目/答案错误</option>
+      <option value="内容缺失">📦 内容缺失</option>
+      <option value="显示问题">🖥️ 显示/排版问题</option>
+      <option value="功能建议">💡 功能建议</option>
+      <option value="其他">📎 其他</option>
+    </select>
+
+    <label class="fb">涉及科目</label>
+    <select id="fb-subject">
+      <option value="">（可选）选择科目</option>
+      <option value="物理">⚡ 物理</option>
+      <option value="语文">📝 语文</option>
+      <option value="数学">📐 数学</option>
+      <option value="英语">📖 英语</option>
+      <option value="化学">🧪 化学</option>
+      <option value="历史">📜 历史</option>
+      <option value="政治">⚖️ 政治</option>
+      <option value="网站通用">🌐 网站通用</option>
+    </select>
+
+    <label class="fb">问题描述 *</label>
+    <textarea id="fb-desc" class="fb-desc" placeholder="请描述你发现的问题，越具体越好&#10;例如：物理试卷第3页第5题，答案应该是B不是C"></textarea>
+
+    <label class="fb">你的联系方式（可选）</label>
+    <input id="fb-contact" type="text" placeholder="微信号/手机号，方便回复你">
+
+    <button class="btn-submit" onclick="generateFeedback()">📤 生成反馈文本</button>
+
+    <div id="fb-result" class="result-box">
+      <div style="font-weight:700;margin-bottom:8px">✅ 反馈文本已生成</div>
+      <div id="fb-text"></div>
+      <button class="btn-copy" onclick="copyFeedback()">📋 复制到剪贴板</button>
+      <p class="tip" style="margin-top:10px;text-align:center">复制后打开微信，粘贴发给<strong>文件传输助手</strong>或直接发给我</p>
+    </div>
+  </div>
+
+  <div class="feedback-card">
+    <div style="font-weight:700;font-size:0.92rem;margin-bottom:8px">📧 邮件反馈（备选）</div>
+    <p class="tip">如果微信不方便，也可以发邮件：</p>
+    <a id="fb-mailto" href="#" class="btn-copy" style="text-align:center;text-decoration:none;display:block;color:#3498db;border-color:#3498db">✉️ 打开邮件客户端</a>
+  </div>
+</div>
+
+<script>
+function generateFeedback() {
+  var type = document.getElementById('fb-type').value;
+  var subject = document.getElementById('fb-subject').value || '未指定';
+  var desc = document.getElementById('fb-desc').value.trim();
+  var contact = document.getElementById('fb-contact').value.trim();
+
+  if (!desc) { alert('请填写问题描述'); return; }
+
+  var text = '【中考复习网站反馈】\n' +
+    '类型：' + type + '\n' +
+    '科目：' + subject + '\n' +
+    '描述：' + desc + '\n' +
+    (contact ? '联系：' + contact + '\n' : '') +
+    '页面：' + location.href.split('?')[0] + '\n' +
+    '时间：' + new Date().toLocaleString('zh-CN');
+
+  document.getElementById('fb-text').textContent = text;
+  document.getElementById('fb-result').style.display = 'block';
+
+  // Update mailto
+  var subject_line = '[中考复习反馈] ' + type + ' - ' + subject;
+  document.getElementById('fb-mailto').href = 'mailto:?subject=' + encodeURIComponent(subject_line) + '&body=' + encodeURIComponent(text);
+
+  document.getElementById('fb-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function copyFeedback() {
+  var text = document.getElementById('fb-text').textContent;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      showCopyDone();
+    }).catch(function() { fallbackCopy(text); });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;left:-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); showCopyDone(); } catch(e) { alert('复制失败，请手动选中文字复制'); }
+  document.body.removeChild(ta);
+}
+
+function showCopyDone() {
+  var btn = document.querySelector('.btn-copy');
+  var orig = btn.textContent;
+  btn.textContent = '✅ 已复制！';
+  btn.style.borderColor = '#10b981';
+  btn.style.color = '#10b981';
+  setTimeout(function() { btn.textContent = orig; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
+}
+
+// 深色模式适配
+if (document.body.classList.contains('dark')) {
+  document.querySelectorAll('input,textarea,select').forEach(function(el) {
+    el.style.borderColor = '#475569';
+    el.style.background = '#1e293b';
+    el.style.color = '#f1f5f9';
+  });
+}
+</script>
+</body>
+</html>

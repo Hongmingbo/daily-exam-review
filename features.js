@@ -211,7 +211,8 @@
     document.body.appendChild(modal);
 
     // 深色模式适配
-    if (document.body.classList.contains('dark')) {
+    var isDarkMode = document.body.classList.contains('dark');
+    if (isDarkMode) {
       card.style.background = '#1e293b';
       card.style.color = '#f1f5f9';
       card.querySelectorAll('[style*="color:#1e293b"],[style*="color: #1e293b"]').forEach(function(el) {
@@ -221,7 +222,7 @@
         el.style.borderColor = '#475569';
       });
       card.querySelectorAll('[style*="color:#374151"]').forEach(function(el) {
-        el.style.color = '#f1f5f9';
+        el.style.color = '#e2e8f0';
       });
       card.querySelectorAll('[style*="background:#e2e8f0"]').forEach(function(el) {
         el.style.background = '#334155';
@@ -244,14 +245,15 @@
         ].join(';');
         label.innerHTML = '<input type="radio" name="zk-q" value="' + i + '" style="accent-color:' + subjColor + '"> ' + opt;
         label.addEventListener('click', function () {
-          label.style.background = 'rgba(0,0,0,0.04)';
+          var dk = document.body.classList.contains('dark');
+          label.style.background = dk ? 'rgba(100,150,255,0.12)' : 'rgba(0,0,0,0.04)';
           label.style.borderColor = subjColor;
-          label.style.color = subjColor;
+          label.style.color = dk ? '#f1f5f9' : subjColor;
           optsDiv.querySelectorAll('label').forEach(function (other) {
             if (other !== label) {
               other.style.background = '';
-              other.style.borderColor = '#e2e8f0';
-              other.style.color = '#374151';
+              other.style.borderColor = dk ? '#475569' : '#e2e8f0';
+              other.style.color = dk ? '#e2e8f0' : '#374151';
             }
           });
         });
@@ -335,7 +337,7 @@
       resultDiv.appendChild(retryBtn);
       // Report error link
       var reportLink = document.createElement("a");
-      reportLink.href = "https://github.com/Hongmingbo/daily-exam-review/issues/new?title=题目报错&body=请描述问题（科目/日期/题目内容）：";
+      reportLink.href = "feedback.html?type=题目错误";
       reportLink.target = "_blank";
       reportLink.style.cssText = "display:block;text-align:center;font-size:12px;color:#999;margin-top:8px;text-decoration:none";
       reportLink.textContent = "🐛 本题有误？点此反馈";
@@ -658,7 +660,7 @@
     if (!document.getElementById('zk-mask-style')) {
       var s = document.createElement('style');
       s.id = 'zk-mask-style';
-      s.textContent = '.paper-masked{position:relative}.paper-masked img{filter:blur(28px) brightness(0.85);pointer-events:none}.paper-masked::after{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.92);color:#dc2626;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem;box-shadow:0 4px 12px rgba(0,0,0,0.15)}body.dark .paper-masked::after{background:rgba(15,23,42,0.92);color:#fca5a5}';
+      s.textContent = '.paper-masked{position:relative;overflow:hidden}.paper-masked img{filter:blur(30px) brightness(0.7);pointer-events:none;visibility:visible}.paper-masked::after{content:"";position:absolute;inset:0;background:rgba(30,41,59,0.95);pointer-events:none}.paper-masked::before{content:"🔒 答案已遮盖";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(239,68,68,0.15);color:#dc2626;padding:10px 24px;border-radius:24px;font-weight:700;font-size:0.95rem;border:2px solid rgba(239,68,68,0.3);z-index:1;white-space:nowrap}body.dark .paper-masked::after{background:rgba(15,23,42,0.97)}body.dark .paper-masked::before{color:#fca5a5;background:rgba(239,68,68,0.1);border-color:rgba(252,165,165,0.3)}';
       document.head.appendChild(s);
     }
   }
