@@ -124,8 +124,12 @@
     if (!btn) return;
     var quiz = getQuiz();
     var today = todayStr();
-    if (quiz.date === today) {
-      btn.textContent = '📝 今日已答 ' + (quiz.correct ? '✅' : '❌');
+    if (quiz.date === today && quiz.done) {
+      btn.textContent = '🏆 今日5题已完成';
+      btn.onclick = function() { showQuizDoneModal(); };
+    } else if (quiz.date === today) {
+      var cnt = quiz.count || 0;
+      btn.textContent = '📝 今日已答 ' + cnt + '/5';
       btn.onclick = function() { showDailyQuestionModal(btn); };
     } else {
       btn.onclick = function() { showDailyQuestionModal(btn); };
@@ -137,7 +141,12 @@
     var subjectIdx = (dow === 0) ? 6 : dow - 1;
     var startIdx = subjectIdx * 8;
     var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-    var qIndex = startIdx + (dayOfYear % 8);
+    var quiz = getQuiz();
+    var today = todayStr();
+    var currentCount = (quiz.date === today) ? (quiz.count || 0) : 0;
+    // 检查是否已完成5题
+    if (currentCount >= 5) { showQuizDoneModal(); return; }
+    var qIndex = startIdx + ((dayOfYear + currentCount) % 8);
     var q = DAILY_QUESTIONS[qIndex];
     if (!q) return;
 
@@ -306,35 +315,60 @@
       btnsDiv.style.display = 'none';
       resultDiv.style.display = 'block';
 
-      // 保存答题结果
-      setQuiz({ date: todayStr(), correct: correct });
+      // 保存答题结果（累计计数）
+      var newCount = correct ? currentCount + 1 : currentCount;
+      var isDone = newCount >= 5;
+      setQuiz({ date: todayStr(), count: newCount, done: isDone });
 
       if (correct) {
         resultDiv.innerHTML = '<div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:10px;padding:12px 14px">' +
-          '<div style="font-weight:700;color:#10b981;margin-bottom:4px">✅ 回答正确！</div>' +
+          '<div style="font-weight:700;color:#10b981;margin-bottom:4px">✅ 回答正确！(' + newCount + '/5)</div>' +
           '<div style="font-size:0.82rem;color:#64748b;line-height:1.5">' + q.exp + '</div></div>';
 
         var quizBtn = document.getElementById('daily-quiz-btn');
-        if (quizBtn) quizBtn.textContent = '📝 今日已答 ✅';
-        showToast('答对了！💪');
+        if (isDone) {
+          if (quizBtn) quizBtn.textContent = '🏆 今日5题已完成';
+          showToast('🎉 今日5题全部完成！');
+        } else {
+          if (quizBtn) quizBtn.textContent = '📝 今日已答 ' + newCount + '/5';
+          showToast('答对了！💪');
+        }
       } else {
         resultDiv.innerHTML = '<div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:12px 14px;margin-bottom:10px">' +
-          '<div style="font-weight:700;color:#ef4444;margin-bottom:4px">❌ 回答错误</div>' +
+          '<div style="font-weight:700;color:#ef4444;margin-bottom:4px">❌ 回答错误(' + currentCount + '/5)</div>' +
           '<div style="font-size:0.82rem;color:#64748b;line-height:1.5">正确答案：' + (isFill ? q.ans.replace(/，/g, ' | ') : q.opts[q.ans]) + '</div>' +
           '<div style="font-size:0.82rem;color:#64748b;line-height:1.5;margin-top:6px">' + q.exp + '</div></div>';
         var quizBtn = document.getElementById('daily-quiz-btn');
-        if (quizBtn) quizBtn.textContent = '📝 今日已答 ❌';
+        if (quizBtn) quizBtn.textContent = '📝 今日已答 ' + currentCount + '/5';
         showToast('答错了，看看解析');
       }
 
-      var retryBtn = document.createElement('button');
-      retryBtn.textContent = '🔄 重新答题';
-      retryBtn.style.cssText = 'width:100%;background:#f39c12;color:white;border:none;border-radius:10px;padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer;margin-top:8px';
-      retryBtn.addEventListener('click', function () {
-        modal.remove();
-        showDailyQuestionModal(btn);
-      });
-      resultDiv.appendChild(retryBtn);
+      // 正确且未满5题：显示下一题按钮；已完成：显示完成提示
+      if (correct && !isDone) {
+        var nextBtn = document.createElement('button');
+        nextBtn.textContent = '📝 继续下一题 (' + newCount + '/5)';
+        nextBtn.style.cssText = 'width:100%;background:' + subjColor + ';color:white;border:none;border-radius:10px;padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer;margin-top:8px';
+        nextBtn.addEventListener('click', function () {
+          modal.remove();
+          showDailyQuestionModal(btn);
+        });
+        resultDiv.appendChild(nextBtn);
+      } else if (isDone) {
+        var doneDiv = document.createElement('div');
+        doneDiv.style.cssText = 'text-align:center;padding:12px 0;margin-top:8px';
+        doneDiv.innerHTML = '<div style="font-size:1.6rem">🏆</div><div style="font-weight:700;color:#f39c12;font-size:0.95rem">今日5题全部完成！</div><div style="font-size:0.78rem;color:#64748b;margin-top:4px">明天继续加油</div>';
+        resultDiv.appendChild(doneDiv);
+      } else {
+        // 答错：显示重试按钮（重试不增加count）
+        var retryBtn = document.createElement('button');
+        retryBtn.textContent = '🔄 重新答题';
+        retryBtn.style.cssText = 'width:100%;background:#f39c12;color:white;border:none;border-radius:10px;padding:10px;font-weight:600;font-size:0.9rem;cursor:pointer;margin-top:8px';
+        retryBtn.addEventListener('click', function () {
+          modal.remove();
+          showDailyQuestionModal(btn);
+        });
+        resultDiv.appendChild(retryBtn);
+      }
       // Report error link
       var reportLink = document.createElement("a");
       reportLink.href = "feedback.html?type=题目错误";
@@ -347,6 +381,26 @@
     // 取消/关闭
     document.getElementById('zk-q-close').addEventListener('click', function () { modal.remove(); });
     modal.addEventListener('click', function (e) { if (e.target === modal) modal.remove(); });
+  };
+
+  /* ---- 今日5题已完成提示 ---- */
+  window.showQuizDoneModal = function() {
+    var existing = document.getElementById('zk-q-modal');
+    if (existing) existing.remove();
+    var modal = document.createElement('div');
+    modal.id = 'zk-q-modal';
+    modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.55);z-index:99998;display:flex;align-items:center;justify-content:center;padding:16px';
+    var card = document.createElement('div');
+    var isDark = document.body.classList.contains('dark');
+    card.style.cssText = 'background:' + (isDark ? '#1e293b' : 'white') + ';border-radius:16px;padding:32px 24px;max-width:320px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.18);color:' + (isDark ? '#f1f5f9' : '#1e293b');
+    card.innerHTML = '<div style="font-size:2.5rem;margin-bottom:12px">🏆</div>' +
+      '<div style="font-weight:700;font-size:1.1rem;margin-bottom:6px;color:#f39c12">今日5题已完成</div>' +
+      '<div style="font-size:0.82rem;color:' + (isDark ? '#94a3b8' : '#64748b') + ';margin-bottom:20px;line-height:1.5">每天坚持5题，离目标更近一步！明天再来挑战 💪</div>' +
+      '<button id="zk-done-close" style="width:100%;background:#f39c12;color:white;border:none;border-radius:10px;padding:12px;font-weight:600;font-size:0.9rem;cursor:pointer">知道了</button>';
+    modal.appendChild(card);
+    document.body.appendChild(modal);
+    document.getElementById('zk-done-close').addEventListener('click', function() { modal.remove(); });
+    modal.addEventListener('click', function(e) { if (e.target === modal) modal.remove(); });
   };
 
   /* ---- utils ---- */
