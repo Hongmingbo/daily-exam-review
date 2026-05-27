@@ -103,10 +103,19 @@ window.__ZK_MINDMAP__ = {
         { text: "电功率 P=UI · 额定/实际功率", topicId: "electricity" },
         { text: "动态电路 · 滑动变阻器分析", topicId: "electricity" }
       ]},
-      { label: "🔬 热学/光学", topicId: "thermodynamics", sub: [
+      { label: "🔬 热学", topicId: "thermodynamics", sub: [
         { text: "比热容 Q=cmΔt · 热效率", topicId: "thermodynamics" },
         { text: "物态变化：熔化/凝固/汽化/液化", topicId: "thermodynamics" },
-        { text: "凸透镜成像：u>2f/f<u<2f/v>2f", topicId: "optics" }
+        { text: "分子热运动 · 内能与做功", topicId: "thermodynamics" }
+      ]},
+      { label: "🔭 光学", topicId: "optics", sub: [
+        { text: "凸透镜成像 · u>2f/f<u<2f/v>2f", topicId: "optics" },
+        { text: "光的反射/折射 · 法线作图", topicId: "optics" }
+      ]},
+      { label: "🧲 电磁学", topicId: "electromagnetism", sub: [
+        { text: "安培定则 · 右手螺旋判断磁极", topicId: "electromagnetism" },
+        { text: "左手定则 · 磁场对电流的作用", topicId: "electromagnetism" },
+        { text: "电磁感应 · 发电机vs电动机", topicId: "electromagnetism" }
       ]},
       { label: "💡 实验专题", topicId: "", sub: [
         { text: "测电阻 · 伏安法/等效替代", topicId: "electricity" },

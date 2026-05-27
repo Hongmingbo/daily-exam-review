@@ -76,7 +76,8 @@
   }
 
   // 渲染函数
-  function render(map) {
+  function render(map, todayTopics) {
+    todayTopics = todayTopics || new Set();
     var isDark = document.body.classList.contains('dark');
     var bg = isDark ? '#1e293b' : '#f0f4f8';
     var cardBg = isDark ? '#1e293b' : '#ffffff';
@@ -96,12 +97,13 @@
 
     map.branches.forEach(function(branch, i) {
       var isLast = i === map.branches.length - 1;
-      var pipe = isLast ? '\u2514' : '\u251C';
+      var pipe = isLast ? '└' : '├';
       var branchTopicId = branch.topicId || '';
+      var isTodayBranch = branchTopicId && todayTopics.has(branchTopicId);
 
       lines.push('<div style="margin-bottom:0.5rem;">');
       lines.push('<div style="color:' + accent + ';font-weight:600;font-size:0.88rem;margin-bottom:2px;display:flex;align-items:center;gap:4px;">');
-      lines.push('<span>' + pipe + ' ' + branch.label + '</span>');
+      lines.push('<span>' + pipe + ' ' + branch.label + (isTodayBranch ? ' ⭐️' : '') + '</span>');
       if (branchTopicId) {
         lines.push('<a href="javascript:void(0)" onclick="window.__mindmapGoTopic(\'' + branchTopicId + '\')" style="font-size:0.7rem;color:' + accent + ';text-decoration:none;opacity:0.7;cursor:pointer;" title="查看相关真题">\uD83D\uDD17</a>');
       }
@@ -128,18 +130,30 @@
     return lines.join('\n');
   }
 
+  // 扫描当天页面上的 topic，用于高亮知识树中"今日重点"
+  function getTodayTopics() {
+    var s = new Set();
+    var cards = document.querySelectorAll('[data-topic]');
+    for (var i = 0; i < cards.length; i++) {
+      var t = cards[i].getAttribute('data-topic');
+      if (t) s.add(t);
+    }
+    return s;
+  }
+  var todayTopics = getTodayTopics();
+
   // 插入到 .container 末尾
   var containerEl = document.querySelector('.container');
   if (!containerEl) return;
 
   var mindmapDiv = document.createElement('div');
-  mindmapDiv.innerHTML = render(map);
+  mindmapDiv.innerHTML = render(map, todayTopics);
   containerEl.appendChild(mindmapDiv);
 
   // 深色模式切换后更新
   if (window.__zkDarkObserver) {
     window.__zkDarkObserver.push(function() {
-      mindmapDiv.innerHTML = render(map);
+      mindmapDiv.innerHTML = render(map, todayTopics);
     });
   }
 
