@@ -17,9 +17,6 @@
   };
 
   // 全局：跳转到知识点或真题
-  // 1. 先在当前页查找 data-topic 匹配的 content-card → 滚动到该位置
-  // 2. 再在当前页查找 data-topic 匹配的 knowledge-item → 滚动
-  // 3. 都没有 → 跳转到试卷页
   window.__mindmapGoTopic = function(topicId) {
     if (!topicId) {
       __mindmapToast('📌 该知识点暂未关联真题');
@@ -90,59 +87,59 @@
 
     var lines = [
       '<div style="margin:1.5rem 0 1rem;border-top:2px solid ' + border + ';padding-top:1rem;">',
-      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:0.6rem;cursor:pointer" onclick="var n=this.nextElementSibling;n.style.display=n.style.display===\'none\'?\'block\':\'none\';this.querySelector(\'span\').textContent=n.style.display===\'none\'?\'▼\':\'▲\'">',
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:0.6rem;cursor:pointer" onclick="var n=this.nextElementSibling;n.style.display=n.style.display===\'none\'?\'block\':\'none\';this.querySelector(\'span\').textContent=n.style.display===\'none\'?\'\u25BC\':\'\u25B2\'">',
       '<span style="font-size:1.1rem;' + (isDark ? 'color:#e2e8f0' : 'color:#1e293b') + '">' + map.icon + ' ' + map.title + '</span>',
-      '<span style="color:' + muted + ';font-size:0.75rem">▼ 点击展开/收起</span>',
+      '<span style="color:' + muted + ';font-size:0.75rem">\u25BC 点击展开/收起</span>',
       '</div>',
       '<div style="display:none;background:' + cardBg + ';border:1px solid ' + border + ';border-radius:12px;padding:0.8rem 1rem;margin-top:0.4rem;">'
     ];
 
     map.branches.forEach(function(branch, i) {
       var isLast = i === map.branches.length - 1;
-      var pipe = isLast ? '└' : '├';
+      var pipe = isLast ? '\u2514' : '\u251C';
       var branchTopicId = branch.topicId || '';
 
       lines.push('<div style="margin-bottom:0.5rem;">');
       lines.push('<div style="color:' + accent + ';font-weight:600;font-size:0.88rem;margin-bottom:2px;display:flex;align-items:center;gap:4px;">');
       lines.push('<span>' + pipe + ' ' + branch.label + '</span>');
       if (branchTopicId) {
-        lines.push('<a href="javascript:void(0)" onclick="window.__mindmapGoTopic(\'' + branchTopicId + '\')" style="font-size:0.7rem;color:' + accent + ';text-decoration:none;opacity:0.7;cursor:pointer;" title="查看相关真题">🔗</a>');
+        lines.push('<a href="javascript:void(0)" onclick="window.__mindmapGoTopic(\'' + branchTopicId + '\')" style="font-size:0.7rem;color:' + accent + ';text-decoration:none;opacity:0.7;cursor:pointer;" title="查看相关真题">\uD83D\uDD17</a>');
       }
       lines.push('</div>');
 
       if (branch.sub && branch.sub.length) {
         branch.sub.forEach(function(item, j) {
           var last = j === branch.sub.length - 1;
-          var sp = last ? '  ' : '│ ';
+          var sp = last ? '  ' : '\u2502 ';
           var txt = leafText(item);
           var tid = leafTopic(item);
           var clickHandler = tid
             ? 'window.__mindmapGoTopic(\'' + tid + '\')'
             : 'window.__mindmapToast(\'暂无相关真题，可前往试卷页查看\')';
-          var cursor = tid ? '🔍' : '👉';
-          lines.push('<div onclick="' + clickHandler + '" style="color:' + muted + ';font-size:0.8rem;padding-left:1.2rem;line-height:1.7;cursor:pointer;border-radius:4px;transition:background .15s;" onmouseover="this.style.background=\'' + (isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)') + '\'" onmouseout="this.style.background=\'transparent\'">' + sp + (last ? '└' : '├') + ' ' + txt + (tid ? ' <span style="font-size:0.65rem;opacity:0.5">' + cursor + '</span>' : '') + '</div>');
+          var cursor = tid ? '\uD83D\uDD0D' : '\uD83D\uDC49';
+          lines.push('<div onclick="' + clickHandler + '" style="color:' + muted + ';font-size:0.8rem;padding-left:1.2rem;line-height:1.7;cursor:pointer;border-radius:4px;transition:background .15s;" onmouseover="this.style.background=\'' + (isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)') + '\'" onmouseout="this.style.background=\'transparent\'">' + sp + (last ? '\u2514' : '\u251C') + ' ' + txt + (tid ? ' <span style="font-size:0.65rem;opacity:0.5">' + cursor + '</span>' : '') + '</div>');
         });
       }
       lines.push('</div>');
     });
 
-    lines.push('<p style="margin:0.5rem 0 0;color:' + muted + ';font-size:0.72rem;text-align:right">📌 点击知识点可跳转到相关真题</p>');
+    lines.push('<p style="margin:0.5rem 0 0;color:' + muted + ';font-size:0.72rem;text-align:right">\uD83D\uDCCC 点击知识点可跳转到相关真题</p>');
     lines.push('</div></div>');
     return lines.join('\n');
   }
 
-  // 插入到 .source-note 之前
-  var sourceNote = document.querySelector('.source-note');
-  if (!sourceNote) return;
+  // 插入到 .container 末尾
+  var containerEl = document.querySelector('.container');
+  if (!containerEl) return;
 
-  var container = document.createElement('div');
-  container.innerHTML = render(map);
-  sourceNote.parentNode.insertBefore(container, sourceNote);
+  var mindmapDiv = document.createElement('div');
+  mindmapDiv.innerHTML = render(map);
+  containerEl.appendChild(mindmapDiv);
 
   // 深色模式切换后更新
   if (window.__zkDarkObserver) {
     window.__zkDarkObserver.push(function() {
-      container.innerHTML = render(map);
+      mindmapDiv.innerHTML = render(map);
     });
   }
 
@@ -162,9 +159,9 @@
         targets[0].style.transition = 'box-shadow 0.3s';
         targets[0].style.boxShadow = '0 0 0 3px ' + (map.color || '#f39c12');
         setTimeout(function() { targets[0].style.boxShadow = ''; }, 2000);
-        __mindmapToast('📍 已跳转到：' + topicParam);
+        __mindmapToast('\uD83D\uDCCD 已跳转到：' + topicParam);
       } else {
-        __mindmapToast('📌 当前页暂无「' + topicParam + '」相关真题');
+        __mindmapToast('\uD83D\uDCCC 当前页暂无「' + topicParam + '」相关真题');
       }
     }, 500);
   }
