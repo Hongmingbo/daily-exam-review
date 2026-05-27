@@ -1,141 +1,166 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>数学 · 知识点复习 - 每日中考复习</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-.math-header { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
-.math-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
-.math-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
-.math-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
-.math-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数学 · 知识点复习 - 每日中考复习</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+  .math-header { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+  .math-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+  .math-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+  .math-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+  .math-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
+  </style>
 <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
 <header class="math-header">
-
   <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>📐 数学 · 知识点复习</h1>
-  <p>核心公式 · 易混概念 · 典型例题 · 2026年5月27日 · 距中考25天</p>
-  <span class="badge">📖 公式定理 · 数学</span>
+  <p>几何 · 方程 · 函数 · 概率 · 三角函数 · 2026年5月27日 · 距中考25天</p>
+  <span class="badge">📖 核心公式 · 数学</span>
 </header>
+
 <div class="container">
-
-<div class="content-card" data-topic="方程" style="border-top: 3px solid #3498db">
-  <h2>📌 中考必背核心公式</h2>
-
-  <div class="knowledge-item">
-    <h4 style="color:#3498db">① 勾股定理（8年级下册，中考高频）</h4>
-    <div class="formula-box" style="border-color:#3498db">
-      <p><strong>公式：</strong>a&sup2; + b&sup2; = c&sup2;</p>
-      <p><strong>常用勾股数：</strong>3-4-5、5-12-13、6-8-10、7-24-25、8-15-17</p>
-      <p><strong>逆定理：</strong>若三边满足 a&sup2; + b&sup2; = c&sup2;，则为直角三角形</p>
-      <div class="trap-box"><strong>易错：</strong>勾股定理只适用于直角三角形，先判断直角</div>
+  <div class="content-card" data-topic="几何">
+    <h2>📌 几何核心：三角形/圆/相似</h2>
+    <div class="formula-box">
+      <strong>① 三角形常用结论</strong>
+      <div class="math-block">勾股定理：a²+b²=c²；三角形内角和=180°</div>
+      <p><strong>说明：</strong>直角三角形先找斜边；含30°角时，对边=斜边一半。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 全等与相似</strong>
+      <div class="math-block">全等：SSS/SAS/ASA/AAS/HL；相似：AA/SAS/SSS</div>
+      <p><strong>说明：</strong>相似比=k，周长比=k，面积比=k²。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 圆的高频定理</strong>
+      <div class="math-block">垂径定理：垂直于弦的直径平分弦和弧</div>
+      <p><strong>说明：</strong>遇到圆先连半径，半径相等常制造等腰三角形。</p>
+    </div>
+    <div class="formula-box">
+      <strong>④ 压轴模型</strong>
+      <div class="math-block">将军饮马：折叠/对称转化最短路径</div>
+      <p><strong>说明：</strong>几何压轴先画辅助线，再找全等/相似/圆。</p>
     </div>
   </div>
 
-  <div class="knowledge-item">
-    <h4 style="color:#3498db">② 一元二次方程</h4>
-    <div class="formula-box" style="border-color:#3498db">
-      <p><strong>求根公式：</strong>x = (-b &plusmn; &radic;(b&sup2; - 4ac)) / 2a</p>
-      <p><strong>判别式：</strong>&Delta; = b&sup2; - 4ac</p>
-      <p>&Delta; &gt; 0：两个不等实根 &nbsp; &Delta; = 0：两个相等实根 &nbsp; &Delta; &lt; 0：无实根</p>
-      <p><strong>韦达定理（福建高频）：</strong>x&#8321; + x&#8322; = -b/a &nbsp; x&#8321; &middot; x&#8322; = c/a</p>
+  <div class="content-card" data-topic="方程">
+    <h2>📌 方程与不等式：先建模再求解</h2>
+    <div class="formula-box">
+      <strong>① 一元二次方程</strong>
+      <div class="math-block">ax²+bx+c=0；Δ=b²-4ac</div>
+      <p><strong>说明：</strong>Δ&gt;0 两根，Δ=0 一根，Δ&lt;0 无实根。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 韦达定理</strong>
+      <div class="math-block">x₁+x₂=-b/a，x₁x₂=c/a</div>
+      <p><strong>说明：</strong>用于求参数、构造代数式，不要忘记 a≠0。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 分式方程</strong>
+      <div class="math-block">去分母 → 解整式方程 → 验根</div>
+      <p><strong>说明：</strong>验根是必写步骤，分母为0的根要舍去。</p>
+    </div>
+    <div class="formula-box">
+      <strong>④ 不等式组</strong>
+      <div class="math-block">分别解 → 数轴取公共部分</div>
+      <p><strong>说明：</strong>口诀：同大取大，同小取小，大小小大中间找，大大小小无解。</p>
     </div>
   </div>
 
-  <div class="knowledge-item">
-    <h4 style="color:#3498db">③ 圆</h4>
-    <div class="formula-box" style="border-color:#3498db">
-      <p><strong>弧长：</strong>l = n&pi;r / 180 &nbsp; <strong>扇形面积：</strong>S = n&pi;r&sup2; / 360 = lr / 2</p>
-      <p><strong>垂径定理：</strong>垂直于弦的直径平分弦，并平分弦所对的两条弧</p>
-      <p><strong>圆内接四边形对角互补</strong></p>
+  <div class="content-card" data-topic="函数">
+    <h2>📌 函数图像：看 k、b、a、顶点</h2>
+    <div class="formula-box">
+      <strong>① 一次函数</strong>
+      <div class="math-block">y=kx+b</div>
+      <p><strong>说明：</strong>k定升降，b定截距；k&gt;0 上升，k&lt;0 下降。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 反比例函数</strong>
+      <div class="math-block">y=k/x</div>
+      <p><strong>说明：</strong>k&gt;0 在一三象限，k&lt;0 在二四象限；面积常用 |k|。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 二次函数</strong>
+      <div class="math-block">y=a(x-h)²+k</div>
+      <p><strong>说明：</strong>顶点(h,k)，对称轴 x=h；a&gt;0 开口向上，a&lt;0 向下。</p>
+    </div>
+    <div class="formula-box">
+      <strong>④ 交点问题</strong>
+      <div class="math-block">函数交点 = 方程组的解</div>
+      <p><strong>说明：</strong>数形结合：交点个数可转化为方程根的个数。</p>
     </div>
   </div>
 
-  <div class="knowledge-item">
-    <h4 style="color:#3498db">④ 三角函数</h4>
-    <div class="formula-box" style="border-color:#3498db">
-      <p>sin&sup2;&alpha; + cos&sup2;&alpha; = 1</p>
-      <p>sin30&deg; = cos60&deg; = 1/2 &nbsp; cos30&deg; = sin60&deg; = &radic;3/2</p>
-      <p>tan30&deg; = &radic;3/3 &nbsp; tan45&deg; = 1 &nbsp; tan60&deg; = &radic;3</p>
+  <div class="content-card" data-topic="概率">
+    <h2>📌 统计概率：先看样本再算可能性</h2>
+    <div class="formula-box">
+      <strong>① 概率公式</strong>
+      <div class="math-block">P(A)=事件A可能结果数/所有等可能结果数</div>
+      <p><strong>说明：</strong>必须是等可能事件，不等可能不能硬套。</p>
     </div>
+    <div class="formula-box">
+      <strong>② 频率与概率</strong>
+      <div class="math-block">频率随试验次数增多逐渐稳定于概率</div>
+      <p><strong>说明：</strong>频率是实验结果，概率是理论趋势。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 中位数/众数/平均数</strong>
+      <div class="math-block">中位数先排序；众数看出现次数最多</div>
+      <p><strong>说明：</strong>平均数易受极端值影响，中位数更稳定。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="三角函数">
+    <h2>📌 锐角三角函数：边角互转</h2>
+    <div class="formula-box">
+      <strong>① 基本定义</strong>
+      <div class="math-block">sinA=对边/斜边，cosA=邻边/斜边，tanA=对边/邻边</div>
+      <p><strong>说明：</strong>先找角A，再定对边和邻边。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 特殊角</strong>
+      <div class="math-block">30°：1/2, √3/2, √3/3；45°：√2/2, √2/2, 1</div>
+      <p><strong>说明：</strong>特殊角值要默写，解直角三角形常直接用。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 实际应用</strong>
+      <div class="math-block">测高测距：仰角/俯角 + 直角三角形</div>
+      <p><strong>说明：</strong>画图比列式更重要，先标角和已知边。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="几何">
+    <h2>💡 今日提分动作：压轴题拆解</h2>
+    <div class="formula-box">
+      <strong>① 读题顺序</strong>
+      <div class="math-block">条件分类：长度/角度/平行/垂直/圆</div>
+      <p><strong>说明：</strong>把条件写到图上，别只在脑子里想。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 辅助线优先级</strong>
+      <div class="math-block">连半径、作高、作平行、构造中点</div>
+      <p><strong>说明：</strong>不会做时先问：能不能造全等/相似？</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 验收标准</strong>
+      <div class="math-block">今晚做2道几何综合题，每题写出辅助线理由</div>
+      <p><strong>说明：</strong>做完能说清“为什么这样连线”才算完成。</p>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="math_paper.html">← 试卷练习</a>
+    <a href="index.html" class="next">返回首页 →</a>
   </div>
 </div>
 
-<div class="content-card" data-topic="概率" style="border-top: 3px solid #2980b9">
-  <h2>⚠️ 易混概念辨析</h2>
-
-  <div class="knowledge-item">
-    <h4 style="color:#2980b9">频率 vs 概率</h4>
-    <div class="formula-box" style="border-color:#2980b9">
-      <p><strong>频率：</strong>客观数据（试验次数/发生次数），可变化</p>
-      <p><strong>概率：</strong>理论值，固定不变（抛硬币正面概率 = 0.5）</p>
-      <p>大量重复试验时，频率稳定在概率附近</p>
-    </div>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#2980b9">全等 vs 相似</h4>
-    <div class="formula-box" style="border-color:#2980b9">
-      <p><strong>全等(&cong;)：</strong>形状相同 + 大小相等，所有边角完全相同</p>
-      <p><strong>相似(&sim;)：</strong>形状相同，大小可不同，对应边成比例、对应角相等</p>
-      <p><strong>面积比 = 相似比的平方</strong></p>
-    </div>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#2980b9">一次函数 k、b 的意义</h4>
-    <div class="formula-box" style="border-color:#2980b9">
-      <p>y = kx + b：k &ne; 0；k &gt; 0 过一三象限，k &lt; 0 过二四象限；|k| 越大直线越陡；b 是截距</p>
-    </div>
-  </div>
-</div>
-
-<div class="content-card" data-topic="几何" style="border-top: 3px solid #3498db">
-  <h2>📝 典型例题</h2>
-
-  <div class="question">
-    <p><strong>例1（一元二次方程）</strong></p>
-    <p>方程 x&sup2; - 5x + k = 0 有两个不相等实根，求 k 的取值范围。</p>
-    <div class="answer-block">
-      <strong>解析：</strong>&Delta; = 25 - 4k &gt; 0 &rarr; k &lt; 25/4 &rarr; <strong>k &lt; 6.25</strong>
-    </div>
-  </div>
-
-  <div class="question">
-    <p><strong>例2（圆，垂径定理）</strong></p>
-    <p>半径为5，弦AB长为8，求圆心到弦AB的距离。</p>
-    <div class="answer-block">
-      <strong>解析：</strong>r&sup2; = (d/2)&sup2; + d<sub>距</sub>&sup2; &rarr; 25 = 16 + d<sub>距</sub>&sup2; &rarr; d<sub>距</sub>&sup2; = 9<br>
-      <strong>答案：</strong>3
-    </div>
-  </div>
-</div>
-
-<div class="content-card" style="border-top: 3px solid #3498db">
-  <h2>💡 复习建议</h2>
-  <div class="knowledge-item">
-    <ol style="padding-left:1.2rem">
-      <li style="margin-bottom:6px"><strong>公式每天默写5个：</strong>勾股定理、求根公式、韦达定理、弧长公式、三角函数值</li>
-      <li style="margin-bottom:6px"><strong>压轴题专项：</strong>二次函数综合、圆综合，每天各1道</li>
-      <li style="margin-bottom:6px"><strong>错题整理：</strong>计算失误/概念不清/审题错误三类分开整理</li>
-      <li style="margin-bottom:6px"><strong>几何模型：</strong>手拉手、半角模型、将军饮马——中考几何压轴必备</li>
-    </ol>
-  </div>
-</div>
-
-<div class="page-nav">
-  <a href="math_paper.html">← 试卷练习</a>
-  <a href="index.html" class="next">返回首页 →</a>
-</div>
-</div>
 <script src="dark-mode.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
@@ -143,7 +168,6 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 <script src="features.js"></script>
-
 <script src="mindmap-data.js"></script>
 <script src="mindmap.js"></script>
 </body>

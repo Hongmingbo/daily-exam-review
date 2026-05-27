@@ -158,7 +158,7 @@ window.__ZK_MINDMAP__ = {
     color: "#d35400",
     url: "history_paper.html",
     branches: [
-      { label: "📌 中国古代史", sub: [
+      { label: "📌 中国古代史", topicId: "古代史", sub: [
         { text: "先秦：诸子百家 · 百家争鸣", topicId: "" },
         { text: "秦汉：统一/郡县制/丝绸之路", topicId: "" },
         { text: "唐宋：三省六部/科举/经济重心南移", topicId: "" }
@@ -168,12 +168,12 @@ window.__ZK_MINDMAP__ = {
         { text: "洋务运动：师夷长技以自强", topicId: "近代史" },
         { text: "辛亥革命：同盟会/三民主义/中华民国", topicId: "辛亥革命" }
       ]},
-      { label: "🌍 世界史", sub: [
+      { label: "🌍 世界史", topicId: "世界史", sub: [
         { text: "英国资产阶级革命 · 君主立宪", topicId: "" },
         { text: "法国大革命 · 自由平等博爱", topicId: "" },
         { text: "两次世界大战 · 凡尔赛-华盛顿体系/雅尔塔体系", topicId: "" }
       ]},
-      { label: "💡 答题模板", sub: [
+      { label: "💡 答题模板", topicId: "历史答题", sub: [
         { text: "背景：原因+条件（经济/政治/思想）", topicId: "" },
         { text: "影响：积极+消极/短期+长期", topicId: "" },
         { text: "评价：辩证两面+史实支撑", topicId: "" }
@@ -186,12 +186,12 @@ window.__ZK_MINDMAP__ = {
     color: "#8e44ad",
     url: "politics_paper.html",
     branches: [
-      { label: "📌 成长中的我", sub: [
+      { label: "📌 成长中的我", topicId: "成长", sub: [
         { text: "认识自我：优缺点/接纳变化", topicId: "" },
         { text: "学习：自主/合作/探究", topicId: "" },
         { text: "情绪：调控方法（理智/转移/幽默/暗示）", topicId: "" }
       ]},
-      { label: "🤝 我与他人", sub: [
+      { label: "🤝 我与他人", topicId: "交往", sub: [
         { text: "友谊：原则+澄清冲突", topicId: "" },
         { text: "师生：新型关系/主动沟通", topicId: "" },
         { text: "亲子：理解+换位思考", topicId: "" }
@@ -201,7 +201,7 @@ window.__ZK_MINDMAP__ = {
         { text: "社会秩序：自由与规则的关系", topicId: "法治" },
         { text: "责任：角色→责任→担当", topicId: "宪法" }
       ]},
-      { label: "💡 国情国策", sub: [
+      { label: "💡 国情国策", topicId: "国情", sub: [
         { text: "基本路线：一个中心两个基本点", topicId: "" },
         { text: "五位一体：经济/政治/文化/社会/生态", topicId: "" },
         { text: "两个百年：中国梦/两个阶段", topicId: "" }

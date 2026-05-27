@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- Math formulas use Unicode characters (²³√≠≤≥ρΩπ), no KaTeX needed -->
   <style>
   .physics-header { background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
   .physics-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
@@ -20,7 +19,6 @@
 <body>
 <button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
 <header class="physics-header">
-
   <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>⚡ 物理 · 知识点复习</h1>
   <p>力学 · 电学 · 热学 · 光学 · 电磁学 · 2026年5月27日 · 距中考25天</p>
@@ -28,209 +26,134 @@
 </header>
 
 <div class="container">
-
-  <!-- 考点速记 -->
-    <div class="content-card" data-topic="mechanics">
-      <h2>📌 力学核心公式</h2>
-
-      <div class="formula-box">
-        <strong>① 速度公式</strong>
-        <div class="math-block">v = s / t</div>
-        <p><strong>适用条件：</strong>匀速直线运动</p>
-        <p><strong>单位：</strong>v—m/s，s—m，t—s</p>
-        <p><strong>注意：</strong>全程平均速度 ≠ 各段速度平均值；1 m/s = 3.6 km/h</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>② 密度公式</strong>
-        <div class="math-block">ρ = m / V</div>
-        <p><strong>适用条件：</strong>同种物质的均匀物体</p>
-        <p><strong>单位：</strong>ρ—kg/m³，m—kg，V—m³</p>
-        <p><strong>注意：</strong>密度是物质特性，与 m、V 无关；水 ρ = 1.0 × 10³ kg/m³</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>③ 压强公式</strong>
-        <div class="math-block">p = F / S 　　（固体压强）</div>
-        <div class="math-block">p = ρgh 　　（液体压强）</div>
-        <p><strong>固体压强：</strong>计算柱形固体对水平面的压强</p>
-        <p><strong>液体压强：</strong>液体内部压强，h 为该点到液面的深度</p>
-        <p><strong>易错：</strong>液体压强只与 ρ液、h 有关，与液体重力、容器形状无关！</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>④ 浮力公式（4种方法）</strong>
-        <div class="math-block">F浮 = G物 − F拉 　　（称重法）</div>
-        <div class="math-block">F浮 = ρ液gV排 　　（阿基米德原理）</div>
-        <div class="math-block">F浮 = F向上 − F向下 　　（压力差法）</div>
-        <div class="math-block">F浮 = G物 　　（漂浮/悬浮时）</div>
-        <p><strong>适用条件：</strong>V排 ≤ V物；物体完全浸没时 V排 = V物</p>
-        <p><strong>易错：</strong>物体浮沉条件：ρ物 > ρ液 → 下沉；ρ物 = ρ液 → 悬浮；ρ物 < ρ液 → 上浮</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>⑤ 机械效率</strong>
-        <div class="math-block">η = W有用 / W总 × 100%</div>
-        <div class="math-block">W总 = W有用 + W额外</div>
-        <p><strong>滑轮组：</strong>η = Gh / (Fnh) = G / (nF)（忽略摩擦时）</p>
-        <p><strong>斜面：</strong>η = Gh / (FL)</p>
-        <p><strong>易错：</strong>有用功 ≠ 总功，机械效率永远小于 100%</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>⑥ 功和功率</strong>
-        <div class="math-block">W = Fs 　　（功的定义）</div>
-        <div class="math-block">P = W / t = Fv 　　（功率）</div>
-        <p><strong>注意：</strong>做功的两个必要条件：有力 F，有距离 s（同方向）</p>
-        <p><strong>易错：</strong>克服重力做功时 W = Gh；克服摩擦做功时 W = fs（摩擦力乘路程）</p>
-      </div>
+  <div class="content-card" data-topic="mechanics">
+    <h2>📌 力学核心：受力、压强、浮力、功</h2>
+    <div class="formula-box">
+      <strong>① 速度与密度</strong>
+      <div class="math-block">v=s/t；ρ=m/V</div>
+      <p><strong>说明：</strong>单位先统一：m/s、kg/m³。平均速度=总路程/总时间。</p>
     </div>
-
-    <!-- 电学核心公式 -->
-    <div class="content-card" data-topic="electricity">
-      <h2>📌 电学核心公式</h2>
-
-      <div class="formula-box">
-        <strong>① 欧姆定律</strong>
-        <div class="math-block">I = U / R</div>
-        <div class="math-block">U = IR 　　R = U / I</div>
-        <p><strong>适用条件：</strong>纯电阻电路</p>
-        <p><strong>注意：</strong>电阻是导体特性，与 U、I 无关（同种材料、长度、横截面积）</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>② 串并联电路特点</strong>
-        <div class="math-block">串联：R总 = R₁ + R₂ + … 　　I相等　U分压</div>
-        <div class="math-block">并联：1/R总 = 1/R₁ + 1/R₂ + … 　　U相等　I分流</div>
-        <p><strong>分压公式（串联）：</strong>U₁/U₂ = R₁/R₂</p>
-        <p><strong>分流公式（并联）：</strong>I₁/I₂ = R₂/R₁</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>③ 电功与电功率</strong>
-        <div class="math-block">W = UIt = I²Rt = U²t/R</div>
-        <div class="math-block">P = W/t = UI = I²R = U²/R</div>
-        <p><strong>适用条件：</strong>所有电路（总公式）；后两个仅适用于纯电阻</p>
-        <p><strong>易错：</strong>实际功率不是额定功率，注意区分！</p>
-        <p><strong>电能表：</strong>1 kW·h = 3.6 × 10⁶ J</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>④ 焦耳定律</strong>
-        <div class="math-block">Q = I²Rt</div>
-        <p><strong>适用条件：</strong>所有电路的热计算</p>
-        <p><strong>易错：</strong>纯电阻电路 Q = W = Pt，非纯电阻电路 Q < W</p>
-      </div>
+    <div class="formula-box">
+      <strong>② 压强与液体压强</strong>
+      <div class="math-block">p=F/S；p=ρgh</div>
+      <p><strong>说明：</strong>固体先找压力和受力面积；液体看深度h。</p>
     </div>
-
-    <!-- 热学核心公式 -->
-    <div class="content-card" data-topic="thermodynamics">
-      <h2>📌 热学核心公式</h2>
-
-      <div class="formula-box">
-        <strong>① 吸热与放热</strong>
-        <div class="math-block">Q吸 = cm(t₂ − t₁)</div>
-        <div class="math-block">Q放 = cm(t₁ − t₂)</div>
-        <p><strong>适用条件：</strong>无物态变化时</p>
-        <p><strong>单位：</strong>c—J/(kg·℃)，m—kg，t—℃</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>② 热值（燃料燃烧）</strong>
-        <div class="math-block">Q放 = mq 　　（固体/液体）</div>
-        <div class="math-block">Q放 = Vq 　　（气体燃料）</div>
-        <p><strong>注意：</strong>热值是燃料特性，与燃料质量无关</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>③ 热效率</strong>
-        <div class="math-block">η = Q吸 / Q放 × 100%</div>
-        <p><strong>易错：</strong>比热容是物质特性，与质量、体积无关！</p>
-      </div>
+    <div class="formula-box">
+      <strong>③ 浮力</strong>
+      <div class="math-block">F浮=G排=ρ液gV排</div>
+      <p><strong>说明：</strong>漂浮/悬浮：F浮=G；沉底：F浮&lt;G。</p>
     </div>
-
-    <!-- 光学 -->
-    <div class="content-card" data-topic="optics">
-      <h2>📌 光学核心</h2>
-
-      <div class="formula-box">
-        <strong>① 光的反射定律</strong>
-        <p>反射光线、入射光线、法线在同一平面内</p>
-        <p>反射光线、入射光线分居法线两侧</p>
-        <p>反射角 = 入射角</p>
-        <p><strong>特殊情况：</strong>当光线垂直入射时，入射角 = 反射角 = 0°</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>② 光的折射规律</strong>
-        <p>折射光线、入射光线、法线在同一平面内</p>
-        <p>折射光线、入射光线分居法线两侧</p>
-        <p>光从空气斜射入水/玻璃：折射角 < 入射角</p>
-        <p>光从水/玻璃斜射入空气：折射角 > 入射角</p>
-        <p><strong>口诀：</strong>空气中角度大（无论入射还是折射）</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>③ 凸透镜成像规律</strong>
-        <div class="math-block">1/u + 1/v = 1/f</div>
-        <p>u > 2f：倒立缩小实像（照相机）</p>
-        <p>f < u < 2f：倒立放大实像（投影仪）</p>
-        <p>u < f：正立放大虚像（放大镜）</p>
-        <p>u = 2f：倒立等大实像</p>
-        <p><strong>口诀：</strong>一倍焦距分虚实，二倍焦距分大小</p>
-      </div>
+    <div class="formula-box">
+      <strong>④ 功和功率</strong>
+      <div class="math-block">W=Fs；P=W/t=Fv</div>
+      <p><strong>说明：</strong>有力且沿力方向移动才做功。</p>
     </div>
+  </div>
 
-    <!-- 电磁学 -->
-    <div class="content-card" data-topic="electromagnetism">
-      <h2>📌 电磁学核心</h2>
-
-      <div class="formula-box">
-        <strong>① 磁场对电流的作用</strong>
-        <div class="math-block">F = BIL 　　（通电导线在磁场中受力的力）</div>
-        <p><strong>左手定则：</strong>伸开左手，使拇指与四指垂直并在同一平面内，让磁感线穿入手心，四指指向电流方向，则拇指所指方向为导体受力方向</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>② 电磁感应</strong>
-        <div class="math-block">E = nΔΦ/Δt 　　（感应电动势）</div>
-        <p><strong>右手定则：</strong>伸开右手，使拇指与四指垂直并在同一平面内，让磁感线穿入手心，拇指指向导体运动方向，则四指所指方向为感应电流方向</p>
-        <p><strong>口诀：</strong>左力右电（左手定则用于受力/电动机，右手定则用于感应电流/发电机）</p>
-      </div>
-
-      <div class="formula-box">
-        <strong>③ 家庭电路</strong>
-        <p>火线（220V）+ 零线（0V）+ 地线（保护）</p>
-        <p>保险丝接在火线上；插座左零右火上地</p>
-        <p><strong>安全用电：</strong>有金属外壳的家用电器必须接地</p>
-      </div>
+  <div class="content-card" data-topic="electricity">
+    <h2>📌 电学核心：欧姆定律与电功率</h2>
+    <div class="formula-box">
+      <strong>① 欧姆定律</strong>
+      <div class="math-block">I=U/R</div>
+      <p><strong>说明：</strong>同一导体中，电流随电压增大而增大；电阻是导体属性。</p>
     </div>
-
-    <!-- 复习建议 -->
-    <div class="content-card">
-      <h2>💡 今日复习建议</h2>
-      <div class="knowledge-item">
-        <h4>核心复习策略</h4>
-        <p>①每天默写5个核心公式及其适用条件，重点关注多公式联立题型</p>
-        <p>②电路分析题：先判断串/并联，再列方程</p>
-        <p>③力学题：受力分析 → 状态分析 → 公式选取</p>
-        <p>④单位换算要准确（1m/s = 3.6km/h；1g/cm³ = 1000kg/m³）</p>
-        <p>⑤画图能力：等效电路图、受力图、光路图 — 中考必考</p>
-      </div>
-      <div class="knowledge-item">
-        <h4>福建中考物理高频考点</h4>
-        <p>①力学：浮力/压强综合、机械效率、功和功率</p>
-        <p>②电学：欧姆定律综合应用、电功率实验、电路故障分析</p>
-        <p>③光学：凸透镜成像、光的反射/折射作图</p>
-        <p>④电磁学：左手/右手定则、家庭电路安全</p>
-      </div>
+    <div class="formula-box">
+      <strong>② 串并联规律</strong>
+      <div class="math-block">串联：I相等，U分压；并联：U相等，I分流</div>
+      <p><strong>说明：</strong>电阻串大并小：R串=R₁+R₂，1/R并=1/R₁+1/R₂。</p>
     </div>
+    <div class="formula-box">
+      <strong>③ 电功率</strong>
+      <div class="math-block">P=UI=I²R=U²/R</div>
+      <p><strong>说明：</strong>额定功率看铭牌，实际功率看实际电压。</p>
+    </div>
+    <div class="formula-box">
+      <strong>④ 动态电路</strong>
+      <div class="math-block">滑片移动 → R变 → I变 → U变</div>
+      <p><strong>说明：</strong>先判断总电阻，再判断电流，最后看分压。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="thermodynamics">
+    <h2>📌 热学核心：热量、内能、物态变化</h2>
+    <div class="formula-box">
+      <strong>① 比热容</strong>
+      <div class="math-block">Q=cmΔt</div>
+      <p><strong>说明：</strong>水比热容大：升温慢、降温慢，常用于调温。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 物态变化</strong>
+      <div class="math-block">熔化/汽化/升华吸热；凝固/液化/凝华放热</div>
+      <p><strong>说明：</strong>看状态变化，不要只看温度变化。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 内能改变</strong>
+      <div class="math-block">做功和热传递都能改变内能</div>
+      <p><strong>说明：</strong>摩擦生热是做功；热水暖手是热传递。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="optics">
+    <h2>📌 光学核心：反射、折射、凸透镜</h2>
+    <div class="formula-box">
+      <strong>① 光的反射</strong>
+      <div class="math-block">反射角=入射角，法线是角平分线</div>
+      <p><strong>说明：</strong>作图先画法线，再量角。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 光的折射</strong>
+      <div class="math-block">空气↔水/玻璃时传播方向改变</div>
+      <p><strong>说明：</strong>斜射才明显偏折，垂直入射方向不变。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 凸透镜成像</strong>
+      <div class="math-block">u&gt;2f：倒立缩小实像；f&lt;u&lt;2f：倒立放大实像</div>
+      <p><strong>说明：</strong>照相机：u&gt;2f；投影仪：f&lt;u&lt;2f；放大镜：u&lt;f。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="electromagnetism">
+    <h2>📌 电磁学核心：磁场、电动机、发电机</h2>
+    <div class="formula-box">
+      <strong>① 安培定则</strong>
+      <div class="math-block">右手握螺线管，四指电流，大拇指N极</div>
+      <p><strong>说明：</strong>判断磁极时先确定电流方向。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 左手定则</strong>
+      <div class="math-block">磁场对通电导体有力的作用</div>
+      <p><strong>说明：</strong>电动机原理：电能转化为机械能。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 电磁感应</strong>
+      <div class="math-block">闭合电路一部分导体切割磁感线产生感应电流</div>
+      <p><strong>说明：</strong>发电机原理：机械能转化为电能。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="mechanics">
+    <h2>💡 今日复习建议：物理先抓公式适用条件</h2>
+    <div class="formula-box">
+      <strong>① 做什么</strong>
+      <div class="math-block">默写力学+电学核心公式各5个</div>
+      <p><strong>说明：</strong>写出公式、单位、适用条件。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 做多久</strong>
+      <div class="math-block">35分钟公式回顾 + 25分钟错题复盘</div>
+      <p><strong>说明：</strong>每段不超过40分钟，避免疲劳刷题。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 怎么算做完</strong>
+      <div class="math-block">能不看答案说出每道错题错因</div>
+      <p><strong>说明：</strong>错因只分三类：概念、公式、单位/计算。</p>
+    </div>
+  </div>
 
   <div class="page-nav">
     <a href="physics_paper.html">← 试卷练习</a>
     <a href="index.html" class="next">返回首页 →</a>
   </div>
-
 </div>
 
 <script src="dark-mode.js"></script>
@@ -240,7 +163,6 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 <script src="features.js"></script>
-
 <script src="mindmap-data.js"></script>
 <script src="mindmap.js"></script>
 </body>

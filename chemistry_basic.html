@@ -1,231 +1,132 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>化学 · 知识点复习 - 每日中考复习</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-.chem-header { background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
-.chem-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
-.chem-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
-.chem-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
-.chem-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>化学 · 知识点复习 - 每日中考复习</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+  .chemistry-header { background: linear-gradient(135deg, #27ae60 0%, #16a085 100%); color: white; padding: 1.8rem 1rem 1.5rem; border-radius: 0 0 24px 24px; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
+  .chemistry-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat; }
+  .chemistry-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; position: relative; }
+  .chemistry-header p { opacity: 0.85; font-size: 0.85rem; position: relative; }
+  .chemistry-header .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 3px 12px; font-size: 0.78rem; margin-top: 6px; }
+  </style>
 <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <button id="dark-toggle" onclick="window._zkDarkToggle()" aria-label="切换深色模式">🌙 深色</button>
-<header class="chem-header">
-
-  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative">← 返回首页</a>
+<header class="chemistry-header">
+  <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;position:relative;display:block;margin-bottom:0.4rem">← 返回首页</a>
   <h1>🧪 化学 · 知识点复习</h1>
-  <p>中考化学核心知识 · 2026年5月27日 · 距中考25天</p>
-  <span class="badge">📖 基础知识 · 酸碱盐专题</span>
+  <p>元素 · 化学式 · 化学反应 · 酸碱盐 · 溶液 · 2026年5月27日 · 距中考25天</p>
+  <span class="badge">📖 核心概念 · 化学</span>
 </header>
 
 <div class="container">
-
-<!-- 知识卡片1: 酸碱盐知识体系 -->
-<div class="content-card" data-topic="酸碱盐" style="border-top: 3px solid #27ae60">
-  <h2>📌 酸碱盐知识体系（中考重点）</h2>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">① 酸的化学性质（5条）</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="1"><strong>酸 + 金属氧化物 → 盐 + 水</strong><br>例：Fe₂O₃ + 6HCl → 2FeCl₃ + 3H₂O</li>
-      <li data-n="2"><strong>酸 + 金属 → 盐 + 氢气↑</strong>（金属活动性顺序中H之前的金属）<br>例：Zn + H₂SO₄ → ZnSO₄ + H₂↑</li>
-      <li data-n="3"><strong>酸 + 碱 → 盐 + 水</strong>（中和反应）</li>
-      <li data-n="4"><strong>酸 + 盐 → 新酸 + 新盐</strong>（符合复分解条件）</li>
-      <li data-n="5"><strong>酸 + 碳酸盐 → 盐 + 水 + CO₂↑</strong></li>
-    </ul>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">② 碱的化学性质（4条）</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="6"><strong>碱 + 非金属氧化物 → 盐 + 水</strong><br>例：2NaOH + CO₂ → Na₂CO₃ + H₂O（NaOH必须密封保存！）</li>
-      <li data-n="7"><strong>碱 + 酸 → 盐 + 水</strong>（中和反应）</li>
-      <li data-n="8"><strong>碱 + 盐 → 新碱 + 新盐</strong>（两者都需可溶，且生成物有沉淀）</li>
-      <li data-n="9"><strong>碱溶液与指示剂反应：</strong>石蕊遇碱变蓝，酚酞遇碱变红</li>
-    </ul>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">③ 盐的化学性质（4条）</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="10"><strong>盐 + 金属 → 新金属 + 新盐</strong>（金属活动性顺序中前面的金属置换后面的）<br>例：Fe + CuSO₄ → FeSO₄ + Cu（湿法炼铜）</li>
-      <li data-n="11"><strong>盐 + 酸 → 新盐 + 新酸</strong></li>
-      <li data-n="12"><strong>盐 + 碱 → 新盐 + 新碱</strong></li>
-      <li data-n="13"><strong>盐 + 盐 → 两种新盐</strong>（两者都溶，生成物有沉淀）</li>
-    </ul>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">④ 复分解反应条件（口诀：生成气体/沉淀/水）</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="14">两种化合物互相交换成分，生成物中有沉淀、气体或水</li>
-      <li data-n="15"><strong>酸 + 碱：</strong>一定发生（生成水）</li>
-      <li data-n="16"><strong>酸 + 碳酸盐：</strong>一定发生（生成CO₂气体）</li>
-      <li data-n="17"><strong>盐 + 碱：</strong>反应物都必须溶于水</li>
-      <li data-n="18"><strong>盐 + 盐：</strong>反应物都必须溶于水</li>
-    </ul>
-    <div class="trap-box">
-      <strong>重点：</strong>判断复分解反应能否发生 = 看生成物是否有沉淀/气体/水
+  <div class="content-card" data-topic="元素">
+    <h2>📌 物质构成：分子、原子、离子</h2>
+    <div class="formula-box">
+      <strong>① 三粒子区别</strong>
+      <div class="math-block">分子保持物质化学性质；原子是化学变化最小粒子；离子带电</div>
+      <p><strong>说明：</strong>化学变化中分子可分，原子不可分。</p>
     </div>
-  </div>
-</div>
-
-<!-- 知识卡片2: 化学计算技巧 -->
-<div class="content-card" data-topic="化学式" style="border-top: 3px solid #1e8449">
-  <h2>📊 化学计算题核心技巧</h2>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">① 质量守恒定律</h4>
-    <p>反应物总质量 = 生成物总质量</p>
-    <p>利用：原子种类、数目、质量不变</p>
-    <p>题型：求某反应物/生成物的质量、求化学式、求某元素质量分数</p>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">② 差量法（中考高频）</h4>
-    <p>差量 = 反应前物质总质量 − 反应后物质总质量 = 气体质量 = 沉淀质量</p>
-    <p>例：CaCO₃高温分解，差量 = CO₂质量</p>
-    <p>CaCO₃ → CaO + CO₂↑</p>
-    <p>100g.......................44g</p>
-    <p>差量：每分解100g CaCO₃，固体质量减少44g</p>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">③ 化学方程式计算步骤</h4>
-    <p><strong>设</strong>（未知数）→ <strong>写</strong>（化学方程式）→ <strong>标</strong>（已知量+关系量）→ <strong>列</strong>（比例式）→ <strong>求</strong>（计算）→ <strong>答</strong></p>
-    <div class="tip-box">
-      <strong>💡 注意：</strong>化学方程式必须配平！相对分子质量必须算准！
+    <div class="formula-box">
+      <strong>② 元素概念</strong>
+      <div class="math-block">质子数相同的一类原子总称为元素</div>
+      <p><strong>说明：</strong>元素只讲种类，不讲个数。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 化合价口诀</strong>
+      <div class="math-block">一价氢氯钾钠银，二价氧钙钡镁锌</div>
+      <p><strong>说明：</strong>写化学式先标化合价，再交叉约简。</p>
     </div>
   </div>
 
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">④ 溶质质量分数计算</h4>
-    <p>ω = m<sub>溶质</sub> / m<sub>溶液</sub> × 100%</p>
-    <p>m<sub>溶液</sub> = m<sub>溶质</sub> + m<sub>溶剂</sub> = ρ × V<sub>溶液</sub></p>
-    <p>稀释问题：m<sub>浓溶液</sub> × ω<sub>浓</sub> = m<sub>稀溶液</sub> × ω<sub>稀</sub></p>
-    <div class="trap-box">
-      <strong>注意：</strong>稀释问题中，溶剂质量守恒，但溶液质量不守恒！
+  <div class="content-card" data-topic="化学式">
+    <h2>📌 化学式与计算：先看意义</h2>
+    <div class="formula-box">
+      <strong>① 化学式意义</strong>
+      <div class="math-block">表示物质、组成元素、一个分子、原子个数比</div>
+      <p><strong>说明：</strong>H₂O 表示水，也表示一个水分子。</p>
     </div>
-  </div>
-</div>
-
-<!-- 知识卡片3: 实验操作要点 -->
-<div class="content-card" data-topic="实验操作" style="border-top: 3px solid #145a32">
-  <h2>🔬 中考化学实验操作要点</h2>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">① 粗盐提纯（中考高频实验）</h4>
-    <p><strong>溶解：</strong>玻璃棒搅拌，加速溶解</p>
-    <p><strong>过滤：</strong>一贴二低三靠；滤纸紧贴漏斗壁，液面低于滤纸边缘，玻璃棒靠在三层滤纸处</p>
-    <p><strong>蒸发：</strong>玻璃棒搅拌（防止局部过热），当出现较多晶体时停止加热，利用余热蒸干</p>
-    <p><strong>滤液浑浊原因：</strong>滤纸破损、液面高于滤纸边缘、仪器不干净</p>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">② 氧气实验室制取</h4>
-    <p>2KMnO₄ → K₂MnO₄ + MnO₂ + O₂↑（加热高锰酸钾）</p>
-    <p>2KClO₃ → 2KCl + 3O₂↑（二氧化锰催化氯酸钾）</p>
-    <p>收集方法：向上排空气法（O₂密度大于空气）或排水法（O₂不易溶于水）</p>
-    <p>验满：用带火星木条放在集气瓶口，复燃则满</p>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">③ 二氧化碳实验室制取</h4>
-    <p>CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑</p>
-    <p>长颈漏斗必须液封，防止气体从漏斗逸出</p>
-    <p>收集方法：向上排空气法（CO₂密度大于空气，能溶于水）</p>
-    <p>验满：用燃着木条放在集气瓶口，熄灭则满</p>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">④ 金属活动性顺序实验</h4>
-    <p>K Ca Na Mg Al Zn Fe Sn Pb (H) Cu Hg Ag Pt Au</p>
-    <p>金属 + 酸 → 氢气：只有在H之前的金属才能反应</p>
-    <p>金属 + 盐溶液 → 新金属 + 新盐：前面的金属置换后面的金属</p>
-    <div class="trap-box">
-      <strong>注意：</strong>K、Ca、Na非常活泼，不能与盐溶液发生置换反应（先与水反应）
+    <div class="formula-box">
+      <strong>② 相对分子质量</strong>
+      <div class="math-block">Mr=各原子相对原子质量×个数之和</div>
+      <p><strong>说明：</strong>计算时别漏下标。</p>
     </div>
-  </div>
-</div>
-
-<!-- 知识卡片4: 常见物质颜色与状态 -->
-<div class="content-card" data-topic="元素" style="border-top: 3px solid #1e8449">
-  <h2>🎨 常见物质颜色与状态（推断题题眼）</h2>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">固体颜色</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="1"><strong>黑色：</strong>碳（C）、氧化铜（CuO）、四氧化三铁（Fe₃O₄）、二氧化锰（MnO₂）、铁粉（Fe）</li>
-      <li data-n="2"><strong>红色：</strong>铜（Cu）、红磷（P）、氧化铁（Fe₂O₃）</li>
-      <li data-n="3"><strong>绿色：</strong>碱式碳酸铜（Cu₂(OH)₂CO₃，铜绿）</li>
-      <li data-n="4"><strong>蓝色：</strong>胆矾（CuSO₄·5H₂O）、氢氧化铜（Cu(OH)₂）</li>
-      <li data-n="5"><strong>白色：</strong>大多数盐和碱（除带颜色外）</li>
-    </ul>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">溶液颜色</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="6"><strong>蓝色：</strong>Cu²⁺溶液（CuSO₄溶液等）</li>
-      <li data-n="7"><strong>黄色：</strong>Fe³⁺溶液（FeCl₃溶液、Fe₂(SO₄)₃溶液）</li>
-      <li data-n="8"><strong>浅绿色：</strong>Fe²⁺溶液（FeSO₄溶液、FeCl₂溶液）</li>
-      <li data-n="9"><strong>无色：</strong>大多数盐溶液、酸溶液、碱溶液</li>
-    </ul>
-  </div>
-
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">沉淀颜色</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="10"><strong>蓝色沉淀：</strong>Cu(OH)₂</li>
-      <li data-n="11"><strong>红褐色沉淀：</strong>Fe(OH)₃</li>
-      <li data-n="12"><strong>白色沉淀：</strong>CaCO₃、BaCO₃、AgCl、BaSO₄、Mg(OH)₂、Zn(OH)₂</li>
-    </ul>
-    <div class="trap-box">
-      <strong>注意：</strong>Fe(OH)₂是白色沉淀，但极易被氧化成Fe(OH)₃（灰绿色→红褐色）
+    <div class="formula-box">
+      <strong>③ 元素质量分数</strong>
+      <div class="math-block">某元素质量分数=该元素总相对质量/Mr×100%</div>
+      <p><strong>说明：</strong>标签题常考“是否合格”。</p>
     </div>
   </div>
 
-  <div class="knowledge-item">
-    <h4 style="color:#27ae60">气体检验</h4>
-    <ul class="num-list" style="--num-color: #27ae60">
-      <li data-n="13"><strong>O₂：</strong>带火星木条，复燃</li>
-      <li data-n="14"><strong>CO₂：</strong>澄清石灰水，变浑浊；燃着木条，熄灭</li>
-      <li data-n="15"><strong>H₂：</strong>点燃，发出淡蓝色火焰，产物只有水</li>
-      <li data-n="16"><strong>CO：</strong>点燃，发出蓝色火焰，产物只有CO₂；通入灼热CuO，黑色变红色</li>
-      <li data-n="17"><strong>NH₃：</strong>湿润红色石蕊试纸，变蓝；有刺激性气味</li>
-    </ul>
+  <div class="content-card" data-topic="化学反应">
+    <h2>📌 化学反应：守恒和分类</h2>
+    <div class="formula-box">
+      <strong>① 质量守恒</strong>
+      <div class="math-block">反应前后原子种类、数目、质量不变</div>
+      <p><strong>说明：</strong>配平看原子个数，不是看分子个数。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 四大基本反应</strong>
+      <div class="math-block">化合、分解、置换、复分解</div>
+      <p><strong>说明：</strong>置换：单质+化合物→新单质+新化合物。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 金属活动性</strong>
+      <div class="math-block">K Ca Na Mg Al Zn Fe Sn Pb (H) Cu Hg Ag Pt Au</div>
+      <p><strong>说明：</strong>排在氢前可与酸反应放出H₂。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="酸碱盐">
+    <h2>📌 酸碱盐：性质和复分解条件</h2>
+    <div class="formula-box">
+      <strong>① 酸的通性</strong>
+      <div class="math-block">酸 + 活泼金属 → 盐 + H₂；酸 + 碱 → 盐 + 水</div>
+      <p><strong>说明：</strong>酸溶液中都含 H⁺。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 碱的通性</strong>
+      <div class="math-block">碱 + 酸 → 盐 + 水；碱 + 某些盐 → 新碱 + 新盐</div>
+      <p><strong>说明：</strong>碱溶液中都含 OH⁻。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 复分解条件</strong>
+      <div class="math-block">生成沉淀/气体/水，反应才能进行</div>
+      <p><strong>说明：</strong>先判断离子能否结合成水、气体或沉淀。</p>
+    </div>
+  </div>
+
+  <div class="content-card" data-topic="溶液">
+    <h2>📌 溶液计算：质量分数别混</h2>
+    <div class="formula-box">
+      <strong>① 溶质质量分数</strong>
+      <div class="math-block">w=溶质质量/溶液质量×100%</div>
+      <p><strong>说明：</strong>溶液质量=溶质+溶剂。</p>
+    </div>
+    <div class="formula-box">
+      <strong>② 稀释问题</strong>
+      <div class="math-block">稀释前后溶质质量不变</div>
+      <p><strong>说明：</strong>m浓×w浓=m稀×w稀。</p>
+    </div>
+    <div class="formula-box">
+      <strong>③ 配制步骤</strong>
+      <div class="math-block">计算 → 称量/量取 → 溶解 → 装瓶贴签</div>
+      <p><strong>说明：</strong>量筒读数视线要与凹液面最低处相平。</p>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="chemistry_paper.html">← 试卷练习</a>
+    <a href="index.html" class="next">返回首页 →</a>
   </div>
 </div>
 
-<!-- 复习建议 -->
-<div class="content-card" style="border-top: 3px solid #27ae60">
-  <h2>💡 复习建议</h2>
-  <div class="knowledge-item">
-    <ol style="padding-left:1.2rem">
-      <li style="margin-bottom:6px"><strong>酸碱盐是中考核心：</strong>背熟通性，理解反应条件，能写化学方程式</li>
-      <li style="margin-bottom:6px"><strong>化学方程式每天默写10个：</strong>重点练配平，条件、↑↓符号要完整</li>
-      <li style="margin-bottom:6px"><strong>推断题找"题眼"：</strong>特殊颜色（蓝色沉淀、红色固体）、气体、沉淀、反应条件</li>
-      <li style="margin-bottom:6px"><strong>计算题掌握质量守恒和差量法：</strong>多练步骤书写，规范表达</li>
-      <li style="margin-bottom:6px"><strong>实验题注意操作规范：</strong>现象描述、结论得出要准确</li>
-    </ol>
-  </div>
-</div>
-
-<!-- Page Nav -->
-<div class="page-nav">
-  <a href="chemistry_paper.html">← 试卷练习</a>
-  <a href="index.html" class="next">返回首页 →</a>
-</div>
-
-</div>
 <script src="dark-mode.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
@@ -233,7 +134,6 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 <script src="features.js"></script>
-
 <script src="mindmap-data.js"></script>
 <script src="mindmap.js"></script>
 </body>
