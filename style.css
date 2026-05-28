@@ -786,3 +786,198 @@ body.mode-simplified .trap-box { display: block !important; }
 
 /* ============ KaTeX OVERRIDES ============ */
 .katex-display { margin: 10px 0 !important; overflow-x: auto; }
+
+/* ============ QUIZ MODAL ============ */
+.zk-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.zk-modal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 20px;
+  max-width: 420px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  font-family: inherit;
+}
+body.dark .zk-modal-card {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+.zk-modal-subject {
+  display: inline-block;
+  color: white;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.zk-modal-question {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  color: #1e293b;
+}
+body.dark .zk-modal-question { color: #f1f5f9; }
+.zk-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.zk-modal-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: all 0.15s;
+  color: #374151;
+}
+body.dark .zk-modal-option {
+  border-color: #475569;
+  color: #e2e8f0;
+}
+.zk-modal-option:hover,
+.zk-modal-option.selected {
+  background: rgba(0,0,0,0.04);
+}
+body.dark .zk-modal-option:hover,
+body.dark .zk-modal-option.selected {
+  background: rgba(100,150,255,0.12);
+}
+.zk-modal-input {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+}
+.zk-modal-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+.zk-modal-btn {
+  flex: 1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.zk-modal-btn-cancel {
+  background: #e2e8f0;
+  color: #64748b;
+}
+body.dark .zk-modal-btn-cancel {
+  background: #334155;
+  color: #f1f5f9;
+}
+.zk-modal-result {
+  display: none;
+  margin-bottom: 16px;
+}
+.zk-modal-result-correct {
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.zk-modal-result-correct strong {
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 4px;
+  display: block;
+}
+.zk-modal-result-wrong {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.zk-modal-result-wrong strong {
+  font-weight: 700;
+  color: #ef4444;
+  margin-bottom: 4px;
+  display: block;
+}
+.zk-modal-result-exp {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* ============ TOAST ============ */
+.zk-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+/* ============ PAPER FLOATING BUTTONS ============ */
+.paper-float-btn {
+  position: fixed;
+  right: 16px;
+  z-index: 9998;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.9;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+.paper-float-btn:hover { opacity: 1; }
+.paper-float-btn-jump {
+  bottom: 20px;
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  border-radius: 28px;
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  box-shadow: 0 4px 16px rgba(243,156,18,0.4);
+  z-index: 9999;
+}
+.paper-float-btn-pdf {
+  bottom: 74px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  box-shadow: 0 4px 12px rgba(52,152,219,0.35);
+}
+.paper-float-btn-fullscreen {
+  bottom: 128px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  box-shadow: 0 4px 12px rgba(26,188,156,0.35);
+}

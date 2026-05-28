@@ -1,5 +1,5 @@
 // Service Worker — 离线缓存，让学生在没网时也能看
-const CACHE_NAME = 'zk-review-v40';
+const CACHE_NAME = 'zk-review-v44';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
@@ -14,14 +14,18 @@ const STATIC_ASSETS = [
     '/mindmap.js',
     '/questions.js',
     '/dark-mode.js',
+    '/utils.js',
+    '/favorites.js',
+    '/quiz.js',
+    '/paper.js',
+    '/mode.js',
+    '/study-time.js',
     '/features.js',
     '/style.css',
     '/manifest.json',
     '/emergency.html',
     '/mistakes.html',
     '/feedback.html',
-    '/checkin.html',
-    '/checkin.js',
     '/math_paper.html',
     '/english_paper.html',
     '/chinese_paper.html',
