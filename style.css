@@ -160,7 +160,7 @@ body.dark {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   background: var(--bg-body);
   color: var(--text-primary);
   line-height: 1.75;

@@ -10,6 +10,24 @@
     return d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
   }
 
+  function pruneOldData() {
+    var t = {};
+    try { t = JSON.parse(localStorage.getItem(TIME_KEY)) || {}; } catch(e) { return; }
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 90);
+    var cutoffKey = cutoff.getFullYear() + '-' + ('0'+(cutoff.getMonth()+1)).slice(-2) + '-' + ('0'+cutoff.getDate()).slice(-2);
+    var changed = false;
+    for (var k in t) {
+      if (k < cutoffKey) { delete t[k]; changed = true; }
+    }
+    if (changed) {
+      try { localStorage.setItem(TIME_KEY, JSON.stringify(t)); } catch(e) {}
+    }
+  }
+
+  // Prune on load
+  pruneOldData();
+
   function flush() {
     if (document.visibilityState !== 'visible') return;
     var now = Date.now();
