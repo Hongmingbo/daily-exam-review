@@ -26,13 +26,16 @@
   window.showDailyQuestionModal = function(btn) {
     var dow = new Date().getDay();
     var subjectIdx = (dow === 0) ? 6 : dow - 1;
-    var startIdx = subjectIdx * 30;
+    var SUBJECT_STARTS = [0, 40, 80, 120, 160, 200, 240];
+    var SUBJECT_COUNTS = [40, 40, 40, 40, 40, 40, 40];
+    var startIdx = SUBJECT_STARTS[subjectIdx];
+    var count = SUBJECT_COUNTS[subjectIdx];
     var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
     var quiz = getQuiz();
     var today = ZK.todayStr();
     var currentCount = (quiz.date === today) ? (quiz.count || 0) : 0;
     if (currentCount >= 5) { showQuizDoneModal(); return; }
-    var qIndex = startIdx + ((dayOfYear + currentCount) % 30);
+    var qIndex = startIdx + ((dayOfYear + currentCount) % count);
     var q = DAILY_QUESTIONS[qIndex];
     if (!q) return;
 
