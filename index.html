@@ -387,73 +387,41 @@ initToday();
   <h2>📋 本周轮播</h2>
   <div style="overflow-x:auto">
   <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:420px">
-
-
-
-
-
-
-
-
-
-
-
-    <tr class="week-row physics" style="background:#f8fafc;">
-      <td style="padding:7px 10px">05月25日</td>
-      <td style="padding:7px 10px">⚡ 物理</td>
-      <td style="padding:7px 10px"><a href="physics_basic.html" style="color:#f39c12;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="physics_paper.html" style="color:#f39c12;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-    <tr class="week-row chinese" style="background:white;">
-      <td style="padding:7px 10px">05月26日</td>
-      <td style="padding:7px 10px">📝 语文</td>
-      <td style="padding:7px 10px"><a href="chinese_basic.html" style="color:#e74c3c;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="chinese_paper.html" style="color:#e74c3c;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-    <tr class="week-row math" style="background:#f8fafc;">
-      <td style="padding:7px 10px">05月27日</td>
-      <td style="padding:7px 10px">📐 数学</td>
-      <td style="padding:7px 10px"><a href="math_basic.html" style="color:#3498db;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="math_paper.html" style="color:#3498db;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-    <tr class="week-row english" style="background:white;">
-      <td style="padding:7px 10px">05月28日</td>
-      <td style="padding:7px 10px">📖 英语</td>
-      <td style="padding:7px 10px"><a href="english_basic.html" style="color:#9b59b6;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="english_paper.html" style="color:#9b59b6;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-    <tr class="week-row chemistry week-today" style="background:#fffbeb;font-weight:700">
-      <td style="padding:7px 10px">05月29日 🔥</td>
-      <td style="padding:7px 10px">🧪 化学</td>
-      <td style="padding:7px 10px"><a href="chemistry_basic.html" style="color:#27ae60;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="chemistry_paper.html" style="color:#27ae60;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-    <tr class="week-row history" style="background:white;">
-      <td style="padding:7px 10px">05月30日</td>
-      <td style="padding:7px 10px">🏛️ 历史</td>
-      <td style="padding:7px 10px"><a href="history_basic.html" style="color:#e67e22;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="history_paper.html" style="color:#e67e22;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-    <tr class="week-row politics" style="background:#f8fafc;">
-      <td style="padding:7px 10px">05月31日</td>
-      <td style="padding:7px 10px">🎯 政治</td>
-      <td style="padding:7px 10px"><a href="politics_basic.html" style="color:#1abc9c;text-decoration:none">📖 查看</a></td>
-      <td style="padding:7px 10px"><a href="politics_paper.html" style="color:#1abc9c;text-decoration:none">✍️ 练习</a></td>
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
+    <tbody id="weekly-carousel-body"></tbody>
   </table>
   </div>
 </div>
+<script>
+(function() {
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var dow = today.getDay();
+  var mondayOffset = (dow === 0) ? -6 : 1 - dow;
+  var monday = new Date(today);
+  monday.setDate(today.getDate() + mondayOffset);
+  var tbody = document.getElementById('weekly-carousel-body');
+  if (!tbody) return;
+  var html = '';
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    var isToday = (d.getTime() === today.getTime());
+    var dateLabel = pad(d.getMonth()+1) + '月' + pad(d.getDate()) + '日';
+    var subj = WEEK_DATA[i];
+    if (!subj) continue;
+    var bg = isToday ? 'background:#fffbeb;font-weight:700' : (i % 2 === 0 ? 'background:#f8fafc' : 'background:white');
+    var todayMark = isToday ? ' 🔥' : '';
+    html += '<tr class="week-row ' + subj.subj + (isToday ? ' week-today' : '') + '" style="' + bg + '">' +
+      '<td style="padding:7px 10px">' + dateLabel + todayMark + '</td>' +
+      '<td style="padding:7px 10px">' + subj.label + '</td>' +
+      '<td style="padding:7px 10px"><a href="' + subj.basic + '" style="color:' + subj.color + ';text-decoration:none">📖 查看</a></td>' +
+      '<td style="padding:7px 10px"><a href="' + subj.paper + '" style="color:' + subj.color + ';text-decoration:none">✍️ 练习</a></td>' +
+      '</tr>';
+  }
+  tbody.innerHTML = html;
+})();
+</script>
+<div class="content-card">
 <div class="content-card">
   <h2>ℹ️ 使用说明</h2>
   <div class="knowledge-item">

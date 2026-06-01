@@ -120,6 +120,32 @@
       optsDiv.style.display = 'none';
     }
 
+    function norm(s) { return String(s || '').replace(/\s+/g, '').toLowerCase(); }
+    function stripParens(s) { return String(s).replace(/（[^）]*）/g, '').replace(/\([^)]*\)/g, ''); }
+    function getAlternatives(raw) {
+      var s = norm(raw);
+      var alts = [s];
+      var stripped = norm(stripParens(raw));
+      if (stripped !== s) alts.push(stripped);
+      if (/或者?/.test(s)) {
+        s.split(/或者?/).forEach(function(p) {
+          var v = norm(p);
+          if (v && alts.indexOf(v) === -1) alts.push(v);
+        });
+      }
+      if (/或者?/.test(stripped)) {
+        stripped.split(/或者?/).forEach(function(p) {
+          var v = norm(p);
+          if (v && alts.indexOf(v) === -1) alts.push(v);
+        });
+      }
+      return alts;
+    }
+    function matchOne(userAns, expectedRaw) {
+      var alts = getAlternatives(expectedRaw);
+      return alts.indexOf(userAns) !== -1;
+    }
+
     document.getElementById('zk-q-submit').addEventListener('click', function () {
       var correct;
       if (isFill) {
@@ -133,14 +159,13 @@
             userParts.push(val.replace(/\s+/g, ''));
           });
           if (!allFilled) { ZK.showToast('请填写所有空'); return; }
-          var correctParts = q.ans.split('，').map(function(s) { return s.trim().replace(/\s+/g, ''); });
-          correct = userParts.every(function(up, i) { return up === correctParts[i]; });
+          var correctParts = q.ans.split('，');
+          correct = userParts.every(function(up, i) { return matchOne(up, correctParts[i]); });
         } else {
           var input = document.getElementById('zk-q-fill');
           if (!input || !input.value.trim()) { ZK.showToast('请先输入答案'); return; }
           var userAns = input.value.trim().replace(/\s+/g, '');
-          var correctAns = (q.ans || '').toString().trim().replace(/\s+/g, '');
-          correct = (userAns === correctAns);
+          correct = matchOne(userAns, q.ans || '');
         }
       } else {
         var selected = document.querySelector('input[name="zk-q"]:checked');

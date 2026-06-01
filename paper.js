@@ -44,18 +44,22 @@
     btn.addEventListener('click', jumpToAnswer);
     document.body.appendChild(btn);
     var isAtAnswer = false;
+    var jumping = false;
     var observer = new IntersectionObserver(function(entries) {
+      if (jumping) return;
       entries.forEach(function(e) {
         if (e.isIntersecting) {
           isAtAnswer = true;
           btn.textContent = '📋 回到题目';
           btn.onclick = function() {
+            jumping = true;
             jumpToQuestions();
             setTimeout(function() {
               btn.textContent = '📍 跳转答案';
               btn.onclick = null;
               btn.addEventListener('click', jumpToAnswer);
-            }, 800);
+              jumping = false;
+            }, 1200);
           };
         } else {
           if (isAtAnswer) {
