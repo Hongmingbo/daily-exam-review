@@ -33,24 +33,37 @@
     btn.className = 'paper-float-btn paper-float-btn-jump';
     btn.innerHTML = '📍 跳转答案';
     btn.title = '跳转到答案页区域';
-    btn.addEventListener('click', function() {
+    function jumpToAnswer() {
       var target = document.getElementById('paper-page-' + (answerIdx + 1));
       if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
-    });
+    }
+    function jumpToQuestions() {
+      var q = document.getElementById('paper-page-1');
+      if (q) q.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+    btn.addEventListener('click', jumpToAnswer);
     document.body.appendChild(btn);
+    var isAtAnswer = false;
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) {
+          isAtAnswer = true;
           btn.textContent = '📋 回到题目';
           btn.onclick = function() {
-            document.getElementById('paper-page-1').scrollIntoView({ behavior:'smooth', block:'start' });
+            jumpToQuestions();
             setTimeout(function() {
               btn.textContent = '📍 跳转答案';
-              btn.onclick = arguments.callee;
+              btn.onclick = null;
+              btn.addEventListener('click', jumpToAnswer);
             }, 800);
           };
         } else {
-          btn.textContent = '📍 跳转答案';
+          if (isAtAnswer) {
+            isAtAnswer = false;
+            btn.textContent = '📍 跳转答案';
+            btn.onclick = null;
+            btn.addEventListener('click', jumpToAnswer);
+          }
         }
       });
     }, { threshold: 0.3 });
