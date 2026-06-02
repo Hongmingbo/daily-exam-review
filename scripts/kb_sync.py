@@ -8,7 +8,7 @@ from datetime import datetime
 
 # 路径配置
 REPO = os.path.expanduser('~/daily-exam-review')
-SKILL_DIR = os.path.expanduser('~/.hermes/skills/ima-skill')
+SKILL_DIR = os.path.join(os.environ.get('LOCALAPPDATA', os.path.expanduser('~')), 'hermes', 'skills', 'ima-skill', 'scripts')
 PY = os.path.expanduser('~/exam-pipeline/venv2/bin/python')
 TMP = f'{REPO}/tmp_kb_sync'
 os.makedirs(TMP, exist_ok=True)
@@ -223,8 +223,16 @@ print(f'=== KB Sync {datetime.now().strftime("%Y-%m-%d %H:%M")} ===')
 
 # 加载凭证
 homedir = os.path.expanduser('~')
-CID = open(f'{homedir}/.config/ima/client_id').read().strip()
-KEY = open(f'{homedir}/.config/ima/api_key').read().strip()
+cid_path = f'{homedir}/.config/ima/client_id'
+key_path = f'{homedir}/.config/ima/api_key'
+# 文件可能是 UTF-16 编码，尝试多种编码
+for enc in ('utf-8', 'utf-16', 'utf-16-le', 'utf-16-be'):
+    try:
+        CID = open(cid_path, encoding=enc).read().strip()
+        KEY = open(key_path, encoding=enc).read().strip()
+        break
+    except (UnicodeDecodeError, LookupError):
+        continue
 
 changed = []
 for subj_key, subj in SUBJECTS.items():

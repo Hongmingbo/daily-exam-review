@@ -6,17 +6,23 @@ Rules:
 - include all PDF pages (questions + answers)
 - do not mix multiple papers on one page
 """
-import sys, re, json, time, shutil, subprocess
+import sys, re, json, time, shutil, subprocess, os
 from pathlib import Path
 from datetime import date
 
-REPO_DIR = Path("/home/hmb/daily-exam-review")
+# 动态路径，支持 Windows 和 Linux
+_HOMEDIR = Path.home()
+if sys.platform == 'win32':
+    REPO_DIR = Path("C:/Users/Hmingbo/daily-exam-review")
+    _local = os.environ.get('LOCALAPPDATA', str(_HOMEDIR))
+    SKILL_DIR = Path(_local) / 'hermes/skills/ima-skill/scripts'
+else:
+    REPO_DIR = _HOMEDIR / 'daily-exam-review'
+    SKILL_DIR = _HOMEDIR / '.hermes/skills/ima-skill'
 IMAGES_DIR = REPO_DIR / "images"
 TMP_DIR = REPO_DIR / "tmp_downloads"
 IMAGES_DIR.mkdir(exist_ok=True)
 TMP_DIR.mkdir(exist_ok=True)
-
-SKILL_DIR = Path("/home/hmb/.hermes/skills/ima-skill")
 KB_ID = "3A7ByqxFj9CRITF77c_FCQ01aCZxReKLUr56zusq72E="
 
 # weekday order: Mon=physics ... Sun=politics
@@ -108,9 +114,16 @@ def choose_rotating_pdf(pdfs, subj):
     return selected
 
 def load_creds():
-    cid = Path("/home/hmb/.config/ima/client_id").read_text().strip()
-    key = Path("/home/hmb/.config/ima/api_key").read_text().strip()
-    return cid, key
+    cfg = _HOMEDIR / '.config/ima'
+    # 文件可能是 UTF-16 编码
+    for enc in ('utf-8', 'utf-16', 'utf-16-le', 'utf-16-be'):
+        try:
+            cid = (cfg / 'client_id').read_text(encoding=enc).strip()
+            key = (cfg / 'api_key').read_text(encoding=enc).strip()
+            return cid, key
+        except (UnicodeDecodeError, LookupError):
+            continue
+    raise RuntimeError("Could not read IMA credentials")
 
 def ima_api(api_path, params):
     cid, key = load_creds()
