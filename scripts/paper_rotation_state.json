@@ -1,6 +1,6 @@
 {
-  "week_number": 22,
-  "last_updated": "2026-05-25",
+  "week_number": 23,
+  "last_updated": "2026-06-02",
   "subjects": {
     "physics": {
       "rotation_index": 2,
@@ -8,8 +8,9 @@
       "last_used_title": "【物理试卷+答案】2022-2023学年南平市第二次教学质量监测.pdf"
     },
     "chinese": {
-      "rotation_index": 0,
-      "last_used_media_id": "pdf_a9223fe706aa4794858299b2d1901b5f_634338577f49ace6002b03650bc4f2f20019f58ba6c00d7d"
+      "rotation_index": 1,
+      "last_used_media_id": "pdf_a9223fe706aa4794858299b2d1901b5f_634338577f49ace6002b03650bc4f2f20019f58ba6c00d7d",
+      "last_used_title": "福建省宁德市2023年初三语文二模试题和答案.pdf"
     },
     "math": {
       "rotation_index": 0,

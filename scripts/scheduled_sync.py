@@ -13,6 +13,7 @@ scheduled_sync.py — 每日调度脚本
 import sys, os, json, subprocess
 from datetime import date, timedelta
 
+PY = os.path.abspath(sys.executable)  # hermes venv Python（绝对路径，确保 subprocess 找对）
 REPO = os.path.expanduser(sys.argv[1] if len(sys.argv) > 1 else '~/daily-exam-review')
 OUT_DIR = os.path.expanduser('~/.hermes/cron/output')
 STATE_FILE = os.path.join(REPO, 'scripts', 'sync_state.json')
@@ -66,14 +67,14 @@ def main():
     # 1. kb_sync — 每3天一次（可能因IMA KB问题返回空结果，跳过即可）
     if do_kb_sync:
         log('--- kb_sync start ---')
-        ok = run(['python', 'scripts/kb_sync.py'], f'{OUT_DIR}/kb_sync.log')
+        ok = run([PY, 'scripts/kb_sync.py'], f'{OUT_DIR}/kb_sync.log')
         kb_ok = ok
         log(f'kb_sync: {"OK" if ok else "FAILED"}')
         if ok:
             state['last_kb_sync'] = date.today().isoformat()
             save_state(state)
             # 2a. 同步 README → about.html（仅在 kb_sync 成功时）
-            ok2 = run(['python', 'scripts/sync_readme_about.py'], f'{OUT_DIR}/readme_sync.log')
+            ok2 = run([PY, 'scripts/sync_readme_about.py'], f'{OUT_DIR}/readme_sync.log')
             log(f'sync_readme_about: {"OK" if ok2 else "FAILED"}')
         else:
             log('kb_sync failed (可能IMA KB不可用)，跳过同步，保留已有内容')
@@ -83,13 +84,13 @@ def main():
     # 2. download today's paper — 每天（轮换由脚本内部按周控制）
     # 可能因PDF下载/IMA问题失败，跳过不影响后续步骤
     log('--- download_and_build_papers today ---')
-    ok = run(['python', 'scripts/download_and_build_papers.py', 'today'],
+    ok = run([PY, 'scripts/download_and_build_papers.py', 'today'],
              f'{OUT_DIR}/paper_download.log')
     log(f'download_and_build_papers: {"OK" if ok else "FAILED (跳过，不影响流程)"}')
 
     # 3. daily_today_marker — 每天
     log('--- daily_today_marker ---')
-    ok = run(['python', 'scripts/daily_today_marker.py', REPO],
+    ok = run([PY, 'scripts/daily_today_marker.py', REPO],
              f'{OUT_DIR}/today_marker.log')
     log(f'daily_today_marker: {"OK" if ok else "FAILED"}')
 
@@ -113,7 +114,7 @@ def main():
 
     # 5. daily_push — 每天
     log('--- daily_push ---')
-    ok = run(['python', 'scripts/daily_push.py'], f'{OUT_DIR}/daily_push.log')
+    ok = run([PY, 'scripts/daily_push.py'], f'{OUT_DIR}/daily_push.log')
     log(f'daily_push: {"OK" if ok else "FAILED"}')
 
     print('=== done ===')

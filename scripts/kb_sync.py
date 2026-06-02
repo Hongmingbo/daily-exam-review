@@ -19,7 +19,7 @@ SUBJECTS = {
     'math': {
         'folder': 'folder_7461794717137841',
         'label': '📐 数学',
-        'page': 'math.html',
+        'page': 'math_basic.html',
         'basic_page': 'math_basic.html',
         'color': '#3498db',
         'paper_folder': 'folder_7461795233036275',
@@ -27,7 +27,7 @@ SUBJECTS = {
     'chinese': {
         'folder': 'folder_7461799959991117',
         'label': '📝 语文',
-        'page': 'chinese.html',
+        'page': 'chinese_basic.html',
         'basic_page': 'chinese_basic.html',
         'color': '#e74c3c',
         'paper_folder': 'folder_7461792464797113',
@@ -35,7 +35,7 @@ SUBJECTS = {
     'history': {
         'folder': 'folder_7461792599014306',
         'label': '🏛️ 历史',
-        'page': 'history.html',
+        'page': 'history_basic.html',
         'basic_page': 'history_basic.html',
         'color': '#e67e22',
         'paper_folder': 'folder_7461792649344818',
@@ -43,7 +43,7 @@ SUBJECTS = {
     'english': {
         'folder': 'folder_7461792905171288',
         'label': '📖 英语',
-        'page': 'english.html',
+        'page': 'english_basic.html',
         'basic_page': 'english_basic.html',
         'color': '#9b59b6',
         'paper_folder': 'folder_7461794322848125',
@@ -51,7 +51,7 @@ SUBJECTS = {
     'physics': {
         'folder': 'folder_7461794624862125',
         'label': '⚡ 物理',
-        'page': 'physics.html',
+        'page': 'physics_basic.html',
         'basic_page': 'physics_basic.html',
         'color': '#f39c12',
         'paper_folder': 'folder_7461794670998044',
@@ -59,7 +59,7 @@ SUBJECTS = {
     'chemistry': {
         'folder': 'folder_7461792687071154',
         'label': '🧪 化学',
-        'page': 'chemistry.html',
+        'page': 'chemistry_basic.html',
         'basic_page': 'chemistry_basic.html',
         'color': '#27ae60',
         'paper_folder': 'folder_7461792729036437',
@@ -67,7 +67,7 @@ SUBJECTS = {
     'politics': {
         'folder': 'folder_7461792527686439',
         'label': '🎯 政治',
-        'page': 'politics.html',
+        'page': 'politics_basic.html',
         'basic_page': 'politics_basic.html',
         'color': '#1abc9c',
         'paper_folder': 'folder_7461792557071449',
