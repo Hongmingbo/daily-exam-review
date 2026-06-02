@@ -96,7 +96,7 @@ def main():
              f'{OUT_DIR}/today_marker.log')
     log(f'daily_today_marker: {"OK" if ok else "FAILED"}')
 
-    # 4. Git commit & push（仅当有变更时）
+    # 4. Git commit & push（仅当有变更时，必须先 push 才能让 IMA 通过 URL 导入）
     log('--- git push ---')
     git = ['git', f'-C={REPO}']
     subprocess.run(git + ['config', 'user.name', 'Hongmingbo'], capture_output=True)
@@ -113,6 +113,11 @@ def main():
         log(f'  stderr: {push.stderr[:200]}')
     else:
         log('git push: no changes')
+
+    # 5. IMA KB 导入知识点（git push 后，raw URL 可访问）
+    log('--- import knowledge to IMA KB ---')
+    ok = run([PY, 'scripts/import_knowledge_to_kb.py'], f'{OUT_DIR}/import_knowledge.log')
+    log(f'import_knowledge: {"OK" if ok else "FAILED (不影响流程)"}')
 
     # 5. daily_push — 每天
     log('--- daily_push ---')

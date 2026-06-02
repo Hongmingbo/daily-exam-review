@@ -1,24 +1,29 @@
 #!/usr/bin/env python3
 """
-knowledge_to_kb.py — 将知识点内容保存到本地缓存，尝试上传到 IMA KB
+knowledge_to_kb.py — 知识点内容上传到 IMA 知识库
+
+策略：将知识点保存为 Markdown 文件 → 推到 GitHub → 用 import_urls(raw URL) 导入 IMA KB
+（create_media 需要更高权限，import_urls 始终可用）
 
 流程：
-  1. 读取各科 *_basic.html 中的知识点内容
-  2. 转换为 Markdown，保存到本地缓存 (knowledge_cache/)
-  3. 尝试上传到 IMA KB 各科文件夹（需要 create_media 权限）
-  4. knowledge_builder 优先读取本地缓存，无需联网即可快速更新
+  1. 从 *_basic.html 提取知识点，转为 Markdown
+  2. 保存到 knowledge/ 目录（提交到 GitHub，可被 IMA 通过 URL 读取）
+  3. 用 import_urls 将 raw GitHub URL 导入 IMA KB 各科文件夹
+  4. 同时保存到 knowledge_cache/（本地缓存，knowledge_builder 优先读取）
 
 用法: python scripts/knowledge_to_kb.py
 """
-import sys, os, re, json, subprocess, time, tempfile
+import sys, os, re, json, subprocess, time
 from datetime import date
-from pathlib import Path
 
 REPO = os.path.expanduser('~/daily-exam-review')
 SKILL_DIR = os.path.join(os.environ.get('LOCALAPPDATA', os.path.expanduser('~')),
                          'hermes', 'skills', 'ima-skill', 'scripts')
-CACHE_DIR = os.path.join(REPO, 'knowledge_cache')
+KNOWLEDGE_DIR = os.path.join(REPO, 'knowledge')    # 提交到 GitHub（公开）
+CACHE_DIR = os.path.join(REPO, 'knowledge_cache')   # 本地缓存（.gitignore）
 KB_ID = '3A7ByqxFj9CRITF77c_FCQ01aCZxReKLUr56zusq72E='
+
+GITHUB_RAW = 'https://raw.githubusercontent.com/Hongmingbo/daily-exam-review/main/knowledge'
 
 SUBJECTS = {
     'math':      {'folder': 'folder_7461794717137841', 'name': '数学', 'emoji': '📐'},
@@ -30,6 +35,7 @@ SUBJECTS = {
     'politics':  {'folder': 'folder_7461792527686439', 'name': '政治', 'emoji': '🎯'},
 }
 
+os.makedirs(KNOWLEDGE_DIR, exist_ok=True)
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 
@@ -148,8 +154,8 @@ def extract_knowledge_json(html_path):
     return topics
 
 
-def check_file_exists(folder_id, file_name):
-    """检查文件夹中是否已有同名文件"""
+def check_url_in_folder(folder_id, raw_url):
+    """检查文件夹中是否已导入该 URL"""
     resp = run_node('openapi/wiki/v1/get_knowledge_list', {
         'knowledge_base_id': KB_ID,
         'folder_id': folder_id,
@@ -158,74 +164,43 @@ def check_file_exists(folder_id, file_name):
     })
     if resp and resp.get('code') == 0:
         for item in resp.get('data', {}).get('knowledge_list', []):
-            if item.get('title') == file_name:
+            if item.get('title') == raw_url:
                 return True
     return False
 
 
-def try_upload_md(md_content, file_name, folder_id):
-    """尝试上传 .md 文件到 IMA KB（需要 create_media 权限）"""
-    tmp_path = os.path.join(tempfile.gettempdir(), file_name)
-    with open(tmp_path, 'w', encoding='utf-8') as f:
-        f.write(md_content)
-    file_size = os.path.getsize(tmp_path)
-
-    if check_file_exists(folder_id, file_name):
-        print(f'    [SKIP] 已存在: {file_name}')
+def import_url_to_kb(raw_url, folder_id):
+    """用 import_urls 将 raw GitHub URL 导入 IMA KB"""
+    if check_url_in_folder(folder_id, raw_url):
+        print(f'    [SKIP] 已存在: {raw_url.split("/")[-1]}')
         return True
 
-    # 尝试 create_media
-    resp = run_node('openapi/wiki/v1/create_media', {
+    resp = run_node('openapi/wiki/v1/import_urls', {
         'knowledge_base_id': KB_ID,
-        'file_name': file_name,
-        'file_size': file_size,
-        'media_type': 8,  # Markdown
+        'urls': [raw_url],
+        'folder_id': folder_id,
     })
-    if not resp or resp.get('code') != 0:
-        # create_media 不可用（权限或 API 限制），跳过上传
-        try:
-            os.remove(tmp_path)
-        except:
-            pass
-        return False
-
-    data = resp['data']
-    creds = data['credentials']
-    cos_upload = os.path.join(SKILL_DIR, 'cos-upload.cjs')
-
-    r = subprocess.run(
-        ['node', cos_upload,
-         '--bucket', data['bucket'], '--region', data['region'],
-         '--key', data['media_upload_path'], '--file', tmp_path,
-         '--tmp-secret-id', creds['tmpSecretId'],
-         '--tmp-secret-key', creds['tmpSecretKey'],
-         '--token', creds['token']],
-        capture_output=True, text=True, timeout=60
-    )
-    if r.returncode != 0:
-        print(f'    [FAIL] COS 上传失败: {r.stderr[:200]}')
-        return False
-
-    for attempt in range(5):
-        resp = run_node('openapi/wiki/v1/add_knowledge', {
-            'knowledge_base_id': KB_ID,
-            'media_type': 8,
-            'file_name': file_name,
-            'folder_id': folder_id,
-        })
-        if resp and resp.get('code') == 0:
-            print(f'    [OK] 上传成功: {file_name}')
-            try:
-                os.remove(tmp_path)
-            except:
-                pass
-            return True
-        time.sleep(2)
-
+    if resp and resp.get('code') == 0:
+        results = resp.get('data', {}).get('results', {})
+        for url, result in results.items():
+            if result.get('ret_code') == 0:
+                print(f'    [OK] 导入成功: {raw_url.split("/")[-1]}')
+                return True
+            else:
+                print(f'    [FAIL] ret_code={result.get("ret_code")}')
+                return False
+    print(f'    [FAIL] import_urls: {resp}')
     return False
 
 
-def save_local_cache(subject_key, md_content, knowledge_json):
+def save_files(subject_key, md_content, knowledge_json):
+    """保存到 knowledge/（GitHub）和 knowledge_cache/（本地）"""
+    # 公开目录（提交到 GitHub，供 IMA 通过 URL 读取）
+    md_path = os.path.join(KNOWLEDGE_DIR, f'{subject_key}.md')
+    with open(md_path, 'w', encoding='utf-8') as f:
+        f.write(md_content)
+
+    # 本地缓存
     with open(os.path.join(CACHE_DIR, f'{subject_key}_knowledge.md'), 'w', encoding='utf-8') as f:
         f.write(md_content)
     with open(os.path.join(CACHE_DIR, f'{subject_key}_knowledge.json'), 'w', encoding='utf-8') as f:
@@ -254,19 +229,16 @@ if __name__ == '__main__':
         knowledge_json = extract_knowledge_json(html_path)
         print(f'  提取: {len(md_content)} chars, {len(knowledge_json)} topics')
 
-        # 保存本地缓存（始终执行，这是 knowledge_builder 的数据源）
-        save_local_cache(subj_key, md_content, knowledge_json)
+        # 保存文件
+        save_files(subj_key, md_content, knowledge_json)
         local_saved.append(subj_key)
-        print(f'  ✓ 缓存: knowledge_cache/{subj_key}_knowledge.md')
+        print(f'  ✓ knowledge/{subj_key}.md + knowledge_cache/')
 
-        # 尝试上传到 IMA KB（需要 create_media 权限，失败不影响流程）
-        today = date.today().strftime('%Y%m%d')
-        file_name = f'{subj["name"]}知识点_{today}.md'
-        if try_upload_md(md_content, file_name, subj['folder']):
-            uploaded.append(subj_key)
-        else:
-            print(f'  ⚠ KB 上传跳过（create_media 权限不可用）')
+    # 注意：import_urls 需要先 git push，让文件在 GitHub 上可访问
+    # 这里只保存文件，import_urls 在 scheduled_sync.py 中 git push 后执行
+    if local_saved:
+        print(f'\n=== 文件已保存 ===')
+        print(f'  knowledge/: {local_saved}')
+        print(f'  ⏳ git push 后再执行 import_urls（由 scheduled_sync 控制）')
 
     print(f'\n=== Done ===')
-    print(f'  本地缓存: {len(local_saved)} 科 — {local_saved}')
-    print(f'  KB 上传:  {len(uploaded)} 科 — {uploaded}')
