@@ -22,3 +22,5 @@ Thumbs.db
 .vscode/
 .idea/
 scripts/sync_state.json
+knowledge_cache/
+scripts/kb_knowledge_folders.json

@@ -2,10 +2,10 @@
 """
 scheduled_sync.py — 每日调度脚本
 逻辑：
-  - kb_sync  每3天执行一次（控制知识点复习页更新频率）
-  - download_and_build_papers today  每天执行（今日科目试卷，轮换由脚本内部按周控制）
+  - knowledge_builder  每3天执行一次（联网搜索权威学习平台，生成知识点复习页面 *_basic.html）
+  - download_and_build_papers today  每天执行（IMA KB下载今日科目试卷，轮换由脚本内部按周控制）
   - daily_today_marker  每天执行
-  - sync_readme_about  每次 kb_sync 后执行
+  - sync_readme_about  每次 knowledge_builder 后执行
   - daily_push  每天执行
   - git add/commit/push  仅在有变更时执行
 用法: python scripts/scheduled_sync.py [repo_path]
@@ -43,7 +43,7 @@ def load_state():
             return json.loads(open(STATE_FILE, encoding='utf-8').read())
         except Exception:
             pass
-    return {'last_kb_sync': None}
+    return {'last_knowledge_build': None}
 
 def save_state(state):
     with open(STATE_FILE, 'w', encoding='utf-8') as f:
@@ -58,30 +58,32 @@ def main():
     print(f'=== scheduled_sync {date.today().isoformat()} ===')
 
     state = load_state()
-    last_sync = state.get('last_kb_sync')
-    days_elapsed = days_since(last_sync)
-    do_kb_sync = days_elapsed >= 3
+    last_build = state.get('last_knowledge_build') or state.get('last_kb_sync')
+    days_elapsed = days_since(last_build)
+    do_build = days_elapsed >= 3
 
-    log(f'last_kb_sync={last_sync}, days_elapsed={days_elapsed}, do_kb_sync={do_kb_sync}')
+    log(f'last_knowledge_build={last_build}, days_elapsed={days_elapsed}, do_build={do_build}')
 
-    # 1. kb_sync — 每3天一次（可能因IMA KB问题返回空结果，跳过即可）
-    if do_kb_sync:
-        log('--- kb_sync start ---')
-        ok = run([PY, 'scripts/kb_sync.py'], f'{OUT_DIR}/kb_sync.log')
-        kb_ok = ok
-        log(f'kb_sync: {"OK" if ok else "FAILED"}')
+    # 1. knowledge_builder — 每3天一次（联网搜索权威学习平台，生成 *_basic.html 知识点复习页面）
+    if do_build:
+        log('--- knowledge_builder start ---')
+        ok = run([PY, 'scripts/knowledge_builder.py'], f'{OUT_DIR}/knowledge_builder.log')
+        log(f'knowledge_builder: {"OK" if ok else "FAILED"}')
         if ok:
-            state['last_kb_sync'] = date.today().isoformat()
+            state['last_knowledge_build'] = date.today().isoformat()
             save_state(state)
-            # 2a. 同步 README → about.html（仅在 kb_sync 成功时）
+            # 1a. 上传知识点到 IMA KB（缓存到 KB，后续可直接读取）
+            ok_kb = run([PY, 'scripts/knowledge_to_kb.py'], f'{OUT_DIR}/knowledge_to_kb.log')
+            log(f'knowledge_to_kb: {"OK" if ok_kb else "FAILED (不影响流程)"}')
+            # 1b. 同步 README → about.html
             ok2 = run([PY, 'scripts/sync_readme_about.py'], f'{OUT_DIR}/readme_sync.log')
             log(f'sync_readme_about: {"OK" if ok2 else "FAILED"}')
         else:
-            log('kb_sync failed (可能IMA KB不可用)，跳过同步，保留已有内容')
+            log('knowledge_builder failed，跳过同步，保留已有内容')
     else:
-        log('kb_sync: skipped (未满3天)')
+        log('knowledge_builder: skipped (未满3天)')
 
-    # 2. download today's paper — 每天（轮换由脚本内部按周控制）
+    # 2. download today's paper — 每天（IMA KB 试卷，轮换由脚本内部按周控制）
     # 可能因PDF下载/IMA问题失败，跳过不影响后续步骤
     log('--- download_and_build_papers today ---')
     ok = run([PY, 'scripts/download_and_build_papers.py', 'today'],
