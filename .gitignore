@@ -1,3 +1,9 @@
+# Local credentials / secrets
+iflytek_credentials.json
+*.secret.json
+.env
+.env.*
+
 # Python cache
 __pycache__/
 *.pyc

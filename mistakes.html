@@ -31,10 +31,14 @@ select.form-input { cursor: pointer; appearance: none; background-image: url("da
 .error-type.calc { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
 .error-type.careless { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
 .error-type.reading { background: #f3e8ff; color: #7c3aed; border-color: #c4b5fd; }
+.error-type.format { background: #ecfccb; color: #4d7c0f; border-color: #bef264; }
+.error-type.memory { background: #ede9fe; color: #6d28d9; border-color: #c4b5fd; }
 body.dark .error-type.concept { background: #451a03; color: #fcd34d; border-color: #92400e; }
 body.dark .error-type.calc { background: #450a0a; color: #fca5a5; border-color: #dc2626; }
 body.dark .error-type.careless { background: #164e63; color: #7dd3fc; border-color: #0369a1; }
 body.dark .error-type.reading { background: #3b0764; color: #c4b5fd; border-color: #7c3aed; }
+body.dark .error-type.format { background: #1a2e05; color: #d9f99d; border-color: #65a30d; }
+body.dark .error-type.memory { background: #2e1065; color: #ddd6fe; border-color: #7c3aed; }
 .error-date { font-size: 0.72rem; color: var(--text-muted); margin-left: auto; }
 .error-problem { font-size: 0.88rem; color: var(--text-primary); font-weight: 500; margin-bottom: 6px; line-height: 1.5; }
 .error-answer { font-size: 0.82rem; color: #27ae60; margin-bottom: 5px; }
@@ -59,14 +63,23 @@ body.dark .btn-goto { background: #14532d; border-color: #166534; }
 .filter-btn[data-sub="history"].active { background: #e67e22; border-color: #e67e22; }
 .filter-btn[data-sub="politics"].active { background: #1abc9c; border-color: #1abc9c; }
 
-.stats-row { display: flex; gap: 8px; margin-bottom: 12px; }
-.stat-chip { flex: 1; background: var(--bg-card); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: var(--shadow-sm); }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.stat-chip { background: var(--bg-card); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: var(--shadow-sm); }
 .stat-chip .num { font-size: 1.3rem; font-weight: 700; color: var(--c, #e74c3c); }
 .stat-chip .label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
 .stat-chip.concept { --c: #f59e0b; }
 .stat-chip.calc { --c: #dc2626; }
 .stat-chip.careless { --c: #0284c7; }
 .stat-chip.reading { --c: #7c3aed; }
+.stat-chip.format { --c: #65a30d; }
+.stat-chip.memory { --c: #6d28d9; }
+.review-panel { background: var(--bg-card); border-radius: 14px; padding: 14px; margin-bottom: 12px; box-shadow: var(--shadow-sm); border-left: 4px solid #f59e0b; }
+.review-panel h2 { font-size: 0.95rem; margin-bottom: 6px; color: var(--text-primary); }
+.review-panel p { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; }
+.review-list { display: flex; flex-direction: column; gap: 8px; }
+.review-item { background: var(--question-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px; }
+.review-item-title { font-size: 0.84rem; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+.review-item-meta { font-size: 0.72rem; color: var(--text-muted); }
 
 .ml-empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
 .ml-empty .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
@@ -117,6 +130,16 @@ body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 1
       <option value="calc">🔢 计算失误</option>
       <option value="careless">😓 粗心大意</option>
       <option value="reading">📖 审题错误</option>
+      <option value="format">🧾 答题格式</option>
+      <option value="memory">🔁 知识遗忘</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <input id="f-topic" class="form-input" type="text" placeholder="核心考点（如：欧姆定律 / 函数图像）">
+    <select id="f-review" class="form-input">
+      <option value="ebbinghaus">按 1/3/7/15 天复习</option>
+      <option value="tomorrow">明天必须复盘</option>
+      <option value="weekly">7 天后周复盘</option>
     </select>
   </div>
   <div class="form-row full">
@@ -137,6 +160,15 @@ body.dark .ml-header { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 1
   <div class="stat-chip calc"><div class="num" id="stat-calc">0</div><div class="label">计算失误</div></div>
   <div class="stat-chip careless"><div class="num" id="stat-careless">0</div><div class="label">粗心大意</div></div>
   <div class="stat-chip reading"><div class="num" id="stat-reading">0</div><div class="label">审题错误</div></div>
+  <div class="stat-chip format"><div class="num" id="stat-format">0</div><div class="label">答题格式</div></div>
+  <div class="stat-chip memory"><div class="num" id="stat-memory">0</div><div class="label">知识遗忘</div></div>
+</div>
+
+<!-- Ebbinghaus review queue -->
+<div id="review-panel" class="review-panel" style="display:none">
+  <h2>🔁 今日错题复盘</h2>
+  <p>按艾宾浩斯遗忘曲线筛出 1 / 3 / 7 / 15 天前，或手动指定今天复盘的错题。</p>
+  <div id="review-list" class="review-list"></div>
 </div>
 
 <!-- List -->
@@ -173,7 +205,19 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
     history: { label: '🏛️ 历史', color: '#e67e22', page: 'history_basic.html' },
     politics: { label: '🎯 政治', color: '#1abc9c', page: 'politics_basic.html' }
   };
-  var TYPE_LABELS = { concept: '概念不清', calc: '计算失误', careless: '粗心大意', reading: '审题错误' };
+  var TYPE_LABELS = {
+    concept: '概念不清',
+    calc: '计算失误',
+    careless: '粗心大意',
+    reading: '审题错误',
+    format: '答题格式',
+    memory: '知识遗忘'
+  };
+  var REVIEW_LABELS = {
+    ebbinghaus: '1/3/7/15 天复盘',
+    tomorrow: '明天复盘',
+    weekly: '7 天后复盘'
+  };
   var activeFilter = 'all';
 
   function getMistakes() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
@@ -191,14 +235,29 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
     var problem = document.getElementById('f-problem').value.trim();
     var answer = document.getElementById('f-answer').value.trim();
     var notes = document.getElementById('f-notes').value.trim();
+    var topic = document.getElementById('f-topic').value.trim();
+    var reviewPlan = document.getElementById('f-review').value || 'ebbinghaus';
     if (!subj) { showToast('请选择科目'); return; }
     if (!type) { showToast('请选择错因类型'); return; }
     if (!problem && !answer) { showToast('请填写题目或答案'); return; }
     var mistakes = getMistakes();
-    mistakes.unshift({ id: Date.now(), subject: subj, errorType: type, problem: problem, answer: answer, notes: notes, date: todayStr() });
+    mistakes.unshift({
+      id: Date.now(),
+      subject: subj,
+      errorType: type,
+      topic: topic,
+      reviewPlan: reviewPlan,
+      problem: problem,
+      answer: answer,
+      notes: notes,
+      date: todayStr()
+    });
     setMistakes(mistakes);
     // Clear form
-    ['f-subject','f-type','f-problem','f-answer','f-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
+    ['f-subject','f-type','f-topic','f-review','f-problem','f-answer','f-notes'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.value = id === 'f-review' ? 'ebbinghaus' : '';
+    });
     render();
     showToast('已记录 ✓');
   };
@@ -214,10 +273,11 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
   window.exportErrors = function () {
     var mistakes = getMistakes();
     if (!mistakes.length) { showToast('暂无错题可导出'); return; }
-    var TYPE_LABELS = { concept: '概念不清', calc: '计算失误', careless: '粗心大意', reading: '审题错误' };
     var lines = ['📚 中考错题本导出', new Date().toLocaleDateString('zh-CN'), ''];
     mistakes.forEach(function(m, i) {
       lines.push((i+1) + '. [' + (SUBJECTS[m.subject] ? SUBJECTS[m.subject].label : m.subject) + '] ' + (TYPE_LABELS[m.errorType] || m.errorType));
+      if (m.topic) lines.push('   考点：' + m.topic);
+      if (m.reviewPlan) lines.push('   复盘：' + (REVIEW_LABELS[m.reviewPlan] || m.reviewPlan));
       if (m.problem) lines.push('   题目：' + m.problem);
       if (m.answer) lines.push('   答案：' + m.answer);
       if (m.notes) lines.push('   备注：' + m.notes);
@@ -447,14 +507,62 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
     }
   }
 
+  function safeToken(s) {
+    return String(s || '').replace(/[^a-z0-9_-]/gi, '');
+  }
+
+  function safeLabel(map, key, fallback) {
+    return map[key] || fallback || '未分类';
+  }
+
   function updateStats() {
     var mistakes = getMistakes();
-    var counts = { concept: 0, calc: 0, careless: 0, reading: 0 };
+    var counts = { concept: 0, calc: 0, careless: 0, reading: 0, format: 0, memory: 0 };
     mistakes.forEach(function (m) { if (counts[m.errorType] !== undefined) counts[m.errorType]++; });
-    ['concept', 'calc', 'careless', 'reading'].forEach(function (t) {
+    ['concept', 'calc', 'careless', 'reading', 'format', 'memory'].forEach(function (t) {
       var el = document.getElementById('stat-' + t);
       if (el) el.textContent = counts[t];
     });
+  }
+
+  function daysAgo(dateStr) {
+    var d = new Date(dateStr);
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    d.setHours(0,0,0,0);
+    return Math.floor((now - d) / 86400000);
+  }
+
+  function isDueForReview(m) {
+    var ago = daysAgo(m.date);
+    if (ago < 0) return false;
+    if (m.reviewPlan === 'tomorrow') return ago >= 1;
+    if (m.reviewPlan === 'weekly') return ago >= 7;
+    return ago === 1 || ago === 3 || ago === 7 || ago === 15;
+  }
+
+  function updateReviewPanel(mistakes) {
+    var panel = document.getElementById('review-panel');
+    var list = document.getElementById('review-list');
+    if (!panel || !list) return;
+    var due = mistakes.filter(isDueForReview).slice(0, 5);
+    if (!due.length) {
+      panel.style.display = 'none';
+      list.innerHTML = '';
+      return;
+    }
+    panel.style.display = 'block';
+    list.innerHTML = due.map(function(m) {
+      var subj = SUBJECTS[m.subject] || SUBJECTS.math;
+      var ago = daysAgo(m.date);
+      var topic = m.topic ? ' · 考点：' + escapeHtml(m.topic) : '';
+      var title = escapeHtml(m.problem || m.answer || '未填写题目');
+      return '<div class="review-item">' +
+        '<div class="review-item-title">' + subj.label + ' · ' + escapeHtml(safeLabel(TYPE_LABELS, m.errorType, m.errorType)) + topic + '</div>' +
+        '<div class="review-item-meta">' + ago + ' 天前记录 · ' + escapeHtml(safeLabel(REVIEW_LABELS, m.reviewPlan, m.reviewPlan || '1/3/7/15 天复盘')) + '</div>' +
+        '<div style="font-size:0.82rem;color:var(--text-secondary);margin-top:5px;line-height:1.5">' + title + '</div>' +
+      '</div>';
+    }).join('');
   }
 
   function render() {
@@ -464,6 +572,7 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
     var emptyEl = document.getElementById('empty-state');
     updateStreak();
     updateStats();
+    updateReviewPanel(mistakes);
 
     if (!mistakes.length) {
       listEl.innerHTML = '';
@@ -479,13 +588,15 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').ca
     var html = '';
     filtered.forEach(function (m) {
       var subj = SUBJECTS[m.subject] || SUBJECTS.math;
+      var typeToken = safeToken(m.errorType);
       html += '<div class="error-card" style="--c:' + subj.color + '">';
       html += '<div class="error-header">';
       html += '<span class="error-subject">' + subj.label + '</span>';
-      html += '<span class="error-type ' + (m.errorType || '') + '">' + (TYPE_LABELS[m.errorType] || m.errorType) + '</span>';
-      html += '<span class="error-date">' + m.date + '</span>';
+      html += '<span class="error-type ' + typeToken + '">' + escapeHtml(safeLabel(TYPE_LABELS, m.errorType, m.errorType)) + '</span>';
+      html += '<span class="error-date">' + escapeHtml(m.date) + '</span>';
       html += '</div>';
       if (m.problem) html += '<div class="error-problem">' + escapeHtml(m.problem) + '</div>';
+      if (m.topic || m.reviewPlan) html += '<div class="error-notes" style="font-style:normal">' + (m.topic ? '🎯 考点：' + escapeHtml(m.topic) : '') + (m.topic && m.reviewPlan ? ' · ' : '') + (m.reviewPlan ? '🔁 ' + escapeHtml(safeLabel(REVIEW_LABELS, m.reviewPlan, m.reviewPlan)) : '') + '</div>';
       if (m.answer) html += '<div class="error-answer">' + escapeHtml(m.answer) + '</div>';
       if (m.notes) html += '<div class="error-notes">' + escapeHtml(m.notes) + '</div>';
       html += '<div class="error-actions">';
