@@ -98,12 +98,13 @@ def main():
 
     # 4. Git commit & push（仅当有变更时，必须先 push 才能让 IMA 通过 URL 导入）
     log('--- git push ---')
-    git = ['git', f'-C={REPO}']
+    git = ['git', '-C', REPO]
     subprocess.run(git + ['config', 'user.name', 'Hongmingbo'], capture_output=True)
     subprocess.run(git + ['config', 'user.email', 'user@users.noreply.github.com'], capture_output=True)
-    subprocess.run(git + ['add', '-A'], capture_output=True)
-    status = subprocess.run(git + ['status', '--porcelain'], capture_output=True, text=True)
-    if status.stdout.strip():
+    # 只暂存已跟踪文件，避免误提交本地代理、缓存目录、临时工具输出等未审计文件。
+    subprocess.run(git + ['add', '-u'], capture_output=True)
+    staged = subprocess.run(git + ['diff', '--cached', '--name-only'], capture_output=True, text=True)
+    if staged.stdout.strip():
         commit_msg = f'Auto-sync: {date.today().isoformat()}'
         subprocess.run(git + ['commit', '-m', commit_msg], capture_output=True)
         push = subprocess.run(git + ['push', 'origin', 'main'],
@@ -112,7 +113,7 @@ def main():
         log(f'  stdout: {push.stdout[:200]}')
         log(f'  stderr: {push.stderr[:200]}')
     else:
-        log('git push: no changes')
+        log('git push: no tracked changes')
 
     # 5. IMA KB 导入知识点（git push 后，raw URL 可访问）
     log('--- import knowledge to IMA KB ---')
